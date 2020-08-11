@@ -1,0 +1,77 @@
+<ul class="navbar-nav ml-auto">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">
+                    @guest
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
+                    @else
+                    {{ Auth::user()->name }}
+                    
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                        
+                        <b>cerrar sesion</b>
+                    </a>
+                        
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                        style="display: none;">
+                        @csrf
+                    </form>
+    
+                    @endguest
+                </a>
+            </div>
+       
+    </ul>-->
+
+   <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown no-arrow">
+           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            
+            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" width="30" height="30"alt="User Image">
+            {{ Auth::user()->name }}
+            </a>
+           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            {{ Auth::user()->name }}
+            </a>
+            </div>
+         </li>
+     
+</ul>
+
+<div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+              <span class="badge badge-pill badge-warning">New</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Dashboard 1
+                    <span class="badge badge-pill badge-success">Pro</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 2</a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+       </ul>
+</div>
