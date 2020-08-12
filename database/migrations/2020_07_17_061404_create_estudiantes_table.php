@@ -33,7 +33,6 @@ class CreateEstudiantesTable extends Migration
             $table->string('nombre_madre', 100);
             $table->string('profesion_madre', 60);
             $table->string('telefono_madre');
-            $table->date('fecha_creacion');
             $table->timestamps();
         });
     }
