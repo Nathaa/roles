@@ -12,7 +12,7 @@
 
 
 @section('title')
-<h3>Lista de Expedientes</h3>
+<h3>Lista de Expedientes!!</h3>
 @endsection
 
 
@@ -59,7 +59,7 @@
 
        </tbody>
       </table>
-      
+
 </div>
 </div>
 </div>
