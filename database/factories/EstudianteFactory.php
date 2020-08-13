@@ -13,7 +13,7 @@ $factory->define(App\Estudiante::class, function (Faker $faker) {
         'nombre' =>$faker->sentence,
         'apellido' =>$faker->sentence,
         'fecha_nacimiento' =>$faker->date,
-        'edad' =>$faker->sentence,
+        'edad' =>$faker->randomNumber,
         'direccion' =>$faker->sentence,
         'encargado' =>$faker->sentence,
         'parentesco' =>$faker->sentence,
@@ -27,6 +27,6 @@ $factory->define(App\Estudiante::class, function (Faker $faker) {
         'nombre_madre' =>$faker->sentence,
         'profesion_madre' =>$faker->sentence,
         'telefono_madre' =>$faker->sentence,
-        'fecha_creacion' =>$faker->date,
+
     ];
 });
