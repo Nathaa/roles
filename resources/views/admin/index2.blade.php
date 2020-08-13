@@ -215,5 +215,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @yield('css_role_page')
 @yield('js_role_page')
 @yield('js_user_page')
+@yield('scripts')
 </body>
 </html>
