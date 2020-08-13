@@ -24,10 +24,13 @@
                             <tr>
 
                                 <th scope="col">Nombre</th>
-                               <th scope="col">Descripcion</th>
-                         <th scope="col">Opciones</th>
+                            <th scope="col">Descripcion</th>
+
+
+
 
                             </tr>
+
 
                     <tbody>
                         @foreach($roles as $role)
@@ -35,7 +38,7 @@
 
                             <td>{{ $role->name }}</td>
                             <td>{{ $role->description }}</td>
-                            <td>
+                            <td width="10">
                                @can('roles.show')
                                  <a href="{{ route('roles.show', $role->id) }}"
                                  class="btn btn-sm btn-default">
@@ -43,21 +46,27 @@
                                  </a>
                                 @endcan
 
+                            </td>
+                            <td width="10">
+
                                 @can('roles.edit')
                                       <a href="{{ route('roles.edit', $role->id) }}"
                                       class="btn btn-sm btn-default">
                                          Editar
                                       </a>
-                                     @endcan
-                                     @can('roles.destroy')
+                                @endcan
+                            </td>
+                            <td width="10">
+                                @can('roles.destroy')
                                      {!! Form::open(['route' => ['roles.destroy', $role->id],
                                      'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el rol?")']) !!}
                                      <button class="btn btn-sm btn-danger">
                                          Eliminar
                                      </button>
                                    {!! Form::close() !!}
-                                    @endcan
-                            </td>
+                                @endcan
+                                </td>
+
 
                         </tr>
                         @endforeach

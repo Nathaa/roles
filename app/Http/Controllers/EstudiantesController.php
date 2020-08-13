@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Estudiante;
+use App\Http\Requests\EstudiantesStoreRequest;
+use App\Http\Requests\EstudiantesUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,7 +62,7 @@ class EstudiantesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstudiantesStoreRequest $request)
     {
         //
 
@@ -114,7 +116,7 @@ class EstudiantesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(EstudiantesUpdateRequest $request,$id)
     {
         //if ($request->hasfile('imagen')) {
 
