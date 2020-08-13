@@ -16,6 +16,7 @@
 <h3>Expediente de: {{ $estudiante->nombre  }} </h3>
 @endsection
 
+
 @section('content')
 
 
@@ -25,7 +26,7 @@
                            </div>
                             <div class="container">
                                 <th scope="row"></th>
-                                <p align="right"><strong>Fecha de Creacion: </strong> {{ $estudiante->fecha_creacion }}</p>
+                                <p align="right"><strong>Fecha de Creacion: </strong> {{ Carbon\Carbon::parse($estudiante->created_at)->format('d/m/Y') }}</p>
 
                                 <div class="card">
 
@@ -47,7 +48,7 @@
                                     <tr>
                                         <td><p><strong>Nombre: </strong> {{ $estudiante->nombre }}</p></td>
                                             <td><p><strong>Apellido: </strong> {{ $estudiante->apellido }}</p></td>
-                                                <td><p><strong>Fecha Nacimiento: </strong> {{ $estudiante->fecha_nacimiento }}</p></td>
+                                                <td><p><strong>Fecha Nacimiento: </strong> {{ Carbon\Carbon::parse($estudiante->fecha_nacimiento)->format('d/m/Y') }}</p></td>
                                     </tr>
                                     <tr>
 
