@@ -3,8 +3,8 @@
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    @can('estudiantes.create')
-    <li class="breadcrumb-item"><a href="{{ route('estudiantes.create') }}">Crear Expediente</a></li>
+    @can('periodos.create')
+    <li class="breadcrumb-item"><a href="{{ route('periodos.create') }}">Agregar Nuevo Periodo</a></li>
     @endcan
   </ol>
 </div><!-- /.col -->
@@ -12,7 +12,7 @@
 
 
 @section('title')
-<h3>Lista de Expedientes!!</h3>
+<h3>Lista de Periodos</h3>
 @endsection
 
 
@@ -32,20 +32,21 @@
          <tr>
 
            <th scope="col">Nombre</th>
-           <th scope="col">Apellidos</th>
-           <th scope="col">Opciones</th>
+           <th scope="col">Fecha de Inicio</th>
+           <th scope="col">Fecha de Finalizacion</th>
          </tr>
        </thead>
        <tbody>
-          @foreach ($estudiantes as $estudiante)
+          @foreach ($periodos as $periodo)
            <tr>
-            @can('estudiantes.show')
-             <td><a href="{{ route('estudiantes.show', $estudiante->id)}}">{{$estudiante->nombre}}</td></a>
-             <td>{{$estudiante->apellido}}</td>
+            @can('periodos.show')
+             <td><a href="{{ route('periodos.show', $periodo->id)}}">{{$periodo->nombre}}</td></a>
+             <td>{{$periodo->fecha_inicio}}</td>
+             <td>{{$periodo->fecha_fin}}</td>
             @endcan
              <td>
-                @can('estudiantes.destroy')
-              {!! Form::open(['route' => ['estudiantes.destroy', $estudiante->id],
+                @can('periodos.destroy')
+              {!! Form::open(['route' => ['periodos.destroy', $periodo->id],
               'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
               <button class="btn btn-sm btn-danger">
                   Eliminar
@@ -61,10 +62,6 @@
       </table>
 
 </div>
-
 </div>
 </div>
 @endsection
-
-
-

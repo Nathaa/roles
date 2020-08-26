@@ -142,6 +142,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <?php endif; ?>
           </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
+            <a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Periodos
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -203,7 +214,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- Default to the left -->
      Centro Escolar General Francisco Morazan.
-  </footer>
+
+
 </div>
 <!-- ./wrapper -->
 
@@ -218,6 +230,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <?php echo $__env->yieldContent('css_role_page'); ?>
 <?php echo $__env->yieldContent('js_role_page'); ?>
 <?php echo $__env->yieldContent('js_user_page'); ?>
+<?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
 <?php /**PATH C:\ProyectosLaravel\repo\roles\resources\views/admin/index2.blade.php ENDPATH**/ ?>

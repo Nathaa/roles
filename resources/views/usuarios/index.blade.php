@@ -3,7 +3,7 @@
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item"><a href="{{ route('usuarios.create') }}">Crear Usuario</a></li>
+
 
   </ol>
 </div><!-- /.col -->

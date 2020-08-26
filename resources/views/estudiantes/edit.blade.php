@@ -27,12 +27,12 @@
                         <img width="150px" src="{{ $estudiante->imagen }}" class="img-responsive">
                         @include('estudiantes.form')
                        {!! Form::close() !!}
-                </div>
-            </div>
+
             <div class="card-footer">
 
             </table>
-        </div>
+           </div>
+    </div>
     </div>
 </div>
 @endsection

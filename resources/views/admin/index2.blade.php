@@ -140,6 +140,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             @endcan
           </li>
+          <li class="nav-item">
+            @can('periodos.index')
+            <a href="{{ route ('periodos.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Periodos
+
+              </p>
+            </a>
+            @endcan
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -200,7 +211,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- Default to the left -->
      Centro Escolar General Francisco Morazan.
-  </footer>
+
+
 </div>
 <!-- ./wrapper -->
 

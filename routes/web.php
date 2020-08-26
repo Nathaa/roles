@@ -74,3 +74,20 @@ Route::put('roles/{role}', 'RolesController@update')->name('roles.update')
 Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 ->middleware('can:roles.destroy');
 });
+
+
+//Periodos
+Route::get('periodos', 'PeriodosController@index')->name('periodos.index')
+->middleware('can:periodos.index');
+Route::get('periodos/periodo', 'PeriodosController@create')->name('periodos.create')
+->middleware('can:periodos.create');
+Route::get('periodos/{periodo}', 'PeriodosController@show')->name('periodos.show')
+->middleware('can:periodos.show');
+Route::post('periodos', 'PeriodosController@store')->name('periodos.store')
+->middleware('can:periodos.create');
+Route::get('periodos/{periodo}/edit', 'PeriodosController@edit')->name('periodos.edit')
+->middleware('can:periodos.edit');
+Route::put('periodos/{periodo}', 'PeriodosController@update')->name('periodos.update')
+->middleware('can:periodos.update');
+Route::delete('periodos/{periodo}', 'PeriodosController@destroy')->name('periodos.destroy')
+->middleware('can:periodos.destroy');

@@ -13,7 +13,8 @@
 
 <div class="alert alert-primary" role="alert">
         Datos Personales Alumnas
-      </div>
+</div>
+
 
 <form>
 
@@ -132,34 +133,31 @@
 
 </div>
 
-
-
-
-
-
+<br>
 <ol class="float-sm-right">
-    {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success']) }}
+   {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success']) }}
 </ol>
+
 
 
 
 </form>
 
-   
+
 @section('scripts')
 <script type="">
         $(function(){
              $("#fecha_nacimiento").on('change', calcularEdad);
          });
-         
+
          function calcularEdad() {
-             
+
              fecha_nacimiento = $(this).val();
              var fecha_hoy = new Date();
              var cumpleanos = new Date(fecha_nacimiento);
              var edad = fecha_hoy.getFullYear() - cumpleanos.getFullYear();
              var m = fecha_hoy.getMonth() - cumpleanos.getMonth();
- 
+
              if (m < 0 || (m === 0 && fecha_hoy.getDate() < cumpleanos.getDate())) {
                  edad--;
              }
