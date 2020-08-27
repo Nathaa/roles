@@ -107,3 +107,20 @@ Route::put('matriculas/{matricula}', 'MatriculasController@update')->name('matri
 ->middleware('can:matriculas.update');
 Route::delete('matriculas/{matricula}', 'MatriculasController@destroy')->name('matriculas.destroy')
 ->middleware('can:matriculas.destroy');
+
+//Anios
+Route::get('anios', 'AniosController@index')->name('anios.index')
+->middleware('can:anios.index');
+Route::get('anios/anio', 'AniosController@create')->name('anios.create')
+->middleware('can:anios.create');
+Route::get('anios/{anio}', 'AniosController@show')->name('anios.show')
+->middleware('can:anios.show');
+Route::post('anios', 'AniosController@store')->name('anios.store')
+->middleware('can:anios.create');
+Route::get('anios/{anio}/edit', 'AniosController@edit')->name('anios.edit')
+->middleware('can:anios.edit');
+Route::put('anios/{anio}', 'AniosController@update')->name('anios.update')
+->middleware('can:anios.update');
+Route::delete('anios/{anio}', 'AniosController@destroy')->name('anios.destroy')
+->middleware('can:anios.destroy');
+

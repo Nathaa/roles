@@ -12,12 +12,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>Sistema Academico</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  @yield('css_role_page')
+  <?php echo $__env->yieldContent('css_role_page'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admin') }}" class="nav-link">Pagina Principal</a>
+        <a href="<?php echo e(route('admin')); ?>" class="nav-link">Pagina Principal</a>
       </li>
     </ul>
 
@@ -51,9 +51,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <div class="nav-item dropdown no-arrow">
-        <a href="{{ route('logout') }}" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesion</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
+        <a href="<?php echo e(route('logout')); ?>" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesion</a>
+        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+            <?php echo e(csrf_field()); ?>
+
         </form>
       </div>
 
@@ -73,8 +74,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admin') }}" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="<?php echo e(route('admin')); ?>" class="brand-link">
+      <img src="<?php echo e(asset('dist/img/AdminLTELogo.png')); ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Sistema Academico</span>
     </a>
@@ -85,17 +86,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
               <a href="#" class="d-block">
-                  @guest
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-                  @else
+                  <?php if(auth()->guard()->guest()): ?>
+                  <a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Iniciar Sesión')); ?></a>
+                  <?php else: ?>
                   <div class="image">
 
-                    <!-- <img src="{{asset('imagenes/'.Auth::user()->imagen) }}" class="img-circle elevation-2"> -->
-                    <img src="{{asset('dist/img/ava.jpg')}}" class="img-circle" height: 100px;
+                    <!-- <img src="<?php echo e(asset('imagenes/'.Auth::user()->imagen)); ?>" class="img-circle elevation-2"> -->
+                    <img src="<?php echo e(asset('dist/img/ava.jpg')); ?>" class="img-circle" height: 100px;
                     width: 100px; alt="User Image">
                 </div>
-                  {{ Auth::user()->name }}
-                  @endguest
+                  <?php echo e(Auth::user()->name); ?>
+
+                  <?php endif; ?>
               </a>
 
           </div>
@@ -107,71 +109,71 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            @can('estudiantes.index')
-            <a href="{{ route ('estudiantes.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
+            <a href="<?php echo e(route ('estudiantes.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>
                 Expediente Alumna
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
 
           <li class="nav-item">
-            @can('usuarios.index')
-            <a href="{{ route ('usuarios.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
+            <a href="<?php echo e(route ('usuarios.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
                 Usuarios
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
           <li class="nav-item">
-            @can('roles.index')
-            <a href="{{ route ('roles.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
+            <a href="<?php echo e(route ('roles.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-lock"></i>
               <p>
                 Roles
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
           <li class="nav-item">
-            @can('periodos.index')
-            <a href="{{ route ('periodos.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
+            <a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Periodos
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
           <li class="nav-item">
-            @can('matriculas.index')
-            <a href="{{ route ('matriculas.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
+            <a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>
                 Matrículas
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
           <li class="nav-item">
-            @can('anios.index')
-            <a href="{{ route ('anios.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
+            <a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Años
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
           </li>
         </ul>
       </nav>
@@ -187,26 +189,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-           @yield('title')
+           <?php echo $__env->yieldContent('title'); ?>
           </div><!-- /.col -->
-         @yield('crear')
+         <?php echo $__env->yieldContent('crear'); ?>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if (session('info'))
+    <?php if(session('info')): ?>
   <div class="container">
       <div class="row">
           <div class="col-md-12 col-md-offset-2">
               <div class="alert alert-info">
-                  {{ session('info') }}
+                  <?php echo e(session('info')); ?>
+
               </div>
           </div>
       </div>
   <div
 
-    @endif
-    @yield('content')
+    <?php endif; ?>
+    <?php echo $__env->yieldContent('content'); ?>
     <!-- Main content -->
     <div class="content">
 
@@ -241,14 +244,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-@yield('css_role_page')
-@yield('js_role_page')
-@yield('js_user_page')
-@yield('scripts')
+<?php echo $__env->yieldContent('css_role_page'); ?>
+<?php echo $__env->yieldContent('js_role_page'); ?>
+<?php echo $__env->yieldContent('js_user_page'); ?>
+<?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
+<?php /**PATH E:\Documentos\GitHub\roles\resources\views/admin/index2.blade.php ENDPATH**/ ?>
