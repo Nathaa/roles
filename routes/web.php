@@ -91,3 +91,19 @@ Route::put('periodos/{periodo}', 'PeriodosController@update')->name('periodos.up
 ->middleware('can:periodos.update');
 Route::delete('periodos/{periodo}', 'PeriodosController@destroy')->name('periodos.destroy')
 ->middleware('can:periodos.destroy');
+
+//Matriculas
+Route::get('matriculas', 'MatriculasController@index')->name('matriculas.index')
+->middleware('can:matriculas.index');
+Route::get('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
+->middleware('can:matriculas.create');
+Route::get('matriculas/{matricula}', 'MatriculasController@show')->name('matriculas.show')
+->middleware('can:matriculas.show');
+Route::post('matriculas', 'MatriculasController@store')->name('matriculas.store')
+->middleware('can:matriculas.create');
+Route::get('matriculas/{matricula}/edit', 'MatriculasController@edit')->name('matriculas.edit')
+->middleware('can:matriculas.edit');
+Route::put('matriculas/{matricula}', 'MatriculasController@update')->name('matriculas.update')
+->middleware('can:matriculas.update');
+Route::delete('matriculas/{matricula}', 'MatriculasController@destroy')->name('matriculas.destroy')
+->middleware('can:matriculas.destroy');
