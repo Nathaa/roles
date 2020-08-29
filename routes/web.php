@@ -124,3 +124,18 @@ Route::put('anios/{anio}', 'AniosController@update')->name('anios.update')
 Route::delete('anios/{anio}', 'AniosController@destroy')->name('anios.destroy')
 ->middleware('can:anios.destroy');
 
+//grados
+Route::get('grados','GradosController@index')->name('grados.index')
+->middleware('can:grados.index');
+Route::get('grados/crear', 'GradosController@create')->name('grados.create')
+->middleware('can:grados.create');
+Route::get('grados/{grado}', 'GradosController@show')->name('grados.show')
+->middleware('can:grados.show');
+Route::post('grados', 'GradosController@store')->name('grados.store')
+->middleware('can:grados.create');
+Route::get('grados/{grado}/edit', 'GradosController@edit')->name('grados.edit')
+->middleware('can:grados.edit');
+Route::put('grados/{grado}', 'GradosController@update')->name('grados.update')
+->middleware('can:grados.update');
+Route::delete('grados/{grado}', 'GradosController@destroy')->name('grados.destroy')
+->middleware('can:grados.destroy');
