@@ -153,6 +153,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <?php endif; ?>
           </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
+            <a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder-open"></i>
+              <p>
+                Matrículas
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
