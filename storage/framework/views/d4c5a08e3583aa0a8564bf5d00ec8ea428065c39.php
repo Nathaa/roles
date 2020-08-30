@@ -65,4 +65,4 @@
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 </body>
 </html>
-<?php /**PATH E:\Documentos\GitHub\roles\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/layouts/app.blade.php ENDPATH**/ ?>
