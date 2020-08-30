@@ -135,7 +135,7 @@ class EstudiantesController extends Controller
 
         }
 
-      $estudiante->update($request->all());
+    //  $estudiante->update($request->all());
 
         return redirect()->route('estudiantes.index',compact('estudiante'))
         ->with('info', 'expediente guardado con exito');
