@@ -73,6 +73,11 @@ Route::put('roles/{role}', 'RolesController@update')->name('roles.update')
 ->middleware('can:roles.update');
 Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 ->middleware('can:roles.destroy');
+
+
+//Materias
+Route::resource('materias', 'MateriaController');
+
 });
 
 
@@ -107,3 +112,35 @@ Route::put('matriculas/{matricula}', 'MatriculasController@update')->name('matri
 ->middleware('can:matriculas.update');
 Route::delete('matriculas/{matricula}', 'MatriculasController@destroy')->name('matriculas.destroy')
 ->middleware('can:matriculas.destroy');
+
+//Anios
+Route::get('anios', 'AniosController@index')->name('anios.index')
+->middleware('can:anios.index');
+Route::get('anios/anio', 'AniosController@create')->name('anios.create')
+->middleware('can:anios.create');
+Route::get('anios/{anio}', 'AniosController@show')->name('anios.show')
+->middleware('can:anios.show');
+Route::post('anios', 'AniosController@store')->name('anios.store')
+->middleware('can:anios.create');
+Route::get('anios/{anio}/edit', 'AniosController@edit')->name('anios.edit')
+->middleware('can:anios.edit');
+Route::put('anios/{anio}', 'AniosController@update')->name('anios.update')
+->middleware('can:anios.update');
+Route::delete('anios/{anio}', 'AniosController@destroy')->name('anios.destroy')
+->middleware('can:anios.destroy');
+
+//grados
+Route::get('grados','GradosController@index')->name('grados.index')
+->middleware('can:grados.index');
+Route::get('grados/crear', 'GradosController@create')->name('grados.create')
+->middleware('can:grados.create');
+Route::get('grados/{grado}', 'GradosController@show')->name('grados.show')
+->middleware('can:grados.show');
+Route::post('grados', 'GradosController@store')->name('grados.store')
+->middleware('can:grados.create');
+Route::get('grados/{grado}/edit', 'GradosController@edit')->name('grados.edit')
+->middleware('can:grados.edit');
+Route::put('grados/{grado}', 'GradosController@update')->name('grados.update')
+->middleware('can:grados.update');
+Route::delete('grados/{grado}', 'GradosController@destroy')->name('grados.destroy')
+->middleware('can:grados.destroy');

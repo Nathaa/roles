@@ -162,6 +162,38 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             @endcan
           </li>
+          <li class="nav-item">
+            @can('anios.index')
+            <a href="{{ route ('anios.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Años
+
+              </p>
+            </a>
+            @endcan
+          </li>
+          <li class="nav-item">
+            @can('grados.index')
+            <a href="{{ route ('grados.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-store-alt"></i>
+              <p>
+                Grados
+
+              </p>
+            </a>
+            @endcan
+          </li>
+          <li class="nav-item">
+          @can('materias.index')
+            <a href="{{ route ('materias.index') }}" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
+              </p>
+            </a>
+            @endcan
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

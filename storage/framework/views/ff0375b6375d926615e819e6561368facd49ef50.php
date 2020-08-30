@@ -142,6 +142,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <?php endif; ?>
           </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
+            <a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Periodos
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
+            <a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder-open"></i>
+              <p>
+                Matrículas
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
+            <a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Años
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
+            <a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-store-alt"></i>
+              <p>
+                Grados
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
+            <a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -203,7 +257,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- Default to the left -->
      Centro Escolar General Francisco Morazan.
-  </footer>
+
+
 </div>
 <!-- ./wrapper -->
 
