@@ -24,8 +24,8 @@ class MateriaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre'=>'required|max:100|unique:materias',
-            'descripcion'=>'required|max:200|unique:materias',
+            'nombre'=>'required|max:100',
+            'descripcion'=>'required|max:200',
         ];
     }
 
@@ -34,9 +34,6 @@ class MateriaFormRequest extends FormRequest
         return[
             'nombre.required' => 'El nombre de la Materia es obligatorio',
             'descripcion.required' => 'Debe agregar una breve descripción sobre la materia',
-            'nombre.unique' => 'El nombre de la Materia ya ha sido agregado',
-            'descripcion.unique' => 'La descripción de la Materia ya ha sido agregado'
-
         ];
     }
 }
