@@ -73,6 +73,11 @@ Route::put('roles/{role}', 'RolesController@update')->name('roles.update')
 ->middleware('can:roles.update');
 Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 ->middleware('can:roles.destroy');
+
+
+//Materias
+Route::resource('materias', 'MateriaController');
+
 });
 
 

@@ -180,6 +180,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>
                 Grados
 
+            @can('materias.index')
+            <a href="{{ route ('materias.index') }}" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
               </p>
             </a>
             @endcan
