@@ -184,6 +184,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             @endcan
           </li>
+          <li class="nav-item">
+          @can('materias.index')
+            <a href="{{ route ('materias.index') }}" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
+              </p>
+            </a>
+            @endcan
+          </li>
+          <li class="nav-item">
+          @can('docentes.index')
+            <a href="{{ route ('docentes.index') }}" class="nav-link">
+              <i class="nav-icon 	fas fa-store-alt"></i>
+              <p>
+               Docentes
+              </p>
+            </a>
+            @endcan
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

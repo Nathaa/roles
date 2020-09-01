@@ -73,6 +73,11 @@ Route::put('roles/{role}', 'RolesController@update')->name('roles.update')
 ->middleware('can:roles.update');
 Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 ->middleware('can:roles.destroy');
+
+
+//Materias
+Route::resource('materias', 'MateriaController');
+
 });
 
 
@@ -139,3 +144,19 @@ Route::put('grados/{grado}', 'GradosController@update')->name('grados.update')
 ->middleware('can:grados.update');
 Route::delete('grados/{grado}', 'GradosController@destroy')->name('grados.destroy')
 ->middleware('can:grados.destroy');
+
+//docentes
+Route::get('docentes','DocentesController@index')->name('docentes.index')
+->middleware('can:docentes.index');
+Route::get('docentes/crear', 'DocentesController@create')->name('docentes.create')
+->middleware('can:grados.create');
+Route::get('docentes/{docente}', 'DocentesController@show')->name('docentes.show')
+->middleware('can:docentes.show');
+Route::post('docentes', 'DocentesController@store')->name('docentes.store')
+->middleware('can:docentes.create');
+Route::get('docentes/{docente}/edit', 'DocentesController@edit')->name('docentes.edit')
+->middleware('can:docentes.edit');
+Route::put('docentes/{docente}', 'DocentesController@update')->name('docentes.update')
+->middleware('can:docentes.update');
+Route::delete('docentes/{docente}', 'DocentesController@destroy')->name('docentes.destroy')
+->middleware('can:docentes.destroy');

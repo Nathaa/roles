@@ -186,6 +186,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <?php endif; ?>
           </li>
+          <li class="nav-item">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
+            <a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
+          <li class="nav-item">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
+            <a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-store-alt"></i>
+              <p>
+               Docentes
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
