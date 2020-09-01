@@ -175,6 +175,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <?php endif; ?>
           </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
+            <a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-store-alt"></i>
+              <p>
+                Grados
+
+              </p>
+            </a>
+            <?php endif; ?>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
