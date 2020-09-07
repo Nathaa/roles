@@ -175,3 +175,20 @@ Route::put('docentes/{docente}', 'DocentesController@update')->name('docentes.up
 ->middleware('can:docentes.update');
 Route::delete('docentes/{docente}', 'DocentesController@destroy')->name('docentes.destroy')
 ->middleware('can:docentes.destroy');
+
+//planes
+Route::get('planes','PlanEstudioController@index')->name('planesEstudio.index')
+->middleware('can:planesEstudio.index');
+Route::get('planes/crear', 'PlanEstudioController@create')->name('planesEstudio.create')
+->middleware('can:planesEstudio.create');
+Route::get('planes/{plan}', 'PlanEstudioController@show')->name('planesEstudio.show')
+->middleware('can:planesEstudio.show');
+Route::post('planes', 'PlanEstudioController@store')->name('planesEstudio.store')
+->middleware('can:planesEstudio.create');
+Route::get('planes/{plan}/edit', 'PlanEstudioController@edit')->name('planesEstudio.edit')
+->middleware('can:planesEstudio.edit');
+Route::put('planes/{plan}', 'PlanEstudioController@update')->name('planesEstudio.update')
+->middleware('can:planesEstudio.update');
+Route::delete('planes/{plan}', 'PlanEstudioController@destroy')->name('planesEstudio.destroy')
+->middleware('can:planesEstudio.destroy');
+
