@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Turno;
+use Illuminate\Http\Request;
+use App\Http\Requests\TurnoFormRequest;
+
+class TurnoController extends Controller
+{
+
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $turnos=Turno::paginate();
+
+        if ($request)
+       {
+        $query=trim($request->get('search'));
+        $turnos= Turno::where('nombre_turno', 'LIKE', '%' . $query . '%')
+        ->orderBy('id','asc')
+        ->get();
+        return view('turnos.index', ['turnos' => $turnos, 'search' => $query]);
+        }
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $arrayTurno = array('Matutino', 'Vespertino', 'Completo');
+        return view('turnos.create', compact('arrayTurno'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(TurnoFormRequest $request)
+    {
+        $turnos = Turno::create($request->all());
+
+        $turnos->save();
+
+        return redirect()->route('turnos.index', compact('turnos'))
+        ->with('info', 'Turno guardado con éxito');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Turno  $turno
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $turno=Turno::findOrFail($id);
+        return view('turnos.show', compact('turno'));
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Turno  $turno
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $arrayTurno = array('Matutino', 'Vespertino', 'Completo');
+        $turno=Turno::findOrFail($id);
+        return view('turnos.edit',compact('turno', 'arrayTurno'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Turno  $turno
+     * @return \Illuminate\Http\Response
+     */
+    public function update(TurnoFormRequest $request, $id)
+    {
+        $turno=Turno::findOrFail($id);
+        $turno->fill($request->all())->save();
+
+
+        $turno->update($request->all());
+
+        return redirect()->route('turnos.index',compact('turno'))
+        ->with('info', 'Turno guardado con éxito');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Turno  $turno
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Turno::destroy($id);
+
+        return back()->with('info', 'Turno eliminado correctamente');
+    }
+}

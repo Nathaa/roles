@@ -144,3 +144,19 @@ Route::put('grados/{grado}', 'GradosController@update')->name('grados.update')
 ->middleware('can:grados.update');
 Route::delete('grados/{grado}', 'GradosController@destroy')->name('grados.destroy')
 ->middleware('can:grados.destroy');
+
+//turno
+Route::get('turnos','TurnoController@index')->name('turnos.index')
+->middleware('can:turnos.index');
+Route::get('turnos/crear', 'TurnoController@create')->name('turnos.create')
+->middleware('can:turnos.create');
+Route::get('turnos/{turno}', 'TurnoController@show')->name('turnos.show')
+->middleware('can:turnos.show');
+Route::post('turnos', 'TurnoController@store')->name('turnos.store')
+->middleware('can:turnos.create');
+Route::get('turnos/{turno}/edit', 'TurnoController@edit')->name('turnos.edit')
+->middleware('can:turnos.edit');
+Route::put('turnos/{turno}', 'TurnoController@update')->name('turnos.update')
+->middleware('can:grados.update');
+Route::delete('turnos/{turno}', 'TurnoController@destroy')->name('turnos.destroy')
+->middleware('can:turnos.destroy');

@@ -194,6 +194,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             @endcan
           </li>
+
+          <li class="nav-item">
+            @can('turnos.index')
+              <a href="{{ route ('turnos.index') }}" class="nav-link">
+                <i class="nav-icon 	fas fa-clock"></i>
+                <p>
+                 Turnos
+                </p>
+              </a>
+              @endcan
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
