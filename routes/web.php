@@ -160,3 +160,18 @@ Route::put('turnos/{turno}', 'TurnoController@update')->name('turnos.update')
 ->middleware('can:grados.update');
 Route::delete('turnos/{turno}', 'TurnoController@destroy')->name('turnos.destroy')
 ->middleware('can:turnos.destroy');
+//docentes
+Route::get('docentes','DocentesController@index')->name('docentes.index')
+->middleware('can:docentes.index');
+Route::get('docentes/crear', 'DocentesController@create')->name('docentes.create')
+->middleware('can:grados.create');
+Route::get('docentes/{docente}', 'DocentesController@show')->name('docentes.show')
+->middleware('can:docentes.show');
+Route::post('docentes', 'DocentesController@store')->name('docentes.store')
+->middleware('can:docentes.create');
+Route::get('docentes/{docente}/edit', 'DocentesController@edit')->name('docentes.edit')
+->middleware('can:docentes.edit');
+Route::put('docentes/{docente}', 'DocentesController@update')->name('docentes.update')
+->middleware('can:docentes.update');
+Route::delete('docentes/{docente}', 'DocentesController@destroy')->name('docentes.destroy')
+->middleware('can:docentes.destroy');
