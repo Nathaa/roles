@@ -18,17 +18,20 @@
             </select>
         </div>
     </div>
+<br>
 
-       <div class="col-16">
-         {{ Form::label('hora_entrada', 'Hora de Entrada')}}<br>
-         {{ Form::time('hora_entrada', Carbon\Carbon::now()->isoFormat('H:mm:ss A')),['class' => 'form-control', 'required autofocus'] }}
-        </div>
-
-        <div class="col-16">
-           {{ Form::label('hora_salida', 'Hora de Salida')}}<br>
-           {{ Form::time('hora_salida', Carbon\Carbon::now()->isoFormat('H:mm:ss A')),['class' => 'form-control', 'required autofocus'] }}
-        </div>
+    <div class="row">
+        <div class="col">
+            {{ Form::label('hora_entrada', 'Hora Entrada')}}
+            {{ Form::time('hora_entrada',null,['class' => 'form-control']) }}
+         </div>
+         <div class="col">
+            {{ Form::label('hora_salida', 'Hora Salida')}}
+            {{ Form::time('hora_salida',null,['class' => 'form-control']) }}
+         </div>
      </div>
+
+    </div>
 
 
  <br>

@@ -21,7 +21,7 @@
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-md-8 col-md-offset-8">
                 <div class="form-group">
                     <label for="estado"> Estado  </label>
                     <select name="estado" class="form-control" style="width: 500px" required="required">

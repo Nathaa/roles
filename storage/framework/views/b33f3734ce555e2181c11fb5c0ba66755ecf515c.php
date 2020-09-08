@@ -20,19 +20,24 @@
             </select>
         </div>
     </div>
+<br>
 
-       <div class="col-16">
-         <?php echo e(Form::label('hora_entrada', 'Hora de Entrada')); ?><br>
-         <?php echo e(Form::time('hora_entrada', Carbon\Carbon::now()->isoFormat('H:mm:ss A')),['class' => 'form-control', 'required autofocus']); ?>
+    <div class="row">
+        <div class="col">
+            <?php echo e(Form::label('hora_entrada', 'Hora Entrada')); ?>
 
-        </div>
+            <?php echo e(Form::time('hora_entrada',null,['class' => 'form-control'])); ?>
 
-        <div class="col-16">
-           <?php echo e(Form::label('hora_salida', 'Hora de Salida')); ?><br>
-           <?php echo e(Form::time('hora_salida', Carbon\Carbon::now()->isoFormat('H:mm:ss A')),['class' => 'form-control', 'required autofocus']); ?>
+         </div>
+         <div class="col">
+            <?php echo e(Form::label('hora_salida', 'Hora Salida')); ?>
 
-        </div>
+            <?php echo e(Form::time('hora_salida',null,['class' => 'form-control'])); ?>
+
+         </div>
      </div>
+
+    </div>
 
 
  <br>
