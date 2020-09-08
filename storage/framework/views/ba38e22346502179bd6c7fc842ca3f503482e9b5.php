@@ -24,7 +24,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                    <th>Datos Personales Alumnas</th>
+                                    <th>Datos Personales Usuarios</th>
                                     </tr>
 
                                    </thead>

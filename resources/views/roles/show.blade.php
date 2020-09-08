@@ -23,12 +23,13 @@
         <table class="table table-bordered table-hover">
             <thead class="bg-primary">
                 <tr>
-                <th>Informacion Roles</th>
+                <th>Datos Personales Roles</th>
                 </tr>
 
                </thead>
         </table>
     <table class="table table-bordered table-hover">
+
 
 
         <tbody>

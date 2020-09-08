@@ -115,7 +115,7 @@ class DocentesController extends Controller
         $docente->fill($request->all())->save();
 
 
-        $anio->update($request->all());
+        $docente->update($request->all());
 
         return redirect()->route('docentes.index',compact('docente'))
         ->with('info', 'Docentes guardado con exito');

@@ -2,9 +2,9 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.edit')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('roles.edit', $role->id)); ?>"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar role</button></a></li>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('roles.edit', $role->id)); ?>"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar role</button></a></li>
     <?php endif; ?>
-    <li class="breadcrumb active"><a href="<?php echo e(route('roles.index')); ?>" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <li class="breadcrumb active"><a href="<?php echo e(route('roles.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
 
   </ol>
 </div><!-- /.col -->
@@ -21,12 +21,13 @@
         <table class="table table-bordered table-hover">
             <thead class="bg-primary">
                 <tr>
-                <th>Informacion Roles</th>
+                <th>Datos Personales Alumnas</th>
                 </tr>
 
                </thead>
         </table>
     <table class="table table-bordered table-hover">
+
 
 
         <tbody>
