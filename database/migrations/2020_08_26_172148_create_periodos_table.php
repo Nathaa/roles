@@ -19,6 +19,9 @@ class CreatePeriodosTable extends Migration
             $table->integer('duracion');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
+
+            $table->integer('grados_id')->unsigned();
+            $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

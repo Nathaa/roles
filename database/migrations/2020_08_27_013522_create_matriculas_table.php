@@ -17,6 +17,13 @@ class CreateMatriculasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',120);
             $table->string('descripcion',120);
+
+            $table->integer('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+
+            $table->integer('estudiantes_id')->unsigned();
+            $table->foreign('estudiantes_id')->references('id')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

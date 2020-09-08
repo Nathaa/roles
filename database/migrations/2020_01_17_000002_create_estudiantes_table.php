@@ -36,6 +36,8 @@ class CreateEstudiantesTable extends Migration
             //$table->date('fecha_creacion');
             $table->date('created_at');
             $table->date('updated_at');
+
+
             //$table->timestamps();
         });
     }
