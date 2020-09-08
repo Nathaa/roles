@@ -29,7 +29,7 @@
 
             @can('matriculas.create')
                  <a href="{{ route('matriculas.create') }}"> <button type="button" class="btn btn-dark btn-xs">
-                <i class="fas fa-plus"></i>Crear Nueva </button> </a>
+                <i class="fas fa-plus"></i>Crear Matricula </button> </a>
             @endcan
         </div>
 
@@ -37,7 +37,7 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-md-6">
-                    <a href="{{ route('matriculas.index') }}"><i class="fa fa-align-justify"></i> Listado matriculas</a>
+                    <a href="{{ route('matriculas.index') }}"><i class="fa fa-align-justify"></i> Listado Matriculas</a>
                 </div>
             </div>
             <table class="table table-bordered thead-dark table-hover table-sm">
@@ -74,8 +74,8 @@
                 @can('matriculas.destroy')
                 {!! Form::open(['route' => ['matriculas.destroy', $matricula->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
-  <button class="btn btn-sm btn-danger">
-      Eliminar
+  <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
+    <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
 {!! Form::close() !!}
                 @endcan

@@ -27,7 +27,7 @@
 
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.create')): ?>
                  <a href="<?php echo e(route('matriculas.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
-                <i class="fas fa-plus"></i>Crear Nueva </button> </a>
+                <i class="fas fa-plus"></i>Crear Matricula </button> </a>
             <?php endif; ?>
         </div>
 
@@ -35,7 +35,7 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-md-6">
-                    <a href="<?php echo e(route('matriculas.index')); ?>"><i class="fa fa-align-justify"></i> Listado matriculas</a>
+                    <a href="<?php echo e(route('matriculas.index')); ?>"><i class="fa fa-align-justify"></i> Listado Matriculas</a>
                 </div>
             </div>
             <table class="table table-bordered thead-dark table-hover table-sm">
@@ -73,8 +73,8 @@
                 <?php echo Form::open(['route' => ['matriculas.destroy', $matricula->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-  <button class="btn btn-sm btn-danger">
-      Eliminar
+  <button class="btn btn-danger">
+    <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
 <?php echo Form::close(); ?>
 

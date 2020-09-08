@@ -75,8 +75,8 @@
                 <?php echo Form::open(['route' => ['grados.destroy', $grado->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-  <button class="btn btn-sm btn-danger">
-      Eliminar
+  <button class="btn btn-danger">
+    <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
 <?php echo Form::close(); ?>
 

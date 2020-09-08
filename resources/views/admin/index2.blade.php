@@ -47,17 +47,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </form>
 
-    <!-- Right navbar links -->
+    <!-- User Account Menu -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <div class="nav-item dropdown no-arrow">
-        <a href="{{ route('logout') }}" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesion</a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-        </form>
-      </div>
+        <div class="nav-link dropdown no-arrow">
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a  class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="{{asset('dist/img/user.jpg')}}" class="user-image" style="max-width:30px" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+            </a>
+            <ul class="dropdown-menu">
 
-     </ul>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+
+                  <div class="text-center">
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('salir-form').submit();" class="btn btn-default btn-flat btn-salir">Salir</a>
+                    <form action="{{ route('logout') }}" method="POST" style="display: none;" id="salir-form">
+                      {{ csrf_field() }}
+                    </form>
+                  </div>
+                </li>
+            </ul>
+        </div>
+        </ul>
+
+
+
   </nav>
 
 
