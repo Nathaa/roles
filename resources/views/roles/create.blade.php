@@ -1,9 +1,16 @@
 @extends('admin.index2')
 
 @section('title')
-<h3>Nuevo Rol</h3>
-@endsection
 
+@endsection
+@section('crear')
+<div class="col-sm-6">
+  <ol class="breadcrumb float-sm-right">
+    <li class="breadcrumb-item active"><a href="{{ route('roles.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
+  </ol>
+</div>
+@endsection
 @section('content')
 
 @if ($errors->any())
@@ -17,21 +24,21 @@
 @endif
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                 Roles
-                </div>
+    <div class="card">
 
-                <div class="panel-body">
+       <div class="card-body">
+        <table class="table table-bordered table-hover">
                  {!! Form::open(['route' => 'roles.store']) !!}
 
                  @include('roles.form')
 
                  {!! Form::close() !!}
+
                 </div>
             </div>
+            <div class="card-footer">
+
+            </table>
         </div>
     </div>
 </div>

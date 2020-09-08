@@ -21,9 +21,9 @@ class MateriaController extends Controller
 
     public function index(Request $request)
     {
-        
+
         if($request){
-          
+
             $query = trim($request->get('search'));
             $materias=DB::table('materias')->where('nombre','LIKE','%'.$query.'%')
             #->where ('estado','=','1')
@@ -57,11 +57,11 @@ class MateriaController extends Controller
         $materia->descripcion = $request->input('descripcion');
         $materia->estado = '1';
         if($materia->save()){
-            return back()->with('notificacion', "Materia registrada exitosamente"); 
+            return back()->with('notificacion', "Materia registrada exitosamente");
         }
         return redirect('materias');
 
-       
+
     }
 
     /**
@@ -72,7 +72,8 @@ class MateriaController extends Controller
      */
     public function show($id)
     {
-        return view("materias.show",["materia"=>Materia::findOrFail($id)]);
+        $materia=materia::findOrFail($id);
+        return view('materias.show', compact('materia'));
     }
 
     /**
@@ -84,8 +85,8 @@ class MateriaController extends Controller
     public function edit($id)
     {
 
-        $materia = Materia::find($id);
-        return view('materias.edit')->with('materia', $materia);
+        $materia=materia::findOrFail($id);
+        return view('materias.edit',compact('materia'));
     }
 
     /**
@@ -97,14 +98,14 @@ class MateriaController extends Controller
      */
     public function update(MateriaFormRequest $request, $id)
     {
-        $materia=Materia::findOrFail($id);
-        $materia->nombre = $request->input('nombre');
-        $materia->descripcion = $request->input('descripcion');
-        $materia->estado = $request->input('estado');
-        $materia->update();
-        return back()->with('notificacion', "Materia modifacada exitosamente"); 
-        return redirect('materias');
+        $materia=materia::findOrFail($id);
+        $materia->fill($request->all())->save();
 
+
+        $materia->update($request->all());
+
+        return redirect()->route('materias.index',compact('materia'))
+        ->with('info', 'materia guardado con exito');
     }
 
     /**
@@ -115,10 +116,9 @@ class MateriaController extends Controller
      */
     public function destroy($id)
     {
-        $materia=Materia::findOrFail($id);
-        $materia->estado='0';
-        $materia->update();
-        return redirect('materias');
+        materia::destroy($id);
+
+        return back()->with('info', 'Eliminado correctamente');
     }
 
 }

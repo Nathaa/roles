@@ -1,11 +1,13 @@
 @extends('admin.index2')
 @section('title')
-<h3>Modificando Datos De Plan : {{ $planEstudio->nombre_plan }} </h3>
+<h5><strong>Modificando: {{ $planEstudio->nombre_plan }}</strong> </h5>
 @endsection
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-        <a href="{{ route('planesEstudio.index') }}" class="btn btn-sm btn-dark pull-rigth" > Regresar atras</a>
+    <li class="breadcrumb-item active"><a href="{{ route('planesEstudio.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
+
 
 
   </ol>
@@ -15,7 +17,7 @@
 <div class="container">
     <div class="card">
 
-       <div class="card-boady">
+       <div class="card-body">
         <table class="table table-bordered table-hover">
 
                         <form method="POST"

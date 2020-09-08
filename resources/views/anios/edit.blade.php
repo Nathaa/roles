@@ -2,15 +2,13 @@
 
 
 @section('title')
-<h3>Editando el Año: {{ $anio->nombre }}</h3>
+<h5><strong>Modificando: {{ $anio->nombre  }}</strong> </h5>
 @endsection
 
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-        <a href="{{ route('anios.index') }}" class="btn btn-sm btn-dark pull-rigth" > Regresar atras</a>
-
-
+    <li class="breadcrumb-item active"><a href="{{ route('anios.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 @endsection
@@ -18,7 +16,7 @@
 <div class="container">
     <div class="card">
 
-       <div class="card-boady">
+       <div class="card-body">
         <table class="table table-bordered table-hover">
 
                     @if ($errors->any())
@@ -35,7 +33,7 @@
                  {!! Form::model($anio, ['route' => ['anios.update', $anio->id],
                  'method' =>'PUT'])  !!}
                  <enctype="multipart/form-data">
-                 <
+
                  @include('anios.form')
                  {!! Form::close() !!}
 

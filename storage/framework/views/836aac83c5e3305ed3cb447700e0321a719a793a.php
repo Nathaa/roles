@@ -23,9 +23,10 @@
      </div>
  <br>
  <ol class="float-sm-right">
-    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success'])); ?>
+    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success'])); ?>
 
 </ol>
 
 
-</form><?php /**PATH C:\ProyectosLaravel\repo\roles\resources\views/matriculas/form.blade.php ENDPATH**/ ?>
+</form>
+<?php /**PATH C:\ProyectosLaravel\repo\roles\resources\views/matriculas/form.blade.php ENDPATH**/ ?>

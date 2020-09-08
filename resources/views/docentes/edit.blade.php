@@ -1,12 +1,11 @@
 @extends('admin.index2')
 @section('title')
-<h3>Modificando al Docente: {{ $docente->nombre }}{{ $docente->apellido }}</h3>
+<h5><strong>Modificando:{{ $docente->nombre  }} {{ $docente->apellido  }}</strong> </h5>
 @endsection
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-        <a href="{{ route('docentes.index') }}" class="btn btn-sm btn-dark pull-rigth" > Regresar atras</a>
-
+    <li class="breadcrumb-item active"><a href="{{ route('docentes.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
 
   </ol>
 </div>
@@ -15,7 +14,7 @@
 <div class="container">
     <div class="card">
 
-       <div class="card-boady">
+       <div class="card-body">
         <table class="table table-bordered table-hover">
 
                         <form method="POST"
@@ -24,7 +23,7 @@
                         <enctype="multipart/form-data">
 
 
-                        
+
                         @include('docentes.form')
                        {!! Form::close() !!}
 

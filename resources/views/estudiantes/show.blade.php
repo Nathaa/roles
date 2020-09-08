@@ -4,16 +4,14 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     @can('estudiantes.edit')
-    <li class="breadcrumb-item active"><a href="{{ route('estudiantes.edit', $estudiante->id)}}">Editar Expediente</a></li>
-    @endcan
-    @can('estudiantes.index')
-    <li class="breadcrumb-item active"><a href="{{ route('estudiantes.index', $estudiante->id)}}">Regresar atras</a></li>
-    @endcan
+        <li class="breadcrumb-item active"><a href="{{ route('estudiantes.edit', $estudiante->id)}}"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar Estudiante</button></a></li>
+        @endcan
+        <li class="breadcrumb active"><a href="{{ route('estudiantes.index')}}" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h3>Expediente de: {{ $estudiante->nombre  }} </h3>
+<h5><strong>{{ $estudiante->nombre  }} {{ $estudiante->apellido  }}</strong> </h5>
 @endsection
 
 
@@ -30,7 +28,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -63,7 +61,7 @@
             </div>
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>
@@ -86,7 +84,7 @@
             </div>
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>
@@ -110,7 +108,7 @@
 
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>

@@ -4,16 +4,15 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     @can('turnos.edit')
-    <li class="breadcrumb-item active"><a href="{{ route('turnos.edit', $turno->id)}}">Editar Periodo</a></li>
+    <li class="breadcrumb-item active"><a href="{{ route('turnos.edit', $turno->id)}}"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar turno</button></a></li>
     @endcan
-    @can('turnos.index')
-    <li class="breadcrumb-item active"><a href="{{ route('turnos.index', $turno->id)}}">Regresar atras</a></li>
-    @endcan
+    <li class="breadcrumb active"><a href="{{ route('turnos.index')}}" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h3>Turno: {{ $turno->nombre_turno  }} </h3>
+<h5><strong>{{ $turno->nombre_turno  }} </strong> </h5>
+
 @endsection
 
 
@@ -30,7 +29,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -63,7 +62,7 @@
                                       </tr>
 
                                     <tr>
-                                        
+
                                     </tr>
 
 

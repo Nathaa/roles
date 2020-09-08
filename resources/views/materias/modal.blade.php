@@ -1,21 +1,49 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{ $materia->id }}">
-    {!! Form::open(array('action' => array('MateriaController@destroy', $materia->id), 'method' => 'delete')) !!}
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Baja de Materia</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">x</span>
-            </button>
+{!! csrf_field() !!}
+
+
+     <div class="alert alert-primary" role="alert">
+        Datos de la Materia
+    </div>
+
+
+<form>
+
+       <div class="row">
+          <div class="col">
+            {{ Form::label('nombre', 'Nombre')}}
+            {{ Form::text('nombre',null,['class' => 'form-control']) }}
           </div>
-          <div class="modal-body">
-            <p>¿Desea dar de baja la materia {{ $materia->nombre }}?</p>
+          <div class="col">
+            {{ Form::label('descripcion', 'Apellidos')}}
+            {{ Form::text('descripcion',null,['class' => 'form-control']) }}
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default btn-flat" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary btn-flat">Aceptar</button>
-          </div>
+
         </div>
-      </div>
-    {!! Form::close() !!}
-  </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="estado"> Estado  </label>
+                    <select name="estado" class="form-control" style="width: 500px" required="required">
+                        <option value="" disabled selected>Elige el Estado de la Materia</option>
+                        <option value="1">1 - Activo (La materia esta siendo Impartida) </option>
+                        <option value="0">0 - Inactivo (La materia ya no se imparte) </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    <br>
+
+
+
+        <ol class="float-sm-right">
+            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
+        </ol>
+
+</form>
+
+
+
+
+
+

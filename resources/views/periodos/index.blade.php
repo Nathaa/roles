@@ -3,16 +3,14 @@
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    @can('periodos.create')
-    <li class="breadcrumb-item"><a href="{{ route('periodos.create') }}">Agregar Nuevo Periodo</a></li>
-    @endcan
+
   </ol>
 </div><!-- /.col -->
 @endsection
 
 
 @section('title')
-<h3>Lista de Periodos</h3>
+
 @endsection
 
 
@@ -26,34 +24,65 @@
   </div>
   @endif
  </h6>
- <div class="card">
- <div class="card-boady">
- <table class="table table-bordered table-hover">
+ <div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+
+            @can('periodos.create')
+                 <a href="{{ route('periodos.create') }}"> <button type="button" class="btn btn-dark btn-xs">
+                <i class="fas fa-plus"></i>Crear Periodo </button> </a>
+            @endcan
+        </div>
+
+
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <a href="{{ route('periodos.index') }}"><i class="fa fa-align-justify"></i> Listado Periodos</a>
+                </div>
+            </div>
+            <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
            <th scope="col">Nombre</th>
            <th scope="col">Fecha de Inicio</th>
            <th scope="col">Fecha de Finalizacion</th>
+           <th colspan="3">&nbsp;Opciones</th>
          </tr>
        </thead>
        <tbody>
           @foreach ($periodos as $periodo)
            <tr>
-            @can('periodos.show')
-             <td><a href="{{ route('periodos.show', $periodo->id)}}">{{$periodo->nombre}}</td></a>
-             <td>{{$periodo->fecha_inicio}}</td>
+            <td>{{$periodo->nombre}}</td>
+            <td>{{$periodo->fecha_inicio}}</td>
              <td>{{$periodo->fecha_fin}}</td>
-            @endcan
-             <td>
+             <td width="10px">
+                @can('periodos.edit')
+
+                <a href="{{ route('periodos.edit', $periodo->id) }}" class="btn btn-default btn-flat" title="Editar">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                  </a>
+                  @endcan
+                </td>
+                <td width="10px">
+                @can('periodos.show')
+
+                <a href="{{ route('periodos.show', $periodo->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+
+                @endcan
+                </td>
+                <td width="10px">
                 @can('periodos.destroy')
-              {!! Form::open(['route' => ['periodos.destroy', $periodo->id],
-              'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
-              <button class="btn btn-sm btn-danger">
-                  Eliminar
-              </button>
-            {!! Form::close() !!}
-               @endcan
-              </td>
+                {!! Form::open(['route' => ['periodos.destroy', $periodo->id],
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
+  <button class="btn btn-sm btn-danger">
+      Eliminar
+  </button>
+{!! Form::close() !!}
+                @endcan
+                </td>
            </tr>
 
          @endforeach
@@ -61,6 +90,7 @@
        </tbody>
       </table>
 
+</div>
 </div>
 </div>
 </div>

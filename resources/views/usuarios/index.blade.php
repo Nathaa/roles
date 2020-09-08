@@ -11,47 +11,72 @@
 
 
 @section('title')
-<h3>Lista de usuarios</h3>
+
 @endsection
 
 @section('content')
 <div class="container">
-<div class="card">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
 
-   <div class="card-boady">
-    <table class="table table-bordered table-hover">
+            </div>
+
+
+            <div class="card-body">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <a href="{{ route('usuarios.index') }}"><i class="fa fa-align-justify"></i> Listado Usuarios</a>
+                    </div>
+                </div>
+                <table class="table table-bordered thead-dark table-hover table-sm">
         <tr>
 
           <th scope="col">Nombre</th>
           <th scope="col">Correo</th>
-          <th scope="col">Rol</th>
-          <th scope="col">Permisos</th>
-          <th scope="col">Opciones</th>
-        </tr>
+
+          <th colspan="3">&nbsp;Opciones</th>
       </thead>
       <tbody>
          @foreach ($users as $user)
           <tr>
 
-            <td><a href="{{ route('usuarios.show', $user->id)}}">{{$user->name}}</td></a>
+            <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
-            <td>roles</td>
-            <td>permisos</td>
-              <td>
-                  {!! Form::open(['route' => ['usuarios.destroy', $user->id],
-                  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el usuario")']) !!}
-                  <button class="btn btn-sm btn-danger">
-                      Eliminar
-                  </button>
-                {!! Form::close() !!}
-              </td>
 
+            <td width="10px">
+                @can('usuarios.edit')
 
+                <a href="{{ route('usuarios.edit', $user->id) }}" class="btn btn-default btn-flat" title="Editar">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                  </a>
+                  @endcan
+                </td>
+                <td width="10px">
+                @can('usuarios.show')
+
+                <a href="{{ route('usuarios.show', $user->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+
+                @endcan
+                </td>
+                <td width="10px">
+                @can('usuarios.destroy')
+                {!! Form::open(['route' => ['usuarios.destroy', $user->id],
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
+  <button class="btn btn-sm btn-danger">
+      Eliminar
+  </button>
+{!! Form::close() !!}
+                @endcan
+                </td>
           </tr>
         @endforeach
       </tbody>
   </table>
    </div>
+</div>
 </div>
 </div>
 

@@ -27,7 +27,7 @@
     <div class="container">
         <div class="card">
 
-           <div class="card-boady">
+           <div class="card-body">
             <table class="table table-bordered table-hover">
 
                  {!! Form::open(['route' => 'anios.store','files'=> true]) !!}

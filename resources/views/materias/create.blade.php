@@ -1,61 +1,40 @@
 @extends('admin.index2')
 
+@section('crear')
+<div class="col-sm-6">
+<ol class="breadcrumb float-sm-right">
 
-@section('content')
-<div class="container text-center" style="background-color: LightSteelBlue;">
-    <i class="fa fa-book" style='font-size:36px;color : Gray'></i>
-        <h4>Creación de Materias</h4>
+        <li class="breadcrumb-item active"><a href="{{ route('materias.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
+    </ol>
 </div>
-
-<div class="panel panel-default">
-    @if (session('notificacion'))
-    <div class="alert alert-success ">
-        {{ session('notificacion')}}
-    </div>
-    @endif
-
-
-    @if (count($errors) > 0)
-    <div class="alert alert-danger align=center" >
-        <ul>
-            @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
-    <div class="panel-body">
-
-        {!! Form::open(array('url'=>'materias','method'=>'POST','autocomplete'=>'off'))!!}
-        {{Form::token()}}
-        
-
-            <div class="form-group">
-                <label for="nombre">Nombre </label>
-                <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control"  style="width: 500px" placeholder="Nombre de la Materia">
-            </div>
-    
-    
-            <div class="form-group">
-                <label for="descripcion"> Descripción </label>
-                <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control"  style="width: 800px" placeholder="Breve descripcion sobre la Materia">
-            </div>
-
-            
-            <div class="form-group">
-                <button class="btn btn-primary btn-flat" type="submit"> Guardar </button>
-                <a href="{{ route('materias.index') }}" class="btn btn-default btn-flat">Cancelar</a>
-            <!--<button class="btn btn-danger" href="{{ route('materias.index') }}" type="reset"> Cancelar </button>-->
-            </div>
-
-        {!! Form::close()!!}
-    
-    </div>
-
-
-</div>
-
- 
 @endsection
 
+
+@section('content')
+@if(count($errors)>0)
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <div class="container">
+        <div class="card">
+
+           <div class="card-body">
+            <table class="table table-bordered table-hover">
+
+                 {!! Form::open(['route' => 'materias.store','files'=> true]) !!}
+                 <enctype="multipart/form-data">
+                 @include('materias.modal')
+
+                 {!! Form::close() !!}
+
+            </table>
+        </div>
+    </div>
+ </div>
+@endsection

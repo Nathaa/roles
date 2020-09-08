@@ -3,13 +3,15 @@
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="{{ route('usuarios.edit', $user->id)}}">Editar Usuario</a></li>
-    <li class="breadcrumb-item active"><a href="{{ route('usuarios.index', $user->id)}}">Regresar atras</a></li>
+    @can('usuarios.edit')
+    <li class="breadcrumb-item active"><a href="{{ route('usuarios.edit', $user->id)}}"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar Usuario</button></a></li>
+        @endcan
+        <li class="breadcrumb active"><a href="{{ route('usuarios.index')}}" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h3>Informacion del Usuario: {{ $user->name }}</h3>
+<h5><strong>{{ $user->name  }}</strong> </h5>
 @endsection
 @section('content')
 
@@ -20,7 +22,7 @@
                     <div class="container">
                         <div class="card">
 
-                           <div class="card-boady">
+                           <div class="card-body">
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>

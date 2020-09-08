@@ -4,16 +4,15 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     @can('matriculas.edit')
-    <li class="breadcrumb-item active"><a href="{{ route('matriculas.edit', $matricula->id)}}">Editar Matrícula</a></li>
-    @endcan
-    @can('matriculas.index')
-    <li class="breadcrumb-item active"><a href="{{ route('matriculas.index', $matricula->id)}}">Regresar atras</a></li>
-    @endcan
+        <li class="breadcrumb-item active"><a href="{{ route('matriculas.edit', $matricula->id)}}"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar Matricula</button></a></li>
+        @endcan
+        <li class="breadcrumb active"><a href="{{ route('matriculas.index')}}" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
   </ol>
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h3>Matricula: {{ $matricula->nombre  }} </h3>
+<h5><strong>{{ $matricula->nombre  }}</strong> </h5>
 @endsection
 
 
@@ -30,7 +29,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">

@@ -1,13 +1,11 @@
 @extends('admin.index2')
 @section('title')
-<h3>Modificando Expediente de: {{ $estudiante->nombre }}</h3>
+<h5><strong>Modificando:{{ $estudiante->nombre  }} {{ $estudiante->apellido  }}</strong> </h5>
 @endsection
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-        <a href="{{ route('estudiantes.index') }}" class="btn btn-sm btn-dark pull-rigth" > Regresar atras</a>
-
-
+    <li class="breadcrumb-item active"><a href="{{ route('estudiantes.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 @endsection
@@ -15,7 +13,7 @@
 <div class="container">
     <div class="card">
 
-       <div class="card-boady">
+       <div class="card-body">
         <table class="table table-bordered table-hover">
 
                         <form method="POST"

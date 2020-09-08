@@ -56,7 +56,7 @@
 </div>
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success']) }}
+            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
         </ol>
 
 </form>

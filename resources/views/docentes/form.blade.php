@@ -42,7 +42,7 @@
                    </div>
 
 
-       
+
                 <div class="col">
                 {{ Form::label('dui', 'DUI sin Guión')}}
                 {{ Form::text('dui',null,['class' => 'form-control']) }}
@@ -58,17 +58,17 @@
             </select>
           </div>
                    </div>
-                   
+
 
 
         </div>
-     
+
 
 
 
 <br>
 <ol class="float-sm-right">
-   {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success']) }}
+   {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
 </ol>
 
 
