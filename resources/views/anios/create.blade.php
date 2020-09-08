@@ -4,7 +4,7 @@
 @section('crear')
 <div class="col-sm">
   <ol class="breadcrumb float-sm-right">
-    <a href="{{ route('anios.index') }}" class="btn btn-sm  btn-dark" >Regresar atras</a>
+    <a href="{{ route('anios.index') }}" class="btn btn-xs  btn-dark" >Regresar atras</a>
   </ol>
 </div>
 @endsection
