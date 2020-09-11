@@ -18,7 +18,7 @@ class CreateMatriculasTable extends Migration
             $table->string('nombre',120);
             $table->string('descripcion',120);
 
-            $table->integer('users_id')->unsigned();
+            $table->unsignedBigInteger('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 
