@@ -20,13 +20,13 @@ class CreateMateriasTable extends Migration
             $table->boolean('estado');
 
 
-            $table->integer('estudiantes_id')->unsigned();
+            $table->unsignedBigInteger('estudiantes_id')->unsigned();
             $table->foreign('estudiantes_id')->references('id')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->integer('docentes_id')->unsigned();
+            $table->unsignedBigInteger('docentes_id')->unsigned();
             $table->foreign('docentes_id')->references('id')->on('docentes')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->integer('grados_id')->unsigned();
+            $table->unsignedBigInteger('grados_id')->unsigned();
             $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

@@ -21,18 +21,18 @@ class CreateGradosTable extends Migration
             //esta seria la relacion con la tabla
             //de plan de estudios, por el momento comentada
 
-            $table->integer('anios_id')->unsigned();
+            $table->unsignedBigInteger('anios_id')->unsigned();
             $table->foreign('anios_id')->references('id')->on('anios')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->integer('plan_estudios_id')->unsigned();
+            $table->unsignedBigInteger('plan_estudios_id')->unsigned();
             $table->foreign('plan_estudios_id')->references('id')->on('plan_estudios')->onUpdate('cascade')->onDelete('cascade');
 
 
-            $table->integer('docentes_id')->unsigned();
+            $table->unsignedBigInteger('docentes_id')->unsigned();
             $table->foreign('docentes_id')->references('id')->on('docentes')->onUpdate('cascade')->onDelete('cascade');
 
 
-            $table->integer('turnos_id')->unsigned();
+            $table->unsignedBigInteger('turnos_id')->unsigned();
             $table->foreign('turnos_id')->references('id')->on('turnos')->onUpdate('cascade')->onDelete('cascade');
             //$table->unsignedBigInteger('id_planEstudio');
             //$table->foreignId('id_planEstudio')->references('id_planEstudio')->on('plan_estudio');
