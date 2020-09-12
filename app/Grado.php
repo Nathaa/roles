@@ -14,6 +14,19 @@ class Grado extends Model
         'grado','seccion', 'categoria'
     ];
 
+    public function anio()
+    {
+        return $this->belongsTo(Anio::class);
+    }
+    public function plaEstudio()
+    {
+        return $this->belongsTo(PlanEstudio::class);
+    }
+
+    public function turno()
+    {
+        return $this->hasOne(Turno::class);
+    }
 
 
 }

@@ -11,5 +11,17 @@ class Materia extends Model
         'descripcion',
         'estado',
     ];
+    public function estudiante()
+    {
+        return $this->belongsTo(Estudiante::class);
+    }
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
+    }
+    public function grado()
+    {
+        return $this->belongsTo(Grado::class);
+    }
 
 }
