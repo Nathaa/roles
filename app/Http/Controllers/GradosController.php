@@ -1,9 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Anio;
 use App\Grado;
+use App\Turno;
+use App\Docente;
 use App\Http\Requests\GradosStoreRequest;
 use App\Http\Requests\GradosUpdateRequest;
+use App\PlanEstudio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,7 +47,12 @@ class GradosController extends Controller
      */
     public function create()
     {
-        return view('grados.create');
+        $turnos = Turno::get();
+        $docentes = Docente::get();
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
+
+        return view('grados.create', compact('turnos','docentes','planesEstudio','anios'));
     }
 
     /**
@@ -70,7 +80,11 @@ class GradosController extends Controller
     public function show($id)
     {
         $grado=Grado::findOrFail($id);
-        return view('grados.show', compact('grado'));
+        $turnos = Turno::get();
+        $docentes = Docente::get();
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
+        return view('grados.show', compact('grado','turnos','docentes','planesEstudio','anios'));
     }
 
     /**
@@ -82,9 +96,14 @@ class GradosController extends Controller
     public function edit($id)
     {
 
+
         $grado=Grado::findOrFail($id);
+        $turnos = Turno::get();
+        $docentes = Docente::get();
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
         //dd($grado);
-        return view('grados.edit', compact('grado'));
+        return view('grados.edit', compact('grado','turnos','docentes','planesEstudio','anios'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Turno;
 use App\Docente;
 use App\Http\Requests\DocentesStoreRequest;
 use App\Http\Requests\DocentesUpdateRequest;
@@ -53,7 +54,9 @@ class DocentesController extends Controller
     {
         //
         $arraySexo = array('M', 'F');
-        return view('docentes.create', compact('arraySexo'));
+        $turnos = Turno::get();
+
+        return view('docentes.create', compact('arraySexo','turnos'));
     }
 
     /**
@@ -67,6 +70,8 @@ class DocentesController extends Controller
         //
 
         $docentes = docente::create($request->all());
+
+      //  $docentes->turnos()->sync($request->get('turnos'));
 
         $docentes->save();
 
@@ -98,7 +103,8 @@ class DocentesController extends Controller
         //
         $arraySexo = array('M', 'F');
         $docente=Docente::findOrFail($id);
-        return view('docentes.edit', compact('docente','arraySexo'));
+        $turnos = Turno::get();
+        return view('docentes.edit', compact('docente','arraySexo','turnos'));
     }
 
     /**
@@ -116,6 +122,7 @@ class DocentesController extends Controller
 
 
         $docente->update($request->all());
+        //$docente->turnos()->sync($request->get('turnos'));
 
         return redirect()->route('docentes.index',compact('docente'))
         ->with('info', 'Docentes guardado con exito');

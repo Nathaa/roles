@@ -15,7 +15,7 @@ class CreateAniosTable extends Migration
     {
         Schema::create('anios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre',4);
+            $table->string('nombre');
             $table->integer('duracion');
             $table->integer('año');
             $table->timestamps();

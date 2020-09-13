@@ -73,7 +73,7 @@
                 <?php echo Form::open(['route' => ['matriculas.destroy', $matricula->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-  <button class="btn btn-danger">
+  <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
 <?php echo Form::close(); ?>
