@@ -46,7 +46,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </form>
+    <li class="nav-item d-none d-sm-inline-block">
+    <ul class="navbar-nav ml-auto">
+        <div class="nav-link dropdown no-arrow">
 
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+
+            @if(\Session::has('anio'))
+              {{ \Session::get('anio') }}
+            @else
+              <?php
+                $defecto = App\Anio::select('nombre')->where('id',
+                  \Session::get('idAnio'))->first();
+              ?>
+                @if(is_null($defecto))
+                Años
+                @else
+                  {{ $defecto->nombre }}
+                @endif
+            @endif
+      </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" id="anios">
+          @foreach(App\Anio::orderBy('año','DESC')->get() as $anio)
+            <li>
+              <a href="{{ route('anios.index',$anio->id) }}">
+                {{ $anio->año }}
+              </a>
+            </li>
+          @endforeach
+
+        </ul>
+
+        </div>
+    </ul>
+    </li>
     <!-- User Account Menu -->
     <ul class="navbar-nav ml-auto">
         <div class="nav-link dropdown no-arrow">

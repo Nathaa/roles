@@ -9,6 +9,6 @@ class Anio extends Model
     //
 
     protected $fillable = [
-        'nombre', 'duracion',
+        'nombre', 'duracion','año',
     ];
 }

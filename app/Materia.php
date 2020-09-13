@@ -9,7 +9,7 @@ class Materia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'estado',
+        'estado','estudiantes_id','docentes_id','grados_id',
     ];
     public function estudiante()
     {

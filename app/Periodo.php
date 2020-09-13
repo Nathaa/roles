@@ -9,7 +9,7 @@ class Periodo extends Model
     //
 
     protected $fillable = [
-        'nombre', 'duracion', 'fecha_inicio', 'fecha_fin',
+        'nombre', 'duracion', 'fecha_inicio', 'fecha_fin','grados_id',
     ];
 
     public function periodo()

@@ -17,6 +17,7 @@ class CreateAniosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',4);
             $table->integer('duracion');
+            $table->integer('año');
             $table->timestamps();
         });
     }

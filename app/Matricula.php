@@ -8,7 +8,7 @@ class Matricula extends Model
 {
     //
     protected $fillable = [
-        'nombre', 'descripcion',
+        'nombre', 'descripcion', 'users_id','estudiantes_id',
     ];
 
     public function grado()
