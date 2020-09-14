@@ -4,9 +4,9 @@
 <div class="col-sm-6">
 <ol class="breadcrumb float-sm-right">
         @can('materias.edit')
-        <li class="breadcrumb-item active"><a href="{{ route('materias.edit', $materia->id)}}"><button type="button" class="btn btn-secondary  btn-sm"><i class="fas fa-edit"></i>Editar Materia</button></a></li>
+        <li class="breadcrumb-item active"><a href="{{ route('materias.edit', $materia->id)}}"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar Materia</button></a></li>
         @endcan
-        <li class="breadcrumb active"><a href="{{ route('materias.index')}}" ><button type="button" class="btn btn-dark  btn-sm"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+        <li class="breadcrumb active"><a href="{{ route('materias.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
 
     </ol>
 </div>

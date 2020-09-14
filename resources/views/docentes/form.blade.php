@@ -62,8 +62,17 @@
 
 
         </div>
-
-
+        <div class="form-group">
+            {!! Form::label('turnos_id', 'Seleccione el Turno') !!}
+            <div class="form-group">
+                <select name="turnos_id" id= "turnos_id" class="form-control" required>
+                    <option value="">--Turnos--</option>
+                    @foreach ($turnos as $turno)
+                    <option value="{{ $turno->id }}"> {{ $turno->nombre_turno}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
 
 <br>

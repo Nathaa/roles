@@ -74,7 +74,7 @@
        <tbody>
           @foreach ($anios as $anio)
            <tr>
-            <td>{{$anio->nombre}}</td>
+            <td>{{$anio->año}}</td>
             <td>{{$anio->duracion}}</td>
             <td width="10px">
                 @can('anios.edit')

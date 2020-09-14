@@ -18,6 +18,11 @@ class CreateGradosTable extends Migration
             $table->string('categoria',20);
             $table->string('grado',15);
             $table->string('seccion',3);
+            $table->integer('capacidad');
+
+
+
+
             //esta seria la relacion con la tabla
             //de plan de estudios, por el momento comentada
 
