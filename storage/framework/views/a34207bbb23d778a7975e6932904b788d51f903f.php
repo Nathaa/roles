@@ -23,7 +23,7 @@
  </h6>
 
  <?php if(Session::has('success_message')): ?>
- <div class="alert alert-success alert-dismissible" role="alert" timeout=3000>
+ <div id="success-m" class="alert alert-success alert-dismissible" role="alert" time="setTimeout()">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <?php echo e(Session::get('success_message')); ?>
 
@@ -39,7 +39,7 @@
  <?php endif; ?>
 
  <?php if(Session::has('danger_message')): ?>
- <div class="alert alert-danger alert-dismissible" role="alert" timeout=3>
+ <div class="alert alert-danger alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <?php echo e(Session::get('danger_message')); ?>
 
