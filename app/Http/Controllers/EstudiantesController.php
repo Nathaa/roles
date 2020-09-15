@@ -7,7 +7,7 @@ use App\Http\Requests\EstudiantesStoreRequest;
 use App\Http\Requests\EstudiantesUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Session;
 
 
 
@@ -78,8 +78,8 @@ class EstudiantesController extends Controller
         }
         $estudiantes->save();
 
-        return redirect()->route('estudiantes.index', compact('estudiantes'))
-        ->with('info', 'expediente guardada con exito');
+        Session::flash('success_message', 'Estudiante guardada con éxito');
+        return redirect()->route('estudiantes.index', compact('estudiantes'));
     }
 
     /**
@@ -136,7 +136,7 @@ class EstudiantesController extends Controller
         }
 
     //  $estudiante->update($request->all());
-
+        Session::flash('info_message', 'Estudiante actualizada con éxito');
         return redirect()->route('estudiantes.index',compact('estudiante'))
         ->with('info', 'expediente guardado con exito');
     }
@@ -154,6 +154,7 @@ class EstudiantesController extends Controller
        // $estudiante=Estudiante::findOrFail($id);
          Estudiante::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+         Session::flash('danger_message', 'Estudiante eliminada correctamente'); 
+        return back();
     }
 }

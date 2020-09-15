@@ -10,6 +10,28 @@
       </div>
       @endif
 </h6>
+
+@if(Session::has('success_message'))
+ <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ Session::get('success_message') }}
+ </div>
+ @endif
+
+ @if(Session::has('info_message'))
+ <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ Session::get('info_message') }}
+ </div>
+ @endif
+
+ @if(Session::has('danger_message'))
+ <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    {{ Session::get('danger_message') }}
+ </div>
+ @endif
+ 
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">

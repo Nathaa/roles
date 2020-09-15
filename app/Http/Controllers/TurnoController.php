@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Turno;
 use Illuminate\Http\Request;
 use App\Http\Requests\TurnoFormRequest;
+use Session;
 
 class TurnoController extends Controller
 {
@@ -57,8 +58,8 @@ class TurnoController extends Controller
 
         $turnos->save();
 
-        return redirect()->route('turnos.index', compact('turnos'))
-        ->with('info', 'Turno guardado con éxito');
+        Session::flash('success_message', 'Turno guardado con éxito');
+        return redirect()->route('turnos.index', compact('turnos'));
     }
 
     /**
@@ -102,8 +103,8 @@ class TurnoController extends Controller
 
         $turno->update($request->all());
 
-        return redirect()->route('turnos.index',compact('turno'))
-        ->with('info', 'Turno guardado con éxito');
+        Session::flash('info_message', 'Turno actualizado con éxito');
+        return redirect()->route('turnos.index',compact('turno'));
     }
 
     /**
@@ -116,6 +117,7 @@ class TurnoController extends Controller
     {
         Turno::destroy($id);
 
-        return back()->with('info', 'Turno eliminado correctamente');
+        Session::flash('danger_message', 'Turno eliminado correctamente');
+        return back();
     }
 }

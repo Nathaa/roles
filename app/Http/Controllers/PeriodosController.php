@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Periodo;
+use Session;
+
 class PeriodosController extends Controller
 {
     //
@@ -65,8 +67,8 @@ class PeriodosController extends Controller
 
         $periodos->save();
 
-        return redirect()->route('periodos.index', compact('periodos'))
-        ->with('info', 'periodo guardada con exito');
+        Session::flash('success_message', 'Periodo guardado con éxito');
+        return redirect()->route('periodos.index', compact('periodos'));
     }
 
     /**
@@ -112,8 +114,8 @@ class PeriodosController extends Controller
 
         $periodo->update($request->all());
 
-        return redirect()->route('periodos.index',compact('periodo'))
-        ->with('info', 'periodo guardado con exito');
+        Session::flash('info_message', 'Periodo actualizado con éxito');
+        return redirect()->route('periodos.index',compact('periodo'));
     }
 
     /**
@@ -129,6 +131,7 @@ class PeriodosController extends Controller
        // $periodo=periodo::findOrFail($id);
          periodo::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+        Session::flash('danger_message', 'Periodo eliminado correctamente');
+        return back();
     }
 }
