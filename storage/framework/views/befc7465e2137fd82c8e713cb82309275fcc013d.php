@@ -1,16 +1,14 @@
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.create')): ?>
-    <li class="breadcrumb-item"><a href="<?php echo e(route('grados.create')); ?>">Agregar grado</a></li>
-    <?php endif; ?>
+
   </ol>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('title'); ?>
-<h3>Lista de Grados</h3>
+
 <?php $__env->stopSection(); ?>
 
 
@@ -24,36 +22,67 @@
   </div>
   <?php endif; ?>
  </h6>
- <div class="card">
- <div class="card-boady">
- <table class="table table-bordered table-hover">
+ <div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.create')): ?>
+                 <a href="<?php echo e(route('grados.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
+                <i class="fas fa-plus"></i>Crear Grado </button> </a>
+            <?php endif; ?>
+        </div>
+
+
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <a href="<?php echo e(route('grados.index')); ?>"><i class="fa fa-align-justify"></i> Listado Grados</a>
+                </div>
+            </div>
+            <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
            <th scope="col">Grado</th>
            <th scope="col">Seccion</th>
-           <th scope="col">Categoria</th>
-           <th scope="col">Opciones</th>
+           <th colspan="3">&nbsp;Opciones</th>
+
          </tr>
        </thead>
        <tbody>
           <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.show')): ?>
-             <td><a href="<?php echo e(route('grados.show', $grado->id)); ?>"><?php echo e($grado->grado); ?></td></a>
-             <td><?php echo e($grado->seccion); ?></td><td><?php echo e($grado->categoria); ?></td>
-            <?php endif; ?>
-             <td>
+            <td><?php echo e($grado->grado); ?></td>
+            <td><?php echo e($grado->seccion); ?></td>
+            <td width="10px">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.edit')): ?>
+
+                <a href="<?php echo e(route('grados.edit', $grado->id)); ?>" class="btn btn-default btn-flat" title="Editar">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                  </a>
+                  <?php endif; ?>
+                </td>
+                <td width="10px">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.show')): ?>
+
+                <a href="<?php echo e(route('grados.show', $grado->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+
+                <?php endif; ?>
+                </td>
+                <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.destroy')): ?>
-              <?php echo Form::open(['route' => ['grados.destroy', $grado->id],
-              'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el registro de grado?")']); ?>
+                <?php echo Form::open(['route' => ['grados.destroy', $grado->id],
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-              <button class="btn btn-sm btn-danger">
-                  Eliminar
-              </button>
-            <?php echo Form::close(); ?>
+  <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
+    <i class="fas fa-trash" aria-hidden="true"></i>
+  </button>
+<?php echo Form::close(); ?>
 
-               <?php endif; ?>
-              </td>
+                <?php endif; ?>
+                </td>
+
            </tr>
 
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -61,6 +90,7 @@
        </tbody>
       </table>
 
+</div>
 </div>
 </div>
 </div>

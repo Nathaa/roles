@@ -55,7 +55,7 @@
                    </div>
 
 
-       
+
                 <div class="col">
                 <?php echo e(Form::label('dui', 'DUI sin Guión')); ?>
 
@@ -74,17 +74,27 @@
             </select>
           </div>
                    </div>
-                   
+
 
 
         </div>
-     
+        <div class="form-group">
+            <?php echo Form::label('turnos_id', 'Seleccione el Turno'); ?>
 
+            <div class="form-group">
+                <select name="turnos_id" id= "turnos_id" class="form-control" required>
+                    <option value="">--Turnos--</option>
+                    <?php $__currentLoopData = $turnos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $turno): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($turno->id); ?>"> <?php echo e($turno->nombre_turno); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </select>
+            </div>
+        </div>
 
 
 <br>
 <ol class="float-sm-right">
-   <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-lg btn-success'])); ?>
+   <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success'])); ?>
 
 </ol>
 
