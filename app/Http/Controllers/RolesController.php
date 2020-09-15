@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\rolesRequest;
 use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
+use Session;
 
 class RolesController extends Controller
 {
@@ -43,8 +44,8 @@ class RolesController extends Controller
 
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.index', $role->id)
-        ->with('info', 'Rol guardada con exito');
+        Session::flash('success_message', 'Rol guardado con éxito');
+        return redirect()->route('roles.index', $role->id);
     }
 
     /**
@@ -91,8 +92,8 @@ class RolesController extends Controller
 
         $role->permissions()->sync($request->get('permissions'));
 
-        return redirect()->route('roles.edit', $role->id)
-        ->with('info', 'Rol actualizado con exito');
+        Session::flash('info_message', 'Rol actualizado con éxito');
+        return redirect()->route('roles.edit', $role->id);
     }
 
     /**
@@ -106,6 +107,7 @@ class RolesController extends Controller
     {
         $role->delete();
 
-        return back()->with('info', 'Eliminado correctamente');
+        Session::flash('danger_message', 'Rol eliminado correctamente'); 
+        return back();
     }
 }

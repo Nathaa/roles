@@ -7,7 +7,7 @@ use App\Http\Requests\PlanEstudiosStoreRequest;
 use App\Http\Requests\PlanEstudiosUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Session;
 
 
 class PlanEstudioController extends Controller
@@ -62,8 +62,8 @@ class PlanEstudioController extends Controller
         $planesEstudio = PlanEstudio::create($request->all());
         $planesEstudio->save();
 
-        return redirect()->route('planesEstudio.index', compact('planesEstudio'))
-        ->with('info', 'plan de estudio guardado con exito');
+        Session::flash('success_message', 'Plan de Estudio guardado con éxito');
+        return redirect()->route('planesEstudio.index', compact('planesEstudio'));
     }
 
     /**
@@ -116,8 +116,8 @@ class PlanEstudioController extends Controller
 
 
         //return redirect('/grados')->with('info', 'datos de grado guardados con exito');
-        return redirect()->route('planesEstudio.index')
-        ->with('info', 'datos de plan de estudios guardados con exito');
+        Session::flash('info_message', 'Plan de Estudio actualizado con éxito');
+        return redirect()->route('planesEstudio.index');
         //return back()->with('mensaje','Grado editado');
     }
 
@@ -131,6 +131,7 @@ class PlanEstudioController extends Controller
     {
         PlanEstudio::destroy($id);
 
-        return back()->with('info', 'Plan Eliminado correctamente');
+        Session::flash('danger_message', 'Plan de Estudio eliminado correctamente'); 
+        return back();
     }
 }

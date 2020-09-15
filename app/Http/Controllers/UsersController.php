@@ -8,6 +8,7 @@ use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\orderBy;
+use Session;
 
 class UsersController extends Controller
 {
@@ -67,8 +68,8 @@ class UsersController extends Controller
 
         $users->save();
 
-        return redirect()->route('usuarios.index', compact('users'))
-        ->with('info', 'expediente guardada con exito');
+        Session::flash('success_message', 'Usuario guardado con éxito');
+        return redirect()->route('usuarios.index', compact('users'));
     }
 
     /**
@@ -123,8 +124,9 @@ class UsersController extends Controller
             $user->fill(['imagen' => asset($path)])->save();
 
         }
-        return redirect()->route('usuarios.index',compact('user'))
-        ->with('info', 'Usuario actualizado con exito');
+
+        Session::flash('info_message', 'Usuario actualizado con éxito');
+        return redirect()->route('usuarios.index',compact('user'));
     }
 
     /**
@@ -136,11 +138,10 @@ class UsersController extends Controller
     public function destroy($id)
 
     {
-
-
         User::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+        Session::flash('danger_message', 'Usuario eliminado correctamente'); 
+        return back();
 
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Anio;
 use Session;
+
 class AniosController extends Controller
 {
     //
@@ -65,6 +66,7 @@ class AniosController extends Controller
         $anios = anio::create($request->all());
 
         $anios->save();
+        
         Session::flash('success_message', 'Año guardado con éxito');
         return redirect()->route('anios.index', compact('anios'));
     }
@@ -110,6 +112,7 @@ class AniosController extends Controller
 
 
         $anio->update($request->all());
+
         Session::flash('info_message', 'Año actualizado con éxito');
         return redirect()->route('anios.index',compact('anio'));
     }
@@ -126,6 +129,7 @@ class AniosController extends Controller
 
        // $anio=anio::findOrFail($id);
          anio::destroy($id);
+
         Session::flash('danger_message', 'Año eliminado correctamente'); 
         return back();
     }

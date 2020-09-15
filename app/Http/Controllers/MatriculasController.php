@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Matricula;
+use Session;
 
 class MatriculasController extends Controller
 {
@@ -57,8 +58,8 @@ class MatriculasController extends Controller
 
         $matriculas->save();
 
-        return redirect()->route('matriculas.index', compact('matriculas'))
-        ->with('info', 'Matrícula guardada con éxito');
+        Session::flash('success_message', 'Matrícula guardada con éxito');
+        return redirect()->route('matriculas.index', compact('matriculas'));
     }
 
     /**
@@ -103,8 +104,8 @@ class MatriculasController extends Controller
 
         $matricula->update($request->all());
 
-        return redirect()->route('matriculas.index',compact('matricula'))
-        ->with('info', 'Matrícula guardado con éxito');
+        Session::flash('info_message', 'Matrícula actualizada con éxito');
+        return redirect()->route('matriculas.index',compact('matricula'));
     }
 
     /**
@@ -118,6 +119,7 @@ class MatriculasController extends Controller
         //
         matricula::destroy($id);
 
-        return back()->with('info', 'Eliminada correctamente');
+        Session::flash('danger_message', 'Matrícula eliminada correctamente');
+        return back();
     }
 }
