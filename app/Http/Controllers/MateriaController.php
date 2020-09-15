@@ -5,6 +5,7 @@ use App\Materia;
 use DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\MateriaFormRequest;
+use Session;
 
 class MateriaController extends Controller
 {
@@ -57,7 +58,8 @@ class MateriaController extends Controller
         $materia->descripcion = $request->input('descripcion');
         $materia->estado = '1';
         if($materia->save()){
-            return back()->with('notificacion', "Materia registrada exitosamente");
+            Session::flash('success_message', 'Materia guardada con éxito');
+            return back();
         }
         return redirect('materias');
 
@@ -104,8 +106,8 @@ class MateriaController extends Controller
 
         $materia->update($request->all());
 
-        return redirect()->route('materias.index',compact('materia'))
-        ->with('info', 'materia guardado con exito');
+        Session::flash('info_message', 'Materia actualizada con éxito');
+        return redirect()->route('materias.index',compact('materia'));
     }
 
     /**
@@ -118,7 +120,8 @@ class MateriaController extends Controller
     {
         materia::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+        Session::flash('danger_message', 'Materia eliminada correctamente');
+        return back();
     }
 
 }
