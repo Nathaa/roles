@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo e(asset('css/estilos.css')); ?>">
   <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
   <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
@@ -176,6 +177,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
@@ -188,6 +193,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
@@ -199,6 +208,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
@@ -210,6 +223,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
@@ -221,6 +238,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
@@ -232,6 +253,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
@@ -243,6 +268,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
           <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
@@ -253,18 +282,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
-              <a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
-                <i class="nav-icon 	fas fa-clock"></i>
-                <p>
-                 Turnos
-                </p>
-              </a>
-              <?php endif; ?>
-            </li>
+            <a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-clock"></i>
+              <p>
+               Turnos
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item">
           <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
             <a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
@@ -274,7 +312,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
+
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planEstudio.index')): ?>
             <a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
@@ -285,6 +328,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
         </ul>
       </nav>

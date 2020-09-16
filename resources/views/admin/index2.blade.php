@@ -17,6 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
   <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
   <script src="{{ asset('js/funciones.js') }}"></script>
   @yield('css_role_page')
@@ -171,6 +172,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
@@ -183,6 +188,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             @can('roles.index')
@@ -194,6 +203,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             @can('periodos.index')
@@ -205,6 +218,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             @can('matriculas.index')
@@ -216,6 +233,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             @can('anios.index')
@@ -227,6 +248,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             @can('grados.index')
@@ -238,6 +263,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
           @can('materias.index')
@@ -248,18 +277,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
             @can('turnos.index')
-              <a href="{{ route ('turnos.index') }}" class="nav-link">
-                <i class="nav-icon 	fas fa-clock"></i>
-                <p>
-                 Turnos
-                </p>
-              </a>
-              @endcan
-            </li>
+            <a href="{{ route ('turnos.index') }}" class="nav-link">
+              <i class="nav-icon 	fas fa-clock"></i>
+              <p>
+               Turnos
+              </p>
+            </a>
+            @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item">
           @can('docentes.index')
             <a href="{{ route ('docentes.index') }}" class="nav-link">
@@ -269,7 +307,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
+
           <li class="nav-item">
             @can('planEstudio.index')
             <a href="{{ route ('planesEstudio.index') }}" class="nav-link">
@@ -280,6 +323,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             @endcan
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
         </ul>
       </nav>
