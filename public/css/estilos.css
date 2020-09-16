@@ -48,3 +48,41 @@ body{
 .abrir {
 	transform: translateX(210px);
 }
+
+* {
+	margin:0px;
+	padding:0px;
+}
+
+ul, ol {
+	list-style:none;
+}
+
+
+.nav li a {
+	text-decoration:none;
+	padding:10px 12px;
+	display:block;
+}
+
+.nav li a:hover {
+	background-color:#434343;
+}
+
+.nav li ul {
+	display:none;
+	position:relative;
+}
+
+.nav li:hover > ul {
+	display:block;
+}
+
+.nav li ul li {
+	position:relative;
+}
+
+.nav li ul li ul {
+	right:-140px;
+	top:0px;
+}
