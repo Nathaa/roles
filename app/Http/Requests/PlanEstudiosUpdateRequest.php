@@ -24,8 +24,8 @@ class PlanEstudiosUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_plan' => 'max:20|required',
-            'duracion' =>'max:10|required',
+            #'nombre_plan' => 'max:20|required',
+            #'duracion' =>'max:10|required',
 
         ];
     }
