@@ -123,7 +123,7 @@ class DocentesController extends Controller
     public function update(Request $request,$id)
     {
 
-        $docente=docente::findOrFail($id);
+        $docente=Docente::findOrFail($id);
         $docente->fill($request->all())->save();
         if ($request->hasfile('imagen')) {
 
@@ -133,7 +133,7 @@ class DocentesController extends Controller
 
         }
 
-        $docente->update($request->all());
+        //$docente->update($request->all());
         //$docente->turnos()->sync($request->get('turnos'));
 
         Session::flash('info_message', 'Docente actualizado con éxito');
