@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PlanEstudioTableSeeder::class);
         $this->call(AniosTableSeeder::class);
         $this->call(DocentesTableSeeder::class);
+        $this->call(GradosTableSeeder::class);
+        $this->call(MateriasTableSeeder::class);
+        $this->call(PeriodosTableSeeder::class);
         //$this->call(EstudiantesTableSeeder::class);
 
     }

@@ -194,18 +194,19 @@ Route::delete('planes/{plan}', 'PlanEstudioController@destroy')->name('planesEst
 
 //planeamiento_academico
 
-Route::get('plan_academicos', 'Plan_AcademicosController@index')->name('plan_academicos.index')
-->middleware('can:plan_academicos.index');
-Route::get('plan_academicos/crear', 'Plan_AcademicosController@create')->name('plan_academicos.create')
-->middleware('can:plan_academicos.create');
-Route::get('plan_academicos/{plan_academico}', 'Plan_AcademicosController@show')->name('plan_academicos.show')
-->middleware('can:plan_academicos.show');
-Route::post('plan_academicos', 'Plan_AcademicosController@store')->name('plan_academicos.store')
-->middleware('can:plan_academicos.create');
-Route::get('plan_academicos/{plan_academico}/edit', 'Plan_AcademicosController@edit')->name('plan_academicos.edit')
-->middleware('can:plan_academicos.edit');
-Route::put('plan_academicos/{plan_academico}', 'Plan_AcademicosController@update')->name('plan_academicos.update')
-->middleware('can:plan_academicos.update');
-Route::delete('plan_academicos/{plan_academico}', 'Plan_AcademicosController@destroy')->name('plan_academicos.destroy')
-->middleware('can:plan_academicos.destroy');
+Route::get('asignacion', 'AsignacionController@index')->name('asignaciones.index')
+->middleware('can:asignaciones.index');
+Route::get('asignacion/crear', 'AsignacionController@create')->name('asignaciones.create')
+->middleware('can:asignaciones.create');
+Route::get('asignacion/{asignacion}', 'AsignacionController@show')->name('asignaciones.show')
+->middleware('can:asignaciones.show');
+Route::post('asignacion', 'AsignacionController@store')->name('asignaciones
+.store')
+->middleware('can:asignaciones.create');
+Route::get('asignacion/{asignacion}/edit', 'AsignacionController@edit')->name('asignaciones.edit')
+->middleware('can:asignaciones.edit');
+Route::put('asignacion/{asignacion}', 'AsignacionController@update')->name('asignaciones.update')
+->middleware('can:asignaciones.update');
+Route::delete('asignacion/{asignacion}', 'AsignacionController@destroy')->name('asignaciones.destroy')
+->middleware('can:asignaciones.destroy');
 

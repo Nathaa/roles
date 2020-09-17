@@ -50,8 +50,8 @@
     <div class="card">
         <div class="card-header">
 
-            @can('plan_academicos.create')
-                 <a href="{{ route('plan_academicos.create') }}"> <button type="button" class="btn btn-dark btn-xs">
+            @can('asignaciones.create')
+                 <a href="{{ route('asignaciones.create') }}"> <button type="button" class="btn btn-dark btn-xs">
                 <i class="fas fa-plus"></i>Crear Asignacion_academico </button> </a>
             @endcan
         </div>
@@ -60,41 +60,41 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-md-6">
-                    <a href="{{ route('plan_academicos.index') }}"><i class="fa fa-align-justify"></i> Listado plan_academicos</a>
+                    <a href="{{ route('asignaciones.index') }}"><i class="fa fa-align-justify"></i> Listado asignaciones</a>
                 </div>
             </div>
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grados</th>
+           <th scope="col">asignacioness</th>
            <th colspan="3">&nbsp;Opciones</th>
          </tr>
        </thead>
        <tbody>
-          @foreach ($grados as $grado)
+          @foreach ($asignaciones as $asignacion)
            <tr>
-            <td>{{$grado->grado}}</td>
+            <td>{{$asignaciones->asignacion}}</td>
 
              <td width="10px">
-                @can('plan_academicos.edit')
+                @can('asignaciones.edit')
 
-                <a href="{{ route('plan_academicos.edit', $plan_academico->id) }}" class="btn btn-default btn-flat" title="Editar">
+                <a href="{{ route('asignaciones.edit', $asignacion->id) }}" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   @endcan
                 </td>
                 <td width="10px">
-                @can('plan_academicos.show')
+                @can('asignaciones.show')
 
-                <a href="{{ route('plan_academicos.show', $plan_academico->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="{{ route('asignaciones.show', $asignacion->id) }}" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
                 @endcan
                 </td>
                 <td width="10px">
-                @can('plan_academicos.destroy')
-                {!! Form::open(['route' => ['plan_academicos.destroy', $plan_academico->id],
+                @can('asignaciones.destroy')
+                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>

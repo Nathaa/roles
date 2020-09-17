@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Asignacion;
+use Session;
 use App\Grado;
 use App\Materia;
 use App\Periodo;
-use Illuminate\Http\Request;
-use App\Plan_Academico;
-use Session;
 
-class Plan_AcademicosController extends Controller
+
+use Illuminate\Http\Request;
+
+class AsignacionController extends Controller
 {
     //
 
@@ -27,18 +28,18 @@ class Plan_AcademicosController extends Controller
 
     public function index(Request $request)
     {
-      //$Plan_Academicos= Plan_Academico::all();
-        //return view('Plan_Academicos.index', ['Plan_Academicos' => $Plan_Academicos]);
+      //$asignaciones= asignacione::all();
+        //return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
-        $plan_academicos=Plan_Academico::paginate();
+        $asignaciones=Asignacion::paginate();
 
         if ($request)
        {
         $query=trim($request->get('search'));
-           $plan_academicos= Plan_Academico::where('nombre', 'LIKE', '%' . $query . '%')
+           $asignaciones= Asignacion::where('grados_id', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
           ->get();
-          return view('plan_academicos.index', ['plan_academicos' => $plan_academicos, 'search' => $query]);
+          return view('asignaciones.index', ['asignaciones' => $asignaciones, 'search' => $query]);
         }
 
     }
@@ -56,7 +57,7 @@ class Plan_AcademicosController extends Controller
         $materias = Materia::get();
         $periodos = Periodo::get();
 
-        return view('plan_academicos.create', compact('grados','materias','periodos'));
+        return view('asignaciones.create', compact('grados','materias','periodos'));
     }
 
     /**
@@ -69,12 +70,12 @@ class Plan_AcademicosController extends Controller
     {
         //
 
-        $plan_academicos = Plan_Academico::create($request->all());
+        $asignaciones = Asignacion::create($request->all());
 
-        $plan_academicos->save();
+        $asignaciones->save();
 
-        Session::flash('success_message', 'Plan_Academico guardado con éxito');
-        return redirect()->route('plan_academicos.index', compact('plan_academicos'));
+        Session::flash('success_message', 'asignacione guardado con éxito');
+        return redirect()->route('asignaciones.index', compact('asignaciones'));
     }
 
     /**
@@ -86,11 +87,11 @@ class Plan_AcademicosController extends Controller
     public function show($id)
     {
         //
-        $plan_academico=Plan_Academico::findOrFail($id);
+        $asignaciones=Asignacion::findOrFail($id);
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
-        return view('plan_academicos.show', compact('plan_academico','grados','materias','periodos'));
+        return view('asignaciones.show', compact('asignaciones','grados','materias','periodos'));
     }
 
     /**
@@ -103,11 +104,11 @@ class Plan_AcademicosController extends Controller
     {
         //
 
-        $plan_academico=Plan_Academico::findOrFail($id);
+        $asignaciones=Asignacion::findOrFail($id);
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
-        return view('plan_academicos.edit',compact('plan_academico','grados','materias','periodos'));
+        return view('asignaciones.edit',compact('asignaciones','grados','materias','periodos'));
     }
 
     /**
@@ -120,14 +121,14 @@ class Plan_AcademicosController extends Controller
     public function update(Request $request,$id)
     {
 
-        $plan_academico=Plan_Academico::findOrFail($id);
-        $plan_academico->fill($request->all())->save();
+        $asignaciones=Asignacion::findOrFail($id);
+        $asignaciones->fill($request->all())->save();
 
 
-        $plan_academico->update($request->all());
+        $asignaciones->update($request->all());
 
-        Session::flash('info_message', 'Plan_Academico actualizado con éxito');
-        return redirect()->route('plan_academicos.index',compact('plan_academico'));
+        Session::flash('info_message', 'asignacione actualizado con éxito');
+        return redirect()->route('asignaciones.index',compact('asignaciones'));
     }
 
     /**
@@ -140,10 +141,10 @@ class Plan_AcademicosController extends Controller
     {
         //
 
-       // $Plan_Academico=Plan_Academico::findOrFail($id);
-         plan_academico::destroy($id);
+       // $asignacione=asignacione::findOrFail($id);
+         Asignacion::destroy($id);
 
-        Session::flash('danger_message', 'Plan_Academico eliminado correctamente');
+        Session::flash('danger_message', 'asignacione eliminado correctamente');
         return back();
     }
 }

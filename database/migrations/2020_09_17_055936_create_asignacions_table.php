@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlanAcademicoTable extends Migration
+class CreateAsignacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePlanAcademicoTable extends Migration
      */
     public function up()
     {
-        Schema::create('_plan__academico', function (Blueprint $table) {
+        Schema::create('asignacions', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('grados_id')->unsigned();
@@ -24,7 +24,6 @@ class CreatePlanAcademicoTable extends Migration
 
             $table->unsignedBigInteger('periodos_id')->unsigned();
             $table->foreign('periodos_id')->references('id')->on('periodos')->onUpdate('cascade')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreatePlanAcademicoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_plan__academico');
+        Schema::dropIfExists('asignacions');
     }
 }
