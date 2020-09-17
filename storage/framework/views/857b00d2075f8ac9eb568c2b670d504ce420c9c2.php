@@ -2,16 +2,14 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.edit')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('estudiantes.edit', $estudiante->id)); ?>">Editar Expediente</a></li>
-    <?php endif; ?>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('estudiantes.index', $estudiante->id)); ?>">Regresar atras</a></li>
-    <?php endif; ?>
+        <li class="breadcrumb-item active"><a href="<?php echo e(route('estudiantes.edit', $estudiante->id)); ?>"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar Estudiante</button></a></li>
+        <?php endif; ?>
+        <li class="breadcrumb active"><a href="<?php echo e(route('estudiantes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('title'); ?>
-<h3>Expediente de: <?php echo e($estudiante->nombre); ?> </h3>
+<h5><strong><?php echo e($estudiante->nombre); ?> <?php echo e($estudiante->apellido); ?></strong> </h5>
 <?php $__env->stopSection(); ?>
 
 
@@ -28,7 +26,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -61,7 +59,7 @@
             </div>
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>
@@ -84,7 +82,7 @@
             </div>
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>
@@ -108,7 +106,7 @@
 
             <div class="container">
                 <div class="card">
-                   <div class="card-boady">
+                   <div class="card-body">
                         <table class="table table-bordered table-hover">
                            <thead class="bg-primary">
                             <tr>

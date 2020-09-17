@@ -26,9 +26,9 @@
     <div class="card">
         <div class="card-header">
 
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.create')): ?>
-                 <a href="<?php echo e(route('grados.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
-                <i class="fas fa-plus"></i>Crear Grado </button> </a>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.create')): ?>
+                 <a href="<?php echo e(route('planesEstudio.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
+                <i class="fas fa-plus"></i>Crear Plan de Estudio </button> </a>
             <?php endif; ?>
         </div>
 
@@ -36,43 +36,42 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-md-6">
-                    <a href="<?php echo e(route('grados.index')); ?>"><i class="fa fa-align-justify"></i> Listado Grados</a>
+                    <a href="<?php echo e(route('planesEstudio.index')); ?>"><i class="fa fa-align-justify"></i> Listado de Planes</a>
                 </div>
             </div>
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grado</th>
-           <th scope="col">Seccion</th>
+           <th scope="col">Plan</th>
+           <th scope="col">Duracion</th>
            <th colspan="3">&nbsp;Opciones</th>
-
          </tr>
        </thead>
        <tbody>
-          <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php $__currentLoopData = $planesEstudio; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $planEstudio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($grado->grado); ?></td>
-            <td><?php echo e($grado->seccion); ?></td>
+            <td><?php echo e($planEstudio->nombre_plan); ?></td>
+            <td><?php echo e($planEstudio->duracion); ?></td>
             <td width="10px">
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.edit')): ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.edit')): ?>
 
-                <a href="<?php echo e(route('grados.edit', $grado->id)); ?>" class="btn btn-default btn-flat" title="Editar">
+                <a href="<?php echo e(route('planesEstudio.edit', $planEstudio->id)); ?>" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   <?php endif; ?>
                 </td>
                 <td width="10px">
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.show')): ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.show')): ?>
 
-                <a href="<?php echo e(route('grados.show', $grado->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="<?php echo e(route('planesEstudio.show', $planEstudio->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
                 <?php endif; ?>
                 </td>
                 <td width="10px">
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.destroy')): ?>
-                <?php echo Form::open(['route' => ['grados.destroy', $grado->id],
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.destroy')): ?>
+                <?php echo Form::open(['route' => ['planesEstudio.destroy', $planEstudio->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
@@ -82,7 +81,6 @@
 
                 <?php endif; ?>
                 </td>
-
            </tr>
 
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -94,6 +92,7 @@
 </div>
 </div>
 </div>
+</div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/grados/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/planesEstudio/index.blade.php ENDPATH**/ ?>

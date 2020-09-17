@@ -1,13 +1,11 @@
 <?php $__env->startSection('crear'); ?>
-<div class="col-sm">
-  <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
-  </ol>
-</div>
-<?php $__env->stopSection(); ?>
+<div class="col-sm-6">
+<ol class="breadcrumb float-sm-right">
 
-<?php $__env->startSection('title'); ?>
-<h3>Nuevo Docente</h3>
+        <li class="breadcrumb-item active"><a href="<?php echo e(route('materias.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
+    </ol>
+</div>
 <?php $__env->stopSection(); ?>
 
 
@@ -27,10 +25,10 @@
            <div class="card-body">
             <table class="table table-bordered table-hover">
 
-                 <?php echo Form::open(['route' => 'docentes.store','files'=> true]); ?>
+                 <?php echo Form::open(['route' => 'materias.store','files'=> true]); ?>
 
                  <enctype="multipart/form-data">
-                 <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                 <?php echo $__env->make('materias.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                  <?php echo Form::close(); ?>
 
@@ -41,4 +39,4 @@
  </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/docentes/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/materias/create.blade.php ENDPATH**/ ?>

@@ -15,13 +15,14 @@ class CreateDocentesTable extends Migration
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('imagen')->nullable();
             $table->string('nombre',120);
             $table->string('apellido',120);
             $table->string('direccion',200);
             $table->string('dui',10);
             $table->date('fecha_nacimiento');
             $table->string('sexo',1);
-            $table->integer('telefono');
+            $table->string('telefono');
 
             $table->unsignedBigInteger('turnos_id')->unsigned();
             $table->foreign('turnos_id')->references('id')->on('turnos')->onUpdate('cascade')->onDelete('cascade');

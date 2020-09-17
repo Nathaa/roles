@@ -23,6 +23,7 @@ class CreateMateriasTable extends Migration
 
 
 
+
             $table->timestamps();
         });
     }
