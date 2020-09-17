@@ -1,12 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Anio;
 use App\Grado;
+use App\Turno;
 use App\Http\Requests\GradosStoreRequest;
 use App\Http\Requests\GradosUpdateRequest;
+use App\PlanEstudio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Session;
 
 class GradosController extends Controller
 {
@@ -42,7 +46,12 @@ class GradosController extends Controller
      */
     public function create()
     {
-        return view('grados.create');
+        $turnos = Turno::get();
+
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
+
+        return view('grados.create', compact('turnos','planesEstudio','anios'));
     }
 
     /**
@@ -57,8 +66,8 @@ class GradosController extends Controller
         $grados = Grado::create($request->all());
         $grados->save();
 
-        return redirect()->route('grados.index', compact('grados'))
-        ->with('info', 'grado guardado con exito');
+        Session::flash('success_message', 'Grado guardado con éxito');
+        return redirect()->route('grados.index', compact('grados'));
     }
 
     /**
@@ -70,7 +79,11 @@ class GradosController extends Controller
     public function show($id)
     {
         $grado=Grado::findOrFail($id);
-        return view('grados.show', compact('grado'));
+        $turnos = Turno::get();
+
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
+        return view('grados.show', compact('grado','turnos','planesEstudio','anios'));
     }
 
     /**
@@ -82,9 +95,13 @@ class GradosController extends Controller
     public function edit($id)
     {
 
+
         $grado=Grado::findOrFail($id);
+        $turnos = Turno::get();
+        $planesEstudio = PlanEstudio::get();
+        $anios = Anio::get();
         //dd($grado);
-        return view('grados.edit', compact('grado'));
+        return view('grados.edit', compact('grado','turnos','planesEstudio','anios'));
     }
 
     /**
@@ -111,8 +128,8 @@ class GradosController extends Controller
 
 
         //return redirect('/grados')->with('info', 'datos de grado guardados con exito');
-        return redirect()->route('grados.index')
-        ->with('info', 'datos de grado guardados con exito');
+        Session::flash('info_message', 'Grado actualizado con éxito');
+        return redirect()->route('grados.index');
         //return back()->with('mensaje','Grado editado');
     }
 
@@ -126,6 +143,7 @@ class GradosController extends Controller
     {
         Grado::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+        Session::flash('danger_message', 'Grado eliminado correctamente');
+        return back();
     }
 }

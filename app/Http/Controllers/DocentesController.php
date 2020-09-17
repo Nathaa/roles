@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Turno;
 use App\Docente;
 use App\Http\Requests\DocentesStoreRequest;
 use App\Http\Requests\DocentesUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Session;
 
 
 
@@ -53,7 +54,9 @@ class DocentesController extends Controller
     {
         //
         $arraySexo = array('M', 'F');
-        return view('docentes.create', compact('arraySexo'));
+        $turnos = Turno::get();
+
+        return view('docentes.create', compact('arraySexo','turnos'));
     }
 
     /**
@@ -68,10 +71,12 @@ class DocentesController extends Controller
 
         $docentes = docente::create($request->all());
 
+      //  $docentes->turnos()->sync($request->get('turnos'));
+
         $docentes->save();
 
-        return redirect()->route('docentes.index', compact('docentes'))
-        ->with('info', 'Docente guardado con exito');
+        Session::flash('success_message', 'Docente guardado con éxito');
+        return redirect()->route('docentes.index', compact('docentes'));
     }
 
     /**
@@ -98,7 +103,8 @@ class DocentesController extends Controller
         //
         $arraySexo = array('M', 'F');
         $docente=Docente::findOrFail($id);
-        return view('docentes.edit', compact('docente','arraySexo'));
+        $turnos = Turno::get();
+        return view('docentes.edit', compact('docente','arraySexo','turnos'));
     }
 
     /**
@@ -116,9 +122,10 @@ class DocentesController extends Controller
 
 
         $docente->update($request->all());
+        //$docente->turnos()->sync($request->get('turnos'));
 
-        return redirect()->route('docentes.index',compact('docente'))
-        ->with('info', 'Docentes guardado con exito');
+        Session::flash('info_message', 'Docente actualizado con éxito');
+        return redirect()->route('docentes.index',compact('docente'));
     }
 
     /**
@@ -134,6 +141,7 @@ class DocentesController extends Controller
        // $docente=Docente::findOrFail($id);
          Docente::destroy($id);
 
-        return back()->with('info', 'Eliminado correctamente');
+         Session::flash('danger_message', 'Docente eliminado correctamente');
+        return back();
     }
 }

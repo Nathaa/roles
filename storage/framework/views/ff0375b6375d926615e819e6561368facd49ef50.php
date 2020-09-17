@@ -17,6 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo e(asset('css/estilos.css')); ?>">
+  <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
+  <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
 </head>
 
@@ -38,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" name="search" nombre="search" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" name="search" nombre="search" type="search" placeholder="Buscar" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -46,19 +49,75 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
       </div>
     </form>
-
-    <!-- Right navbar links -->
+    <li class="nav-item d-none d-sm-inline-block">
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <div class="nav-item dropdown no-arrow">
-        <a href="<?php echo e(route('logout')); ?>" class="btn btn-primary" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Cerrar Sesion</a>
-        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
-            <?php echo e(csrf_field()); ?>
+        <div class="nav-link dropdown no-arrow">
 
-        </form>
-      </div>
+        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 
-     </ul>
+            <?php if(\Session::has('anio')): ?>
+              <?php echo e(\Session::get('anio')); ?>
+
+            <?php else: ?>
+              <?php
+                $defecto = App\Anio::select('nombre')->where('id',
+                  \Session::get('idAnio'))->first();
+              ?>
+                <?php if(is_null($defecto)): ?>
+                Años
+                <?php else: ?>
+                  <?php echo e($defecto->nombre); ?>
+
+                <?php endif; ?>
+            <?php endif; ?>
+      </span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" id="anios">
+          <?php $__currentLoopData = App\Anio::orderBy('año','DESC')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li>
+              <a href="<?php echo e(route('anios.index',$anio->id)); ?>">
+                <?php echo e($anio->año); ?>
+
+              </a>
+            </li>
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+        </ul>
+
+        </div>
+    </ul>
+    </li>
+    <!-- User Account Menu -->
+    <ul class="navbar-nav ml-auto">
+        <div class="nav-link dropdown no-arrow">
+          <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a  class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="user-image" style="max-width:30px" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
+            </a>
+            <ul class="dropdown-menu">
+
+                <!-- Menu Footer-->
+                <li class="user-footer">
+
+                  <div class="text-center">
+                    <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();document.getElementById('salir-form').submit();" class="btn btn-default btn-flat btn-salir">Salir</a>
+                    <form action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;" id="salir-form">
+                      <?php echo e(csrf_field()); ?>
+
+                    </form>
+                  </div>
+                </li>
+            </ul>
+        </div>
+        </ul>
+
+
+
   </nav>
 
 
@@ -92,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="image">
 
                     <!-- <img src="<?php echo e(asset('imagenes/'.Auth::user()->imagen)); ?>" class="img-circle elevation-2"> -->
-                    <img src="<?php echo e(asset('dist/img/ava.jpg')); ?>" class="img-circle" height: 100px;
+                    <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="img-circle" height: 100px;
                     width: 100px; alt="User Image">
                 </div>
                   <?php echo e(Auth::user()->name); ?>
@@ -118,6 +177,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
 
           <li class="nav-item">
@@ -130,6 +193,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
@@ -141,6 +208,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
@@ -152,6 +223,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
@@ -163,6 +238,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
@@ -174,6 +253,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
@@ -185,6 +268,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
           <li class="nav-item">
           <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
@@ -195,6 +282,71 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </a>
             <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
+            <a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-clock"></i>
+              <p>
+               Turnos
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
+            <a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-store-alt"></i>
+              <p>
+               Docentes
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planEstudio.index')): ?>
+            <a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+              <p>
+                Planes de Estudio
+
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('plan_academicos.index')): ?>
+            <a href="<?php echo e(route ('plan_academicos.index')); ?>" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+              <p>
+                Planeamiento Academico
+
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -258,7 +410,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Default to the left -->
      Centro Escolar General Francisco Morazan.
 
-
+  </footer>
 </div>
 <!-- ./wrapper -->
 
@@ -267,7 +419,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jQuery -->
 <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <?php echo $__env->yieldContent('css_role_page'); ?>

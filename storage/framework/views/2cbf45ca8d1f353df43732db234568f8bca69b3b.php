@@ -21,6 +21,31 @@
   </div>
   <?php endif; ?>
  </h6>
+
+ <?php if(Session::has('success_message')): ?>
+ <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('success_message')); ?>
+
+ </div>
+ <?php endif; ?>
+
+ <?php if(Session::has('info_message')): ?>
+ <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('info_message')); ?>
+
+ </div>
+ <?php endif; ?>
+
+ <?php if(Session::has('danger_message')): ?>
+ <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('danger_message')); ?>
+
+ </div>
+ <?php endif; ?>
+
  <div class="container-fluid">
     <div class="card">
         <div class="card-header">
@@ -50,7 +75,7 @@
        <tbody>
           <?php $__currentLoopData = $anios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($anio->nombre); ?></td>
+            <td><?php echo e($anio->año); ?></td>
             <td><?php echo e($anio->duracion); ?></td>
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.edit')): ?>
@@ -74,7 +99,7 @@
                 <?php echo Form::open(['route' => ['anios.destroy', $anio->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-  <button class="btn btn-danger">
+  <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
 <?php echo Form::close(); ?>

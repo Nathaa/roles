@@ -24,7 +24,11 @@
        </div>
 
      </div>
-
+     <div class="row">
+        {{ Form::label('año', 'Año')}}
+        {{ Form::text('año',null,['class' => 'form-control']) }}
+        <div class="col">
+        </div>
 
  <br>
  <ol class="float-sm-right">

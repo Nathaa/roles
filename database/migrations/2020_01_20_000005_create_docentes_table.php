@@ -22,7 +22,12 @@ class CreateDocentesTable extends Migration
             $table->date('fecha_nacimiento');
             $table->string('sexo',1);
             $table->integer('telefono');
+
+            $table->unsignedBigInteger('turnos_id')->unsigned();
+            $table->foreign('turnos_id')->references('id')->on('turnos')->onUpdate('cascade')->onDelete('cascade');
+
             $table->integer('edad');
+
             $table->timestamps();
         });
     }
