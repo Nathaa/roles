@@ -18,12 +18,6 @@ class CreateMateriasTable extends Migration
             $table->string('nombre',100);
             $table->string('descripcion',200);
             $table->boolean('estado');
-
-
-
-
-            $table->unsignedBigInteger('grados_id')->unsigned();
-            $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

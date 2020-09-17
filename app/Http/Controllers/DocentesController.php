@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Turno;
 use App\Docente;
-use App\Http\Requests\DocentesStoreRequest;
-use App\Http\Requests\DocentesUpdateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Session;
@@ -68,8 +66,16 @@ class DocentesController extends Controller
     public function store(Request $request)
     {
         //
+        $docentes = Docente::create($request->all());
+        if ($request->hasfile('imagen')) {
+            $path=Storage::disk('public')->put('imagenes', $request->file('imagen'));
+            $docentes->fill(['imagen' => asset($path)])->save();
+            //$docentes['imagen']=$request->file('imagen')->store('uploads','public');
+            //$docentes->imagen= $file->getClientOriginalName();
+            //$file->move(public_path().'/imagenes/', $file->getClientOriginalName());
 
-        $docentes = docente::create($request->all());
+        }
+       
 
       //  $docentes->turnos()->sync($request->get('turnos'));
 
@@ -119,7 +125,13 @@ class DocentesController extends Controller
 
         $docente=docente::findOrFail($id);
         $docente->fill($request->all())->save();
+        if ($request->hasfile('imagen')) {
 
+            $path=Storage::disk('public')->put('imagenes', $request->file('imagen'));
+            $docente->fill(['imagen' => asset($path)])->save();
+
+
+        }
 
         $docente->update($request->all());
         //$docente->turnos()->sync($request->get('turnos'));

@@ -1,6 +1,15 @@
 <?php echo csrf_field(); ?>
 
 
+<div class="row">
+        <div class="col">
+           <label>Imagen</label>
+
+           <br><input type="file" name="imagen" class="form-control-file" class="text-rigth">
+        </div>
+
+
+</div>
 
 <hr>
 
@@ -57,7 +66,7 @@
 
 
                 <div class="col">
-                <?php echo e(Form::label('dui', 'DUI sin Guión')); ?>
+                <?php echo e(Form::label('dui', 'DUI con Guión')); ?>
 
                 <?php echo e(Form::text('dui',null,['class' => 'form-control'])); ?>
 

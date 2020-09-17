@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card">
 
-           <div class="card-boady">
+           <div class="card-body">
             <table class="table table-bordered table-hover">
 
                  <?php echo Form::open(['route' => 'docentes.store','files'=> true]); ?>
