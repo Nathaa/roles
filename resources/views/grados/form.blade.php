@@ -61,20 +61,7 @@
                     </div>
                 </div>
                </div>
-                <br>
-                <div class="col">
-                    <div class="form-group">
-                        {!! Form::label('docentes_id', 'Seleccione el Docente') !!}
-                        <div class="form-group">
-                            <select name="docentes_id" id= "docentes_id" class="form-control" required>
-                                <option value="">--Docentes--</option>
-                                @foreach ($docentes as $docente)
-                                <option value="{{ $docente->id }}"> {{ $docente->nombre}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
                 <br>
                 <div class="col">
                     <div class="form-group">
