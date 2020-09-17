@@ -9,7 +9,7 @@ class Materia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'estado','estudiantes_id','docentes_id','grados_id',
+        'estado','estudiantes_id','docentes_id',
     ];
     public function estudiante()
     {
@@ -19,9 +19,6 @@ class Materia extends Model
     {
         return $this->belongsTo(Docente::class);
     }
-    public function grado()
-    {
-        return $this->belongsTo(Grado::class);
-    }
+
 
 }

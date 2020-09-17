@@ -192,3 +192,20 @@ Route::put('planes/{plan}', 'PlanEstudioController@update')->name('planesEstudio
 Route::delete('planes/{plan}', 'PlanEstudioController@destroy')->name('planesEstudio.destroy')
 ->middleware('can:planesEstudio.destroy');
 
+//planeamiento_academico
+
+Route::get('plan_academicos', 'Plan_AcademicosController@index')->name('plan_academicos.index')
+->middleware('can:plan_academicos.index');
+Route::get('plan_academicos/crear', 'Plan_AcademicosController@create')->name('plan_academicos.create')
+->middleware('can:plan_academicos.create');
+Route::get('plan_academicos/{plan_academico}', 'Plan_AcademicosController@show')->name('plan_academicos.show')
+->middleware('can:plan_academicos.show');
+Route::post('plan_academicos', 'Plan_AcademicosController@store')->name('plan_academicos.store')
+->middleware('can:plan_academicos.create');
+Route::get('plan_academicos/{plan_academico}/edit', 'Plan_AcademicosController@edit')->name('plan_academicos.edit')
+->middleware('can:plan_academicos.edit');
+Route::put('plan_academicos/{plan_academico}', 'Plan_AcademicosController@update')->name('plan_academicos.update')
+->middleware('can:plan_academicos.update');
+Route::delete('plan_academicos/{plan_academico}', 'Plan_AcademicosController@destroy')->name('plan_academicos.destroy')
+->middleware('can:plan_academicos.destroy');
+

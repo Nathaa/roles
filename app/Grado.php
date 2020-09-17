@@ -11,7 +11,7 @@ class Grado extends Model
     public $timestamps = false;
     //
     protected $fillable = [
-        'grado','seccion', 'categoria','capacidad', 'anios_id', 'plan_estudios_id','docentes_id', 'turnos_id',
+        'grado','seccion', 'categoria','capacidad', 'anios_id', 'plan_estudios_id', 'turnos_id',
     ];
 
     public function anio()
@@ -28,10 +28,7 @@ class Grado extends Model
         return $this->hasOne(Turno::class);
     }
 
-    public function docente()
-    {
-        return $this->hasOne(Docente::class);
-    }
+
 
 
 }

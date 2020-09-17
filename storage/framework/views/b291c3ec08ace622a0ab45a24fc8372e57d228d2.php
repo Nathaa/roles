@@ -12,15 +12,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>Sistema Academico</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('plugins/fontawesome-free/css/all.min.css')); ?>">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="<?php echo e(asset('dist/css/adminlte.min.css')); ?>">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
-  <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
-  <script src="{{ asset('js/funciones.js') }}"></script>
-  @yield('css_role_page')
+  <link rel="stylesheet" href="<?php echo e(asset('css/estilos.css')); ?>">
+  <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
+  <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
+  <?php echo $__env->yieldContent('css_role_page'); ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -34,7 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admin') }}" class="nav-link">Pagina Principal</a>
+        <a href="<?php echo e(route('admin')); ?>" class="nav-link">Pagina Principal</a>
       </li>
     </ul>
 
@@ -55,30 +55,33 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 
-            @if(\Session::has('anio'))
-              {{ \Session::get('anio') }}
-            @else
+            <?php if(\Session::has('anio')): ?>
+              <?php echo e(\Session::get('anio')); ?>
+
+            <?php else: ?>
               <?php
                 $defecto = App\Anio::select('nombre')->where('id',
                   \Session::get('idAnio'))->first();
               ?>
-                @if(is_null($defecto))
+                <?php if(is_null($defecto)): ?>
                 Años
-                @else
-                  {{ $defecto->nombre }}
-                @endif
-            @endif
+                <?php else: ?>
+                  <?php echo e($defecto->nombre); ?>
+
+                <?php endif; ?>
+            <?php endif; ?>
       </span>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu" id="anios">
-          @foreach(App\Anio::orderBy('año','DESC')->get() as $anio)
+          <?php $__currentLoopData = App\Anio::orderBy('año','DESC')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $anio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <li>
-              <a href="{{ route('anios.index',$anio->id) }}">
-                {{ $anio->año }}
+              <a href="<?php echo e(route('anios.index',$anio->id)); ?>">
+                <?php echo e($anio->año); ?>
+
               </a>
             </li>
-          @endforeach
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
         </ul>
 
@@ -92,9 +95,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Menu Toggle Button -->
             <a  class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{asset('dist/img/user.jpg')}}" class="user-image" style="max-width:30px" alt="User Image">
+              <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="user-image" style="max-width:30px" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ Auth::user()->name }}</span>
+              <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
             </a>
             <ul class="dropdown-menu">
 
@@ -102,9 +105,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="user-footer">
 
                   <div class="text-center">
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('salir-form').submit();" class="btn btn-default btn-flat btn-salir">Salir</a>
-                    <form action="{{ route('logout') }}" method="POST" style="display: none;" id="salir-form">
-                      {{ csrf_field() }}
+                    <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault();document.getElementById('salir-form').submit();" class="btn btn-default btn-flat btn-salir">Salir</a>
+                    <form action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;" id="salir-form">
+                      <?php echo e(csrf_field()); ?>
+
                     </form>
                   </div>
                 </li>
@@ -129,8 +133,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admin') }}" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="<?php echo e(route('admin')); ?>" class="brand-link">
+      <img src="<?php echo e(asset('dist/img/AdminLTELogo.png')); ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Sistema Academico</span>
     </a>
@@ -141,17 +145,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="info">
               <a href="#" class="d-block">
-                  @guest
-                  <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar Sesión') }}</a>
-                  @else
+                  <?php if(auth()->guard()->guest()): ?>
+                  <a class="nav-link" href="<?php echo e(route('login')); ?>"><?php echo e(__('Iniciar Sesión')); ?></a>
+                  <?php else: ?>
                   <div class="image">
 
-                    <!-- <img src="{{asset('imagenes/'.Auth::user()->imagen) }}" class="img-circle elevation-2"> -->
-                    <img src="{{asset('dist/img/user.jpg')}}" class="img-circle" height: 100px;
+                    <!-- <img src="<?php echo e(asset('imagenes/'.Auth::user()->imagen)); ?>" class="img-circle elevation-2"> -->
+                    <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="img-circle" height: 100px;
                     width: 100px; alt="User Image">
                 </div>
-                  {{ Auth::user()->name }}
-                  @endguest
+                  <?php echo e(Auth::user()->name); ?>
+
+                  <?php endif; ?>
               </a>
 
           </div>
@@ -163,15 +168,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            @can('estudiantes.index')
-            <a href="{{ route ('estudiantes.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
+            <a href="<?php echo e(route ('estudiantes.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>
                 Expediente Alumna
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
@@ -179,104 +184,104 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            @can('usuarios.index')
-            <a href="{{ route ('usuarios.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
+            <a href="<?php echo e(route ('usuarios.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
                 Usuarios
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('roles.index')
-            <a href="{{ route ('roles.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
+            <a href="<?php echo e(route ('roles.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-lock"></i>
               <p>
                 Roles
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('periodos.index')
-            <a href="{{ route ('periodos.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
+            <a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Periodos
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('matriculas.index')
-            <a href="{{ route ('matriculas.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
+            <a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-folder-open"></i>
               <p>
                 Matrículas
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('anios.index')
-            <a href="{{ route ('anios.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
+            <a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-calendar-alt"></i>
               <p>
                 Años
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('grados.index')
-            <a href="{{ route ('grados.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
+            <a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
               <i class="nav-icon fas fa-store-alt"></i>
               <p>
                 Grados
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-          @can('materias.index')
-            <a href="{{ route ('materias.index') }}" class="nav-link">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
+            <a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
               <i class="nav-icon 	fas fa-book-reader"></i>
               <p>
                Materias
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
@@ -284,14 +289,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            @can('turnos.index')
-            <a href="{{ route ('turnos.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
+            <a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
               <i class="nav-icon 	fas fa-clock"></i>
               <p>
                Turnos
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
@@ -299,14 +304,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-          @can('docentes.index')
-            <a href="{{ route ('docentes.index') }}" class="nav-link">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
+            <a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
               <i class="nav-icon 	fas fa-store-alt"></i>
               <p>
                Docentes
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
@@ -314,30 +319,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            @can('planEstudio.index')
-            <a href="{{ route ('planesEstudio.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planEstudio.index')): ?>
+            <a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
               <p>
                 Planes de Estudio
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            @can('plan_academicos.index')
-            <a href="{{ route ('plan_academicos.index') }}" class="nav-link">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('plan_academicos.index')): ?>
+            <a href="<?php echo e(route ('plan_academicos.index')); ?>" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
               <p>
                 Planeamiento Academico
 
               </p>
             </a>
-            @endcan
+            <?php endif; ?>
             <ul>
               <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
@@ -357,26 +362,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-           @yield('title')
+           <?php echo $__env->yieldContent('title'); ?>
           </div><!-- /.col -->
-         @yield('crear')
+         <?php echo $__env->yieldContent('crear'); ?>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-    @if (session('info'))
+    <?php if(session('info')): ?>
   <div class="container">
       <div class="row">
           <div class="col-md-12 col-md-offset-2">
               <div class="alert alert-info">
-                  {{ session('info') }}
+                  <?php echo e(session('info')); ?>
+
               </div>
           </div>
       </div>
   <div
 
-    @endif
-    @yield('content')
+    <?php endif; ?>
+    <?php echo $__env->yieldContent('content'); ?>
     <!-- Main content -->
     <div class="content">
 
@@ -411,14 +417,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
+<script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-@yield('css_role_page')
-@yield('js_role_page')
-@yield('js_user_page')
-@yield('scripts')
+<?php echo $__env->yieldContent('css_role_page'); ?>
+<?php echo $__env->yieldContent('js_role_page'); ?>
+<?php echo $__env->yieldContent('js_user_page'); ?>
+<?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
+<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/admin/index2.blade.php ENDPATH**/ ?>
