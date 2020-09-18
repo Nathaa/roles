@@ -12,7 +12,7 @@
 @section('title')
 <h3>Nuevo Año</h3>
 @endsection
-
+ 
 
 @section('content')
 @if(count($errors)>0)

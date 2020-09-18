@@ -9,7 +9,7 @@
 <?php $__env->startSection('title'); ?>
 <h3>Nuevo Año</h3>
 <?php $__env->stopSection(); ?>
-
+ 
 
 <?php $__env->startSection('content'); ?>
 <?php if(count($errors)>0): ?>
