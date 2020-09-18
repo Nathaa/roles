@@ -1,11 +1,10 @@
 <?php $__env->startSection('title'); ?>
-<h3>Modificando al Docente: <?php echo e($docente->nombre); ?><?php echo e($docente->apellido); ?></h3>
+<h5><strong>Modificando:<?php echo e($docente->nombre); ?> <?php echo e($docente->apellido); ?></strong> </h5>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-        <a href="<?php echo e(route('docentes.index')); ?>" class="btn btn-sm btn-dark pull-rigth" > Regresar atras</a>
-
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
 
   </ol>
 </div>
@@ -14,7 +13,7 @@
 <div class="container">
     <div class="card">
 
-       <div class="card-boady">
+       <div class="card-body">
         <table class="table table-bordered table-hover">
 
                         <form method="POST"
@@ -24,7 +23,7 @@
                         <enctype="multipart/form-data">
 
 
-                        
+
                         <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                        <?php echo Form::close(); ?>
 

@@ -2,16 +2,14 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.edit')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.edit', $docente->id)); ?>">Editar Docente</a></li>
-    <?php endif; ?>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.index', $docente->id)); ?>">Regresar atras</a></li>
-    <?php endif; ?>
+        <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.edit', $docente->id)); ?>"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar Docente</button></a></li>
+        <?php endif; ?>
+        <li class="breadcrumb active"><a href="<?php echo e(route('docentes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('title'); ?>
-<h3>Docente : <?php echo e($docente->nombre); ?> <?php echo e($docente->apellido); ?> </h3>
+<h5><strong><?php echo e($docente->nombre); ?> <?php echo e($docente->apellido); ?></strong> </h5>
 <?php $__env->stopSection(); ?>
 
 
@@ -20,7 +18,7 @@
 
                     <div class="container">
 
-                        
+                        <img width="150" src="<?php echo e($docente->imagen); ?>" class="img-responsive">
                            </div>
                             <div class="container">
                                 <th scope="row"></th>
@@ -28,7 +26,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -56,7 +54,7 @@
                                     </tr>
                                     <tr>
 
-                                                    
+
                                                     <td><p><strong>Sexo: </strong> <?php echo e($docente->sexo); ?></p></td>
                                                     <td><p><strong>Telefono :</strong><?php echo e($docente->telefono); ?></p></td>
                                     </tr>
@@ -65,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
 <?php $__env->stopSection(); ?>
 

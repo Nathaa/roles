@@ -164,7 +164,7 @@ Route::delete('turnos/{turno}', 'TurnoController@destroy')->name('turnos.destroy
 Route::get('docentes','DocentesController@index')->name('docentes.index')
 ->middleware('can:docentes.index');
 Route::get('docentes/crear', 'DocentesController@create')->name('docentes.create')
-->middleware('can:grados.create');
+->middleware('can:docentes.create');
 Route::get('docentes/{docente}', 'DocentesController@show')->name('docentes.show')
 ->middleware('can:docentes.show');
 Route::post('docentes', 'DocentesController@store')->name('docentes.store')
@@ -191,4 +191,22 @@ Route::put('planes/{plan}', 'PlanEstudioController@update')->name('planesEstudio
 ->middleware('can:planesEstudio.update');
 Route::delete('planes/{plan}', 'PlanEstudioController@destroy')->name('planesEstudio.destroy')
 ->middleware('can:planesEstudio.destroy');
+
+//planeamiento_academico
+
+Route::get('asignacion', 'AsignacionController@index')->name('asignaciones.index')
+->middleware('can:asignaciones.index');
+Route::get('asignacion/crear', 'AsignacionController@create')->name('asignaciones.create')
+->middleware('can:asignaciones.create');
+Route::get('asignacion/{asignacion}', 'AsignacionController@show')->name('asignaciones.show')
+->middleware('can:asignaciones.show');
+Route::post('asignacion', 'AsignacionController@store')->name('asignaciones
+.store')
+->middleware('can:asignaciones.create');
+Route::get('asignacion/{asignacion}/edit', 'AsignacionController@edit')->name('asignaciones.edit')
+->middleware('can:asignaciones.edit');
+Route::put('asignacion/{asignacion}', 'AsignacionController@update')->name('asignaciones.update')
+->middleware('can:asignaciones.update');
+Route::delete('asignacion/{asignacion}', 'AsignacionController@destroy')->name('asignaciones.destroy')
+->middleware('can:asignaciones.destroy');
 

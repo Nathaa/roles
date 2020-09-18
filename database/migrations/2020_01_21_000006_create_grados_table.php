@@ -15,9 +15,9 @@ class CreateGradosTable extends Migration
     {
         Schema::create('grados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('categoria',20);
-            $table->string('grado',15);
-            $table->string('seccion',3);
+            $table->string('categoria',25);
+            $table->string('grado',20);
+            $table->string('seccion',5);
             $table->integer('capacidad');
 
 
@@ -31,10 +31,6 @@ class CreateGradosTable extends Migration
 
             $table->unsignedBigInteger('plan_estudios_id')->unsigned();
             $table->foreign('plan_estudios_id')->references('id')->on('plan_estudios')->onUpdate('cascade')->onDelete('cascade');
-
-
-            $table->unsignedBigInteger('docentes_id')->unsigned();
-            $table->foreign('docentes_id')->references('id')->on('docentes')->onUpdate('cascade')->onDelete('cascade');
 
 
             $table->unsignedBigInteger('turnos_id')->unsigned();

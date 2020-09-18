@@ -20,8 +20,7 @@ class CreatePeriodosTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
 
-            $table->unsignedBigInteger('grados_id')->unsigned();
-            $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
