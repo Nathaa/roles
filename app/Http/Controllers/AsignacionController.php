@@ -33,14 +33,10 @@ class AsignacionController extends Controller
 
         $asignaciones=Asignacion::paginate();
 
-        if ($request)
-       {
-        $query=trim($request->get('search'));
-           $asignaciones= Asignacion::where('grados_id', 'LIKE', '%' . $query . '%')
-          ->orderBy('id','asc')
-          ->get();
-          return view('asignaciones.index', ['asignaciones' => $asignaciones, 'search' => $query]);
-        }
+        $grados=Grado::paginate();
+        $grados = Grado::get();
+
+        return view('asignaciones.index', compact('grados','asignaciones'));
 
     }
 
@@ -53,6 +49,7 @@ class AsignacionController extends Controller
     public function create()
     {
         //
+
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
@@ -71,6 +68,8 @@ class AsignacionController extends Controller
         //
 
         $asignaciones = Asignacion::create($request->all());
+        $asignaciones->grados()->sync($request->get('grados'));
+
 
         $asignaciones->save();
 

@@ -23,6 +23,7 @@ class CreateGradosTable extends Migration
 
 
 
+
             //esta seria la relacion con la tabla
             //de plan de estudios, por el momento comentada
 
