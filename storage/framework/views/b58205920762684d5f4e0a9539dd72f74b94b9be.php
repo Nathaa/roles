@@ -70,21 +70,7 @@
                     </div>
                 </div>
                </div>
-                <br>
-                <div class="col">
-                    <div class="form-group">
-                        <?php echo Form::label('docentes_id', 'Seleccione el Docente'); ?>
 
-                        <div class="form-group">
-                            <select name="docentes_id" id= "docentes_id" class="form-control" required>
-                                <option value="">--Docentes--</option>
-                                <?php $__currentLoopData = $docentes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $docente): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($docente->id); ?>"> <?php echo e($docente->nombre); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <br>
                 <div class="col">
                     <div class="form-group">

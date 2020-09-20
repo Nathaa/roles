@@ -68,7 +68,7 @@ class AsignacionController extends Controller
         //
 
         $asignaciones = Asignacion::create($request->all());
-        $asignaciones->grados()->sync($request->get('grados'));
+        //$asignaciones->grados()->sync($request->get('grados'));
 
 
         $asignaciones->save();

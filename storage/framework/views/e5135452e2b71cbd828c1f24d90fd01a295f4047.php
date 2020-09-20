@@ -1,6 +1,7 @@
 <?php $__env->startSection('title'); ?>
 <h5><strong>Modificando:<?php echo e($docente->nombre); ?> <?php echo e($docente->apellido); ?></strong> </h5>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
@@ -9,31 +10,24 @@
   </ol>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 <div class="container">
-    <div class="card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <form method="POST"
+        <?php echo Form::model($docente, ['route' => ['docentes.update', $docente->id],
+        'method' =>'PUT', 'files' => true]); ?>
 
-       <div class="card-body">
-        <table class="table table-bordered table-hover">
+        <enctype="multipart/form-data">
 
-                        <form method="POST"
-                        <?php echo Form::model($docente, ['route' => ['docentes.update', $docente->id],
-                        'method' =>'PUT', 'files' => true]); ?>
+        <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo Form::close(); ?>
 
-                        <enctype="multipart/form-data">
-
-
-
-                        <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                       <?php echo Form::close(); ?>
-
-
-            <div class="card-footer">
-
-            </table>
-           </div>
+      </table>
     </div>
-    </div>
+  </div>
 </div>
 <?php $__env->stopSection(); ?>
 
