@@ -10,14 +10,14 @@
     <div class="row">
        <div class="col">
          {{ Form::label('nombre', 'Nombre')}}
-         {{ Form::text('nombre',null,['class' => 'form-control', 'id'=>'nombre','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'onkeyup' => "limpiar_validaciones(this)"]) }}
+         {{ Form::text('nombre',null,['class' => 'form-control', 'id'=>'nombre','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'placeholder' => 'Debe colocar un nombre correspondiente al periodo', 'required' => 'required','autofocus'=>'autofocus']) }}
          <div class="invalid-feedback" style="display:none">
           El nombre no debe comenzar con números ni caracteres especiales
         </div> 
        </div>
        <div class="col">
          {{ Form::label('duracion', 'Duracion (Semanas)')}}
-         {{ Form::text('duracion',null,['class' => 'form-control', 'id'=>'duracion','onkeyup' => "validar_numero(this)", 'onblur' => "validar_numero(this)"]) }}
+         {{ Form::text('duracion',null,['class' => 'form-control', 'id'=>'duracion','onkeyup' => "validar_numero(this)", 'onblur' => "validar_numero(this)",'placeholder' => 'Debe colocar la cantidad de semanas del periodo', 'required' => 'required','autofocus'=>'autofocus']) }}
          <div class="invalid-feedback" style="display:none">
           El numero debe estar entre 0 o 100
         </div>
@@ -28,14 +28,14 @@
      <div class="row">
          <div class="col">
             {{ Form::label('fecha_inicio', 'Fecha de Inicio')}}
-            {{ Form::date('fecha_inicio',null,['class' => 'form-control', 'id'=>'fecha_inicio','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)"]) }}
+            {{ Form::date('fecha_inicio',null,['class' => 'form-control', 'id'=>'fecha_inicio','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)",'required' => 'required','autofocus'=>'autofocus']) }}
             <div class="invalid-feedback" style="display:none">
               Ingrese una fecha valida para la fecha de inicio
             </div>
          </div>
          <div class="col">
              {{ Form::label('fecha_fin', 'Fecha de Finalizacion')}}
-            {{ Form::date('fecha_fin',null,['class' => 'form-control', 'id'=>'fecha_fin','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)"]) }}
+            {{ Form::date('fecha_fin',null,['class' => 'form-control', 'id'=>'fecha_fin','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)", 'required' => 'required','autofocus'=>'autofocus']) }}
             <div class="invalid-feedback" style="display:none">
               Ingrese una fecha valida para la fecha de fin
             </div>
@@ -50,7 +50,7 @@
 </form>
 
 @section('scripts')
-<script src="{{ asset('js/form-periodo.js') }}"></script>
+<script src="{{ asset('js/validar-form-periodo.js') }}"></script>
 @endsection
 
 

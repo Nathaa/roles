@@ -9,7 +9,7 @@
 
     <div class="row">
        	{{ Form::label('nombre', 'Nombre')}}
-        {{ Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+        {{ Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Agregar un nombre alusivo a un matricula', 'required' => 'required','autofocus'=>'autofocus']) }}
         <div class="invalid-feedback" style="display:none">
             El nombre no debe comenzar con números ni caracteres especiales
           </div>
@@ -17,7 +17,7 @@
 
     <div class="row">
         {{ Form::label('descripcion', 'Descripción')}}
-        {{ Form::text('descripcion',null,['class' => 'form-control', 'id' => 'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+        {{ Form::text('descripcion',null,['class' => 'form-control', 'id' => 'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Debe colocar una descripción de la matricula', 'required' => 'required','autofocus'=>'autofocus']) }}
         <div class="invalid-feedback" style="display:none">
             El nombre no debe comenzar con números ni caracteres especiales
           </div>

@@ -17,6 +17,40 @@ function validar_seccion(input) {
     }
     submit_form();
 }
+function validar_numero(input, min = 0, max = 100) {
+    let valor = Number(input.value);
+    if (!isNaN(valor)) {
+        if (valor >= min && valor <= max) {
+            valido(input);
+        } else {
+            invalido(input);
+        }
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
+
+function validar_select(input){
+    if(input.value != "")
+      {
+        valido(input); 
+      }
+    else{
+        invalido(input);
+    }
+    submit_form();
+}
+
+function validar_radio(input){
+    if(("[name='categoria']:checked").val()!=undefined){
+       valido(input)
+    }else{
+        invalido(input)
+    }
+
+    submit_form();
+}
 
 
 function submit_form() {

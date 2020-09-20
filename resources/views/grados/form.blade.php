@@ -13,41 +13,47 @@
         <div class="row">
            <div class="col">
              {{ Form::label('grado', 'Grado')}}
-              {{ Form::text('grado',null,['class' => 'form-control', 'id'=>'grado','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+              {{ Form::text('grado',null,['class' => 'form-control', 'id'=>'grado','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)",'placeholder' => 'Nombre del grado', 'required' => 'required','autofocus'=>'autofocus']) }}
               <div class="invalid-feedback" style="display:none">
                 El nombre del grado no debe comenzar con números ni caracteres especiales
               </div> 
              </div>
                <div class="col">
                 {{ Form::label('seccion', 'Seccion')}}
-                {{ Form::text('seccion',null,['class' => 'form-control', 'id'=>'seccion','onkeyup' => "validar_seccion(this)", 'onblur' => "validar_seccion(this)"]) }}
+                {{ Form::text('seccion',null,['class' => 'form-control', 'id'=>'seccion','onkeyup' => "validar_seccion(this)", 'onblur' => "validar_seccion(this)", 'placeholder' => '"B", "b"', 'required' => 'required','autofocus'=>'autofocus']) }}
                 <div class="invalid-feedback" style="display:none">
                   Debe agregar a la sección,por ejemplo B,b entre comillas dobles
                 </div>
                 </div>
             <div class="col">
                 {{ Form::label('categoria', 'Categoria')}}
-                {{ Form::text('categoria',null,['class' => 'form-control', 'id'=>'categoria','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+                {{ Form::text('categoria',null,['class' => 'form-control', 'id'=>'categoria','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Por ejemplo, Bachillerato', 'required' => 'required','autofocus'=>'autofocus']) }}
                 <div class="invalid-feedback" style="display:none">
-                  Debe seleccionar la categoria
+                  Debe agreagar la categoria del grado
                 </div>
               
             </div>
 
             <div>
-                    {{ Form::label('capacidad', 'Capacidad')}}
-                    {{ Form::text('capacidad',null,['class' => 'form-control']) }}
-                    </div>
+                {{ Form::label('capacidad', 'Capacidad')}}
+                {{ Form::text('capacidad',null,['class' => 'form-control', 'id' => 'capacidad','onkeyup' => "validar_numero(this)", 'onblur' => "validar_numero(this)", 'placeholder' => 'Capacidad de alumnas por grado', 'required' => 'required','autofocus'=>'autofocus']) }}
+                <div class="invalid-feedback" style="display:none">
+                   Solo debe agregar números al campo capacidad
+                </div>
+            </div>
                 <div class="col">
                     <div class="form-group">
                         {!! Form::label('anios_id', 'Seleccione el Año') !!}
                         <div class="form-group">
-                            <select name="anios_id" id= "anios_id" class="form-control" required>
+                            <select name="anios_id" id= "anios_id" class="form-control" onblur="validar_select(this)" required autofocus>
                                 <option value="">--Año--</option>
                                 @foreach ($anios as $anio)
                                 <option value="{{ $anio->id }}"> {{ $anio->año}}</option>
                                 @endforeach
                             </select>
+                            <div class="invalid-feedback" style="display:none">
+                                El campo Año no debe quedar vacío.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -57,18 +63,20 @@
 
 
 <br>
-        </br>
             <div class="row">
                <div class="col">
                 <div class="form-group">
                     {!! Form::label('plan_estudios_id', 'Seleccione el Plan de Estudio') !!}
                     <div class="form-group">
-                        <select name="plan_estudios_id" id= "plan_estudios_id" class="form-control" required>
+                        <select name="plan_estudios_id" id= "plan_estudios_id" class="form-control" onblur="validar_select(this)" required autofocus>
                             <option value="">--Plan de Estudio--</option>
                             @foreach ($planesEstudio as $planEstudio)
                             <option value="{{ $planEstudio->id }}"> {{ $planEstudio->nombre_plan}}</option>
                             @endforeach
                         </select>
+                        <div class="invalid-feedback" style="display:none">
+                            El campo Plan de estudios no debe quedar vacío.
+                        </div>
                     </div>
                 </div>
                </div>
@@ -78,12 +86,15 @@
                     <div class="form-group">
                         {!! Form::label('turnos_id', 'Seleccione el Turno') !!}
                         <div class="form-group">
-                            <select name="turnos_id" id= "turnos_id" class="form-control" required>
+                            <select name="turnos_id" id= "turnos_id" class="form-control"  onblur="validar_select(this)" required autofocus>
                                 <option value="">--Turnos--</option>
                                 @foreach ($turnos as $turno)
                                 <option value="{{ $turno->id }}"> {{ $turno->nombre_turno}}</option>
                                 @endforeach
                             </select>
+                            <div class="invalid-feedback" style="display:none">
+                                El campo Turnos no debe quedar vacío.
+                            </div>
                         </div>
                     </div>
                 </div>

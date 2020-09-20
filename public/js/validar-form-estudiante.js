@@ -37,8 +37,7 @@ function validar_select(input){
 }
 
 function validar_telefono(input) {
-    /*\(?([0-9]{3})\)?[-. ]?([0-9]{3}) --->[0-9]{4}*/
-    const RegExPattern = /^[0-9]{8}$/;
+    const RegExPattern = /^[0-9]{4}-[0-9]{4}$/;
     if (input.value.trim() != "" && input.value.match(RegExPattern)) {
         valido(input);
     } else {

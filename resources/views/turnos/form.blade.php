@@ -26,14 +26,14 @@
     <div class="row">
         <div class="col">
             {{ Form::label('hora_entrada', 'Hora Entrada')}}
-            {{ Form::time('hora_entrada',null,['class' => 'form-control', 'id'=>'hora_entrada','onkeyup' => "validar_hora(this)", 'onblur' => "validar_hora(this)"]) }}
+            {{ Form::time('hora_entrada',null,['class' => 'form-control', 'id'=>'hora_entrada','onkeyup' => "validar_hora(this)", 'onblur' => "validar_hora(this)", 'required' => 'required','autofocus'=>'autofocus']) }}
             <div class="invalid-feedback" style="display:none">
                Es necesario ingresar una hora 
             </div>
          </div>
          <div class="col">
             {{ Form::label('hora_salida', 'Hora Salida')}}
-            {{ Form::time('hora_salida',null,['class' => 'form-control', 'id'=>'hora_salida','onkeyup' => "validar_hora(this)", 'onblur' => "validar_hora(this)"]) }}
+            {{ Form::time('hora_salida',null,['class' => 'form-control', 'id'=>'hora_salida','onkeyup' => "validar_hora(this)", 'onblur' => "validar_hora(this)", 'required' => 'required','autofocus'=>'autofocus']) }}
             <div class="invalid-feedback" style="display:none">
                Es necesario ingresar una hora 
             </div>

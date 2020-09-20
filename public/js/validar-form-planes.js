@@ -1,24 +1,4 @@
 
-function validar_cantidad(input) {
-    const RegExPattern = /^\d{4}$/;
-    if (input.value.trim() != "" && input.value.match(RegExPattern)) {
-        valido(input);
-    } else {
-        invalido(input);
-    }
-    submit_form();
-}
-
-function validar_nombre(input) {
-    if (input.value.trim() != "" && isNaN(Number((input.value)[0]))) {
-        valido(input);
-    } else {
-        invalido(input);
-    }
-    submit_form();
-}
-
-
 function validar_numero(input, min = 0, max = 100) {
     let valor = Number(input.value);
     if (!isNaN(valor)) {
@@ -27,6 +7,16 @@ function validar_numero(input, min = 0, max = 100) {
         } else {
             invalido(input);
         }
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
+
+
+function validar_nombre(input) {
+    if (input.value.trim() != "" && isNaN(Number((input.value)[0]))) {
+        valido(input);
     } else {
         invalido(input);
     }
@@ -50,4 +40,10 @@ function invalido(input) {
     $(input).removeClass("is-valid");
     $(input).addClass("is-invalid");
     $(input).next().css("display", "block");
+}
+
+function limpiar_validaciones(){
+    $(".invalid-feedback").css("display", 'none');
+    $(".is-invalid").removeClass("is-invalid");
+    $(".is-valid").removeClass("is-valid");
 }

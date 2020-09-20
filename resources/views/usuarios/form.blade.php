@@ -34,7 +34,10 @@
             </div>
             <div class="col">
                 {{ Form::label('password', 'Contraseña')}}
-               {{ Form::text('password',null,['class' => 'form-control']) }}
+               {{ Form::text('password',null,['class' => 'form-control', 'id'=>'password', 'onkeyup' => "validar_contrasenia(this)", 'onblur' => "validar_contrasenia(this)"]) }}
+               <div class="invalid-feedback" style="display:none">
+                La contraseña debe contener al menos minuscula, una mayuscula y un número, NO puede tener otros simbolos  con una longitud de 8 a 16 caracteres.
+              </div>
             </div>
         </div>
     <br>
@@ -56,11 +59,13 @@
 </div>
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
+            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled']) }}
         </ol>
 
 </form>
-
+@section('scripts')
+<script src="{{ asset('js/validar-form-usuarios.js') }}"></script>
+@endsection
 
 
 

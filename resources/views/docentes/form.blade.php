@@ -1,5 +1,14 @@
 {!! csrf_field() !!}
 
+<div class="row">
+        <div class="col">
+           <label>Imagen</label>
+
+           <br><input type="file" name="imagen" class="form-control-file" class="text-rigth">
+        </div>
+
+
+</div>
 
 <hr>
 
@@ -14,28 +23,28 @@
         <div class="row">
            <div class="col">
              {{ Form::label('nombre', 'Nombre')}}
-             {{ Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+             {{ Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Nombre del Docente', 'required' => 'required','autofocus'=>'autofocus']) }}
              <div class="invalid-feedback" style="display:none">
               El nombre no debe comenzar con numeros ni caracteres especiales
             </div>
              </div>
                <div class="col">
                 {{ Form::label('apellido', 'Apellidos')}}
-                {{ Form::text('apellido',null,['class' => 'form-control', 'id'=> 'apellido','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+                {{ Form::text('apellido',null,['class' => 'form-control', 'id'=> 'apellido','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Apellidos del Docente', 'required' => 'required','autofocus' => 'autofocus']) }}
                 <div class="invalid-feedback" style="display:none">
                   El apellido no debe comenzar con numeros ni caracteres especiales
                 </div>
                 </div>
                 <div class="col">
                 {{ Form::label('fecha_nacimiento', 'Fecha Nacimiento')}}
-                {{ Form::date('fecha_nacimiento',null,['class' => 'form-control','id'=>'fecha_nacimiento','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)"]) }}
+                {{ Form::date('fecha_nacimiento',null,['class' => 'form-control','id'=>'fecha_nacimiento','onkeyup' => "validar_fecha(this)", 'onblur' => "validar_fecha(this)", 'required' => 'required','autofocus'=>'autofocus']) }}
                 <div class="invalid-feedback" style="display:none">
                  Agregar una fecha de nacimiento valida
                 </div>
               </div>
               <div class="col">
                 {{ Form::label('telefono', 'Núm. Teléfono con Guión')}}
-                {{ Form::text('telefono',null,['class' => 'form-control', 'id'=>'telefono','onkeyup' => "validar_telefono(this)", 'onblur' => "validar_telefono(this)"]) }}
+                {{ Form::text('telefono',null,['class' => 'form-control', 'id'=>'telefono','onkeyup' => "validar_telefono(this)", 'onblur' => "validar_telefono(this)", 'placeholder' => '7777-7777', 'required' => 'required','autofocus'=>'autofocus']) }}
                 <div class="invalid-feedback" style="display:none">
                   El Teléfono se debe ingresar en un formato valido
                 </div>
@@ -49,7 +58,7 @@
                   </div>
                     <div class="col">
                         {{ Form::label('direccion', 'Direccion')}}
-                        {{ Form::text('direccion',null,['class' => 'form-control', 'id'=>'direccion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+                        {{ Form::text('direccion',null,['class' => 'form-control', 'id'=>'direccion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Ingresar la dirección de donde vive', 'required' => 'required','autofocus'=>'autofocus']) }}
                         <div class="invalid-feedback" style="display:none">
                           La direccion no debe comenzar con numeros ni caracteres especiales
                         </div>
@@ -58,12 +67,12 @@
 
 
                 <div class="col">
-                {{ Form::label('dui', 'DUI sin Guión')}}
-                {{ Form::text('dui',null,['class' => 'form-control', 'id'=>'dui','onkeyup' => "validar_dui(this)", 'onblur' => "validar_dui(this)"]) }}
+                {{ Form::label('dui', 'DUI con Guión')}}
+                {{ Form::text('dui',null,['class' => 'form-control', 'id'=>'dui','onkeyup' => "validar_dui(this)", 'onblur' => "validar_dui(this)", 'placeholder' => 'Ingresar Dui con guión', 'required' => 'required','autofocus'=>'autofocus' ]) }}
                 <div class="invalid-feedback" style="display:none">
-                  El DUI se debe ingresar en un formato valido
+                  El dui solo puede contener 9 caracteres y debe agregar el guión donde corresponda
                 </div>
-                  </div>
+                </div>
                     <div class="col">
                         {{ Form::label('sexo', 'Sexo')}}
                       <div class="col">
@@ -85,12 +94,15 @@
         <div class="form-group">
             {!! Form::label('turnos_id', 'Seleccione el Turno') !!}
             <div class="form-group">
-                <select name="turnos_id" id= "turnos_id" class="form-control" required>
+                <select name="turnos_id" id= "turnos_id" class="form-control" onblur="validar_select(this)" required autofocus>
                     <option value="">--Turnos--</option>
                     @foreach ($turnos as $turno)
                     <option value="{{ $turno->id }}"> {{ $turno->nombre_turno}}</option>
                     @endforeach
                 </select>
+                <div class="invalid-feedback" style="display:none">
+                  El Sexo no debe quedar vacío.
+               </div>
             </div>
         </div>
 
