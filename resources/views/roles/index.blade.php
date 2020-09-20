@@ -3,9 +3,27 @@
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-
-
   </ol>
+  @if(Session::has('success_message'))
+    <div id="msj_verde" class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{ Session::get('success_message') }}
+    </div>
+  @endif
+
+  @if(Session::has('info_message'))
+    <div id="msj_azul" class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{ Session::get('info_message') }}
+    </div>
+  @endif
+
+  @if(Session::has('danger_message'))
+    <div id="msj_rojo" class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      {{ Session::get('danger_message') }}
+    </div>
+  @endif
 </div><!-- /.col -->
 @endsection
 
@@ -17,28 +35,6 @@
 @section('content')
 
 <div class="container">
-
-    @if(Session::has('success_message'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('success_message') }}
-    </div>
-    @endif
-
-    @if(Session::has('info_message'))
-    <div class="alert alert-info alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('info_message') }}
-    </div>
-    @endif
-
-    @if(Session::has('danger_message'))
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('danger_message') }}
-    </div>
-    @endif
-
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">

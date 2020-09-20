@@ -137,8 +137,7 @@ class EstudiantesController extends Controller
 
     //  $estudiante->update($request->all());
         Session::flash('info_message', 'Estudiante actualizada con éxito');
-        return redirect()->route('estudiantes.index',compact('estudiante'))
-        ->with('info', 'expediente guardado con exito');
+        return redirect()->route('estudiantes.index',compact('estudiante'));
     }
 
     /**

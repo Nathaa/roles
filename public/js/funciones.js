@@ -1,7 +1,19 @@
 $(document).ready(function() {
     setTimeout(function() {
-        $(".alert").fadeOut(1500);
-    },3000);
+        $("#msj_verde").fadeOut(1500);
+    },2000);
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#msj_azul").fadeOut(1500);
+    },2000);
+});
+
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#msj_rojo").fadeOut(1500);
+    },2000);
 });
 
 /*$(document).ready(function() {

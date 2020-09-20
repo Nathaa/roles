@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bulma.min.css') }}">
   <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
   <script src="{{ asset('js/funciones.js') }}"></script>
   @yield('css_role_page')
@@ -54,7 +55,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="nav-link dropdown no-arrow">
 
         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-
             @if(\Session::has('anio'))
               {{ \Session::get('anio') }}
             @else
@@ -92,7 +92,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Menu Toggle Button -->
             <a  class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="{{asset('dist/img/user.jpg')}}" class="user-image" style="max-width:30px" alt="User Image">
+              <?php if((Auth::user()->imagen) == null ): ?>
+                <img src="{{ asset('dist/img/user.jpg') }}" class="img-circle" style="max-width:30px" alt="User Image">
+              <?php else: ?>
+                <img src="images/{{ Auth::user()->imagen }}" class="img-circle" style="max-width:30px" alt="User Image">
+              <?php endif; ?>
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
@@ -147,8 +151,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="image">
 
                     <!-- <img src="{{asset('imagenes/'.Auth::user()->imagen) }}" class="img-circle elevation-2"> -->
-                    <img src="{{asset('dist/img/user.jpg')}}" class="img-circle" height: 100px;
+                    <?php if((Auth::user()->imagen) == null ): ?>
+                      <img src="{{asset('dist/img/user.jpg')}}" class="img-circle" height: 100px;
                     width: 100px; alt="User Image">
+                    <?php else: ?>
+                      <img src="images/{{ Auth::user()->imagen }}" class="img-circle" style="max-width:30px" alt="User Image">
+                    <?php endif; ?>
+
                 </div>
                   {{ Auth::user()->name }}
                   @endguest
@@ -158,173 +167,140 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul id="menu-desplegable" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-1">
             @can('estudiantes.index')
-            <a href="{{ route ('estudiantes.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-folder-open"></i>
-              <p>
-                Expediente Alumna
-
-              </p>
-            </a>
+            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expediente Alumna</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('estudiantes.index') }}">Expediente Alumna</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-2">
+
             @can('usuarios.index')
-            <a href="{{ route ('usuarios.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-user-friends"></i>
-              <p>
-                Usuarios
-
-              </p>
-            </a>
+            <label for="nivel1-2"><i class="nav-icon fas fa-user-friends"></i>Usuarios</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('usuarios.index') }}">Usuarios</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-3">
+
             @can('roles.index')
-            <a href="{{ route ('roles.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-lock"></i>
-              <p>
-                Roles
-
-              </p>
-            </a>
+            <label for="nivel1-3"><i class="nav-icon fas fa-lock"></i>Roles</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('roles.index') }}">Roles</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-4">
             @can('periodos.index')
-            <a href="{{ route ('periodos.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                Periodos
-
-              </p>
-            </a>
+            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Periodos</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('periodos.index') }}">Periodos</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-5">
             @can('matriculas.index')
-            <a href="{{ route ('matriculas.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-folder-open"></i>
-              <p>
-                Matrículas
-
-              </p>
-            </a>
+            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Matrículas</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('matriculas.index') }}">Matrículas</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-6">
             @can('anios.index')
-            <a href="{{ route ('anios.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
-              <p>
-                Años
-
-              </p>
-            </a>
+            <label for="nivel1-6"><i class="nav-icon fas fa-calendar-alt"></i>Años</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('anios.index') }}">Años</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-7">
             @can('grados.index')
-            <a href="{{ route ('grados.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-store-alt"></i>
-              <p>
-                Grados
+            <label for="nivel1-7"><i class="nav-icon fas fa-store-alt"></i>Grados</label>
+            @endcan
 
-              </p>
-            </a>
-            @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-          @can('materias.index')
-            <a href="{{ route ('materias.index') }}" class="nav-link">
-              <i class="nav-icon 	fas fa-book-reader"></i>
-              <p>
-               Materias
-              </p>
-            </a>
-            @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+            <ul class="interior">
+              <li><a href="{{ route ('grados.index') }}">Grados</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-8">
+            @can('materias.index')
+            <label for="nivel1-8"><i class="nav-icon  fas fa-book-reader"></i>Materias</label>
+            @endcan
+
+            <ul class="interior">
+              <li><a href="{{ route ('materias.index') }}">Materias</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-9">
             @can('turnos.index')
-            <a href="{{ route ('turnos.index') }}" class="nav-link">
-              <i class="nav-icon 	fas fa-clock"></i>
-              <p>
-               Turnos
-              </p>
-            </a>
+            <label for="nivel1-9"><i class="nav-icon   fas fa-clock"></i>Turnos</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('turnos.index') }}">Turnos</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-          @can('docentes.index')
-            <a href="{{ route ('docentes.index') }}" class="nav-link">
-              <i class="nav-icon 	fas fa-store-alt"></i>
-              <p>
-               Docentes
-              </p>
-            </a>
+            <input type="checkbox" name="list" id="nivel1-10">
+            @can('docentes.index')
+            <label for="nivel1-10"><i class="nav-icon  fas fa-store-alt"></i>Docentes</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('docentes.index') }}">Docentes</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-11">
             @can('planEstudio.index')
-            <a href="{{ route ('planesEstudio.index') }}" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-              <p>
-                Planes de Estudio
-
-              </p>
-            </a>
+            <label for="nivel1-11"><i class="nav-icon fas fa-book"></i>Planes de Estudio</label>
             @endcan
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="{{ route ('planesEstudio.index') }}">Planes de Estudio</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
