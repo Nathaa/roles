@@ -11,7 +11,7 @@
     <div class="row">
        	<?php echo e(Form::label('nombre', 'Nombre')); ?>
 
-        <?php echo e(Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"])); ?>
+        <?php echo e(Form::text('nombre',null,['class' => 'form-control', 'id'=> 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Agregar un nombre alusivo a un matricula', 'required' => 'required','autofocus'=>'autofocus'])); ?>
 
         <div class="invalid-feedback" style="display:none">
             El nombre no debe comenzar con números ni caracteres especiales
@@ -21,7 +21,7 @@
     <div class="row">
         <?php echo e(Form::label('descripcion', 'Descripción')); ?>
 
-        <?php echo e(Form::text('descripcion',null,['class' => 'form-control', 'id' => 'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"])); ?>
+        <?php echo e(Form::text('descripcion',null,['class' => 'form-control', 'id' => 'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Debe colocar una descripción de la matricula', 'required' => 'required','autofocus'=>'autofocus'])); ?>
 
         <div class="invalid-feedback" style="display:none">
             El nombre no debe comenzar con números ni caracteres especiales

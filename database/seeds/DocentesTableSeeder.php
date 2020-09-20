@@ -14,14 +14,15 @@ class DocentesTableSeeder extends Seeder
     {
         //
         Docente::create([
+            
             'nombre' => 'Donatila',
             'apellido' => 'Perez',
             'direccion' => 'San Salvador',
-            'dui' => '052416173',
+            'dui' => '05241617-3',
             'fecha_nacimiento' => '2020-09-13 23:02:50',
             'edad' => '20',
             'sexo' => 'F',
-            'telefono' => '76543454',
+            'telefono' => '7654-3454',
             'turnos_id'=> '1',
            ]);
 

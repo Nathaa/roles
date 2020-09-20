@@ -329,8 +329,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
-            @can('plan_academicos.index')
-            <a href="{{ route ('plan_academicos.index') }}" class="nav-link">
+            @can('asignaciones.index')
+            <a href="{{ route ('asignaciones.index') }}" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
               <p>
                 Planeamiento Academico
