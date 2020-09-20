@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-<h3>Nueva Asignacion</h3>
+
 <?php $__env->stopSection(); ?>
 
 

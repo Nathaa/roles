@@ -1,7 +1,9 @@
 @extends('admin.index2')
+
 @section('title')
 <h5><strong>Modificando:{{ $docente->nombre  }} {{ $docente->apellido  }}</strong> </h5>
 @endsection
+
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
@@ -10,28 +12,21 @@
   </ol>
 </div>
 @endsection
+
 @section('content')
 <div class="container">
-    <div class="card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered table-hover">
+        <form method="POST"
+        {!! Form::model($docente, ['route' => ['docentes.update', $docente->id],
+        'method' =>'PUT', 'files' => true])  !!}
+        <enctype="multipart/form-data">
 
-       <div class="card-body">
-        <table class="table table-bordered table-hover">
-
-                        <form method="POST"
-                        {!! Form::model($docente, ['route' => ['docentes.update', $docente->id],
-                        'method' =>'PUT', 'files' => true])  !!}
-                        <enctype="multipart/form-data">
-
-
-
-                        @include('docentes.form')
-                       {!! Form::close() !!}
-
-            <div class="card-footer">
-
-            </table>
-           </div>
+        @include('docentes.form')
+        {!! Form::close() !!}
+      </table>
     </div>
-    </div>
+  </div>
 </div>
 @endsection

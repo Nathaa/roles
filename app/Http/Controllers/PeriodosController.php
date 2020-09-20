@@ -50,6 +50,7 @@ class PeriodosController extends Controller
     {
         //
 
+
         return view('periodos.create');
     }
 

@@ -16,11 +16,7 @@
 <div class="container">
 
     <h6>
-   <?php if($search): ?>
-  <div class="alert alert-info" role="alert">
-    Los resultados de tu busqueda <?php echo e($search); ?> son
-  </div>
-  <?php endif; ?>
+
  </h6>
 
  <?php if(Session::has('success_message')): ?>
@@ -51,10 +47,11 @@
     <div class="card">
         <div class="card-header">
 
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.create')): ?>
-                 <a href="<?php echo e(route('asignaciones.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
-                <i class="fas fa-plus"></i>Crear Asignacion_academico </button> </a>
-            <?php endif; ?>
+            <td width="10px">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.create')): ?>
+                <a href="<?php echo e(route('asignaciones.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
+               <i class="fas fa-plus"></i>Crear Asignacion_academico </button> </a>
+           <?php endif; ?>
         </div>
 
 
@@ -67,16 +64,18 @@
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">asignacioness</th>
-           <th colspan="3">&nbsp;Opciones</th>
+           <th scope="col">Grados</th>
+           <th scope="col">Categoria</th>
+           <th scope="col">Opcion</th>
+           <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
        <tbody>
-          <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-           <tr>
-            <td><?php echo e($asignaciones->asignacion); ?></td>
 
-             <td width="10px">
+        <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+           <tr>
+
+            <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
 
                 <a href="<?php echo e(route('asignaciones.edit', $asignacion->id)); ?>" class="btn btn-default btn-flat" title="Editar">

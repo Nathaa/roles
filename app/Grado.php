@@ -11,7 +11,7 @@ class Grado extends Model
     public $timestamps = false;
     //
     protected $fillable = [
-        'grado','seccion', 'categoria','capacidad', 'anios_id', 'plan_estudios_id', 'turnos_id',
+        'categoria','grado','seccion','capacidad', 'anios_id', 'plan_estudios_id', 'turnos_id',
     ];
 
     public function anio()

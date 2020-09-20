@@ -200,8 +200,7 @@ Route::get('asignacion/crear', 'AsignacionController@create')->name('asignacione
 ->middleware('can:asignaciones.create');
 Route::get('asignacion/{asignacion}', 'AsignacionController@show')->name('asignaciones.show')
 ->middleware('can:asignaciones.show');
-Route::post('asignacion', 'AsignacionController@store')->name('asignaciones
-.store')
+Route::post('asignacion', 'AsignacionController@store')->name('asignaciones.store')
 ->middleware('can:asignaciones.create');
 Route::get('asignacion/{asignacion}/edit', 'AsignacionController@edit')->name('asignaciones.edit')
 ->middleware('can:asignaciones.edit');
