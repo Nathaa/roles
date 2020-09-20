@@ -31,13 +31,13 @@ class EstudiantesStoreRequest extends FormRequest
         'direccion' =>'max:160|required',
         'encargado' =>'max:120|required',
         'parentesco' =>'max:120|required',
-        'telefono_emergencia' =>'required|min:8|numeric',
+        #'telefono_emergencia' =>'required|min:8|numeric',
         'nombre_padre' =>'max:120|required',
         'profesion_padre' =>'max:120|required',
-        'telefono_padre' =>'required|min:8|numeric',
+        #'telefono_padre' =>'required|min:8|numeric',
         'nombre_madre' =>'max:120|required',
         'profesion_madre' =>'max:120|required',
-        'telefono_madre' =>'required|min:8|numeric',
+        #'telefono_madre' =>'required|min:8|numeric',
 
         ];
     }

@@ -1,24 +1,45 @@
 <?php $__env->startSection('content'); ?>
 
-
-<div class="container text-center" style="background-color: LightSteelBlue;">
-    <i class="fas fa-book-open" style='font-size:36px;color: #778899'></i>
-        <h4>Listado de Materias</h4>
-</div>
 <h6>
     <?php if($search): ?>
       <div class="alert alert-info" role="alert">
-        Resultados de la busqueda <?php echo e($search); ?> 
+        Resultados de la busqueda <?php echo e($search); ?>
+
       </div>
       <?php endif; ?>
 </h6>
+
+<?php if(Session::has('success_message')): ?>
+ <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('success_message')); ?>
+
+ </div>
+ <?php endif; ?>
+
+ <?php if(Session::has('info_message')): ?>
+ <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('info_message')); ?>
+
+ </div>
+ <?php endif; ?>
+
+ <?php if(Session::has('danger_message')): ?>
+ <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo e(Session::get('danger_message')); ?>
+
+ </div>
+ <?php endif; ?>
+ 
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                    <a href="<?php echo e(route('materias.index')); ?>"><i class="fa fa-align-justify"></i> Materias</a>
+
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.create')): ?>
-                     <a href="<?php echo e(route('materias.create')); ?>"> <button type="button" class="btn btn-dark">
-                    <i class="fas fa-plus"></i> Nuevo </button> </a>
+                     <a href="<?php echo e(route('materias.create')); ?>"> <button type="button" class="btn btn-dark btn-xs">
+                    <i class="fas fa-plus"></i>Crear Nueva </button> </a>
                 <?php endif; ?>
             </div>
 
@@ -26,16 +47,16 @@
             <div class="card-body">
                 <div class="form-group row">
                     <div class="col-md-6">
-                        
+                        <a href="<?php echo e(route('materias.index')); ?>"><i class="fa fa-align-justify"></i> Listado Materias</a>
                     </div>
                 </div>
-                <table class="table table-bordered thead-dark table-striped table-sm">
+                <table class="table table-bordered thead-dark table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Nombre de la Materia</th>
                             <th>Descripción</th>
                             <th>Estado</th>
-                            <th>Opciones</th>
+                            <th colspan="3">&nbsp;Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,46 +69,54 @@
                                     <span class="badge badge-success">Activo</span>
                                     <?php else: ?>
                                     <span class="badge badge-danger">Desactivado</span>
-                                    <?php endif; ?>                                   
+                                    <?php endif; ?>
                             </td>
-                            <td>
+                            <td width="10px">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.edit')): ?>
 
                             <a href="<?php echo e(route('materias.edit', $materia->id)); ?>" class="btn btn-default btn-flat" title="Editar">
                                 <i class="fa fa-wrench" aria-hidden="true"></i>
                               </a>
                               <?php endif; ?>
+                            </td>
+                            <td width="10px">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.show')): ?>
 
                             <a href="<?php echo e(route('materias.show', $materia->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
                                 <i class="fas fa-eye" aria-hidden="true"></i>
                               </a>
-                            
-                            <?php endif; ?>
 
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.destroy')): ?>
-                            <a href="<?php echo e(route('materias.destroy', $materia->id)); ?>" data-target="#modal-delete-<?php echo e($materia->id); ?>" data-toggle="modal" class="btn btn-danger btn-flat" title="Eliminar">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                              </a>
                             <?php endif; ?>
                             </td>
-                        </tr> 
+                            <td width="10px">
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.destroy')): ?>
+                            <?php echo Form::open(['route' => ['materias.destroy', $materia->id],
+              'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
-                        <?php echo $__env->make('materias.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
-                       
-                        
-                        
+              <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
+                <i class="fas fa-trash" aria-hidden="true"></i>
+              </button>
+            <?php echo Form::close(); ?>
+
+                            <?php endif; ?>
+                            </td>
+                        </tr>
+
+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+
                     </tbody>
                 </table>
-                
+
             </div>
-            <?php echo e($materias->links()); ?>
 
         </div>
-        
+
     </div>
 
 
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/materias/index.blade.php ENDPATH**/ ?>
