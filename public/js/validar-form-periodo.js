@@ -23,15 +23,6 @@ function validar_nombre(input) {
     submit_form();
 }
 
-function validar_string(input) {
-    if (input.value.trim() != "") {
-        valido(input);
-    } else {
-        invalido(input);
-    }
-    submit_form();
-}
-
 function validar_fecha(input) {
     const RegExPattern = /^\d{1,2}\/\d{1,2}\/\d{4}$/; 
     if ((input.value.match(RegExPattern)) && (input.value != '')) {
@@ -69,8 +60,4 @@ function invalido(input) {
     $(input).next().css("display", "block");
 }
 
-function limpiar_validaciones(){
-    $(".invalid-feedback").css("display", 'none');
-    $(".is-invalid").removeClass("is-invalid");
-    $(".is-valid").removeClass("is-valid");
-}
+
