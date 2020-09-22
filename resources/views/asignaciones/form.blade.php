@@ -8,72 +8,67 @@
 <form>
 
 
-            <div class="card-body">
-                <table class="table table-bordered col-md-8 col-md-offset-2 thead-dark table-hover table-sm">
-                    <tr>
-
-                      <th scope="col">Grados</th>
-                      <th scope="col">Categoria</th>
-                    </tr>
-                    <tbody>
-
-                        @foreach ($grados as $grado)
-                        <tr>
-                            <td>
-                                <select name="grados_id" id="grados_id" class="form-control" style="font-size: 17px;">
-                                    <option value="">Seleccione Grado</option>
-
-                                            <option value="{{ $grado->id }}">
-                                                {{ $grado->grado }}
-                                            </option>
-
-                                    </select>
-
-                            </td>
-                            <td>{{ $grado->categoria }}</td>
-                        </tr>
-                        @endforeach
-                             </tbody>
-                </table>
-
-            </div>
 
     <div class="row">
-       <div class="col">
+        <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" >
+                                <option value="">Seleccione Grado</option>
+                                @foreach($grados as $grado)
 
-       </div>
-       <div class="col">
-        <div class="form-group">
-            <ul class="list-unstyled">
-               @foreach($periodos as $periodo)
-               <li>
-                   <label>
-                  {{ Form::checkbox('periodos[]', $periodo->id, null) }}
-                  {{ $periodo->nombre }}
-                   </label>
-               </li>
 
-               @endforeach
-            </ul>
-          </div>
-       </div>
+                                           <option value="{{ $grado->id }}",null>
+                                              {{ $grado->grado }}{{ $grado->seccion }}
 
-     </div>
-     <div class="row">
-        <div class="form-group">
-            <ul class="list-unstyled">
-               @foreach($materias as $materia)
-               <li>
-                   <label>
-                  {{ Form::checkbox('materias[]', $materia->id, null) }}
-                  {{ $materia->nombre }}
-                   </label>
-               </li>
+                                            </option>
 
-               @endforeach
-            </ul>
-          </div>
+                                          @endforeach
+                                        </td>
+                                </select>
+
         </div>
+
+        <div class="col">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                {{  Form::label('periodos_id','Periodos') }}
+                <div>
+                 @foreach($periodos as $periodo)
+        <label>
+         {{Form::checkbox('periodos[]',$periodo->id)}}
+          {{ $periodo->nombre }}
+        </label>
+            @endforeach
+          </ul>
+         </div>
+        </div>
+    </div>
+<br>
+<br>
+    <div class="form-group">
+
+
+        {{  Form::label('materias_id','Materias') }}
+        <div>
+
+         @foreach($materias as $materia)
+<label>
+ {{Form::checkbox('materias[]',$materia->id)}}
+  {{ $materia->nombre }}
+</label>
+    @endforeach
+</ul>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+
+
 
  <br>
  <ol class="float-sm-right">

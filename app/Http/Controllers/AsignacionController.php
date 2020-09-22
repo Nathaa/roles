@@ -6,9 +6,9 @@ use Session;
 use App\Grado;
 use App\Materia;
 use App\Periodo;
-
-
+use CreateAsignacionsTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AsignacionController extends Controller
 {
@@ -65,16 +65,25 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
-        $asignaciones = Asignacion::create($request->all());
-        $asignaciones->grados()->sync($request->get('grados'));
+     $asignaciones = Asignacion::create($request->all());
 
+       // dd($request);
+
+       $materias_id=$request->materias;
+       foreach($materias_id as $id)
+       $id= new Asignacion();
+       $id->materias_id=$id;
+       $id->save();
+
+
+     //$asignaciones->materias()->attach($request->get('materias'));
+        //$asignaciones->periodo()->attach($request->get('periodos_id'));
 
         $asignaciones->save();
 
         Session::flash('success_message', 'asignacione guardado con éxito');
-        return redirect()->route('asignaciones.index', compact('asignaciones'));
+        return redirect()->route('asignaciones.index', $asignaciones->id);
     }
 
     /**

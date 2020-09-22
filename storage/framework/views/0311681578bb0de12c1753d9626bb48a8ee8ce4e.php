@@ -3,6 +3,29 @@
   <ol class="breadcrumb float-sm-right">
 
   </ol>
+  <?php if(Session::has('success_message')): ?>
+    <div id="msj_verde" class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('success_message')); ?>
+
+    </div>
+  <?php endif; ?>
+
+  <?php if(Session::has('info_message')): ?>
+    <div id="msj_azul" class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('info_message')); ?>
+
+    </div>
+  <?php endif; ?>
+
+  <?php if(Session::has('danger_message')): ?>
+    <div id="msj_rojo" class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('danger_message')); ?>
+
+    </div>
+  <?php endif; ?>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 
@@ -21,30 +44,6 @@
     </div>
     <?php endif; ?>
   </h6>
-
-  <?php if(Session::has('success_message')): ?>
-  <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <?php echo e(Session::get('success_message')); ?>
-
-  </div>
-  <?php endif; ?>
-
-  <?php if(Session::has('info_message')): ?>
-  <div class="alert alert-info alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <?php echo e(Session::get('info_message')); ?>
-
-  </div>
-  <?php endif; ?>
-
-  <?php if(Session::has('danger_message')): ?>
-  <div class="alert alert-danger alert-dismissible" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <?php echo e(Session::get('danger_message')); ?>
-
-  </div>
-  <?php endif; ?>
 
   <div class="container-fluid">
     <div class="card">
@@ -112,4 +111,4 @@
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\IsraelErazo\Documents\roles\resources\views/planesEstudio/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/planesEstudio/index.blade.php ENDPATH**/ ?>
