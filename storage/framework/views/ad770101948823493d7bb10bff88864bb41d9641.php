@@ -110,7 +110,13 @@
 
        </tbody>
       </table>
+      <br>
+            <div class="row">
+              <div class="mx-auto">
+                <?php echo e($asignaciones->links()); ?>
 
+              </div>
+            </div>
 </div>
 </div>
 </div>

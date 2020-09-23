@@ -29,7 +29,7 @@ class TurnoController extends Controller
         $query=trim($request->get('search'));
         $turnos= Turno::where('nombre_turno', 'LIKE', '%' . $query . '%')
         ->orderBy('id','asc')
-        ->get();
+        ->paginate(5);
         return view('turnos.index', ['turnos' => $turnos, 'search' => $query]);
         }
 

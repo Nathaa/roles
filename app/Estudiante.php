@@ -17,7 +17,7 @@ class Estudiante extends Model
     ];
 
     protected $dates = [
-        'fecha_nacimiento',
+        'fecha_nacimiento'=>'date:Y-m-d',
         'created_at',
         'updated_at',
     ];

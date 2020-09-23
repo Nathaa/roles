@@ -107,7 +107,12 @@
 
        </tbody>
       </table>
-
+      <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$asignaciones->links()}}
+              </div>
+            </div>
 </div>
 </div>
 </div>

@@ -33,7 +33,7 @@ class GradosController extends Controller
         //$grados= Grado::where('cod_grado', 'LIKE', '%' . $query . '%')
            $grados= Grado::where('id', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('grados.index', ['grados' => $grados, 'search' => $query]);
         }
 

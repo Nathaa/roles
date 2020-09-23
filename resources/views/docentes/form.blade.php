@@ -101,7 +101,7 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback" style="display:none">
-                  El Sexo no debe quedar vacío.
+                  El Turno del docente no debe quedar vacío.
                </div>
             </div>
         </div>

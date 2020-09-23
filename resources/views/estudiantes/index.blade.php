@@ -98,6 +98,12 @@
           @endforeach
           </tbody>
         </table>
+        <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$estudiantes->links()}}
+              </div>
+            </div>
       </div>
     </div>
   </div>
