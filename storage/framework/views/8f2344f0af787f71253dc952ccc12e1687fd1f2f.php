@@ -1,4 +1,5 @@
-{!! csrf_field() !!}
+<?php echo csrf_field(); ?>
+
 
 
      <div class="alert alert-primary" role="alert">
@@ -10,15 +11,19 @@
 
        <div class="row">
           <div class="col">
-            {{ Form::label('nombre', 'Nombre')}}
-            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            <?php echo e(Form::label('nombre', 'Nombre')); ?>
+
+            <?php echo e(Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"])); ?>
+
             <div class="invalid-feedback" style="display:none">
                 El nombre de la materia no debe comenzar con números ni caracteres especiales
               </div> 
           </div>
           <div class="col">
-            {{ Form::label('descripcion', 'Descripcion')}}
-            {{ Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            <?php echo e(Form::label('descripcion', 'Descripcion')); ?>
+
+            <?php echo e(Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"])); ?>
+
             <div class="invalid-feedback" style="display:none">
                 El nombre de la descripcion no debe comenzar con números ni caracteres especiales
               </div> 
@@ -46,15 +51,17 @@
 
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled']) }}
+            <br><?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled'])); ?>
+
         </ol>
 
 </form>
 
-@section('scripts')
-<script src="{{ asset('js/validar-form-materias.js') }}"></script>
-@stop
+<?php $__env->startSection('scripts'); ?>
+<script src="<?php echo e(asset('js/validar-form-materias.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
 
 
 
+<?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/materias/modal.blade.php ENDPATH**/ ?>

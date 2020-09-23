@@ -24,9 +24,9 @@ class TurnoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_turno' => 'required',
-            'hora_entrada' => 'required',
-            'hora_salida' => 'required',
+           # 'nombre_turno' => 'required',
+            #'hora_entrada' => 'required',
+           # 'hora_salida' => 'required',
 
         ];
     }

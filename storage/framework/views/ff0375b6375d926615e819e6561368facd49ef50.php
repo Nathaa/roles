@@ -18,7 +18,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo e(asset('css/estilos.css')); ?>">
-  <link rel="stylesheet" href="<?php echo e(asset('css/bulma.min.css')); ?>">
   <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
   <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
@@ -55,6 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="nav-link dropdown no-arrow">
 
         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+
             <?php if(\Session::has('anio')): ?>
               <?php echo e(\Session::get('anio')); ?>
 
@@ -95,11 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Menu Toggle Button -->
             <a  class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <?php if((Auth::user()->imagen) == null ): ?>
-                <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="img-circle" style="max-width:30px" alt="User Image">
-              <?php else: ?>
-                <img src="images/<?php echo e(Auth::user()->imagen); ?>" class="img-circle" style="max-width:30px" alt="User Image">
-              <?php endif; ?>
+              <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="user-image" style="max-width:30px" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
             </a>
@@ -155,13 +151,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <div class="image">
 
                     <!-- <img src="<?php echo e(asset('imagenes/'.Auth::user()->imagen)); ?>" class="img-circle elevation-2"> -->
-                    <?php if((Auth::user()->imagen) == null ): ?>
-                      <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="img-circle" height: 100px;
+                    <img src="<?php echo e(asset('dist/img/user.jpg')); ?>" class="img-circle" height: 100px;
                     width: 100px; alt="User Image">
-                    <?php else: ?>
-                      <img src="images/<?php echo e(Auth::user()->imagen); ?>" class="img-circle" style="max-width:30px" alt="User Image">
-                    <?php endif; ?>
-
                 </div>
                   <?php echo e(Auth::user()->name); ?>
 
@@ -172,140 +163,173 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul id="menu-desplegable" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-1">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
-            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expediente Alumna</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('estudiantes.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder-open"></i>
+              <p>
+                Expediente Alumna
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('estudiantes.index')); ?>">Expediente Alumna</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-2">
-
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
-            <label for="nivel1-2"><i class="nav-icon fas fa-user-friends"></i>Usuarios</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('usuarios.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                Usuarios
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('usuarios.index')); ?>">Usuarios</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-3">
-
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
-            <label for="nivel1-3"><i class="nav-icon fas fa-lock"></i>Roles</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('roles.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-lock"></i>
+              <p>
+                Roles
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('roles.index')); ?>">Roles</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-4">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
-            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Periodos</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Periodos
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('periodos.index')); ?>">Periodos</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-5">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
-            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Matrículas</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-folder-open"></i>
+              <p>
+                Matrículas
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('matriculas.index')); ?>">Matrículas</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-6">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
-            <label for="nivel1-6"><i class="nav-icon fas fa-calendar-alt"></i>Años</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Años
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('anios.index')); ?>">Años</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
-
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-7">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
-            <label for="nivel1-7"><i class="nav-icon fas fa-store-alt"></i>Grados</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
+              <i class="nav-icon fas fa-store-alt"></i>
+              <p>
+                Grados
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('grados.index')); ?>">Grados</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
+            <a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-book-reader"></i>
+              <p>
+               Materias
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-8">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
-            <label for="nivel1-8"><i class="nav-icon  fas fa-book-reader"></i>Materias</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('materias.index')); ?>">Materias</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-9">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
-            <label for="nivel1-9"><i class="nav-icon   fas fa-clock"></i>Turnos</label>
+            <a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-clock"></i>
+              <p>
+               Turnos
+              </p>
+            </a>
             <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('turnos.index')); ?>">Turnos</a></li>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-10">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
-            <label for="nivel1-10"><i class="nav-icon  fas fa-store-alt"></i>Docentes</label>
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
+            <a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
+              <i class="nav-icon 	fas fa-store-alt"></i>
+              <p>
+               Docentes
+              </p>
+            </a>
             <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('docentes.index')); ?>">Docentes</a></li>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-11">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planEstudio.index')): ?>
-            <label for="nivel1-11"><i class="nav-icon fas fa-book"></i>Planes de Estudio</label>
-            <?php endif; ?>
+            <a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+              <p>
+                Planes de Estudio
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('planesEstudio.index')); ?>">Planes de Estudio</a></li>
+              </p>
+            </a>
+            <?php endif; ?>
+            <ul>
+              <li><a href="">Submenu1</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
@@ -395,7 +419,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jQuery -->
 <script src="<?php echo e(asset('plugins/jquery/jquery.min.js')); ?>"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo e(asset('plugins/bootstrap/js/bootstrap.bundle.min.js')); ?>"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <?php echo $__env->yieldContent('css_role_page'); ?>
@@ -404,4 +428,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <?php echo $__env->yieldContent('scripts'); ?>
 </body>
 </html>
-<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/admin/index2.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/admin/index2.blade.php ENDPATH**/ ?>
