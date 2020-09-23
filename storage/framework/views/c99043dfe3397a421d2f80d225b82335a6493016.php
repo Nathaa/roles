@@ -74,7 +74,7 @@
 
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-
+            <td><?php echo e($asignacion->grados_id); ?></td>
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
 

@@ -8,7 +8,6 @@ function validar_nombre(input) {
 }
 
 function validar_seccion(input) {
-    /*const RegExPattern = /^[a-zA-Z]{1}$/;*/
     const RegExPattern = /^\x22[a-zA-Z]{1}\x22$/;
     if (input.value.trim() != "" && input.value.match(RegExPattern)) {
         valido(input);

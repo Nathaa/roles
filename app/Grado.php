@@ -16,16 +16,16 @@ class Grado extends Model
 
     public function anio()
     {
-        return $this->belongsTo(Anio::class);
+        return $this->hasMany(Anio::class);
     }
     public function plaEstudio()
     {
-        return $this->belongsTo(PlanEstudio::class);
+        return $this->hasMany(PlanEstudio::class);
     }
 
     public function turno()
     {
-        return $this->hasOne(Turno::class);
+        return $this->hasMany(Turno::class);
     }
 
 

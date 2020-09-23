@@ -11,10 +11,6 @@ function validar_select(input){
 
 
 function validar_hora(input) {
-    /*const RegExPattern = /^[a-zA-Z]{1}$/;
-    ^([01]?[0-9]|2[0-3]):[0-5][0-9]$
-    ^([01]?[0-9]|2[0-3]):[0-5][0-9]$
-    ((\d{2}):(\d{2}))$*/
     const RegExPattern = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
     if (input.value.trim() != "" && input.value.match(RegExPattern)) {
         valido(input);

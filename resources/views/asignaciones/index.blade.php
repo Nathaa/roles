@@ -73,7 +73,7 @@
 
         @foreach ($asignaciones as $asignacion)
            <tr>
-
+            <td>{{$asignacion->grados_id}}</td>
             <td width="10px">
                 @can('asignaciones.edit')
 
