@@ -36,7 +36,7 @@ class DocentesController extends Controller
         $query=trim($request->get('search'));
            $docentes= Docente::where('nombre', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('docentes.index', ['docentes' => $docentes, 'search' => $query]);
         }
 

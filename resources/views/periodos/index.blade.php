@@ -110,7 +110,12 @@
 
        </tbody>
       </table>
-
+      <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$periodos->links()}}
+              </div>
+            </div>
 </div>
 </div>
 </div>

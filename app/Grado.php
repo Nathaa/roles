@@ -11,21 +11,21 @@ class Grado extends Model
     public $timestamps = false;
     //
     protected $fillable = [
-        'grado','seccion', 'categoria','capacidad', 'anios_id', 'plan_estudios_id', 'turnos_id',
+        'categoria','grado','seccion','capacidad', 'anios_id', 'plan_estudios_id', 'turnos_id',
     ];
 
     public function anio()
     {
-        return $this->belongsTo(Anio::class);
+        return $this->hasMany(Anio::class);
     }
     public function plaEstudio()
     {
-        return $this->belongsTo(PlanEstudio::class);
+        return $this->hasMany(PlanEstudio::class);
     }
 
     public function turno()
     {
-        return $this->hasOne(Turno::class);
+        return $this->hasMany(Turno::class);
     }
 
 

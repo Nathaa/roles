@@ -34,7 +34,7 @@ class PlanEstudioController extends Controller
         //$grados= Grado::where('cod_grado', 'LIKE', '%' . $query . '%')
            $planesEstudio= PlanEstudio::where('id', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('planesEstudio.index', ['planesEstudio' => $planesEstudio, 'search' => $query]);
         }
 

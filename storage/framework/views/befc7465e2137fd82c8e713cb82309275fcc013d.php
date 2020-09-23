@@ -3,6 +3,29 @@
   <ol class="breadcrumb float-sm-right">
 
   </ol>
+  <?php if(Session::has('success_message')): ?>
+    <div id="msj_verde" class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('success_message')); ?>
+
+    </div>
+  <?php endif; ?>
+
+  <?php if(Session::has('info_message')): ?>
+    <div id="msj_azul" class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('info_message')); ?>
+
+    </div>
+  <?php endif; ?>
+
+  <?php if(Session::has('danger_message')): ?>
+    <div id="msj_rojo" class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <?php echo e(Session::get('danger_message')); ?>
+
+    </div>
+  <?php endif; ?>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 
@@ -22,6 +45,7 @@
   </div>
   <?php endif; ?>
  </h6>
+
  <div class="container-fluid">
     <div class="card">
         <div class="card-header">
@@ -89,7 +113,13 @@
 
        </tbody>
       </table>
+      <br>
+            <div class="row">
+              <div class="mx-auto">
+                <?php echo e($grados->links()); ?>
 
+              </div>
+            </div>
 </div>
 </div>
 </div>

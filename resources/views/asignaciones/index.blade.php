@@ -18,11 +18,7 @@
 <div class="container">
 
     <h6>
-   @if($search)
-  <div class="alert alert-info" role="alert">
-    Los resultados de tu busqueda {{ $search }} son
-  </div>
-  @endif
+
  </h6>
 
  @if(Session::has('success_message'))
@@ -50,10 +46,11 @@
     <div class="card">
         <div class="card-header">
 
-            @can('asignaciones.create')
-                 <a href="{{ route('asignaciones.create') }}"> <button type="button" class="btn btn-dark btn-xs">
-                <i class="fas fa-plus"></i>Crear Asignacion_academico </button> </a>
-            @endcan
+            <td width="10px">
+                @can('asignaciones.create')
+                <a href="{{ route('asignaciones.create') }}"> <button type="button" class="btn btn-dark btn-xs">
+               <i class="fas fa-plus"></i>Crear Asignacion_academico </button> </a>
+           @endcan
         </div>
 
 
@@ -66,16 +63,18 @@
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">asignacioness</th>
-           <th colspan="3">&nbsp;Opciones</th>
+           <th scope="col">Grados</th>
+           <th scope="col">Categoria</th>
+           <th scope="col">Opcion</th>
+           <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
        <tbody>
-          @foreach ($asignaciones as $asignacion)
-           <tr>
-            <td>{{$asignaciones->asignacion}}</td>
 
-             <td width="10px">
+        @foreach ($asignaciones as $asignacion)
+           <tr>
+            <td>{{$asignacion->grados_id}}</td>
+            <td width="10px">
                 @can('asignaciones.edit')
 
                 <a href="{{ route('asignaciones.edit', $asignacion->id) }}" class="btn btn-default btn-flat" title="Editar">
@@ -108,7 +107,12 @@
 
        </tbody>
       </table>
-
+      <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$asignaciones->links()}}
+              </div>
+            </div>
 </div>
 </div>
 </div>

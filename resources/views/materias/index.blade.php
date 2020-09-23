@@ -111,7 +111,12 @@
 
                 </tbody>
             </table>
-
+            <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$materias->links()}}
+              </div>
+            </div>
         </div>
 
     </div>

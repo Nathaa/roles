@@ -110,6 +110,12 @@
 
        </tbody>
       </table>
+      <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$grados->links()}}
+              </div>
+            </div>
 </div>
 </div>
 </div>

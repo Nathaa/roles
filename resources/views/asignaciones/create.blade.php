@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-<h3>Nueva Asignacion</h3>
+
 @endsection
 
 

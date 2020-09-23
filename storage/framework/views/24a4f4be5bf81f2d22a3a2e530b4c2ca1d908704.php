@@ -2,16 +2,16 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.edit')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('grados.edit', $grado->id)); ?>">Editar Grado</a></li>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('grados.edit', $grado->id)); ?>"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar grado</button></a></li>
     <?php endif; ?>
-    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('grados.index', $grado->cod_id)); ?>">Regresar atras</a></li>
-    <?php endif; ?>
+    <li class="breadcrumb active"><a href="<?php echo e(route('grados.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+
   </ol>
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('title'); ?>
-<h3>Datos de grado : <?php echo e($grado->grado); ?> <?php echo e($grado->seccion); ?></h3>
+<h5><strong><?php echo e($grado->grado); ?> <?php echo e($grado->seccion); ?> </strong> </h5>
+
 <?php $__env->stopSection(); ?>
 
 
@@ -25,7 +25,7 @@
 
                                 <div class="card">
 
-                                   <div class="card-boady">
+                                   <div class="card-body">
 
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">

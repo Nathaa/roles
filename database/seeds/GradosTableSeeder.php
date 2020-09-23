@@ -13,9 +13,9 @@ class GradosTableSeeder extends Seeder
     {
         //
         Grado::create([
+            'categoria' => 'Tercer Ciclo',
             'grado' => '7',
             'seccion' => '"B"',
-            'categoria' => 'Tercer Ciclo',
             'capacidad' => '35',
             'anios_id' => '1',
             'plan_estudios_id' => '1',
@@ -24,9 +24,9 @@ class GradosTableSeeder extends Seeder
            ]);
 
            Grado::create([
+            'categoria' => 'Bachilllerato General',
             'grado' => '2',
             'seccion' => '"A"',
-            'categoria' => 'Bachilllerato General',
             'capacidad' => '40',
             'anios_id' => '1',
             'plan_estudios_id' => '1',
@@ -35,9 +35,9 @@ class GradosTableSeeder extends Seeder
            ]);
 
            Grado::create([
+            'categoria' => 'Bachillerato Vocacional',
             'grado' => '1',
             'seccion' => '"B"',
-            'categoria' => 'Bachillerato Vocacional',
             'capacidad' => '40',
             'anios_id' => '2',
             'plan_estudios_id' => '1',

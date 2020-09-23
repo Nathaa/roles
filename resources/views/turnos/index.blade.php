@@ -107,7 +107,12 @@
       @endforeach
        </tbody>
     </table>
-
+    <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$turnos->links()}}
+              </div>
+            </div>
 </div>
 </div>
  </div>

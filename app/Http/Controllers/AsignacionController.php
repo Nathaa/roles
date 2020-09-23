@@ -6,9 +6,9 @@ use Session;
 use App\Grado;
 use App\Materia;
 use App\Periodo;
-
-
+use CreateAsignacionsTable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AsignacionController extends Controller
 {
@@ -33,14 +33,10 @@ class AsignacionController extends Controller
 
         $asignaciones=Asignacion::paginate();
 
-        if ($request)
-       {
-        $query=trim($request->get('search'));
-           $asignaciones= Asignacion::where('grados_id', 'LIKE', '%' . $query . '%')
-          ->orderBy('id','asc')
-          ->get();
-          return view('asignaciones.index', ['asignaciones' => $asignaciones, 'search' => $query]);
-        }
+        $grados=Grado::paginate();
+        $grados = Grado::get();
+
+        return view('asignaciones.index', compact('grados','asignaciones'));
 
     }
 
@@ -53,6 +49,7 @@ class AsignacionController extends Controller
     public function create()
     {
         //
+
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
@@ -68,14 +65,30 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
 
+<<<<<<< HEAD
         $asignaciones = Asignacion::create($request->all());
+        //$asignaciones->grados()->sync($request->get('grados'));
+=======
+     $asignaciones = Asignacion::create($request->all());
+
+       // dd($request);
+
+       $materias_id=$request->materias;
+       foreach($materias_id as $id)
+       $id= new Asignacion();
+       $id->materias_id=$id;
+       $id->save();
+
+>>>>>>> fc9dcce53de1f53f696cce120736c307c8ae269c
+
+     //$asignaciones->materias()->attach($request->get('materias'));
+        //$asignaciones->periodo()->attach($request->get('periodos_id'));
 
         $asignaciones->save();
 
         Session::flash('success_message', 'asignacione guardado con éxito');
-        return redirect()->route('asignaciones.index', compact('asignaciones'));
+        return redirect()->route('asignaciones.index', $asignaciones->id);
     }
 
     /**

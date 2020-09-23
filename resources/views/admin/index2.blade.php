@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  
   <title>Sistema Academico</title>
 
   <!-- Font Awesome Icons -->
@@ -306,13 +306,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-12">
-            @can('asignaciones.index')
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
             
             <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamiento Académico</label>  
-            @endcan
+            <?php endif; ?>
 
             <ul class="interior">
-              <li><a href="{{ route ('asignaciones.index') }}">Planeamiento Academico</a></li>
+              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Planeamiento Academico</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
@@ -386,9 +386,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+
+
+
+
+
 @yield('css_role_page')
 @yield('js_role_page')
 @yield('js_user_page')

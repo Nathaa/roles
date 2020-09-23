@@ -29,7 +29,7 @@ class MatriculasController extends Controller
         $query=trim($request->get('search'));
            $matriculas= Matricula::where('nombre', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('matriculas.index', ['matriculas' => $matriculas, 'search' => $query]);
         }
     }

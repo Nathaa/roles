@@ -1,13 +1,13 @@
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm">
   <ol class="breadcrumb float-sm-right">
-    <a href="<?php echo e(route('matriculas.index')); ?>" class="btn btn-sm  btn-dark" >Regresar atras</a>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('matriculas.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-<h3>Nueva Matrícula</h3>
+
 <?php $__env->stopSection(); ?>
 
 
@@ -24,7 +24,7 @@
     <div class="container">
         <div class="card">
 
-           <div class="card-boady">
+           <div class="card-body">
             <table class="table table-bordered table-hover">
 
                  <?php echo Form::open(['route' => 'matriculas.store','files'=> true]); ?>

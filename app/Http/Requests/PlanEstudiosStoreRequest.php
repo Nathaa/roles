@@ -25,8 +25,8 @@ class PlanEstudiosStoreRequest extends FormRequest
     {
         return [
                 //cambiar aqui segun mis requerimientos
-        'nombre_plan' => 'max:20|required',
-        'duracion' =>'max:10|required',
+        #'nombre_plan' => 'max:20|required',
+        #'duracion' =>'max:10|required',
 
 
 

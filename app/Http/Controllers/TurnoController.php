@@ -29,7 +29,7 @@ class TurnoController extends Controller
         $query=trim($request->get('search'));
         $turnos= Turno::where('nombre_turno', 'LIKE', '%' . $query . '%')
         ->orderBy('id','asc')
-        ->get();
+        ->paginate(5);
         return view('turnos.index', ['turnos' => $turnos, 'search' => $query]);
         }
 
@@ -52,7 +52,7 @@ class TurnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TurnoFormRequest $request)
+    public function store(Request $request)
     {
         $turnos = Turno::create($request->all());
 
@@ -95,7 +95,7 @@ class TurnoController extends Controller
      * @param  \App\Turno  $turno
      * @return \Illuminate\Http\Response
      */
-    public function update(TurnoFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $turno=Turno::findOrFail($id);
         $turno->fill($request->all())->save();
