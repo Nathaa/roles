@@ -11,7 +11,7 @@
 </div>
 <hr>
 
-<div class="alert alert-primary" role="alert">
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Datos Personales Alumnas
 </div>
 
@@ -59,7 +59,7 @@
 
         </div>
      <hr>
-     <div class="alert alert-primary" role="alert">
+     <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Datos Personales del Responsable
       </div>
         <div class="row">
@@ -88,7 +88,7 @@
 
      </div>
      <hr>
-     <div class="alert alert-primary" role="alert">
+     <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Enfermedades
       </div>
 
@@ -126,7 +126,7 @@
 </div>
 
 <hr>
-     <div class="alert alert-primary" role="alert">
+     <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Datos Personales de Padres
       </div>
 
