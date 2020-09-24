@@ -63,6 +63,11 @@ body{
 	float: right;
 }
 
+#msj_azul_fijo {
+	background: #5499c7;
+	border-color: #5499c7;
+}
+
 #msj_rojo {
 	background: #b03a2e;
 	border-color: #b03a2e;
