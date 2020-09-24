@@ -105,6 +105,13 @@
 
           </tbody>
         </table>
+        <br>
+            <div class="row">
+              <div class="mr-auto">
+                <?php echo e($planesEstudio->links()); ?>
+
+              </div>
+            </div>
       </div>
     </div>
   </div>

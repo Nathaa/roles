@@ -58,7 +58,8 @@
 
 
                                                     <td><p><strong>Sexo: </strong> {{ $docente->sexo }}</p></td>
-                                                    <td><p><strong>Telefono :</strong>{{ $docente->telefono }}</p></td>
+                                                    <td><p><strong>Telefono :</strong> {{ $docente->telefono }}</p></td>
+                                                    <td><p><strong>Turno que imparte :</strong> {{ $turno->nombre_turno }}</p></td>
                                     </tr>
                                 </tbody>
                             </table>

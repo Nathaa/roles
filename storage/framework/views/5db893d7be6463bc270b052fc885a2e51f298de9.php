@@ -106,7 +106,13 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                     </table>
+                    <br>
+            <div class="row">
+              <div class="mr-auto">
+                <?php echo e($roles->links()); ?>
 
+              </div>
+            </div>
             </div>
     </div>
 </div>

@@ -108,7 +108,7 @@
         </table>
         <br>
             <div class="row">
-              <div class="mx-auto">
+              <div class="mr-auto">
                 <?php echo e($docentes->links()); ?>
 
               </div>

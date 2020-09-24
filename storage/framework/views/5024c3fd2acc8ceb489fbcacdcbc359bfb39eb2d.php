@@ -56,7 +56,8 @@
 
 
                                                     <td><p><strong>Sexo: </strong> <?php echo e($docente->sexo); ?></p></td>
-                                                    <td><p><strong>Telefono :</strong><?php echo e($docente->telefono); ?></p></td>
+                                                    <td><p><strong>Telefono :</strong> <?php echo e($docente->telefono); ?></p></td>
+                                                    <td><p><strong>Turno que imparte :</strong> <?php echo e($turno->nombre_turno); ?></p></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -95,7 +95,8 @@ class DocentesController extends Controller
     {
         //
         $docente=Docente::findOrFail($id);
-        return view('docentes.show', compact('docente'));
+        $turno = Turno::findOrFail($docente->turnos_id);
+        return view('docentes.show', compact('docente','turno'));
     }
 
     /**
