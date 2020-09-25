@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Asignacion;
 use App\Docente;
 use App\Anio;
+use App\Grado;
 use App\DocenteGrado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -90,7 +91,8 @@ class DocenteGradoController extends Controller
         $docente = Docente::findOrFail($docentegrado->docentes_id);
         $anio = Anio::findOrFail($docentegrado->anios_id);
         $asignacion = Asignacion::findOrFail($docentegrado->asignacions_id);
-        return view('docentegrados.show', compact('docentegrado','docente','anio','asignacion'));
+        $grado = Grado::findOrFail($asignacion->grados_id);
+        return view('docentegrados.show', compact('docentegrado','docente','anio','asignacion', 'grado'));
     }
 
     /**

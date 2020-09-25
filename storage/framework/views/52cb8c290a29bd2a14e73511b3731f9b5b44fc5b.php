@@ -41,7 +41,7 @@
 
                                     <tr>
                                         <td><p><strong>Docente: </strong> <?php echo e($docente->nombre); ?> <?php echo e($docente->apellido); ?></p></td>
-                                            
+                                        <td><p><strong>Grado: </strong> <?php echo e($grado->grado); ?> <?php echo e($grado->seccion); ?></p></td>
                                                 <td><p><strong>Año: </strong> <?php echo e($anio->año); ?></p></td>
                                     </tr>
                                     

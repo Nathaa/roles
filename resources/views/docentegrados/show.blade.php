@@ -43,7 +43,7 @@
 
                                     <tr>
                                         <td><p><strong>Docente: </strong> {{ $docente->nombre }} {{ $docente->apellido }}</p></td>
-                                            
+                                        <td><p><strong>Grado: </strong> {{ $grado->grado }} {{ $grado->seccion }}</p></td>
                                                 <td><p><strong>Año: </strong> {{ $anio->año }}</p></td>
                                     </tr>
                                     
