@@ -16,7 +16,7 @@ class Asignacion extends Model
 
     public function grado()
     {
-        return $this->hasMany(Grado::class);
+        return $this->hasOne(Grado::class);
     }
     public function materia()
     {

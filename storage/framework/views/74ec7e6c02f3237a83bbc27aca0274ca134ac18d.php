@@ -64,8 +64,9 @@
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grados</th>
+           <th scope="col">Grado</th>
            <th scope="col">Categoria</th>
+           <th scope="col">Materias</th>
            <th scope="col">Opcion</th>
            <th colspan="3">&nbsp;Estado</th>
          </tr>
@@ -74,7 +75,11 @@
 
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($asignacion->grados_id); ?></td>
+            <td><?php echo e($asignacion->grado); ?> <?php echo e($asignacion->seccion); ?></td>
+            <td><?php echo e($asignacion->categoria); ?></td>
+            <td><?php echo e($asignacion->nombre); ?></td>
+           
+
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
 
@@ -110,11 +115,16 @@
 
        </tbody>
       </table>
-
+      <br>
+            <div class="row">
+              <div class="mr-auto">
+               
+              </div>
+            </div>
 </div>
 </div>
 </div>
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/asignaciones/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/index.blade.php ENDPATH**/ ?>

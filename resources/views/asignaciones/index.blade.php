@@ -63,8 +63,9 @@
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grados</th>
+           <th scope="col">Grado</th>
            <th scope="col">Categoria</th>
+           <th scope="col">Materias</th>
            <th scope="col">Opcion</th>
            <th colspan="3">&nbsp;Estado</th>
          </tr>
@@ -73,7 +74,11 @@
 
         @foreach ($asignaciones as $asignacion)
            <tr>
-            <td>{{$asignacion->grados_id}}</td>
+            <td>{{$asignacion->grado}} {{$asignacion->seccion}}</td>
+            <td>{{$asignacion->categoria}}</td>
+            <td>{{$asignacion->nombre}}</td>
+           
+
             <td width="10px">
                 @can('asignaciones.edit')
 
@@ -110,7 +115,7 @@
       <br>
             <div class="row">
               <div class="mr-auto">
-                {{$asignaciones->links()}}
+               
               </div>
             </div>
 </div>

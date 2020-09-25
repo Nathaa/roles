@@ -1,13 +1,13 @@
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <a href="<?php echo e(route('asignaciones.index')); ?>" class="btn btn-xs  btn-dark" >Regresar atras</a>
   </ol>
 </div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-<h3>Nuevo Docente</h3>
+
 <?php $__env->stopSection(); ?>
 
 
@@ -27,10 +27,10 @@
            <div class="card-body">
             <table class="table table-bordered table-hover">
 
-                 <?php echo Form::open(['route' => 'docentes.store','files'=> true]); ?>
+                 <?php echo Form::open(['route' => 'asignaciones.store','files'=> true]); ?>
 
                  <enctype="multipart/form-data">
-                 <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                 <?php echo $__env->make('asignaciones.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                  <?php echo Form::close(); ?>
 
@@ -41,4 +41,4 @@
  </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Materias UES Damaris\Sistema_Oficial_CEFRAM\roles\resources\views/docentes/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/create.blade.php ENDPATH**/ ?>

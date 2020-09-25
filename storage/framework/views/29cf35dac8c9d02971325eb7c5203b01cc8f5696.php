@@ -36,12 +36,9 @@
 
                 <div>
                  <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <label>
-         <?php echo e(Form::checkbox('periodos[]',$periodo->id)); ?>
-
-          <?php echo e($periodo->nombre); ?>
-
-        </label>
+        <label><?php echo e($periodo->nombre); ?></label>
+        <input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
+       
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </ul>
          </div>
@@ -57,12 +54,8 @@
         <div>
 
          <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-<label>
- <?php echo e(Form::checkbox('materias[]',$materia->id)); ?>
-
-  <?php echo e($materia->nombre); ?>
-
-</label>
+ <label><?php echo e($materia->nombre); ?></label>
+ <input type="checkbox" id="materia[]" name="materia[]" value="<?php echo e($materia->id); ?>">
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul>
  </div>
@@ -85,6 +78,4 @@
 </ol>
 
 
-</form>
-
-<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/form.blade.php ENDPATH**/ ?>
+</form><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/form.blade.php ENDPATH**/ ?>

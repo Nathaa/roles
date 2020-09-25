@@ -1,7 +1,7 @@
 {!! csrf_field() !!}
 
 
-<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+<div class="alert alert-primary" role="alert">
         Datos del Año
 </div>
 
@@ -33,10 +33,9 @@
                 {{  Form::label('periodos_id','Periodos') }}
                 <div>
                  @foreach($periodos as $periodo)
-        <label>
-         {{Form::checkbox('periodos[]',$periodo->id)}}
-          {{ $periodo->nombre }}
-        </label>
+        <label>{{$periodo->nombre}}</label>
+        <input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}">
+       
             @endforeach
           </ul>
          </div>
@@ -51,10 +50,8 @@
         <div>
 
          @foreach($materias as $materia)
-<label>
- {{Form::checkbox('materias[]',$materia->id)}}
-  {{ $materia->nombre }}
-</label>
+ <label>{{$materia->nombre}}</label>
+ <input type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}">
     @endforeach
 </ul>
  </div>
@@ -77,4 +74,3 @@
 
 
 </form>
-
