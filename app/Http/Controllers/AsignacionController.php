@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 use App\Asignacion;
 use Session;
 use App\Grado;
 use App\Materia;
 use App\Periodo;
-use CreateAsignacionsTable;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
+use Illuminate\Support\Arr;
+
 
 class AsignacionController extends Controller
 {
@@ -28,17 +29,27 @@ class AsignacionController extends Controller
 
     public function index(Request $request)
     {
-      //$asignaciones= asignacione::all();
-        //return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
-        $asignaciones=Asignacion::paginate();
+      $asignaciones=Asignacion::paginate();
 
-        $grados=Grado::paginate();
-        $grados = Grado::get();
 
-        return view('asignaciones.index', compact('grados','asignaciones'));
+        if ($request)
+        {
+            $asignaciones=DB::table('asignacions')
+             ->join('grados','grados.id','=','asignacions.grados_id')
+             ->join('materias','materias.id','=','asignacions.materias_id')
+             ->join('periodos','periodos.id','=','asignacions.periodos_id')
+             ->select('asignacions.id','periodos.nombre','grados.grado','grados.seccion','grados.categoria','materias.nombre')
+             ->get()->toArray();
+        
 
+ 
+           return view('asignaciones.index', ['asignaciones' => $asignaciones]);
+           
+          }
+          
     }
+
 
 
     /**
@@ -46,15 +57,21 @@ class AsignacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(request $request)
     {
-        //
 
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
+        if ($request)
+        {
+         $query=trim($request->get('buscarpor'));
+            $grados= Grado::where('categoria', 'LIKE', '%' . $query . '%')
+           ->get();
+           return view('asignaciones.create', ['grados' => $grados,'materias' => $materias,'periodos' => $periodos, 'buscarpor' => $query]);
+         }
 
-        return view('asignaciones.create', compact('grados','materias','periodos'));
+
     }
 
     /**
@@ -65,30 +82,21 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-
-<<<<<<< HEAD
-        $asignaciones = Asignacion::create($request->all());
-        //$asignaciones->grados()->sync($request->get('grados'));
-=======
      $asignaciones = Asignacion::create($request->all());
-
+     $asignaciones->grados()->sync($request->get('grados'));
        // dd($request);
-
-       $materias_id=$request->materias;
-       foreach($materias_id as $id)
-       $id= new Asignacion();
-       $id->materias_id=$id;
-       $id->save();
-
->>>>>>> fc9dcce53de1f53f696cce120736c307c8ae269c
-
+      // $materias_id=$request->materias;
+       //foreach($materias_id as $id)
+       //$id= new Asignacion();
+       //$id->materias_id=$id;
+      // $id->save();
      //$asignaciones->materias()->attach($request->get('materias'));
         //$asignaciones->periodo()->attach($request->get('periodos_id'));
 
         $asignaciones->save();
 
         Session::flash('success_message', 'asignacione guardado con éxito');
-        return redirect()->route('asignaciones.index', $asignaciones->id);
+        return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
     }
 
     /**
@@ -99,7 +107,6 @@ class AsignacionController extends Controller
      */
     public function show($id)
     {
-        //
         $asignaciones=Asignacion::findOrFail($id);
         $grados = Grado::get();
         $materias = Materia::get();
