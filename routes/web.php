@@ -209,3 +209,19 @@ Route::put('asignacion/{asignacion}', 'AsignacionController@update')->name('asig
 Route::delete('asignacion/{asignacion}', 'AsignacionController@destroy')->name('asignaciones.destroy')
 ->middleware('can:asignaciones.destroy');
 
+//Asignacion_Docente-Grado
+
+Route::get('docentegrados', 'DocenteGradoController@index')->name('docentegrados.index')
+->middleware('can:docentegrados.index');
+Route::get('docentegrados/crear', 'DocenteGradoController@create')->name('docentegrados.create')
+->middleware('can:docentegrados.create');
+Route::get('docentegrados/{docentegrado}', 'DocenteGradoController@show')->name('docentegrados.show')
+->middleware('can:docentegrados.show');
+Route::post('docentegrados', 'DocenteGradoController@store')->name('docentegrados.store')
+->middleware('can:docentegrados.create');
+Route::get('docentegrados/{docentegrado}/edit', 'DocenteGradoController@edit')->name('docentegrados.edit')
+->middleware('can:docentegrados.edit');
+Route::put('docentegrados/{docentegrado}', 'DocenteGradoController@update')->name('docentegrados.update')
+->middleware('can:docentegrados.update');
+Route::delete('docentegrados/{docentegrado}', 'DocenteGradoController@destroy')->name('docentegrados.destroy')
+->middleware('can:docentegrados.destroy');

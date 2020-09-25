@@ -103,6 +103,12 @@
            @endforeach
           </tbody>
         </table>
+        <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$docentes->links()}}
+              </div>
+            </div>
       </div>
     </div>
   </div>

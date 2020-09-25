@@ -1,0 +1,98 @@
+ <option value="">Seleccione Materia</option>
+        @foreach($materias as $materia)
+        <input type="checkbox" name="materias_id" id="materias_id" class="form-control" style="font-size: 17px;">
+                <option value="{{ $materia->id }}",null>
+
+                    {{ $materia->nombre }}
+                </option>
+
+        </select>
+<div class="row">
+        <div class="form-group">
+            <ul class="list-unstyled">
+               @foreach($materias as $materia)
+               <li>
+                   <label>
+                  <input type="checkbox" name="materias[]" value="{{ $materia->nombre }}">
+                  {{ $materia->nombre }}
+                   </label>
+               </li>
+
+               @endforeach
+            </ul>
+          </div>
+        </div>
+<div class="col">
+        <div class="form-group">
+            <ul class="list-unstyled">
+               @foreach($periodos as $periodo)
+               <li>
+                   <label>
+                  {{ Form::checkbox('periodos_id[]', $periodo->id, null) }}
+                  {{ $periodo->nombre }}
+                   </label>
+               </li>
+
+               @endforeach
+            </ul>
+          </div>
+       </div>
+
+
+
+<div class="form-group"
+@foreach($materias as $materia)
+<label><input type="checkbox" name="materias_id[]" value="{{ $materia->id }}">
+{{ $materia->nombre }}</label>
+@endforeach
+</div>
+
+
+
+ <div class="form-group">
+
+                {{  Form::label('materias','Materias') }}
+                <div>
+                 @foreach($materias as $materia)
+     <label>
+         {{Form::checkbox('materias_id[]',$materia->id)}}
+          {{ $materia->nombre }}
+     </label>
+            @endforeach
+         </div>
+     </div>
+     <div class="form-group">
+
+        {{  Form::label('periodos_id[]','Periodos') }}
+        <div>
+         @foreach($periodos as $periodo)
+<label>
+ {{Form::checkbox('periodos_id[]',$periodo->id)}}
+  {{ $periodo->nombre }}
+</label>
+    @endforeach
+ </div>
+</div>
+*************************************************************************
+store
+$asignaciones = $request->all();
+
+     $arrayToString=implode(',', $request->input('materias_id'));
+     $asignaciones['materias_id'] = $arrayToString;
+
+    
+    $arrayToString=implode(',', $request->input('periodos_id'));
+     $asignaciones['periodos_id'] = $arrayToString;
+
+     $success=asignacion::create($asignaciones);
+     if($success){
+         Session::flash('status', 'success');
+     }else{
+         Session::flash('error','algo salio mal');
+    }
+
+       
+
+        Session::flash('success_message', 'asignacione guardado con éxito');
+        return redirect()->route('asignaciones.index', compact('success'));
+******************************************************************************

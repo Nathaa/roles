@@ -34,7 +34,7 @@ class AniosController extends Controller
         $query=trim($request->get('search'));
            $anios= Anio::where('nombre', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('anios.index', ['anios' => $anios, 'search' => $query]);
         }
 

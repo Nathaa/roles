@@ -1,7 +1,7 @@
 {!! csrf_field() !!}
 
 
-<div class="alert alert-primary" role="alert">
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Datos del Turno
 </div>
 

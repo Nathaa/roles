@@ -16,12 +16,14 @@ class Asignacion extends Model
 
     public function grado()
     {
-        return $this->belongsTo(Grado::class);
+        return $this->hasOne(Grado::class);
     }
     public function materia()
     {
-        return $this->belongsTo(Materia::class);
+
+        return $this->belongsToMany(Materia::class);
     }
+
     public function periodo()
     {
         return $this->belongsTo(Periodo::class);

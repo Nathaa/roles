@@ -37,7 +37,7 @@ class EstudiantesController extends Controller
         $query=trim($request->get('search'));
            $estudiantes= Estudiante::where('nombre', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('estudiantes.index', ['estudiantes' => $estudiantes, 'search' => $query]);
         }
 

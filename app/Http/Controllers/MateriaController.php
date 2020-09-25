@@ -29,7 +29,7 @@ class MateriaController extends Controller
             $materias=DB::table('materias')->where('nombre','LIKE','%'.$query.'%')
             #->where ('estado','=','1')
             ->orderBy('id','desc')
-            ->paginate(7);
+            ->paginate(5);
             return view("materias.index", ["materias"=>$materias, "search"=>$query]);
 
         }

@@ -9,77 +9,67 @@
 <form>
 
 
-            <div class="card-body">
-                <table class="table table-bordered col-md-8 col-md-offset-2 thead-dark table-hover table-sm">
-                    <tr>
 
-                      <th scope="col">Grados</th>
-                      <th scope="col">Categoria</th>
-                    </tr>
-                    <tbody>
+    <div class="row">
+        <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" >
+                                <option value="">Seleccione Grado</option>
+                                <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                        <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
-                            <td>
-                                <select name="grados_id" id="grados_id" class="form-control" style="font-size: 17px;">
-                                    <option value="">Seleccione Grado</option>
 
-                                            <option value="<?php echo e($grado->id); ?>">
-                                                <?php echo e($grado->grado); ?>
+                                           <option value="<?php echo e($grado->id); ?>",null>
+                                              <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?>
+
 
                                             </option>
 
-                                    </select>
+                                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </td>
+                                </select>
 
-                            </td>
-                            <td><?php echo e($grado->categoria); ?></td>
-                        </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                             </tbody>
-                </table>
-
-            </div>
-
-    <div class="row">
-       <div class="col">
-
-       </div>
-       <div class="col">
-        <div class="form-group">
-            <ul class="list-unstyled">
-               <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               <li>
-                   <label>
-                  <?php echo e(Form::checkbox('periodos[]', $periodo->id, null)); ?>
-
-                  <?php echo e($periodo->nombre); ?>
-
-                   </label>
-               </li>
-
-               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </ul>
-          </div>
-       </div>
-
-     </div>
-     <div class="row">
-        <div class="form-group">
-            <ul class="list-unstyled">
-               <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               <li>
-                   <label>
-                  <?php echo e(Form::checkbox('materias[]', $materia->id, null)); ?>
-
-                  <?php echo e($materia->nombre); ?>
-
-                   </label>
-               </li>
-
-               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </ul>
-          </div>
         </div>
+
+        <div class="col">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                <?php echo e(Form::label('periodos_id','Periodos')); ?>
+
+                <div>
+                 <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <label><?php echo e($periodo->nombre); ?></label>
+        <input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
+       
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+          </ul>
+         </div>
+        </div>
+    </div>
+<br>
+<br>
+    <div class="form-group">
+
+
+        <?php echo e(Form::label('materias_id','Materias')); ?>
+
+        <div>
+
+         <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+ <label><?php echo e($materia->nombre); ?></label>
+ <input type="checkbox" id="materia[]" name="materia[]" value="<?php echo e($materia->id); ?>">
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</ul>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+
+
 
  <br>
  <ol class="float-sm-right">
@@ -88,6 +78,4 @@
 </ol>
 
 
-</form>
-
-<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/form.blade.php ENDPATH**/ ?>
+</form><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/form.blade.php ENDPATH**/ ?>

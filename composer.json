@@ -17,7 +17,8 @@
         "laravel/ui": "^1.2",
         "laravelcollective/html": "^6.0",
         "nesbot/carbon": "^2.38",
-        "spatie/laravel-permission": "^3.10"
+        "spatie/laravel-permission": "^3.10",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

@@ -12,7 +12,7 @@
 
 <hr>
 
-<div class="alert alert-primary" role="alert">
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
         Datos Docente
 </div>
 
@@ -101,7 +101,7 @@
                     @endforeach
                 </select>
                 <div class="invalid-feedback" style="display:none">
-                  El Sexo no debe quedar vacío.
+                  El Turno del docente no debe quedar vacío.
                </div>
             </div>
         </div>

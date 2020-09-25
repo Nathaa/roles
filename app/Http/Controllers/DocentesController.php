@@ -36,7 +36,7 @@ class DocentesController extends Controller
         $query=trim($request->get('search'));
            $docentes= Docente::where('nombre', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
-          ->get();
+          ->paginate(5);
           return view('docentes.index', ['docentes' => $docentes, 'search' => $query]);
         }
 
@@ -95,7 +95,8 @@ class DocentesController extends Controller
     {
         //
         $docente=Docente::findOrFail($id);
-        return view('docentes.show', compact('docente'));
+        $turno = Turno::findOrFail($docente->turnos_id);
+        return view('docentes.show', compact('docente','turno'));
     }
 
     /**

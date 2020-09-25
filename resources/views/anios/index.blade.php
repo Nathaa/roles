@@ -97,6 +97,12 @@
             @endforeach
           </tbody>
         </table>
+        <br>
+            <div class="row">
+              <div class="mr-auto">
+                {{$anios->links()}}
+              </div>
+            </div>
       </div>
     </div>
   </div>
