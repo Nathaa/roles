@@ -60,7 +60,7 @@
         <table class="table table-bordered thead-dark table-hover table-sm">
           <tr>
             <th scope="col">ID Docente</th>
-            <th scope="col">ID Grado</th>
+            <th scope="col">ID Asignacion</th>
             <th scope="col">ID Año</th>
             <th colspan="3">&nbsp;Opciones</th>
           </tr>
@@ -69,7 +69,7 @@
             @foreach ($docentegrados as $docentegrado)
              <tr>
               <td>{{$docentegrado->docentes_id}}</td>
-              <td>{{$docentegrado->grados_id}}</td>
+              <td>{{$docentegrado->asignacions_id}}</td>
                <td>{{$docentegrado->anios_id}}</td>
               <td width="10px">
                   @can('docentegrados.edit')

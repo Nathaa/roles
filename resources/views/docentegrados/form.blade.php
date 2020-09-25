@@ -37,16 +37,16 @@
 
                 <div class="col">
                 <div class="form-group">
-            {!! Form::label('anios_id', 'Seleccione el Grado') !!}
+            {!! Form::label('asignacions_id', 'Seleccione La asignacion') !!}
             <div class="form-group">
-                <select name="grados_id" id= "grados_id" class="form-control" onblur="validar_select(this)" required autofocus>
-                    <option value="">--Grados--</option>
-                    @foreach ($grados as $grado)
-                    <option value="{{ $grado->id }}"> {{ $grado->grado }} {{ $grado->seccion }}</option>
+                <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
+                    <option value="">--Asignaciones--</option>
+                    @foreach ($asignaciones as $asignacion)
+                    <option value="{{ $asignacion->id }}"> {{ $asignacion->id }}</option>
                     @endforeach
                 </select>
                 <div class="invalid-feedback" style="display:none">
-                  El Grado no debe quedar vacío.
+                   no debe quedar vacío.
                </div>
             </div>
         </div>

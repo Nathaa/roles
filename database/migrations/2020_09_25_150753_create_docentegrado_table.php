@@ -17,8 +17,8 @@ class CreateDocentegradoTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('docentes_id')->unsigned();
             $table->foreign('docentes_id')->references('id')->on('docentes')->onUpdate('cascade')->onDelete('cascade');
-            $table->unsignedBigInteger('grados_id')->unsigned();
-            $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('asignacions_id')->unsigned();
+            $table->foreign('asignacions_id')->references('id')->on('asignacions')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('anios_id')->unsigned();
             $table->foreign('anios_id')->references('id')->on('anios')->onUpdate('cascade')->onDelete('cascade');
             

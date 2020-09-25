@@ -12,7 +12,7 @@ class DocenteGrado extends Model
 
     //
     protected $fillable = [
-        'docentes_id','grados_id', 'anios_id',
+        'docentes_id','asignacions_id', 'anios_id',
 
     ];
 
@@ -21,9 +21,9 @@ class DocenteGrado extends Model
         'updated_at',
     ];
 
-    public function grado()
+    public function asignacion()
     {
-        return $this->hasOne(Grado::class);
+        return $this->hasOne(Asignacion::class);
     }
     public function docente()
     {

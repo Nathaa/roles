@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Grado;
+use App\Asignacion;
 use App\Docente;
 use App\Anio;
 use App\DocenteGrado;
@@ -53,11 +53,11 @@ class DocenteGradoController extends Controller
     {
         //
        
-        $grados = Grado::get();
+        $asignaciones = Asignacion::get();
         $docentes = Docente::get();
         $anios = Anio::get();
 
-        return view('docentegrados.create', compact('grados','docentes','anios'));
+        return view('docentegrados.create', compact('asignaciones','docentes','anios'));
     }
 
     /**
@@ -89,8 +89,8 @@ class DocenteGradoController extends Controller
         $docentegrado=DocenteGrado::findOrFail($id);
         $docente = Docente::findOrFail($docentegrado->docentes_id);
         $anio = Anio::findOrFail($docentegrado->anios_id);
-        $grado = Grado::findOrFail($docentegrado->grados_id);
-        return view('docentegrados.show', compact('docentegrado','docente','anio','grado'));
+        $asignacion = Asignacion::findOrFail($docentegrado->asignacions_id);
+        return view('docentegrados.show', compact('docentegrado','docente','anio','asignacion'));
     }
 
     /**
@@ -106,8 +106,8 @@ class DocenteGradoController extends Controller
         $docentegrado=DocenteGrado::findOrFail($id);
         $anios = Anio::get();
         $docentes = Docente::get();
-        $grados = Grado::get();
-        return view('docentegrados.edit', compact('docentegrado','anios','docentes','grados'));
+        $asignaciones = Asignacion::get();
+        return view('docentegrados.edit', compact('docentegrado','anios','docentes','asignaciones'));
     }
 
     /**

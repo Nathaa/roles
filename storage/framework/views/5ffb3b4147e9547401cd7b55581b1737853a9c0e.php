@@ -39,17 +39,17 @@
 
                 <div class="col">
                 <div class="form-group">
-            <?php echo Form::label('anios_id', 'Seleccione el Grado'); ?>
+            <?php echo Form::label('asignacions_id', 'Seleccione La asignacion'); ?>
 
             <div class="form-group">
-                <select name="grados_id" id= "grados_id" class="form-control" onblur="validar_select(this)" required autofocus>
-                    <option value="">--Grados--</option>
-                    <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($grado->id); ?>"> <?php echo e($grado->grado); ?> <?php echo e($grado->seccion); ?></option>
+                <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
+                    <option value="">--Asignaciones--</option>
+                    <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($asignacion->id); ?>"> <?php echo e($asignacion->id); ?></option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <div class="invalid-feedback" style="display:none">
-                  El Grado no debe quedar vacío.
+                   no debe quedar vacío.
                </div>
             </div>
         </div>

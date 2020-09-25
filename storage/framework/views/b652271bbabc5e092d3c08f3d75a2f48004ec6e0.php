@@ -61,7 +61,7 @@
         <table class="table table-bordered thead-dark table-hover table-sm">
           <tr>
             <th scope="col">ID Docente</th>
-            <th scope="col">ID Grado</th>
+            <th scope="col">ID Asignacion</th>
             <th scope="col">ID Año</th>
             <th colspan="3">&nbsp;Opciones</th>
           </tr>
@@ -70,7 +70,7 @@
             <?php $__currentLoopData = $docentegrados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $docentegrado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <tr>
               <td><?php echo e($docentegrado->docentes_id); ?></td>
-              <td><?php echo e($docentegrado->grados_id); ?></td>
+              <td><?php echo e($docentegrado->asignacions_id); ?></td>
                <td><?php echo e($docentegrado->anios_id); ?></td>
               <td width="10px">
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.edit')): ?>
