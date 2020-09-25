@@ -63,7 +63,9 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'role' => \Caffeinated\Shinobi\Middleware\UserHasRole::class,
+        'nocache' => \App\Http\Middleware\NoCacheHeaders::class,
         //'permission' => \Caffeinated\Shinobi\Middleware\UserHasPermission::class,
+
     ];
 
     /**

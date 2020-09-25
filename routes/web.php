@@ -17,13 +17,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin', 'AdminController@index2')->name('admin');
-
 
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','nocache'])->group(function () {
+
+Route::get('admin', 'AdminController@index2')->name('admin');
 
 //estudiantes
 Route::get('estudiantes', 'EstudiantesController@index')->name('estudiantes.index')

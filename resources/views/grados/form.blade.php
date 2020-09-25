@@ -13,9 +13,9 @@
         <div class="row">
            <div class="col">
              {{ Form::label('grado', 'Grado')}}
-              {{ Form::text('grado',null,['class' => 'form-control', 'id'=>'grado','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)",'placeholder' => 'Nombre del grado', 'required' => 'required','autofocus'=>'autofocus']) }}
+              {{ Form::text('grado',null,['class' => 'form-control', 'id'=>'grado','onkeyup' => "validar_campo(this)", 'onblur' => "validar_campo(this)",'placeholder' => 'Nombre del grado, numero o letra', 'required' => 'required','autofocus'=>'autofocus']) }}
               <div class="invalid-feedback" style="display:none">
-                El nombre del grado no debe comenzar con números ni caracteres especiales
+                El nombre del grado puede colocarlo como texto o número.
               </div> 
              </div>
                <div class="col">
