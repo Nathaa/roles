@@ -316,6 +316,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+          <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-13">
+            @can('docentegrados.index')
+            <label for="nivel1-13"><i class="nav-icon fas fa-book"></i>Asig. Docente-Grado</label>
+            @endcan
+
+            <ul class="interior">
+              <li><a href="{{ route ('docentegrados.index') }}">Asig. Docente-Grado</a></li>
+              <li><a href="">Submenu2</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
