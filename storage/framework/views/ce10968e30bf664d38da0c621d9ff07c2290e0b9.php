@@ -310,17 +310,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-12">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
-            <a href="<?php echo e(route ('asignaciones.index')); ?>" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-              <p>
-                Planeamiento Academico
-
-              </p>
-            </a>
+            
+            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamiento Académico</label>  
             <?php endif; ?>
-            <ul>
-              <li><a href="">Submenu1</a></li>
+
+            <ul class="interior">
+              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Planeamiento Academico</a></li>
               <li><a href="">Submenu2</a></li>
             </ul>
           </li>
