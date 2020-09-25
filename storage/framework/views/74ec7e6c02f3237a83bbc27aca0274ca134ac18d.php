@@ -66,6 +66,7 @@
 
            <th scope="col">Grado</th>
            <th scope="col">Categoria</th>
+           <th scope="col">Materias</th>
            <th scope="col">Opcion</th>
            <th colspan="3">&nbsp;Estado</th>
          </tr>
@@ -76,6 +77,7 @@
            <tr>
             <td><?php echo e($asignacion->grado); ?> <?php echo e($asignacion->seccion); ?></td>
             <td><?php echo e($asignacion->categoria); ?></td>
+            <td><?php echo e($asignacion->nombre); ?></td>
            
 
             <td width="10px">

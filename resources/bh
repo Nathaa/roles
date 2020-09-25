@@ -42,10 +42,10 @@
 
 <div class="form-group"
 @foreach($materias as $materia)
-<label><input type="checkbox" name="materias_id[]" value="{{ $materia->id }}"> {{ $materia->nombre }}</label>
-
-    @endforeach
-        </div>
+<label><input type="checkbox" name="materias_id[]" value="{{ $materia->id }}">
+{{ $materia->nombre }}</label>
+@endforeach
+</div>
 
 
 
@@ -73,3 +73,26 @@
     @endforeach
  </div>
 </div>
+*************************************************************************
+store
+$asignaciones = $request->all();
+
+     $arrayToString=implode(',', $request->input('materias_id'));
+     $asignaciones['materias_id'] = $arrayToString;
+
+    
+    $arrayToString=implode(',', $request->input('periodos_id'));
+     $asignaciones['periodos_id'] = $arrayToString;
+
+     $success=asignacion::create($asignaciones);
+     if($success){
+         Session::flash('status', 'success');
+     }else{
+         Session::flash('error','algo salio mal');
+    }
+
+       
+
+        Session::flash('success_message', 'asignacione guardado con éxito');
+        return redirect()->route('asignaciones.index', compact('success'));
+******************************************************************************

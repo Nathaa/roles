@@ -82,21 +82,24 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-     $asignaciones = Asignacion::create($request->all());
-     $asignaciones->grados()->sync($request->get('grados'));
-       // dd($request);
-      // $materias_id=$request->materias;
-       //foreach($materias_id as $id)
-       //$id= new Asignacion();
-       //$id->materias_id=$id;
-      // $id->save();
-     //$asignaciones->materias()->attach($request->get('materias'));
-        //$asignaciones->periodo()->attach($request->get('periodos_id'));
-
-        $asignaciones->save();
-
-        Session::flash('success_message', 'asignacione guardado con éxito');
-        return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
+        $loop = $request->get('periodo');
+        $loop2 = $request->get('materia');
+     foreach ($loop as $value){
+         $resortfacility = new Asignacion;
+         $resortfacility->grados_id = $request->get('grados_id');
+         $resortfacility->periodos_id = $value;
+         $resortfacility->save();
+     }
+     
+     foreach ($loop2 as $value){
+         $resortfacility = new Asignacion;
+         $resortfacility->grados_id = $request->get('grados_id');
+         $resortfacility->materias_id = $value;
+         $resortfacility->save();
+     }
+         
+         Session::flash('success_message', 'asignacione guardado con éxito');
+         return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
     }
 
     /**
