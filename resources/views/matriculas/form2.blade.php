@@ -16,7 +16,7 @@
         <div class="col-sm-3">
 
             {{ Form::label('nombreMat', 'Identificador de matricula')}} <!--Este es el campo que estaba como nombre-->
-            {{ Form::text('nombreMat',null,['readonly'=>'readonly','id' => 'nombreMat','class' => 'form-control']) }}
+            {{ Form::text('nombreMat',null,['id' => 'nombreMat','class' => 'form-control']) }}
 
         </div>
 
@@ -38,6 +38,7 @@
         </div>
 
     </div>
+
 
     <div class="row">
         <div class="col-sm-3">
@@ -75,8 +76,10 @@
  <ol class="float-sm-right">
     {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
 </ol>
-
-
 </form>
+<br>
+<br>
+
+
 
 

@@ -17,6 +17,9 @@ class CreateMatriculasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',120);
             $table->string('descripcion',120);
+            $table->date('fecha_matricula',120);//nuevo
+            $table->string('tipoMatricula',15);//nuevo
+
 
             $table->unsignedBigInteger('users_id')->unsigned();
             $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
@@ -24,7 +27,22 @@ class CreateMatriculasTable extends Migration
 
             $table->unsignedBigInteger('estudiantes_id')->unsigned();
             $table->foreign('estudiantes_id')->references('id')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->unsignedBigInteger('grados_id')->unsigned();
+            $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
+
             $table->timestamps();
+            /* $table->bigIncrements('id');
+            $table->string('nombre',120);
+            $table->string('descripcion',120);
+
+            $table->unsignedBigInteger('users_id')->unsigned();
+            $table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
+
+            $table->unsignedBigInteger('estudiantes_id')->unsigned();
+            $table->foreign('estudiantes_id')->references('id')->on('estudiantes')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamps(); */
         });
     }
 

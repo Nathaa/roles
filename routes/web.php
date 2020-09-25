@@ -100,8 +100,10 @@ Route::delete('periodos/{periodo}', 'PeriodosController@destroy')->name('periodo
 //Matriculas
 Route::get('matriculas', 'MatriculasController@index')->name('matriculas.index')
 ->middleware('can:matriculas.index');
-Route::get('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
+Route::post('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
 ->middleware('can:matriculas.create');
+/* Route::get('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
+->middleware('can:matriculas.create'); */
 Route::get('matriculas/{matricula}', 'MatriculasController@show')->name('matriculas.show')
 ->middleware('can:matriculas.show');
 Route::post('matriculas', 'MatriculasController@store')->name('matriculas.store')
@@ -112,6 +114,25 @@ Route::put('matriculas/{matricula}', 'MatriculasController@update')->name('matri
 ->middleware('can:matriculas.update');
 Route::delete('matriculas/{matricula}', 'MatriculasController@destroy')->name('matriculas.destroy')
 ->middleware('can:matriculas.destroy');
+//nueva ruta para el dataTable
+/* Route::get('matricula/Estudiante', 'MatriculasController@dataTable')->name('matriculas.dataTable') */
+Route::post('matricula/Estudiante', 'MatriculasController@dataTable')->name('matriculas.dataTable')
+->middleware('can:matriculas.dataTable');
+//creado para la solicitud de secciones disponibles desde matriculas/create  version 1
+//Route::get('/secciones/{grado}/{turno}/grados','MatriculasController@buscaSecciones');
+//version 2 de busca secciones
+Route::get('/secciones/{grado}/{turno}/grados/{anio}/anio','MatriculasController@buscaSecciones');
+//creado para la solicitud de turnos segun el grado disponible version 1
+//Route::get('/turnos/{grado}/grados','MatriculasController@buscaTurnos');
+//version 2 para buscar los turnos por grado y anio
+Route::get('/turnos/{grado}/grados/{anio}/anio','MatriculasController@buscaTurnos');
+//creado para saber el tipo de matricula que se va a realizar
+Route::get('matricula/tipoMatricula','MatriculasController@tipoMatricula')->name('matriculas.tipoMatricula');
+//->middleware('can:matriculas.tipoMatricula');
+Route::get('matricula/anioLectivoSiguiente','MatriculasController@anioLectivoSiguiente')->name('matriculas.anioLectivoSiguiente');
+Route::get('matricula/{grado}/grado/{turno}/turno/{seccion}/seccion/{anio}/anio','MatriculasController@buscarGradoId')->name('matriculas.buscarGradoId');
+Route::get('/grado/{gradoId}','MatriculasController@buscarGradoDatos');
+
 
 //Anios
 Route::get('anios', 'AniosController@index')->name('anios.index')

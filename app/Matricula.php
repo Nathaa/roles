@@ -8,7 +8,7 @@ class Matricula extends Model
 {
     //
     protected $fillable = [
-        'nombre', 'descripcion', 'users_id','estudiantes_id',
+        'nombre', 'descripcion','fecha_matricula', 'users_id','estudiantes_id','grados_id','tipoMatricula'
     ];
 
     public function grado()
@@ -25,4 +25,9 @@ class Matricula extends Model
     {
         return $this->hasOne(Estudiante::class);
     }
+    protected $dates = [
+        'fecha_matricula'=> 'date:Y-m-d',
+        'created_at',
+        'updated_at',
+    ];
 }

@@ -1,41 +1,41 @@
-@extends('admin.index2')
+<?php $__env->startSection('title'); ?>
+<h5><strong>Modificando: <?php echo e($matricula->nombre); ?></strong> </h5>
+<?php $__env->stopSection(); ?>
 
-@section('title')
-<h5><strong>Modificando: {{ $matricula->nombre  }}</strong> </h5>
-@endsection
-
-@section('crear')
+<?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
 
-    <li class="breadcrumb-item active"><a href="{{ route('matriculas.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('matriculas.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="card">
 
        <div class="card-body">
         <table class="table table-bordered table-hover">
 
-                    @if ($errors->any())
+                    <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
-                    @endif
+                    <?php endif; ?>
 
                     <!--<form method="POST">-->
                     <!---->
-                 {!! Form::model($matricula, ['route' => ['matriculas.update', $matricula->id],
-                 'method' =>'PUT'])  !!}
+                 <?php echo Form::model($matricula, ['route' => ['matriculas.update', $matricula->id],
+                 'method' =>'PUT']); ?>
 
-                 @include('matriculas.form2')
-                 {!! Form::close() !!}
+
+                 <?php echo $__env->make('matriculas.form2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                 <?php echo Form::close(); ?>
+
 
 
 
@@ -46,10 +46,10 @@
     </div>
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 
 <script>
     $(function(){
@@ -76,7 +76,7 @@
                         var seccionesCombo  = document.getElementById('secciones');
                         var seccionSelected = seccionesCombo.options[seccionesCombo.selectedIndex].text;
                         //matricula/{grado}/grado/{turno}/turno/{seccion}/seccion/{anio}/anio
-                        var anio={!! json_encode($page_data['anio']) !!};
+                        var anio=<?php echo json_encode($page_data['anio']); ?>;
                         $.get('/matricula/'+gradoSelected+'/grado/'+turnoSelected+'/turno/'+seccionSelected+'/seccion/'+anio+'/anio',function (data){
                             //console.log(data[0].id);
                             //var idEnTexto = data[0].id.toString();
@@ -104,7 +104,7 @@
             //alert(gradoSelected);
             //peticion ajax por medio de jquery
             //para llenar el combo de turnos
-            var anioId={!! json_encode($page_data['anio']) !!};
+            var anioId=<?php echo json_encode($page_data['anio']); ?>;
             $.get('/turnos/'+gradoSelected+'/grados/'+anioId+'/anio',function (datos1){
               //$.get('/secciones/'+gradoSelected+'/grados',function (datos){
                 var plantilla_turnos = '<option value="">--Seleccione un turno--</option>';
@@ -134,7 +134,7 @@
             var turnoSelected = turnos.options[turnos.selectedIndex].text;
             secciones.disabled=false;//activa el combo de secciones
             //para el llenado de secciones
-            var anioId={!! json_encode($page_data['anio']) !!};
+            var anioId=<?php echo json_encode($page_data['anio']); ?>;
             //$.get('/secciones/'+gradoSelected+'/'+turnoSelected+'/grados',function (datos){
             $.get('/secciones/'+gradoSelected+'/'+turnoSelected+'/grados/'+anioId+'/anio',function (datos){
               //$.get('/secciones/'+gradoSelected+'/grados',function (datos){
@@ -172,7 +172,7 @@ $(document).ready(function(){
             }
         }
         //si el periodo es normal se suma un anio al identificador si no , se deja tal cual
-        var tipo={!! json_encode($page_data['tipo']) !!};
+        var tipo=<?php echo json_encode($page_data['tipo']); ?>;
         var start=new Date($fecha);
         var startf ="";
         if(tipo=="Normal"){
@@ -197,6 +197,8 @@ $(document).ready(function(){
 
 
 </script>
-@stop
+<?php $__env->stopSection(); ?>
 
 
+
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\GitHub\roles\resources\views/matriculas/edit.blade.php ENDPATH**/ ?>

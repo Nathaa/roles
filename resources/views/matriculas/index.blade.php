@@ -4,26 +4,6 @@
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
   </ol>
-  @if(Session::has('success_message'))
-    <div id="msj_verde" class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      {{ Session::get('success_message') }}
-    </div>
-  @endif
-
-  @if(Session::has('info_message'))
-    <div id="msj_azul" class="alert alert-info alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      {{ Session::get('info_message') }}
-    </div>
-  @endif
-
-  @if(Session::has('danger_message'))
-    <div id="msj_rojo" class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      {{ Session::get('danger_message') }}
-    </div>
-  @endif
 </div><!-- /.col -->
 @endsection
 
@@ -32,29 +12,31 @@
 
 @endsection
 
+
 @section('content')
 <div class="container">
 
   <h6>
-   @if($search)
+  {{--  @if($search)
   <div class="alert alert-info" role="alert">
     Los resultados de tu búsqueda {{ $search }} son
   </div>
-  @endif
+  @endif --}}
  </h6>
-
  <div class="container-fluid">
     <div class="card">
         <div class="card-header">
 
             @can('matriculas.create')
-                 <a href="{{ route('matriculas.create') }}"> <button type="button" class="btn btn-dark btn-xs">
+                <a href="{{ route('matriculas.tipoMatricula') }}"> <button type="button" class="btn btn-dark btn-xs">
                 <i class="fas fa-plus"></i>Crear Matricula </button> </a>
+                {{-- <a href="{{ route('matriculas.dataTable') }}"> <button type="button" class="btn btn-dark btn-xs">
+                <i class="fas fa-plus"></i>Crear Matricula </button> </a> --}}
             @endcan
         </div>
 
 
-      <div class="card-body">
+        <div class="card-body">
             <div class="form-group row">
                 <div class="col-md-6">
                     <a href="{{ route('matriculas.index') }}"><i class="fa fa-align-justify"></i> Listado Matriculas</a>
@@ -64,7 +46,11 @@
          <tr>
 
            <th scope="col">Nombre</th>
-           <th scope="col">Descripción</th>
+           <th scope="col">Apellido</th>
+           <th scope="col">Grado</th>
+           <th scope="col">Seccion</th>
+           <th scope="col">Turno</th>
+           <th scope="col">Año</th>
            <th colspan="3">&nbsp;Opciones</th>
          </tr>
        </thead>
@@ -72,7 +58,11 @@
           @foreach ($matriculas as $matricula)
            <tr>
             <td>{{$matricula->nombre}}</td>
-            <td>{{$matricula->descripcion}}</td>
+            <td>{{$matricula->apellido}}</td>
+            <td>{{$matricula->grado}}</td>
+            <td>{{$matricula->seccion}}</td>
+            <td>{{$matricula->nombre_turno}}</td>
+            <td>{{$matricula->año}}</td>
             <td width="10px">
                 @can('matriculas.edit')
 
@@ -104,16 +94,35 @@
 
          @endforeach
 
-          </tbody>
-        </table>
-        <br>
-            <div class="row">
-              <div class="mr-auto">
-                {{$matriculas->links()}}
-              </div>
-            </div>
-      </div>
-    </div>
-  </div>
+       </tbody>
+      </table>
+
+</div>
+</div>
+</div>
 </div>
 @endsection
+
+{{-- @section('scripts')
+
+<script>
+   $(document).ready(function(){
+        /* $(function DatosGrado(){
+            var idGrado={!! json_encode($matricula->grados_id) !!};//recibo el id del grado
+            $.get('/grado/'+idGrado,function (datos1){
+
+                for(var i=0;i<datos1.length;i++){
+                    if(datos1[i].turnos_id=="1"){datos1[i].turnos_id="Matutino";};
+                    if(datos1[i].turnos_id=="2"){datos1[i].turnos_id="Vespertino";};
+                    if(datos1[i].turnos_id=="3"){datos1[i].turnos_id="Completo";};
+                }
+                //for(var i=0;i<datos1.length;i++)
+
+
+                //$('#turnos').html(plantilla_turnos);
+            });
+        }); */
+    });
+</script>
+@stop
+ --}}
