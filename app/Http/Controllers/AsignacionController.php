@@ -29,25 +29,34 @@ class AsignacionController extends Controller
 
     public function index(Request $request)
     {
-
-      $asignaciones=Asignacion::paginate();
-
-
-        if ($request)
         {
-            $asignaciones=DB::table('asignacions')
-             ->join('grados','grados.id','=','asignacions.grados_id')
-             ->join('materias','materias.id','=','asignacions.materias_id')
-             ->join('periodos','periodos.id','=','asignacions.periodos_id')
-             ->select('asignacions.id','periodos.nombre','grados.grado','grados.seccion','grados.categoria','materias.nombre')
-             ->get()->toArray();
-        
+          //$asignaciones= asignacione::all();
+            //return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
- 
-           return view('asignaciones.index', ['asignaciones' => $asignaciones]);
-           
-          }
-          
+            /*$asignaciones=Asignacion::paginate();
+
+            $grados=Grado::paginate();
+            $grados = Grado::get();
+
+            return view('asignaciones.index', compact('grados','asignaciones'));*/
+
+            if ($request)
+            {
+                $asignaciones=DB::select ('select distinct
+                                           concat(b.grado,b.seccion) grado,categoria,
+                                           cursor_loop(a.grados_id) as materias,
+                                           cursor_loop2(a.grados_id) as periodos
+                                    from asignacions a
+                                    left join grados b on(a.grados_id=b.id)');
+
+
+
+
+               return view('asignaciones.index', ['asignaciones' => $asignaciones]);
+
+              }
+
+        }
     }
 
 
@@ -90,14 +99,15 @@ class AsignacionController extends Controller
          $resortfacility->periodos_id = $value;
          $resortfacility->save();
      }
-     
+
+
      foreach ($loop2 as $value){
          $resortfacility = new Asignacion;
          $resortfacility->grados_id = $request->get('grados_id');
          $resortfacility->materias_id = $value;
          $resortfacility->save();
      }
-         
+
          Session::flash('success_message', 'asignacione guardado con éxito');
          return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
     }

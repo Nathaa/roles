@@ -9,11 +9,11 @@
 
     <div class="row">
        <div class="col">
-         {{ Form::label('nombre', 'Nombre')}}
-         {{ Form::text('nombre',null,['class' => 'form-control', 'id'=>'nombre','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'placeholder' => 'Debe colocar un nombre correspondiente al periodo', 'required' => 'required','autofocus'=>'autofocus']) }}
+         {{ Form::label('nombre_periodo', 'Nombre')}}
+         {{ Form::text('nombre_periodo',null,['class' => 'form-control', 'id'=>'nombre_periodo','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'placeholder' => 'Debe colocar un nombre correspondiente al periodo', 'required' => 'required','autofocus'=>'autofocus']) }}
          <div class="invalid-feedback" style="display:none">
           El nombre no debe comenzar con números ni caracteres especiales
-        </div> 
+        </div>
        </div>
        <div class="col">
          {{ Form::label('duracion', 'Duracion (Semanas)')}}
