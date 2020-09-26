@@ -240,9 +240,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <ul class="interior">
               <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
-              <li><a href="">Asignacion Docente</a></li>
+              <li><a href="<?php echo e(route ('docentegrados.index')); ?>">Asignacion Docentes</a></li>
             </ul>
           </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
