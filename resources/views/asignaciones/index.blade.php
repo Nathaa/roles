@@ -66,7 +66,7 @@
            <th scope="col">Grado</th>
            <th scope="col">Categoria</th>
            <th scope="col">Materias</th>
-           <th scope="col">Opcion</th>
+           <th scope="col">Periodos</th>
            <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
@@ -74,15 +74,17 @@
 
         @foreach ($asignaciones as $asignacion)
            <tr>
-            <td>{{$asignacion->grado}} {{$asignacion->seccion}}</td>
+            <td>{{$asignacion->grado}}</td>
             <td>{{$asignacion->categoria}}</td>
-            <td>{{$asignacion->nombre}}</td>
-           
+            <td>{{$asignacion->materias}}</td>
+            <td>{{$asignacion->periodos}}</td>
+
+
 
             <td width="10px">
                 @can('asignaciones.edit')
 
-                <a href="{{ route('asignaciones.edit', $asignacion->id) }}" class="btn btn-default btn-flat" title="Editar">
+                <a href="{{ route('asignaciones.edit', $asignacion->grado) }}" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   @endcan
@@ -90,7 +92,7 @@
                 <td width="10px">
                 @can('asignaciones.show')
 
-                <a href="{{ route('asignaciones.show', $asignacion->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="{{ route('asignaciones.show', $asignacion->grado) }}" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
@@ -98,7 +100,7 @@
                 </td>
                 <td width="10px">
                 @can('asignaciones.destroy')
-                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
+                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->grado],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
@@ -115,7 +117,7 @@
       <br>
             <div class="row">
               <div class="mr-auto">
-               
+
               </div>
             </div>
 </div>

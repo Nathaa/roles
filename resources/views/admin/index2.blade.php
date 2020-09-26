@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
+
   <title>Sistema Academico</title>
 
   <!-- Font Awesome Icons -->
@@ -174,12 +174,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-1">
             @can('estudiantes.index')
-            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expediente Alumna</label>
+            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expedientes</label>
             @endcan
 
             <ul class="interior">
-              <li><a href="{{ route ('estudiantes.index') }}">Expediente Alumna</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="{{ route ('estudiantes.index') }}">Alumnas</a></li>
+              <li><a href="{{ route ('docentes.index') }}">Docentes</a></li>
             </ul>
           </li>
 
@@ -192,128 +192,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <ul class="interior">
               <li><a href="{{ route ('usuarios.index') }}">Usuarios</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-3">
-
-            @can('roles.index')
-            <label for="nivel1-3"><i class="nav-icon fas fa-lock"></i>Roles</label>
-            @endcan
-
-            <ul class="interior">
               <li><a href="{{ route ('roles.index') }}">Roles</a></li>
-              <li><a href="">Submenu2</a></li>
             </ul>
           </li>
+
 
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-4">
             @can('periodos.index')
-            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Periodos</label>
+            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Informacion Academica</label>
             @endcan
 
             <ul class="interior">
               <li><a href="{{ route ('periodos.index') }}">Periodos</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="{{ route ('anios.index') }}">Años</a></li>
+              <li><a href="{{ route ('grados.index') }}">Grados</a></li>
+              <li><a href="{{ route ('materias.index') }}">Materias</a></li>
+              <li><a href="{{ route ('turnos.index') }}">Turnos</a></li>
+              <li><a href="{{ route ('planesEstudio.index') }}">Planes de Estudio</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-5">
             @can('matriculas.index')
-            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Matrículas</label>
+            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Proceso de Matrícula</label>
             @endcan
 
             <ul class="interior">
               <li><a href="{{ route ('matriculas.index') }}">Matrículas</a></li>
-              <li><a href="">Submenu2</a></li>
+
             </ul>
           </li>
 
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-6">
-            @can('anios.index')
-            <label for="nivel1-6"><i class="nav-icon fas fa-calendar-alt"></i>Años</label>
-            @endcan
 
-            <ul class="interior">
-              <li><a href="{{ route ('anios.index') }}">Años</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-7">
-            @can('grados.index')
-            <label for="nivel1-7"><i class="nav-icon fas fa-store-alt"></i>Grados</label>
-            @endcan
-
-            <ul class="interior">
-              <li><a href="{{ route ('grados.index') }}">Grados</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-8">
-            @can('materias.index')
-            <label for="nivel1-8"><i class="nav-icon  fas fa-book-reader"></i>Materias</label>
-            @endcan
-
-            <ul class="interior">
-              <li><a href="{{ route ('materias.index') }}">Materias</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-9">
-            @can('turnos.index')
-            <label for="nivel1-9"><i class="nav-icon   fas fa-clock"></i>Turnos</label>
-            @endcan
-
-            <ul class="interior">
-              <li><a href="{{ route ('turnos.index') }}">Turnos</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-10">
-            @can('docentes.index')
-            <label for="nivel1-10"><i class="nav-icon  fas fa-store-alt"></i>Docentes</label>
-            @endcan
-
-            <ul class="interior">
-              <li><a href="{{ route ('docentes.index') }}">Docentes</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-11">
-            @can('planEstudio.index')
-            <label for="nivel1-11"><i class="nav-icon fas fa-book"></i>Planes de Estudio</label>
-            @endcan
-
-            <ul class="interior">
-              <li><a href="{{ route ('planesEstudio.index') }}">Planes de Estudio</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-12">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
-            
-            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamiento Académico</label>  
+
+            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamientos Académico</label>
             <?php endif; ?>
 
             <ul class="interior">
-              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Planeamiento Academico</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
+              <li><a href="">Asignacion Docente</a></li>
             </ul>
           </li>
           <li class="nav-item">

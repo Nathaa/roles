@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h5><strong>Modificando: {{  }}</strong> </h5>
+<h5><strong>Modificando:</strong> </h5>
 @endsection
 
 @section('crear')
@@ -30,7 +30,7 @@
                     @endif
 
                     <form method="POST"
-                 {!! Form::model($asignacione, ['route' => ['asignaciones.update', $asignacione->id],
+                 {!! Form::model($asignaciones, ['route' => ['asignaciones.update', $asignaciones->id],
                  'method' =>'PUT'])  !!}
                  <enctype="multipart/form-data">
 
