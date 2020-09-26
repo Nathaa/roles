@@ -69,7 +69,7 @@
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
            <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;Estado</th>
+           <th colspan="3">&nbsp;</th>
          </tr>
        </thead>
        <tbody>
@@ -92,13 +92,7 @@
                   <?php endif; ?>
                 </td>
                 <td width="10px">
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.show')): ?>
 
-                <a href="<?php echo e(route('asignaciones.show', $asignacion->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
-                    <i class="fas fa-eye" aria-hidden="true"></i>
-                  </a>
-
-                <?php endif; ?>
                 </td>
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.destroy')): ?>

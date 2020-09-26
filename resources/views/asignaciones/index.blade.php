@@ -68,7 +68,7 @@
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
            <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;Estado</th>
+           <th colspan="3">&nbsp;</th>
          </tr>
        </thead>
        <tbody>
@@ -91,13 +91,7 @@
                   @endcan
                 </td>
                 <td width="10px">
-                @can('asignaciones.show')
 
-                <a href="{{ route('asignaciones.show', $asignacion->id) }}" class="btn btn-info btn-flat" title="Visualizar">
-                    <i class="fas fa-eye" aria-hidden="true"></i>
-                  </a>
-
-                @endcan
                 </td>
                 <td width="10px">
                 @can('asignaciones.destroy')

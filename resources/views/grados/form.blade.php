@@ -16,7 +16,7 @@
               {{ Form::text('grado',null,['class' => 'form-control', 'id'=>'grado','onkeyup' => "validar_campo(this)", 'onblur' => "validar_campo(this)",'placeholder' => 'Nombre del grado, numero o letra', 'required' => 'required','autofocus'=>'autofocus']) }}
               <div class="invalid-feedback" style="display:none">
                 El nombre del grado puede colocarlo como texto o número.
-              </div> 
+              </div>
              </div>
                <div class="col">
                 {{ Form::label('seccion', 'Seccion')}}
@@ -25,14 +25,7 @@
                   Debe agregar a la sección,por ejemplo B,b entre comillas dobles
                 </div>
                 </div>
-            <div class="col">
-                {{ Form::label('categoria', 'Categoria')}}
-                {{ Form::text('categoria',null,['class' => 'form-control', 'id'=>'categoria','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Por ejemplo, Bachillerato', 'required' => 'required','autofocus'=>'autofocus']) }}
-                <div class="invalid-feedback" style="display:none">
-                  Debe agreagar la categoria del grado
-                </div>
-              
-            </div>
+
 
             <div>
                 {{ Form::label('capacidad', 'Capacidad')}}
