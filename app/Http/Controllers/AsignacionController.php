@@ -29,34 +29,44 @@ class AsignacionController extends Controller
 
     public function index(Request $request)
     {
+
+    $asignaciones=Asignacion::paginate();
+
+
+        if ($request)
         {
-          //$asignaciones= asignacione::all();
-            //return view('asignaciones.index', ['asignaciones' => $asignaciones]);
+            $asignaciones=DB::table('asignacions')
+             ->join('grados','grados.id','=','asignacions.grados_id','left')
+             ->join('materias','materias.id','=','asignacions.materias_id','left')
+             ->join('periodos','periodos.id','=','asignacions.periodos_id','left')
+             ->select ('asignacions.id','periodos.nombre_periodo','materias.nombre','grados.grado','grados.seccion','grados.categoria')
 
-            /*$asignaciones=Asignacion::paginate();
+             ->get()->toArray();
 
-            $grados=Grado::paginate();
-            $grados = Grado::get();
+           return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
-            return view('asignaciones.index', compact('grados','asignaciones'));*/
+          }
+          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
+          //declaro un arreglo
+          //$arregloMaterias=array();
+          //for($i=0;$i<count($gradosRegistrados);$i++){
+           //$match=['grados_id' => $gradosRegistrados[$i]];
+           //$materiasPorGrado=Asignacion::where($match)->select('materias_id')->distinct()->get()->toArray();
+           //$values=Arr::flatten($materiasPorGrado);
+           //$arregloMaterias[$i]=implode(",", $values);
+         // }
 
-            if ($request)
-            {
-                $asignaciones=DB::select ('select distinct
-                                           concat(b.grado,b.seccion) grado,categoria,
-                                           cursor_loop(a.grados_id) as materias,
-                                           cursor_loop2(a.grados_id) as periodos
-                                    from asignacions a
-                                    left join grados b on(a.grados_id=b.id)');
+          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
+          //declaro un arreglo
+          //$arregloPeriodos=array();
+          //for($i=0;$i<count($gradosRegistrados);$i++){
+          // $match=['grados_id' => $gradosRegistrados[$i]];
+           //$periodosPorGrado=Asignacion::where($match)->select('periodos_id')->distinct()->get()->toArray();
+           //$values=Arr::flatten($periodosPorGrado);
+           //$arregloPeriodos[$i]=implode(",", $values);
+          //}
 
 
-
-
-               return view('asignaciones.index', ['asignaciones' => $asignaciones]);
-
-              }
-
-        }
     }
 
 

@@ -15,7 +15,7 @@ class PeriodosTableSeeder extends Seeder
         //
 
         Periodo::create([
-            'nombre' => 'Trimestre 1',
+            'nombre_periodo' => 'Trimestre 1',
             'duracion' => '12',
             'fecha_inicio' => '2020-09-17',
             'fecha_fin' => '2020-09-17',
@@ -24,7 +24,7 @@ class PeriodosTableSeeder extends Seeder
            ]);
 
            Periodo::create([
-            'nombre' => 'Trimestre 2',
+            'nombre_periodo' => 'Trimestre 2',
             'duracion' => '12',
             'fecha_inicio' => '2020-09-17',
             'fecha_fin' => '2020-09-17',
@@ -33,7 +33,7 @@ class PeriodosTableSeeder extends Seeder
            ]);
 
            Periodo::create([
-            'nombre' => 'Trimestre 3',
+            'nombre_periodo' => 'Trimestre 3',
             'duracion' => '12',
             'fecha_inicio' => '2020-09-17',
             'fecha_fin' => '2020-09-17',
@@ -42,7 +42,7 @@ class PeriodosTableSeeder extends Seeder
            ]);
 
            Periodo::create([
-            'nombre' => 'Trimestre 4',
+            'nombre_periodo' => 'Trimestre 4',
             'duracion' => '12',
             'fecha_inicio' => '2020-09-17',
             'fecha_fin' => '2020-09-17',

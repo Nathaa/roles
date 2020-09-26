@@ -39,7 +39,7 @@ Nueva Planificacion Academica
                 <div>
                     <ul class="list-unstyled">
                  @foreach($periodos as $periodo)
-        {{$periodo->nombre}}
+        {{$periodo->nombre_periodo}}
         <input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}">
 
             @endforeach

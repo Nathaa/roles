@@ -68,6 +68,7 @@
            <th scope="col">Categoria</th>
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
+           <th scope="col">Opcion</th>
            <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
@@ -77,15 +78,15 @@
            <tr>
             <td><?php echo e($asignacion->grado); ?></td>
             <td><?php echo e($asignacion->categoria); ?></td>
-            <td><?php echo e($asignacion->materias); ?></td>
-            <td><?php echo e($asignacion->periodos); ?></td>
+            <td><?php echo e($asignacion->nombre); ?></td>
+            <td><?php echo e($asignacion->nombre_periodo); ?></td>
 
 
 
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
 
-                <a href="<?php echo e(route('asignaciones.edit', $asignacion->grado)); ?>" class="btn btn-default btn-flat" title="Editar">
+                <a href="<?php echo e(route('asignaciones.edit', $asignacion->id)); ?>" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   <?php endif; ?>
@@ -93,7 +94,7 @@
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.show')): ?>
 
-                <a href="<?php echo e(route('asignaciones.show', $asignacion->grado)); ?>" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="<?php echo e(route('asignaciones.show', $asignacion->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
@@ -101,7 +102,7 @@
                 </td>
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.destroy')): ?>
-                <?php echo Form::open(['route' => ['asignaciones.destroy', $asignacion->grado],
+                <?php echo Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
 
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
