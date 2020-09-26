@@ -42,7 +42,7 @@ Nueva Planificacion Academica
                 <div>
                     <ul class="list-unstyled">
                  <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <?php echo e($periodo->nombre); ?>
+        <?php echo e($periodo->nombre_periodo); ?>
 
         <input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
 

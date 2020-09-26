@@ -19,7 +19,7 @@ class CreateAsignacionsTable extends Migration
             $table->unsignedBigInteger('grados_id')->unsigned();
             $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('materias_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('materias_id')->nullable()->unsigned();
             $table->foreign('materias_id')->references('id')->on('materias')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedBigInteger('periodos_id')->nullable()->unsigned();

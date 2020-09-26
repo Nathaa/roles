@@ -67,7 +67,8 @@
            <th scope="col">Categoria</th>
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
-           <th colspan="3">&nbsp;Estado</th>
+           <th scope="col">Opcion</th>
+           <th colspan="3">&nbsp;</th>
          </tr>
        </thead>
        <tbody>
@@ -76,31 +77,25 @@
            <tr>
             <td>{{$asignacion->grado}}</td>
             <td>{{$asignacion->categoria}}</td>
-            <td>{{$asignacion->materias}}</td>
-            <td>{{$asignacion->periodos}}</td>
+            <td>{{$asignacion->nombre}}</td>
+            <td>{{$asignacion->nombre_periodo}}</td>
 
 
 
             <td width="10px">
                 @can('asignaciones.edit')
 
-                <a href="{{ route('asignaciones.edit', $asignacion->grado) }}" class="btn btn-default btn-flat" title="Editar">
+                <a href="{{ route('asignaciones.edit', $asignacion->id) }}" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   @endcan
                 </td>
                 <td width="10px">
-                @can('asignaciones.show')
 
-                <a href="{{ route('asignaciones.show', $asignacion->grado) }}" class="btn btn-info btn-flat" title="Visualizar">
-                    <i class="fas fa-eye" aria-hidden="true"></i>
-                  </a>
-
-                @endcan
                 </td>
                 <td width="10px">
                 @can('asignaciones.destroy')
-                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->grado],
+                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
   'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
