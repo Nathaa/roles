@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-<h3>Nueva Asig. Docente-Grado</h3>
+<h3>Nuevo Docente</h3>
 <?php $__env->stopSection(); ?>
 
 
@@ -27,10 +27,10 @@
            <div class="card-body">
             <table class="table table-bordered table-hover">
 
-                 <?php echo Form::open(['route' => 'docentegrados.store','files'=> true]); ?>
+                 <?php echo Form::open(['route' => 'docentes.store','files'=> true]); ?>
 
                  <enctype="multipart/form-data">
-                 <?php echo $__env->make('docentegrados.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                 <?php echo $__env->make('docentes.form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                  <?php echo Form::close(); ?>
 
@@ -41,4 +41,4 @@
  </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/docentegrados/create.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/docentes/create.blade.php ENDPATH**/ ?>

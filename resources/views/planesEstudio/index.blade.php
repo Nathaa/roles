@@ -90,7 +90,7 @@
                   <td width="10px">
                     @can('planesEstudio.destroy')
                     {!! Form::open(['route' => ['planesEstudio.destroy', $planEstudio->id],
-                    'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
+                    'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el plan de estudio?")']) !!}
                     <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
                       <i class="fas fa-trash" aria-hidden="true"></i>
                     </button>

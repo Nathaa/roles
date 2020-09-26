@@ -1,21 +1,19 @@
-@extends('admin.index2')
-
-@section('crear')
+<?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    @can('anios.edit')
-    <li class="breadcrumb-item active"><a href="{{ route('anios.edit', $anio->id)}}"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar Años</button></a></li>
-    @endcan
-    <li class="breadcrumb active"><a href="{{ route('anios.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.edit')): ?>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('anios.edit', $anio->id)); ?>"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar Años</button></a></li>
+    <?php endif; ?>
+    <li class="breadcrumb active"><a href="<?php echo e(route('anios.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div><!-- /.col -->
-@endsection
-@section('title')
-<h5><strong>{{ $anio->nombre  }} {{ $anio->año}}</strong> </h5>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
+<h5><strong><?php echo e($anio->nombre); ?> <?php echo e($anio->año); ?></strong> </h5>
+<?php $__env->stopSection(); ?>
 
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
                     <div class="container">
@@ -45,11 +43,11 @@
 
                                     <tr>
                                         <th scope="row"><strong>Año lectivo:</strong></th>
-                                        <td><p> {{ $anio->año }}</p></td>
-                                        <td> <p> {{$anio->nombre}}</p></td>
+                                        <td><p> <?php echo e($anio->año); ?></p></td>
+                                        <td> <p> <?php echo e($anio->nombre); ?></p></td>
                                         
                                         <th scope="row"><strong>Duracion: </strong></th>
-                                         <td><p> {{ $anio->duracion }}</p></td>
+                                         <td><p> <?php echo e($anio->duracion); ?></p></td>
                                     </tr>
                                      <tr>
 
@@ -66,4 +64,6 @@
                 </div>
             </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/anios/show.blade.php ENDPATH**/ ?>

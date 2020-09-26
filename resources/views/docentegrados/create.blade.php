@@ -10,7 +10,7 @@
 @endsection
 
 @section('title')
-<h3>Nuevo Docente</h3>
+<h3>Nueva Asig. Docente-Grado</h3>
 @endsection
 
 
