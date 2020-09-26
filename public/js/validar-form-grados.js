@@ -1,5 +1,5 @@
-function validar_nombre(input) {
-    if (input.value.trim() != "" && isNaN(Number((input.value)[0]))) {
+function validar_campo(input) {
+    if (input.value.trim() != "") {
         valido(input);
     } else {
         invalido(input);

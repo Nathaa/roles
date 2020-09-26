@@ -17,13 +17,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin', 'AdminController@index2')->name('admin');
-
 
 
 Auth::routes();
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','nocache'])->group(function () {
+
+Route::get('admin', 'AdminController@index2')->name('admin');
 
 //estudiantes
 Route::get('estudiantes', 'EstudiantesController@index')->name('estudiantes.index')
@@ -100,8 +100,10 @@ Route::delete('periodos/{periodo}', 'PeriodosController@destroy')->name('periodo
 //Matriculas
 Route::get('matriculas', 'MatriculasController@index')->name('matriculas.index')
 ->middleware('can:matriculas.index');
-Route::get('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
+Route::post('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
 ->middleware('can:matriculas.create');
+/* Route::get('matriculas/matricula', 'MatriculasController@create')->name('matriculas.create')
+->middleware('can:matriculas.create'); */
 Route::get('matriculas/{matricula}', 'MatriculasController@show')->name('matriculas.show')
 ->middleware('can:matriculas.show');
 Route::post('matriculas', 'MatriculasController@store')->name('matriculas.store')
@@ -112,6 +114,25 @@ Route::put('matriculas/{matricula}', 'MatriculasController@update')->name('matri
 ->middleware('can:matriculas.update');
 Route::delete('matriculas/{matricula}', 'MatriculasController@destroy')->name('matriculas.destroy')
 ->middleware('can:matriculas.destroy');
+//nueva ruta para el dataTable
+/* Route::get('matricula/Estudiante', 'MatriculasController@dataTable')->name('matriculas.dataTable') */
+Route::post('matricula/Estudiante', 'MatriculasController@dataTable')->name('matriculas.dataTable')
+->middleware('can:matriculas.dataTable');
+//creado para la solicitud de secciones disponibles desde matriculas/create  version 1
+//Route::get('/secciones/{grado}/{turno}/grados','MatriculasController@buscaSecciones');
+//version 2 de busca secciones
+Route::get('/secciones/{grado}/{turno}/grados/{anio}/anio','MatriculasController@buscaSecciones');
+//creado para la solicitud de turnos segun el grado disponible version 1
+//Route::get('/turnos/{grado}/grados','MatriculasController@buscaTurnos');
+//version 2 para buscar los turnos por grado y anio
+Route::get('/turnos/{grado}/grados/{anio}/anio','MatriculasController@buscaTurnos');
+//creado para saber el tipo de matricula que se va a realizar
+Route::get('matricula/tipoMatricula','MatriculasController@tipoMatricula')->name('matriculas.tipoMatricula');
+//->middleware('can:matriculas.tipoMatricula');
+Route::get('matricula/anioLectivoSiguiente','MatriculasController@anioLectivoSiguiente')->name('matriculas.anioLectivoSiguiente');
+Route::get('matricula/{grado}/grado/{turno}/turno/{seccion}/seccion/{anio}/anio','MatriculasController@buscarGradoId')->name('matriculas.buscarGradoId');
+Route::get('/grado/{gradoId}','MatriculasController@buscarGradoDatos');
+
 
 //Anios
 Route::get('anios', 'AniosController@index')->name('anios.index')
@@ -209,3 +230,19 @@ Route::put('asignacion/{asignacion}', 'AsignacionController@update')->name('asig
 Route::delete('asignacion/{asignacion}', 'AsignacionController@destroy')->name('asignaciones.destroy')
 ->middleware('can:asignaciones.destroy');
 
+//Asignacion_Docente-Grado
+
+Route::get('docentegrados', 'DocenteGradoController@index')->name('docentegrados.index')
+->middleware('can:docentegrados.index');
+Route::get('docentegrados/crear', 'DocenteGradoController@create')->name('docentegrados.create')
+->middleware('can:docentegrados.create');
+Route::get('docentegrados/{docentegrado}', 'DocenteGradoController@show')->name('docentegrados.show')
+->middleware('can:docentegrados.show');
+Route::post('docentegrados', 'DocenteGradoController@store')->name('docentegrados.store')
+->middleware('can:docentegrados.create');
+Route::get('docentegrados/{docentegrado}/edit', 'DocenteGradoController@edit')->name('docentegrados.edit')
+->middleware('can:docentegrados.edit');
+Route::put('docentegrados/{docentegrado}', 'DocenteGradoController@update')->name('docentegrados.update')
+->middleware('can:docentegrados.update');
+Route::delete('docentegrados/{docentegrado}', 'DocenteGradoController@destroy')->name('docentegrados.destroy')
+->middleware('can:docentegrados.destroy');
