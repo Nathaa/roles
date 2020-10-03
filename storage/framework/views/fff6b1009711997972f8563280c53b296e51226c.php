@@ -75,7 +75,7 @@
        <tbody>
           <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($periodo->nombre); ?></td>
+            <td><?php echo e($periodo->nombre_periodo); ?></td>
             <td><?php echo e($periodo->fecha_inicio); ?></td>
              <td><?php echo e($periodo->fecha_fin); ?></td>
              <td width="10px">
