@@ -1,11 +1,11 @@
 <?php $__env->startSection('title'); ?>
-<h5><strong>Modificando: <?php echo e(}}</strong> </h5>
+<h5><strong>Modificando:</strong> </h5>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="{{ route('asignaciones.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('asignaciones.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 <?php $__env->stopSection(); ?>
@@ -27,7 +27,7 @@
                     <?php endif; ?>
 
                     <form method="POST"
-                 <?php echo Form::model($asignacione, ['route' => ['asignaciones.update', $asignacione->id],
+                 <?php echo Form::model($asignaciones, ['route' => ['asignaciones.update', $asignaciones->id],
                  'method' =>'PUT']); ?>
 
                  <enctype="multipart/form-data">

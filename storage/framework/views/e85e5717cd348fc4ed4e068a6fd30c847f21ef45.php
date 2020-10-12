@@ -10,13 +10,13 @@
 
     <div class="row">
        <div class="col">
-         <?php echo e(Form::label('nombre', 'Nombre')); ?>
+         <?php echo e(Form::label('nombre_periodo', 'Nombre')); ?>
 
-         <?php echo e(Form::text('nombre',null,['class' => 'form-control', 'id'=>'nombre','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'placeholder' => 'Debe colocar un nombre correspondiente al periodo', 'required' => 'required','autofocus'=>'autofocus'])); ?>
+         <?php echo e(Form::text('nombre_periodo',null,['class' => 'form-control', 'id'=>'nombre_periodo','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'onkeyup' => "validar_string(this)", 'placeholder' => 'Debe colocar un nombre correspondiente al periodo', 'required' => 'required','autofocus'=>'autofocus'])); ?>
 
          <div class="invalid-feedback" style="display:none">
           El nombre no debe comenzar con números ni caracteres especiales
-        </div> 
+        </div>
        </div>
        <div class="col">
          <?php echo e(Form::label('duracion', 'Duracion (Semanas)')); ?>
