@@ -19,7 +19,7 @@
 
               <div class="invalid-feedback" style="display:none">
                 El nombre del grado puede colocarlo como texto o número.
-              </div> 
+              </div>
              </div>
                <div class="col">
                 <?php echo e(Form::label('seccion', 'Seccion')); ?>
@@ -30,16 +30,7 @@
                   Debe agregar a la sección,por ejemplo B,b entre comillas dobles
                 </div>
                 </div>
-            <div class="col">
-                <?php echo e(Form::label('categoria', 'Categoria')); ?>
 
-                <?php echo e(Form::text('categoria',null,['class' => 'form-control', 'id'=>'categoria','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Por ejemplo, Bachillerato', 'required' => 'required','autofocus'=>'autofocus'])); ?>
-
-                <div class="invalid-feedback" style="display:none">
-                  Debe agreagar la categoria del grado
-                </div>
-              
-            </div>
 
             <div>
                 <?php echo e(Form::label('capacidad', 'Capacidad')); ?>
