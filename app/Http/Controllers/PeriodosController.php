@@ -32,7 +32,7 @@ class PeriodosController extends Controller
         if ($request)
        {
         $query=trim($request->get('search'));
-           $periodos= Periodo::where('nombre', 'LIKE', '%' . $query . '%')
+           $periodos= Periodo::where('nombre_periodo', 'LIKE', '%' . $query . '%')
           ->orderBy('id','asc')
           ->paginate(5);
           return view('periodos.index', ['periodos' => $periodos, 'search' => $query]);

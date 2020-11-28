@@ -1,7 +1,7 @@
 @extends('admin.index2')
 
 @section('title')
-<h5><strong>Modificando: {{ $periodo->nombre  }}</strong> </h5>
+<h5><strong>Modificando: {{ $periodo->nombre_periodo  }}</strong> </h5>
 @endsection
 
 @section('crear')
