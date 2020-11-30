@@ -33,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('admin') }}" class="nav-link">Pagina Principal</a>
@@ -197,7 +197,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
+          <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-5">
+            @can('reportes.index')
+            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
+            @endcan
 
+            <ul class="interior">
+              <li><a href="">Notas</a></li>
+              <li><a href="{{ route ('reportes.index') }}">Reportes</a></li>
+
+            </ul>
+          </li>
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-4">
             @can('periodos.index')
@@ -240,6 +251,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li><a href="{{ route ('notas.confignotas') }}">Notas Materias</a></li>
             </ul>
           </li>
+
+
+
 
         </ul>
       </nav>

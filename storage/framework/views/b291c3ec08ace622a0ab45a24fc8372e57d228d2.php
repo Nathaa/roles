@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo e(route('admin')); ?>" class="nav-link">Pagina Principal</a>
@@ -201,7 +201,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
 
+          <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-5">
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reportes.index')): ?>
+            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
+            <?php endif; ?>
 
+            <ul class="interior">
+              <li><a href="">Notas</a></li>
+              <li><a href="<?php echo e(route ('reportes.index')); ?>">Reportes</a></li>
+
+            </ul>
+          </li>
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-4">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
@@ -243,6 +254,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li><a href="<?php echo e(route ('docentegrados.index')); ?>">Asignacion Docentes</a></li>
             </ul>
           </li>
+
+
+
 
         </ul>
       </nav>
