@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
   <script src="{{ asset('js/funciones.js') }}"></script>
   @yield('css_role_page')
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -236,6 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="interior">
               <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
               <li><a href="{{ route ('docentegrados.index') }}">Asignacion Docentes</a></li>
+              <li><a href="{{ route ('notas.confignotas') }}">Notas Materias</a></li>
             </ul>
           </li>
 

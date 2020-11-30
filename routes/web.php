@@ -16,9 +16,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
-
-
 Auth::routes();
 
 Route::middleware(['auth','nocache'])->group(function () {
@@ -246,3 +243,9 @@ Route::put('docentegrados/{docentegrado}', 'DocenteGradoController@update')->nam
 ->middleware('can:docentegrados.update');
 Route::delete('docentegrados/{docentegrado}', 'DocenteGradoController@destroy')->name('docentegrados.destroy')
 ->middleware('can:docentegrados.destroy');
+
+//manejo de las notas
+Route::get('notas','NotasController@buscarMaterias')->name('notas.confignotas');
+Route::get('editarnotas/{grado}/{seccion}/{nombre}','NotasController@editarNotas')->name('notas.editarnotas');
+Route::post('guardarNotas/','NotasController@guardarNotas')->name('notas.guardarNotas')
+->middleware('can:notas.guardarNotas');
