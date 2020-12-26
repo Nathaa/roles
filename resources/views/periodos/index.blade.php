@@ -74,8 +74,8 @@
        <tbody>
           @foreach ($periodos as $periodo)
            <tr>
-            <td>{{$periodo->nombre}}</td>
-            <td>{{$periodo->fecha_inicio}}</td>
+            <td>{{$periodo->nombre_periodo}}</td>
+            <td>{{ $periodo->fecha_inicio }}</td>
              <td>{{$periodo->fecha_fin}}</td>
              <td width="10px">
                 @can('periodos.edit')

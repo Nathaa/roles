@@ -75,6 +75,13 @@ body{
 	float: right;
 }
 
+#msj_error {
+	background: #5499c7;
+	border-color:#5499c7;
+	font-weight: bold;
+	width: 800px;
+}
+
 #menu-desplegable input[name="list"] {
 	position: absolute;
 	left: -1000em;

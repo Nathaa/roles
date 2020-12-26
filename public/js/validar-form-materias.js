@@ -10,6 +10,17 @@ function validar_select(input){
 }
 
 function validar_nombre(input) {
+    //const RegExPattern = /^[A-ZÁÉÍÓÚÑ]{1}[a-zñáéíóú]+$/;
+    if (input.value.trim() != "" && isNaN(Number((input.value)[0]))) {
+       
+        valido(input);  
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
+
+function validar_descripcion(input) {
     if (input.value.trim() != "" && isNaN(Number((input.value)[0]))) {
         valido(input);
     } else {
@@ -17,7 +28,6 @@ function validar_nombre(input) {
     }
     submit_form();
 }
-
 
 function valido(input) {
     $(input).removeClass("is-invalid");
@@ -38,3 +48,5 @@ function submit_form() {
         $("#btn_submit").attr('disabled', 'disabled');
     }
 }
+
+

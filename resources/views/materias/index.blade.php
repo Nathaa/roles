@@ -75,6 +75,7 @@
                                 <span class="badge badge-danger">Desactivado</span>
                                 @endif
                         </td>
+
                         <td width="10px">
                         @can('materias.edit')
 

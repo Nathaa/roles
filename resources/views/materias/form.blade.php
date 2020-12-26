@@ -11,14 +11,14 @@
        <div class="row">
           <div class="col">
             {{ Form::label('nombre', 'Nombre')}}
-            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre_materia', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
             <div class="invalid-feedback" style="display:none">
                 El nombre de la materia no debe comenzar con números ni caracteres especiales
-              </div> 
-          </div>
+            </div> 
+        </div>
           <div class="col">
             {{ Form::label('descripcion', 'Descripcion')}}
-            {{ Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            {{ Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_descripcion(this)", 'onblur' => "validar_descripcion(this)"]) }}
             <div class="invalid-feedback" style="display:none">
                 El nombre de la descripcion no debe comenzar con números ni caracteres especiales
               </div> 
@@ -46,13 +46,26 @@
 
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled']) }}
+            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit']) }}
         </ol>
 
 </form>
 
 @section('scripts')
 <script src="{{ asset('js/validar-form-materias.js') }}"></script>
+<script type="text/javascript">
+    $(function(){
+         $("#nombre_materia").on('change', convertirMayus);
+     });
+     function convertirMayus() {
+        nombre = $(this).val();
+        //cadena = nombre[0].toUpperCase() + nombre.slice(1);
+        //val = val.substr(0, 1).toUpperCase() + val.substr(1).toLowerCase();
+        cadena = nombre.charAt(0).toUpperCase() + nombre.substr(1).toLowerCase();
+       // console.log(cadena);
+       $("#nombre_materia").val(cadena);
+    }
+</script>
 @stop
 
 
