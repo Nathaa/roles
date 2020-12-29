@@ -209,6 +209,25 @@
              }
              $("#edad").val(edad);
          }
+
+         //agregado para cambiar el valor del select por el recuperado de la base 
+         $(document).ready(function(){
+            $(function printOnSelect(){
+              //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
+              var flag={!! json_encode($flag ?? '') !!};
+              if(flag){
+                var arrayPadecimiento={!! json_encode($arrayPadecimiento ??'') !!};
+                var padecimiento = {!! json_encode($padecimiento ??'') !!}; 
+                  for(var i=0;i<arrayPadecimiento.length;i++){
+                        if(padecimiento===arrayPadecimiento[i]){
+                      //console.log(arrayPadecimiento[i]);
+                      document.getElementById("padecimientos").value = arrayPadecimiento[i];
+                    }
+                  }
+              }
+            });
+          });
+          //hasta aqui lo nuevo
 </script>
 <script src="{{ asset('js/validar-form-estudiante.js') }}"></script>
 @stop

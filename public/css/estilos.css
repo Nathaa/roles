@@ -87,3 +87,20 @@ body{
 #menu-desplegable input:checked ~ ul {
 	display: block;
 }
+
+.modal-lg {
+	max-width: 70% !important;
+}
+
+
+
+/* Important part */
+.modal-dialog{
+	overflow-y: initial !important
+	
+}
+.modal-body{
+    height: 80vh;
+	overflow-y: auto;
+	max-height: calc(100vh - 200px);
+}

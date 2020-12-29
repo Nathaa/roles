@@ -11,6 +11,7 @@ use DateTime;
 use DB;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Session;
 //use Illuminate\Support\Facades\DB;
 
 class MatriculasController extends Controller
@@ -29,7 +30,10 @@ class MatriculasController extends Controller
     public function index(Request $request)
     {
         //
-        $matriculas=Matricula::paginate();
+        //$matriculas=Matricula::paginate();
+
+        
+
         /* $llavesDeGrados = array();
         for($i=0;$i<count($matriculas);$i++){
             $llavesDeGrados[$i]=$matriculas[$i]->grados_id;
@@ -112,6 +116,8 @@ class MatriculasController extends Controller
             //dd($arregloMatriculas);
 
             //---------------------FIN DE IGNORAR ESTO------------------------
+            
+            
 
             return view('matriculas.index', ['matriculas' => $matriculas]);
           //return view('matriculas.index', ['matriculas' => $matriculas, 'search' => $query]);
@@ -254,8 +260,11 @@ class MatriculasController extends Controller
             //dd($anioId[0]);
             //original funcional esta no filtraba por anios
             //$grados = Grado::select('grado')->groupBy('grado')->get()->toArray() ;
-            //nueva con filtro FALTA ARREGLAR
-            $grados=Grado::where('anios_id',$anioId[0])->select('grado')->groupBy('grado')->get()->toArray();
+            
+            //ORIGINAL
+            //$grados=Grado::where('anios_id',$anioId[0])->select('grado')->groupBy('grado')->get()->toArray();
+            $grados=Grado::where('anios_id',$anioId[0])->select('grado')->groupBy('grado')->orderBy('grado')->get()->toArray();
+
             //lo combierte en un arreglo simple
             $values=Arr::flatten($grados);
             //dd($values);
@@ -274,6 +283,7 @@ class MatriculasController extends Controller
               //$grados=Grado::
               //dd($page_data['id']);
             //return view('matriculas.create')->with('id', $id)->with('nombre', $nombre)>with('apellido', $apellido);
+            //dd($page_data);
             return view('matriculas.create')->with('page_data',$page_data);
 
     }//fin de function create
@@ -285,15 +295,89 @@ class MatriculasController extends Controller
         if($turno=="Matutino"){$turno="1";};
         if($turno=="Vespertino"){$turno="2";};
         if($turno=="Completo"){$turno="3";};
+
+        
         $match = ['grado' => $grado, 'turnos_id' => $turno,'anios_id'=>$anio];
         $secciones=Grado::where($match)->select('seccion')->groupBy('seccion')->get();
-        //dd(gettype($grado));
-        //settype($grado, 'string');
-        //settype($turno, 'string');
-        //$sql = "SELECT seccion FROM grados WHERE grado=$grado AND turnos_id=$turno";
-        //$secciones =DB::select($sql,array(1,20));
+        //PRIMER INTENTO , SE VAN A CONTAR LA CANTIDAD DE GRADOS POR SECCION Y TURNO , SI SALE QUE LA CUENTA ES IGUAL A CUARENTA ENTONCES 
+        //SE TIENE DEVOLVER VACIO O NULO O UN MENSAJE QUE INDIQUE Q NO HAY SECCIONES DISPONIBLES O ESTAN LLENAS 
+        
+        
+        //Que hace?-----
+        /*se buscan las secciones registradas para le grado en espesifico el cual se esta consultando
+        con esa lista de secciones, luego se busca una lista de secciones que ya se encuentran matriculadas y registradas en la tabla matricula
+        para luego contar si ya se llego al limite de matriculaciones , si una seccion llega a su limite se mostrara un mensaje de seccion llena*/
+        $matXSeccion[]=0;
+        //$matXSeccion = matriculas por seccion
+        for($i=0;$i<$secciones->count();$i++){
+            $match=['grados.grado'=>$grado,'grados.seccion'=>$secciones[$i]['seccion'],'grados.turnos_id'=>$turno];
+            $matXSeccion[$i]=DB::table('matriculas')
+            ->join('grados','grados.id','=','matriculas.grados_id')
+            ->where($match)
+            ->select('matriculas.nombre','grados.seccion','grados.grado','grados.turnos_id','matriculas.grados_id','grados.capacidad')
+            ->get();   
+            
+        }
+        
+        //matriculas existentes
+        $matriExist=Arr::flatten($matXSeccion); //para pasarlo de un arreglo de arreglos a un arreglo normal 
+        //ya que la consulta con joins devuelve un arreglo agrupado de arreglos para las matriculas de una seccion y de otra
 
-        return $secciones;
+        //contadores
+        $numMat=count($matriExist);
+        $contA=0;$contB=0;$contC=0;
+        $arreglo[]=0;
+        $capacidadA=0;$capacidadB=0;$capacidadC=0;
+        for($i=0;$i<$numMat;$i++){
+            if($matriExist[$i]->seccion=="\"A\"" || $matriExist[$i]->seccion=="\"a\""){
+                $contA=40;
+                $capacidadA=$matriExist[$i]->capacidad;
+            }
+            if($matriExist[$i]->seccion=="\"B\"" || $matriExist[$i]->seccion=="\"b\""){
+                $contB++;
+                $capacidadB=$matriExist[$i]->capacidad;
+            }
+            if($matriExist[$i]->seccion=="\"C\"" || $matriExist[$i]->seccion=="\"c\""){
+                $contC++;
+                $capacidadC=$matriExist[$i]->capacidad;
+            } 
+        }
+        
+        for($i=0;$i<$secciones->count();$i++){
+            if($capacidadA!=0){
+                if($contA==$capacidadA){
+                    if($secciones[$i]['seccion']=="\"A\"" || $secciones[$i]['seccion']=="\"a\""){
+                        $secciones[$i]['seccion']="Seccion  llena";
+                    }
+                }
+            }
+            if($capacidadB!=0){
+                if($contB==$capacidadB){
+                    if($secciones[$i]['seccion']=="\"B\"" || $secciones[$i]['seccion']=="\"b\""){
+                        $secciones[$i]['seccion']="Seccion  llena";
+                    }
+                }
+            }   
+            if($capacidadC!=0){
+                if($contC==$capacidadC){
+                    if($secciones[$i]['seccion']=="\"C\"" || $secciones[$i]['seccion']=="\"c\""){
+                        $secciones[$i]['seccion']="Seccion  llena";
+                    }
+                }
+            }
+        }
+
+
+
+        //----------hasta aqui el codigo nuevo sin probar
+        
+        //return $matriExist;
+        //lo que retorna es un objeto $matXSeccion
+        //return $matXSeccion[0][1]->seccion;
+        //return $contB;
+        //return $matriExist[5]->seccion;
+        //$secciones[0]['seccion'];
+        return $secciones; //ORIGINAL
     }//fin de funcion para buscar secciones
 
     public function buscaTurnos($grado,$anio){
@@ -357,20 +441,35 @@ class MatriculasController extends Controller
         //dd(gettype((int)$request->input("gradoId")));
         //dd($request);
         $gradosId=(int)$request->input("gradoIde");
+        
+        //contar cuantos registros con el id del grado hay 
+        //esto se creo para que cuando alcanse la capacidad maxima el grado , no se puedan inscribir mas alumnas en el 
+        $match=['grados_id'=>$gradosId];
+        $registros=Matricula::where($match)->select('id')->get();
+        $contRegistros=$registros->count();
+        $capacidad=grado::where('id',$gradosId)->select('capacidad')->get()->toArray();
+        //dd($capacidad[0]['capacidad']);
+        if($contRegistros==$capacidad[0]['capacidad']){
+            Session::flash('info_message', 'No se puede inscribir , el grado ya esta lleno');
+            return redirect()->route('matriculas.index');
+        }else{
+                $matriculas = Matricula::create(['nombre'=>$request->input("nombreMat"),
+                                            'descripcion'=>$request->input("descripcion"),
+                                            'fecha_matricula'=>$request->input("fecha"),
+                                            'users_id'=>$idUsuario,
+                                            'estudiantes_id'=>(int)$request->input("estudianteId"),
+                                            'grados_id'=>$gradosId,
+                                            'tipoMatricula'=>$request->input("tipoMatricula"),
+                                            ]);
+                //dd($matriculas);
+                $matriculas->save();
+                Session::flash('success_message', 'Materia guardada con éxito');
 
-        $matriculas = Matricula::create(['nombre'=>$request->input("nombreMat"),
-                                        'descripcion'=>$request->input("descripcion"),
-                                        'fecha_matricula'=>$request->input("fecha"),
-                                        'users_id'=>$idUsuario,
-                                        'estudiantes_id'=>(int)$request->input("estudianteId"),
-                                        'grados_id'=>$gradosId,
-                                        'tipoMatricula'=>$request->input("tipoMatricula"),
-                                        ]);
-        //dd($matriculas);
-        $matriculas->save();
+                return redirect()->route('matriculas.index', compact('matriculas'));
+            }
 
-        return redirect()->route('matriculas.index', compact('matriculas'))
-        ->with('info', 'Matrícula guardada con éxito');
+        
+        //->with('info', 'Matrícula guardada con éxito');
     }
 
     /**
@@ -447,7 +546,7 @@ class MatriculasController extends Controller
         $anio=Anio::where('año',$fechaBuscar)->select('id')->get()->toArray();
         $anioId=Arr::flatten($anio);
 
-        $grados=Grado::where('anios_id',$anioId[0])->select('grado')->groupBy('grado')->get()->toArray();
+        $grados=Grado::where('anios_id',$anioId[0])->select('grado')->groupBy('grado')->orderBy('grado')->get()->toArray();
         //lo combierte en un arreglo simple
         $values=Arr::flatten($grados);
         //dd($values);
@@ -462,6 +561,14 @@ class MatriculasController extends Controller
             'anio'=>$anioId,                            //para filtrar en comboBox con las peticiones jQuery
           );
 
+          //agregado para dejar seleccionados los datos guardados con anterioridad
+          $idGradoAnterior=$matricula->grados_id;
+          $turnoAnterior=Grado::where('id',$idGradoAnterior)->select('turnos_id')->get()->toArray();
+          //$values=Arr::flatten($turnoAnterior);
+          //dd($turnoAnterior);
+          $seccionAnterior=Grado::where('id',$idGradoAnterior)->select('seccion')->get()->toArray();
+          //$values=Arr::flatten($seccionAnterior);
+          //dd($seccionAnterior);
         return view('matriculas.edit',compact('matricula'))->with('page_data',$page_data);
     }
 
@@ -509,9 +616,90 @@ class MatriculasController extends Controller
     {
         //
         matricula::destroy($id);
-
-        return back()->with('info', 'Eliminada correctamente');
+        Session::flash('info_message', 'Matricula eliminada con éxito');
+        return back();
     }
 
+    //esta funcion contAlumNormal es utilizada para el bloque de codigo en create.blade en la funcion miFuncion ,que es utilizada para 
+    //el modal que muestra cuantos alumnos hay inscritos y cuantos faltan 
+    public function contAlumNormal($anio)
+    {   
+        //$gradosMatTercerCiclo=[];$gradosVespertino=[];$gradosCompleto=[];
+        //para contar alumnas en periodo normal
+        //hay q filtrar por turnos Matutino,Vespertino y Completo
+        $match=['anios_id'=>$anio,'turnos_id'=>1];
+        $gradosMatutino=grado::where($match)->select('categoria','grado','seccion','capacidad','turnos_id','id')->orderBy('grado')->orderBy('seccion')->get()->toArray();
+        //$countMat=count($gradosMatutino);
+        $arreglo_grados_inscritos_matutino=[];
+        for($i=0;$i<count($gradosMatutino);$i++){
+            $gradoId=$gradosMatutino[$i]['id'];
+            $busqueda=matricula::where('grados_id',$gradoId)->get();
+            $cont=$busqueda->count();
+            $gradoSeccion=$gradosMatutino[$i]['grado'].$gradosMatutino[$i]['seccion'];
+            $aux=["gradoSeccion"=>$gradoSeccion,
+                  "cantidad"=>$cont,
+                  "categoria"=>$gradosMatutino[$i]['categoria'],
+                  "capacidad"=>$gradosMatutino[$i]['capacidad'],
+                  "turno"=>"matutino",
+                ];
+            array_push($arreglo_grados_inscritos_matutino,$aux);
+        }
+
+        
+        $match=['anios_id'=>$anio,'turnos_id'=>2];
+        $gradosVespertino=grado::where($match)->select('categoria','grado','seccion','capacidad','turnos_id','id')->orderBy('grado')->orderBy('seccion')->get()->toArray();
+        $arreglo_grados_inscritos_vespertino=[];
+        for($i=0;$i<count($gradosVespertino);$i++){
+            $gradoId=$gradosVespertino[$i]['id'];
+            $busqueda=matricula::where('grados_id',$gradoId)->get();
+            $cont=$busqueda->count();
+            $gradoSeccion=$gradosVespertino[$i]['grado'].$gradosVespertino[$i]['seccion'];
+            $aux=["gradoSeccion"=>$gradoSeccion,
+                  "cantidad"=>$cont,
+                  "categoria"=>$gradosVespertino[$i]['categoria'],
+                  "capacidad"=>$gradosVespertino[$i]['capacidad'],
+                  "turno"=>"Vespertino",    
+                ];
+            array_push($arreglo_grados_inscritos_vespertino,$aux);
+        }
+
+        //$countVesp=count($gradosVespertino);
+        $match=['anios_id'=>$anio,'turnos_id'=>3];
+        $gradosCompleto=grado::where($match)->select('categoria','grado','seccion','capacidad','turnos_id','id')->orderBy('grado')->orderBy('seccion')->get()->toArray();
+
+        $arreglo_grados_inscritos_completo=[];
+        for($i=0;$i<count($gradosCompleto);$i++){
+            $gradoId=$gradosCompleto[$i]['id'];
+            $busqueda=matricula::where('grados_id',$gradoId)->get();
+            $cont=$busqueda->count();
+            $gradoSeccion=$gradosCompleto[$i]['grado'].$gradosCompleto[$i]['seccion'];
+            $aux=["gradoSeccion"=>$gradoSeccion,
+                  "cantidad"=>$cont,
+                  "categoria"=>$gradosCompleto[$i]['categoria'],
+                  "capacidad"=>$gradosCompleto[$i]['capacidad'],
+                  "turno"=>"completo",
+                ];
+            array_push($arreglo_grados_inscritos_completo,$aux);
+        }
+
+        //$countComp=count($gradosCompleto);
+        //dd($gradosCompleto);
+        $arreglo_de_grados=["gradosMatutino"=>$arreglo_grados_inscritos_matutino,
+                            "gradosVespertino"=>$arreglo_grados_inscritos_vespertino,
+                            "gradosCompleto"=>$arreglo_grados_inscritos_completo,
+                            
+                        ];
+        //dd($arreglo_de_grados);
+        //dd($arreglo_grados_inscritos_matutino);
+        return $arreglo_de_grados;
+        //$match=[''=>];
+        //$nomMat=matricula::
+
+    }
+
+    public function contAlumExtemp($anio)
+    {
+        //para contar alumnas en periodo extraordinario
+    }
 
 }

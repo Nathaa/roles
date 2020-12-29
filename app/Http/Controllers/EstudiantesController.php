@@ -106,7 +106,10 @@ class EstudiantesController extends Controller
         //
         $arrayPadecimiento = array('Si', 'No');
         $estudiante=Estudiante::findOrFail($id);
-        return view('estudiantes.edit', compact('estudiante','arrayPadecimiento'));
+        $flag=TRUE;
+        $padecimiento=$estudiante->padecimientos;
+        //return view('estudiantes.edit', compact('estudiante','arrayPadecimiento'));
+        return view('estudiantes.edit', compact('estudiante','arrayPadecimiento','flag','padecimiento'));
     }
 
     /**

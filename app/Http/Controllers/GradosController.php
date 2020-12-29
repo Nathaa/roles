@@ -26,7 +26,7 @@ class GradosController extends Controller
     public function index(Request $request)
     {
         $grados=Grado::paginate();
-
+        
         if ($request)
        {
         $query=trim($request->get('search'));
@@ -50,7 +50,7 @@ class GradosController extends Controller
 
         $planesEstudio = PlanEstudio::get();
         $anios = Anio::get();
-
+        
         return view('grados.create', compact('turnos','planesEstudio','anios'));
     }
 
@@ -97,11 +97,18 @@ class GradosController extends Controller
 
 
         $grado=Grado::findOrFail($id);
+        //dd($grado);
         $turnos = Turno::get();
         $planesEstudio = PlanEstudio::get();
         $anios = Anio::get();
         //dd($grado);
-        return view('grados.edit', compact('grado','turnos','planesEstudio','anios'));
+        $flag=TRUE;
+        $anioOriginal=$grado->anios_id;
+        $planOriginal=$grado->plan_estudios_id;
+        $turnoOriginal=$grado->turnos_id;
+        $categoriaOriginal=$grado->categoria;
+        //return view('grados.edit', compact('grado','turnos','planesEstudio','anios'));//original
+        return view('grados.edit', compact('grado','turnos','planesEstudio','anios','anioOriginal','flag','planOriginal','turnoOriginal','categoriaOriginal'));
     }
 
     /**

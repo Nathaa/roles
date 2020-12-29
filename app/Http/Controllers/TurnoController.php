@@ -85,7 +85,11 @@ class TurnoController extends Controller
     {
         $arrayTurno = array('Matutino', 'Vespertino', 'Completo');
         $turno=Turno::findOrFail($id);
-        return view('turnos.edit',compact('turno', 'arrayTurno'));
+        //dd($turno);
+        $flag=TRUE;
+        $turnoOriginal=$turno->nombre_turno;
+        //return view('turnos.edit',compact('turno', 'arrayTurno'));//original
+        return view('turnos.edit',compact('turno', 'arrayTurno','flag','turnoOriginal'));
     }
 
     /**

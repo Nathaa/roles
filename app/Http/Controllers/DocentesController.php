@@ -111,7 +111,11 @@ class DocentesController extends Controller
         $arraySexo = array('M', 'F');
         $docente=Docente::findOrFail($id);
         $turnos = Turno::get();
-        return view('docentes.edit', compact('docente','arraySexo','turnos'));
+        //editado para recuperar el valor seleccionado y mandarlo
+        $flag=TRUE;
+        $turnoOriginal=$docente->turnos_id;
+        //return view('docentes.edit', compact('docente','arraySexo','turnos')); //original
+        return view('docentes.edit', compact('docente','arraySexo','turnos','flag','turnoOriginal'));
     }
 
     /**

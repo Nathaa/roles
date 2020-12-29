@@ -52,6 +52,25 @@
 </form>
 
 @section('scripts')
+<script type="">
+    //agregado para cambiar el valor del select por el recuperado de la base 
+    $(document).ready(function(){
+            $(function printOnSelect(){
+              //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
+              var flag={!! json_encode($flag ?? '') !!};
+              if(flag){
+                var estadoOriginal={!! json_encode($estadoOriginal ??'') !!};  
+                //console.log(estadoOriginal);
+                    if(estadoOriginal===true){
+                      document.getElementById("estado").value ="1";
+                    }else{
+                        document.getElementById("estado").value ="0";
+                    }   
+              }
+            });
+          });
+          //hasta aqui lo nuevo
+</script>
 <script src="{{ asset('js/validar-form-materias.js') }}"></script>
 @stop
 
