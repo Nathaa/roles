@@ -248,3 +248,11 @@ Route::put('docentegrados/{docentegrado}', 'DocenteGradoController@update')->nam
 ->middleware('can:docentegrados.update');
 Route::delete('docentegrados/{docentegrado}', 'DocenteGradoController@destroy')->name('docentegrados.destroy')
 ->middleware('can:docentegrados.destroy');
+
+
+
+//reportes
+Route::get('reportes', 'ReportesController@index')->name('reportes.index')
+->middleware('can:reportes.index');
+Route::get('reportes/{reporte}', 'ReportesController@show')->name('reportes.show')
+->middleware('can:reportes.show');
