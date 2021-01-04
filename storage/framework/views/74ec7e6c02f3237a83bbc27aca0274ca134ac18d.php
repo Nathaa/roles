@@ -76,7 +76,7 @@
 
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($asignacion->grado); ?></td>
+            <td><?php echo e($asignacion->grado); ?><?php echo e($asignacion->seccion); ?></td>
             <td><?php echo e($asignacion->categoria); ?></td>
             <td><?php echo e($asignacion->nombre); ?></td>
             <td><?php echo e($asignacion->nombre_periodo); ?></td>

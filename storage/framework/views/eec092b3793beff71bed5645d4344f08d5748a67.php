@@ -16,7 +16,7 @@
 <form id="formulario">
 
         <div class="row">
-                
+
                     <div class="col">
                     <div class="form-group">
             <?php echo Form::label('docentes_id', 'Seleccione el Docente'); ?>
@@ -26,6 +26,7 @@
                     <option value="">--Docentes--</option>
                     <?php $__currentLoopData = $docentes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $docente): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option value="<?php echo e($docente->id); ?>"> <?php echo e($docente->nombre); ?></option>
+
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <div class="invalid-feedback" style="display:none">
@@ -44,8 +45,15 @@
             <div class="form-group">
                 <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
                     <option value="">--Asignaciones--</option>
-                    <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($asignacion->id); ?>"> <?php echo e($asignacion->id); ?></option>
+
+                    <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($grado->id); ?>">
+                        <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?>
+
+
+                      </option>
+
+
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
                 <div class="invalid-feedback" style="display:none">
@@ -75,7 +83,7 @@
 
 
         </div>
-        
+
 
 
 <br>
@@ -112,4 +120,7 @@
 </script>
 <script src="<?php echo e(asset('js/validar-form-docente.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
+
+
+
 <?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/docentegrados/form.blade.php ENDPATH**/ ?>

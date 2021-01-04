@@ -68,7 +68,9 @@
 
            <th scope="col">Grado</th>
            <th scope="col">Seccion</th>
-           <th colspan="3">&nbsp;Opciones</th>
+           <th scope="col">Categoria</th>
+           <th scope="col">Turno</th>
+           <th colspan="4">&nbsp;Opciones</th>
 
          </tr>
        </thead>
@@ -77,6 +79,16 @@
            <tr>
             <td><?php echo e($grado->grado); ?></td>
             <td><?php echo e($grado->seccion); ?></td>
+            <td><?php echo e($grado->categoria); ?></td>
+            <?php if($grado->turnos_id==1): ?>   
+              <td>Matutino</td>
+            <?php endif; ?>
+            <?php if($grado->turnos_id==2): ?>   
+              <td>Vespertino</td>
+            <?php endif; ?>      
+            <?php if($grado->turnos_id==3): ?>   
+              <td>Completo</td>
+            <?php endif; ?>        
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.edit')): ?>
 
@@ -124,6 +136,13 @@
 </div>
 </div>
 </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+
+<script>
+  
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/grados/index.blade.php ENDPATH**/ ?>

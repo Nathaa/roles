@@ -58,6 +58,25 @@
 
 </form>
 <?php $__env->startSection('scripts'); ?>
+<script type="">
+   //agregado para cambiar el valor del select por el recuperado de la base 
+   $(document).ready(function(){
+            $(function printOnSelect(){
+              //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
+              var flag=<?php echo json_encode($flag ?? ''); ?>;
+              if(flag){
+                var turnoOriginal=<?php echo json_encode($turnoOriginal ??''); ?>;
+                var arrayturno = <?php echo json_encode($arrayTurno); ?>; 
+                  for(var i=0;i<arrayturno.length;i++){
+                    if(turnoOriginal===arrayturno[i]){
+                      document.getElementById("nombre_turno").value = arrayturno[i];
+                    }
+                  }
+              }
+            });
+          });
+          //hasta aqui lo nuevo
+</script>
 <script src="<?php echo e(asset('js/validar-form-turnos.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
