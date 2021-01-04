@@ -75,7 +75,7 @@
 
         @foreach ($asignaciones as $asignacion)
            <tr>
-            <td>{{$asignacion->grado}}</td>
+            <td>{{$asignacion->grado}}{{$asignacion->seccion}}</td>
             <td>{{$asignacion->categoria}}</td>
             <td>{{$asignacion->nombre}}</td>
             <td>{{$asignacion->nombre_periodo}}</td>

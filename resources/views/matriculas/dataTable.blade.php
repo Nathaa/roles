@@ -41,7 +41,7 @@
                 <br>
                 <br>
                 <ol class="float-sm-right">
-                <p><button type="submit" class="btn  btn-sm btn-success">Enviar Estudiante</button></p>
+                <p><button type="submit" class="btn  btn-sm btn-success" id="btnEnviar">Enviar Estudiante</button></p>
                 <!--<button id="button" ,class="btn  btn-sm btn-success" >btn</button>-->
                 </ol>
             </div>
@@ -67,6 +67,7 @@
     $(document).ready(function() {
     //document.hideform.idEstudiante.value = item[2] ;
 
+    document.getElementById("btnEnviar").disabled =true;
 
     var table = $('#Estudiantes').DataTable();
 
@@ -79,6 +80,7 @@
             //var id=parseInt(item[2], 10);
             var id=BigInt(item[2]);
             document.hideform.idEstudiante.value = id ;
+            document.getElementById("btnEnviar").disabled =false;
         });
     }    );
 

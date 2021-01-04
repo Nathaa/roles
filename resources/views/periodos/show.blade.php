@@ -46,7 +46,7 @@
 
                                     <tr>
                                         <th scope="row"><strong>Nombre:</strong></th>
-                                        <td> <p> {{$periodo->nombre}}</p></td>
+                                        <td> <p> {{$periodo->nombre_periodo}}</p></td>
                                         <th scope="row"><strong>Duracion: </strong></th>
                                          <td><p> {{ $periodo->duracion }}</p></td>
                                     </tr>

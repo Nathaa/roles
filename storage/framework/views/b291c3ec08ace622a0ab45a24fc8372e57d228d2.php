@@ -32,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo e(route('admin')); ?>" class="nav-link">Pagina Principal</a>
@@ -175,76 +175,201 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul id="menu-desplegable" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Expedientes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
 
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-1">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
-            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expedientes</label>
-            <?php endif; ?>
+                <ul class="nav nav-treeview">
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('estudiantes.index')); ?>">Alumnas</a></li>
-              <li><a href="<?php echo e(route ('docentes.index')); ?>">Docentes</a></li>
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('estudiantes.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Alumna</p>
+                    </a></li>
+                  </li>
+
+
+
+                  <li class="nav-item">
+                    <li><a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
+                      <i class="fas fa-file-invoice-dollar"></i>
+                      <p>Docentes</p>
+                    </a>
+                  </li>
+                  </li>
+
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-user-friends"></i>
+                  <p>
+                    Usuarios
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('usuarios.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Usuario</p>
+                    </a></li>
+                  </li>
+
+
+
+                  <li class="nav-item">
+                    <li><a href="<?php echo e(route ('roles.index')); ?>" class="nav-link">
+                      <i class="fas fa-file-invoice-dollar"></i>
+                      <p>Roles</p>
+                    </a>
+                  </li>
+                  </li>
+
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-folder-open"></i>
+                  <p>
+                    Reportes
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('reportes.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Usuario</p>
+                    </a></li>
+                  </li>
+
+                </ul>
+              </li>
+
+
+
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>
+                    Informacion Academica
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Periodos</p>
+                    </a></li>
+                  </li>
+                  <li class="nav-item">
+                    <li><a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
+                    <i class="fas fa-donate"></i>
+                    <p>Años</p>
+                  </a></li>
+                </li>
+                <li class="nav-item">
+                    <li><a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
+                    <i class="fas fa-donate"></i>
+                    <p>Grados</p>
+                  </a></li>
+                </li>
+                <li class="nav-item">
+                    <li><a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
+                    <i class="fas fa-donate"></i>
+                    <p>Materias</p>
+                  </a></li>
+                </li>
+                <li class="nav-item">
+                    <li><a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
+                    <i class="fas fa-donate"></i>
+                    <p>Turnos</p>
+                  </a></li>
+                </li>
+                <li class="nav-item">
+                    <li><a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
+                    <i class="fas fa-donate"></i>
+                    <p>Planes de Estudio</p>
+                  </a></li>
+                </li>
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-folder-open"></i>
+                  <p>
+                    Proceso de Matricula
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Matricula</p>
+                    </a></li>
+                  </li>
+
+
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Planeacion Academica
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                  <li class="nav-item">
+                      <li><a href="<?php echo e(route ('asignaciones.index')); ?>" class="nav-link">
+                      <i class="fas fa-donate"></i>
+                      <p>Asignacion Academica</p>
+                    </a></li>
+                  </li>
+
+
+
+                  <li class="nav-item">
+                    <li><a href="<?php echo e(route ('docentegrados.index')); ?>" class="nav-link">
+                      <i class="fas fa-file-invoice-dollar"></i>
+                      <p>Asignacion de Docentes</p>
+                    </a>
+                  </li>
+                  </li>
+
+
+                </ul>
+              </li>
             </ul>
-          </li>
 
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-2">
-
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
-            <label for="nivel1-2"><i class="nav-icon fas fa-user-friends"></i>Usuarios</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('usuarios.index')); ?>">Usuarios</a></li>
-              <li><a href="<?php echo e(route ('roles.index')); ?>">Roles</a></li>
-            </ul>
-          </li>
-
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-4">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
-            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Informacion Academica</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('periodos.index')); ?>">Periodos</a></li>
-              <li><a href="<?php echo e(route ('anios.index')); ?>">Años</a></li>
-              <li><a href="<?php echo e(route ('grados.index')); ?>">Grados</a></li>
-              <li><a href="<?php echo e(route ('materias.index')); ?>">Materias</a></li>
-              <li><a href="<?php echo e(route ('turnos.index')); ?>">Turnos</a></li>
-              <li><a href="<?php echo e(route ('planesEstudio.index')); ?>">Planes de Estudio</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-5">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
-            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Proceso de Matrícula</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('matriculas.index')); ?>">Matrículas</a></li>
-
-            </ul>
-          </li>
-
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-12">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
-
-            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamientos Académico</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
-              <li><a href="<?php echo e(route ('docentegrados.index')); ?>">Asignacion Docentes</a></li>
-            </ul>
-          </li>
-
-        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

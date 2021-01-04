@@ -1,7 +1,7 @@
 @extends('admin.index2')
 
 @section('title')
-<h5><strong>Modificando: {{ $matricula->nombre  }}</strong> </h5>
+    <h5><strong>Modificando: {{ $matricula->nombre  }}</strong> </h5>
 @endsection
 
 @section('crear')
@@ -17,29 +17,29 @@
     <div class="card">
 
        <div class="card-body">
-        <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover">
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-                    <!--<form method="POST">-->
-                    <!---->
-                 {!! Form::model($matricula, ['route' => ['matriculas.update', $matricula->id],
-                 'method' =>'PUT'])  !!}
+                        <!--<form method="POST">-->
+                        <!---->
+                    {!! Form::model($matricula, ['route' => ['matriculas.update', $matricula->id],
+                    'method' =>'PUT'])  !!}
 
-                 @include('matriculas.form2')
-                 {!! Form::close() !!}
+                    @include('matriculas.form2')
+                    {!! Form::close() !!}
 
 
 
-                <!--</table>-->
+            </table>
 
         </div>
 
