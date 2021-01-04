@@ -66,7 +66,7 @@
              <tr>
               <td>{{$docentegrado->nombre}}</td>
               <td>{{$docentegrado->grado}}{{$docentegrado->seccion}}</td>
-
+              <td>{{$docentegrado->año}}</td>
 
               <td width="10px">
                   @can('docentegrados.edit')

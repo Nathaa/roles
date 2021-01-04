@@ -67,7 +67,7 @@
              <tr>
               <td><?php echo e($docentegrado->nombre); ?></td>
               <td><?php echo e($docentegrado->grado); ?><?php echo e($docentegrado->seccion); ?></td>
-
+              <td><?php echo e($docentegrado->año); ?></td>
 
               <td width="10px">
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.edit')): ?>

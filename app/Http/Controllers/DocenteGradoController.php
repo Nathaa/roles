@@ -41,7 +41,7 @@ class DocenteGradoController extends Controller
              ->join('grados','grados.id','=','asignacions.grados_id','left')
              ->join('docentes','docentes.id','=','docente_grados.docentes_id','left')
              ->join('anios','anios.id','=','docente_grados.anios_id','left')
-             ->select ('docente_grados.id','docentes.nombre','grados.grado','grados.seccion')
+             ->select ('docente_grados.id','docentes.nombre','grados.grado','grados.seccion','anios.año')
 
              ->get()->toArray();
 
