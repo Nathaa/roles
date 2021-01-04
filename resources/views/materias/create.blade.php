@@ -28,7 +28,7 @@
 
                  {!! Form::open(['route' => 'materias.store','files'=> true]) !!}
                  <enctype="multipart/form-data">
-                 @include('materias.form')
+                 @include('materias.modal')
 
                  {!! Form::close() !!}
 
