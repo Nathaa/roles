@@ -69,18 +69,20 @@
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
            <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;</th>
+           <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
        <tbody>
 
+        <?php $i=0 ?>
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-           <tr>
-            <td><?php echo e($asignacion->grado); ?><?php echo e($asignacion->seccion); ?></td>
-            <td><?php echo e($asignacion->categoria); ?></td>
-            <td><?php echo e($asignacion->nombre); ?></td>
-            <td><?php echo e($asignacion->nombre_periodo); ?></td>
 
+           <tr>
+            <td id="gradoTxt"><?php echo e($asignacion->grado); ?></td>
+            <td><?php echo e($asignacion->categoria); ?></td>
+            <td><?php echo e($page_data[$i]['materias']); ?></td>
+            <td id="periodoTxt"><?php echo e($asignacion->nombre_periodo); ?></td>
+            <?php $i++ ?>
 
 
             <td width="10px">
@@ -92,7 +94,13 @@
                   <?php endif; ?>
                 </td>
                 <td width="10px">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.show')): ?>
 
+                <a href="<?php echo e(route('asignaciones.show', $asignacion->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+
+                <?php endif; ?>
                 </td>
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.destroy')): ?>
@@ -122,6 +130,13 @@
 </div>
 </div>
 </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+
+<script>
+
+</script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/index.blade.php ENDPATH**/ ?>

@@ -1,3 +1,5 @@
+
+
 @extends('admin.index2')
 
 @section('crear')
@@ -68,18 +70,20 @@
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
            <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;</th>
+           <th colspan="3">&nbsp;Estado</th>
          </tr>
        </thead>
        <tbody>
 
+        <?php $i=0 ?>
         @foreach ($asignaciones as $asignacion)
-           <tr>
-            <td>{{$asignacion->grado}}{{$asignacion->seccion}}</td>
-            <td>{{$asignacion->categoria}}</td>
-            <td>{{$asignacion->nombre}}</td>
-            <td>{{$asignacion->nombre_periodo}}</td>
 
+           <tr>
+            <td id="gradoTxt">{{$asignacion->grado}}</td>
+            <td>{{$asignacion->categoria}}</td>
+            <td>{{$page_data[$i]['materias']}}</td>
+            <td id="periodoTxt">{{$asignacion->nombre_periodo}}</td>
+            <?php $i++ ?>
 
 
             <td width="10px">
@@ -91,7 +95,13 @@
                   @endcan
                 </td>
                 <td width="10px">
+                @can('asignaciones.show')
 
+                <a href="{{ route('asignaciones.show', $asignacion->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                    <i class="fas fa-eye" aria-hidden="true"></i>
+                  </a>
+
+                @endcan
                 </td>
                 <td width="10px">
                 @can('asignaciones.destroy')
@@ -120,3 +130,10 @@
 </div>
 </div>
 @endsection
+
+@section('scripts')
+
+<script>
+
+</script>
+@stop
