@@ -46,9 +46,9 @@
                 <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
                     <option value="">--Asignaciones--</option>
 
-                    <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($grado->id); ?>">
-                        <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?>
+                    <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($asignacion->id); ?>">
+                        <?php echo e($asignacion->grado); ?><?php echo e($asignacion->seccion); ?>
 
 
                       </option>

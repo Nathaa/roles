@@ -199,10 +199,13 @@ class AsignacionController extends Controller
      */
     public function show($id)
     {
-        $asignaciones=Asignacion::findOrFail($id);
-        $grados = Grado::get();
-        $materias = Materia::get();
-        $periodos = Periodo::get();
+        $asignaciones=DB::table('asignacions')
+        ->join('grados','grados.id','=','asignacions.grados_id')
+        ->join('materias','materias.id','=','asignacions.materias_id')
+        ->join('periodos','periodos.id','=','asignacions.periodos_id')
+        ->select ('asignacions.id','periodos.nombre_periodo','grados.grado','grados.seccion','grados.categoria')
+
+        ->get()->toArray();
         return view('asignaciones.show', compact('asignaciones','grados','materias','periodos'));
     }
 
