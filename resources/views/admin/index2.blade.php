@@ -184,7 +184,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('estudiantes.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-user-astronaut"></i>
                       <p>Alumna</p>
                     </a></li>
                   </li>
@@ -193,7 +193,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                     <li><a href="{{ route ('docentes.index') }}" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-tie"></i>
                       <p>Docentes</p>
                     </a>
                   </li>
@@ -204,7 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-user-friends"></i>
+                  <i class="fas fa-user-friends"></i>
                   <p>
                     Usuarios
                     <i class="right fas fa-angle-left"></i>
@@ -216,7 +216,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('usuarios.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-user-alt"></i>
                       <p>Usuario</p>
                     </a></li>
                   </li>
@@ -225,7 +225,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                     <li><a href="{{ route ('roles.index') }}" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-lock"></i>
                       <p>Roles</p>
                     </a>
                   </li>
@@ -236,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-folder-open"></i>
+                  <i class="fas fa-file-archive"></i>
                   <p>
                     Reportes
                     <i class="right fas fa-angle-left"></i>
@@ -248,8 +248,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('reportes.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
-                      <p>Usuario</p>
+                        <i class="fas fa-user-astronaut"></i> <i class="far fa-file-alt"></i>
+                      <p>Boleta de Notas</p>
                     </a></li>
                   </li>
 
@@ -260,10 +260,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <i class="fas fa-calendar-alt"></i>
                   <p>
-                    Informacion Academica
-                    <i class="right fas fa-angle-left"></i>
+                     Informacion Academica
+                    <i class="fas fa-angle-left"></i>
                   </p>
                 </a>
 
@@ -272,45 +272,62 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('periodos.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-calendar-alt"></i>
                       <p>Periodos</p>
                     </a></li>
                   </li>
                   <li class="nav-item">
                     <li><a href="{{ route ('anios.index')}}" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fas fa-clock"></i>
                     <p>Años</p>
                   </a></li>
                 </li>
                 <li class="nav-item">
                     <li><a href="{{ route ('grados.index')}}" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="	fa fa-building"></i>
                     <p>Grados</p>
                   </a></li>
                 </li>
                 <li class="nav-item">
                     <li><a href="{{ route ('materias.index')}}" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fas fa-journal-whills"></i>
                     <p>Materias</p>
                   </a></li>
                 </li>
                 <li class="nav-item">
                     <li><a href="{{ route ('turnos.index')}}" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fa fa-history"></i>
                     <p>Turnos</p>
                   </a></li>
                 </li>
-                <li class="nav-item">
-                    <li><a href="{{ route ('planesEstudio.index')}}" class="nav-link">
-                    <i class="fas fa-donate"></i>
-                    <p>Planes de Estudio</p>
-                  </a></li>
-                </li>
+
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-folder-open"></i>
+                  <i class="fab fa-elementor"></i>
+                  <p>
+                    Planes de Estudio
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+
+                <ul class="nav nav-treeview">
+
+
+                    <li class="nav-item">
+                        <li><a href="{{ route ('planesEstudio.index')}}" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Planes de Estudio</p>
+                      </a></li>
+                    </li>
+
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                  <i class="fas fa-chalkboard-teacher"></i>
                   <p>
                     Proceso de Matricula
                     <i class="right fas fa-angle-left"></i>
@@ -322,7 +339,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('matriculas.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-chalkboard"></i>
                       <p>Matricula</p>
                     </a></li>
                   </li>
@@ -333,7 +350,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-book"></i>
+                  <i class="fas fa-clipboard-list"></i>
                   <p>
                     Planeacion Academica
                     <i class="right fas fa-angle-left"></i>
@@ -345,7 +362,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                       <li><a href="{{ route ('asignaciones.index')}}" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-edit"></i>
                       <p>Asignacion Academica</p>
                     </a></li>
                   </li>
@@ -354,7 +371,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                   <li class="nav-item">
                     <li><a href="{{ route ('docentegrados.index') }}" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-tie"></i> <i class="fas fa-tasks"></i>
                       <p>Asignacion de Docentes</p>
                     </a>
                   </li>
