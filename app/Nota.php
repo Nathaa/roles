@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Nota extends Model
 {
     protected $fillable = [
-        'estudiantes_id', 'materias_id','grados_id','anios_id', 'valor-nota','periodos_id', 'tipo-nota','ponderacion',
+        'estudiantes_id', 'materias_id','grados_id','anios_id', 'valor_nota','periodos_id', 'tipo_nota','ponderacion',
     ];
 
     public function grado()

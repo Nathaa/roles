@@ -14,21 +14,26 @@
               </div>
             </div>
 
-            <?php
-                $numperiodos++;
-            ?>
+
 <div class="container">
     <div class="container-fluid">
         <h4><strong>Seleccione el periodo y a continuacion las notas que tendra ese periodo</strong></h4>
-        <form  action="<?php echo e(route('notas.guardarNotas')); ?>" method="POST"  >
+        <form  action="<?php echo e(route('notas.guardarNotas', ['nombreMateria'=>$materias[0]->nombre,
+        'idMateria'=>$materias[0]->id,
+        'gradoGrado'=> $grados[0]->grado,
+         'categoriaGrado'=>$grados[0]->categoria,
+         'idGrado'=>$grados[0]->id,
+         'seccionGrado'=> $grados[0]->seccion,
+         'anioID'=>$anioId[0]->id]
+         )); ?>" method="POST"  >
             <?php echo csrf_field(); ?>
-        <?php for($i=1; $i<$numperiodos;$i++): ?>
-        <input type="radio" name="periodo" id="periodo<?php echo e($i); ?>" value="periodo<?php echo e($i); ?>"> Notas del perdiodo <?php echo e($i); ?><br>
+        <?php for($i=0; $i<$numperiodos;$i++): ?>
+        <input type="radio" name="periodo" id="periodo" value="<?php echo e($periodos[$i]->periodos_id); ?>"> Notas para el periodo <?php echo e($i+1); ?><br>
 
         <?php endfor; ?>
-<br>
-            <button type="submit" class="btn  btn-primary float-sm-left" id="btnContinuar">Guardar Notas del periodo</button>
-<br>
+        <br>
+
+        <br>
 
         <br>
     <tr>
@@ -39,13 +44,17 @@
             <th>ponderacion</th>
         </tr>
 
-     </table>
-    </form>
+
+    </table>
         <button type="button" class="btn btn-primary mr-2" onclick="agregarFila()">Agregar Nota</button>
         <button type="button" class="btn btn-danger" onclick="eliminarFila()">Eliminar Nota</button>
+
       </div>
 
       </tr>
+      <br>
+      <button type="submit" class="btn  btn-success float-sm-left" id="btnContinuar">Guardar Notas del periodo</button>
+    </form>
     </div>
 </div>
 
@@ -57,26 +66,18 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scripts'); ?>
 <script type="">
-var numfila = 0;
-<?php
-                $numfila= 0;
-            ?>
+
 function agregarFila(){
-    <?php  $numfila ++; ?>
-
   document.getElementById("tablaprueba").insertRow(-1).innerHTML
-   = '<td> <?php echo e(Form::text('tipo_nota',null,['class' => 'form-control', 'id'=> 'tipo_nota','name' => 'nombreNota[<script>numfila.val();</script>]' , 'placeholder' => 'tipo de nota', 'required' => 'required','autofocus'=>'autofocus'])); ?></td> <td> {{ Form::number('ponderacion',null,['class' => 'form-control', 'id'=>'ponderacion', 'name' => 'ponderacion[<?php
-                echo $numfila;?>]' ,'placeholder' => 'ponderacion de la nota', 'required' => 'required','autofocus'=>'autofocus' ]) }}</td>';
-
+   = '<td> <?php echo e(Form::text('tipo_nota',null,['class' => 'form-control', 'id'=> 'tipo_nota','name' => 'nombreNota[]' , 'placeholder' => 'tipo de nota', 'required' => 'required','autofocus'=>'autofocus'])); ?></td> <td> <?php echo e(Form::number('ponderacion',null,['class' => 'form-control', 'id'=>'ponderacion', 'name' => 'ponderacion[]' ,'placeholder' => 'ponderacion de la nota (ejemplo: 35 para 35%)', 'required' => 'required','autofocus'=>'autofocus' ])); ?></td>';
 }
 
 function eliminarFila(){
-    numfila --;
   var table = document.getElementById("tablaprueba");
   var rowCount = table.rows.length;
   //console.log(rowCount);
 
-  if(rowCount <= 2)
+  if(rowCount <= 1)
     alert('No se puede eliminar el encabezado');
   else
     table.deleteRow(rowCount -1);

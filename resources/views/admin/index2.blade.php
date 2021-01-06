@@ -198,13 +198,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
 
           <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-5">
+            <input type="checkbox" name="list" id="nivel1-3">
             @can('reportes.index')
-            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
+            <label for="nivel1-3"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
             @endcan
 
             <ul class="interior">
-              <li><a href="">Notas</a></li>
+                <li><a href="{{ route ('notas.confignotas') }}">Ingreso de Notas</a></li>
               <li><a href="{{ route ('reportes.index') }}">Reportes</a></li>
 
             </ul>
