@@ -24,9 +24,9 @@ class CreateEstudiantesTable extends Migration
             $table->string('encargado', 100);
             $table->string('parentesco');
             $table->string('telefono_emergencia');
-            $table->string('padecimientos', 254);
-            $table->string('descripcion_padecimiento', 100);
-            $table->string('alergia_medicamento', 50);
+            $table->string('padecimientos', 254)->nullable();;
+            $table->string('descripcion_padecimiento', 100)->nullable();;
+            $table->string('alergia_medicamento', 50)->nullable();;
             $table->string('nombre_padre', 100);
             $table->string('profesion_padre', 60);
             $table->string('telefono_padre');

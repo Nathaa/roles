@@ -317,6 +317,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 </ul>
               </li>
+
               <li class="nav-item has-treeview menu-open">
                 @can('planesEstudio.index')
                 <a href="#" class="nav-link active">
@@ -338,19 +339,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     @endcan
 
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-3">
-            @can('reportes.index')
-            <label for="nivel1-3"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
-            @endcan
-
-            <ul class="interior">
-                <li><a href="{{ route ('notas.confignotas') }}">Ingreso de Notas</a></li>
-              <li><a href="{{ route ('reportes.index') }}">Reportes</a></li>
-
                 </ul>
               </li>
+
+
+
+
               <li class="nav-item has-treeview menu-open">
                 @can('matriculas.index')
                 <a href="#" class="nav-link active">
@@ -376,6 +370,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
+                @can('notas.confignotas')
+                <a href="#" class="nav-link active">
+                  <i class="fab fa-elementor"></i>
+                  <p>
+                    Notas
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                @endcan
+                <ul class="nav nav-treeview">
+
+                    @can('notas.confignotas')
+                    <li class="nav-item">
+                        <li><a href="{{ route ('notas.confignotas')}}" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Notas</p>
+                      </a></li>
+                    </li>
+                    @endcan
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
                 @can('asignaciones.index')
                 <a href="#" class="nav-link active">
                   <i class="fas fa-clipboard-list"></i>
@@ -389,12 +406,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
-              <li><a href="{{ route ('docentegrados.index') }}">Asignacion Docentes</a></li>
-              <li><a href="{{ route ('notas.confignotas') }}">Notas Materias</a></li>
-            </ul>
+
           </li>
+
 
                   <li class="nav-item">
                       <li><a href="{{ route ('asignaciones.index')}}" class="nav-link">
@@ -402,7 +416,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <p>Asignacion Academica</p>
                     </a></li>
                   </li>
-                  @endcan
+
 
                   @can('docentegrados.index')
                   <li class="nav-item">

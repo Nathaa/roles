@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h5><strong>Modificando:</strong> </h5>
+<h5><strong></strong> </h5>
 @endsection
 
 @section('crear')
@@ -29,13 +29,87 @@
                         </div>
                     @endif
 
-                    <form method="POST"
-                 {!! Form::model($asignaciones, ['route' => ['asignaciones.update', $asignaciones->id],
-                 'method' =>'PUT'])  !!}
-                 <enctype="multipart/form-data">
+                    
 
-                 @include('asignaciones.form')
-                 {!! Form::close() !!}
+
+<div class="alert alert-primary" role="alert">
+        Datos del Año
+</div>
+
+
+<form action="{{ url('/asignacion/'.$x) }}"  method="POST" role="form">
+        
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
+    <div class="row">
+        <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" >
+                                <option value="">Seleccione Grado</option>
+                                @foreach($grados as $grado)
+
+
+                                           <option value="{{ $grado->id }}",null @foreach ($grad as $g) <?php  if($g->grados_id === $grado->id) { ?> selected  <?php } ?> @endforeach>
+                                              {{ $grado->grado }}{{ $grado->seccion }}
+
+                                            </option>
+
+                                          @endforeach
+                                        </td>
+                                </select>
+
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                {{  Form::label('periodos_id','Periodos') }}
+                <div>
+                 @foreach($periodos as $periodo)
+                 
+        <label>{{$periodo->nombre}}</label>
+        <input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}" @foreach ($asignaciones as $asignacion) <?php  if($asignacion->periodos_id === $periodo->id) { ?> checked <?php } ?> @endforeach>
+        
+            @endforeach
+          </ul>
+         </div>
+        </div>
+    </div>
+<br>
+<br>
+    <div class="form-group">
+
+
+        {{  Form::label('materias_id','Materias') }}
+        <div>
+
+         @foreach($materias as $materia)
+ <label>{{$materia->nombre}}</label>
+ <input type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}" @foreach ($asignaciones2 as $asignacion2) <?php  if($asignacion2->materias_id === $materia->id) { ?> checked <?php } ?> @endforeach>
+    @endforeach
+</ul>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+ <br>
+ <ol class="float-sm-right">
+    {{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success']) }}
+</ol>
+
+
+</form>
+
 
 
 

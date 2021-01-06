@@ -1,35 +1,29 @@
-
-
 {!! csrf_field() !!}
 
 
 <div class="alert alert-primary" role="alert">
-Nueva Planificacion Academica
+        Datos del Año
 </div>
 
 <form>
 
-    <div style="float:left;width:50%;">
+
 
     <div class="row">
         <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" >
+                                <option value="">Seleccione Grado</option>
+                                @foreach($grados as $grado)
 
 
-            <option value="">Seleccione Grado</option>
-            <hr>
+                                           <option value="{{ $grado->id }}",null>
+                                              {{ $grado->grado }}{{ $grado->seccion }}
 
-                                <select name="grados_id" size=6 id="grados_id" class="form-control" >
+                                            </option>
 
-                                    @foreach($grados as $grado)
-
-
-                                    <option value="{{ $grado->id }}",null>
-                                       {{ $grado->grado }}{{ $grado->seccion }}
-
-                                     </option>
-
-                                   @endforeach
-                                 </select>
+                                          @endforeach
+                                        </td>
+                                </select>
 
         </div>
 
@@ -37,40 +31,31 @@ Nueva Planificacion Academica
             <div class="form-group">
                 <ul class="list-unstyled">
                 {{  Form::label('periodos_id','Periodos') }}
-                <hr>
                 <div>
-                    <ul class="list-unstyled">
                  @foreach($periodos as $periodo)
-        {{$periodo->nombre_periodo}}
+        <label>{{$periodo->nombre}}</label>
         <input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}">
-
+       
             @endforeach
           </ul>
          </div>
         </div>
     </div>
-
-    </div>
-</form>
 <br>
-
-<hr>
-
+<br>
     <div class="form-group">
-        <br>
-        <ul class="list-unstyled">
-        {{  Form::label('materias_id','Materias') }}
-        <hr>
 
+
+        {{  Form::label('materias_id','Materias') }}
         <div>
 
          @foreach($materias as $materia)
- {{$materia->nombre}}
+ <label>{{$materia->nombre}}</label>
  <input type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}">
     @endforeach
-
- </div>
 </ul>
+ </div>
+
 </div>
 
 
@@ -89,3 +74,4 @@ Nueva Planificacion Academica
 
 
 </form>
+

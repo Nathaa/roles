@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
   <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -321,6 +322,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <?php endif; ?>
                 </ul>
               </li>
+
               <li class="nav-item has-treeview menu-open">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.index')): ?>
                 <a href="#" class="nav-link active">
@@ -344,6 +346,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </ul>
               </li>
+
+
+
+
               <li class="nav-item has-treeview menu-open">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
                 <a href="#" class="nav-link active">
@@ -369,6 +375,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notas.confignotas')): ?>
+                <a href="#" class="nav-link active">
+                  <i class="fab fa-elementor"></i>
+                  <p>
+                    Notas
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <?php endif; ?>
+                <ul class="nav nav-treeview">
+
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notas.confignotas')): ?>
+                    <li class="nav-item">
+                        <li><a href="<?php echo e(route ('notas.confignotas')); ?>" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Notas</p>
+                      </a></li>
+                    </li>
+                    <?php endif; ?>
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
                 <a href="#" class="nav-link active">
                   <i class="fas fa-clipboard-list"></i>
@@ -380,14 +409,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
+
+
+
+          </li>
+
+
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('asignaciones.index')); ?>" class="nav-link">
                       <i class="fas fa-edit"></i>
                       <p>Asignacion Academica</p>
                     </a></li>
                   </li>
-                  <?php endif; ?>
+
 
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.index')): ?>
                   <li class="nav-item">

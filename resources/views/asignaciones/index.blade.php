@@ -1,5 +1,3 @@
-
-
 @extends('admin.index2')
 
 @section('crear')
@@ -12,7 +10,18 @@
 
 
 @section('title')
-
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <div class="input-group">
+        {{Form::open(['route'=>'asignaciones.index', 'method'=>'GET','class'=>'navbar-form nabvar-left','role'=>'buscador']) }}
+      {{ Form::text('categoria',null, ['class'=>'form-control', 'placeholder'=>'Buscar','style'=>'width:80px'] ) }}
+   <span class="input-group-btn">
+   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+   </span>
+   {{ Form::close() }}
+    </div>
+    </div>
+</div>
 @endsection
 
 
@@ -61,35 +70,31 @@
                 <div class="col-md-6">
                     <a href="{{ route('asignaciones.index') }}"><i class="fa fa-align-justify"></i> Listado asignaciones</a>
                 </div>
-            </div>
+
+
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grado</th>
-           <th scope="col">Categoria</th>
+           <th scope="col">Grados</th>
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
-           <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;Estado</th>
+
+           <th colspan="3">&nbsp;Opcion</th>
          </tr>
-       </thead>
+
        <tbody>
 
-        <?php $i=0 ?>
         @foreach ($asignaciones as $asignacion)
-
            <tr>
-            <td id="gradoTxt">{{$asignacion->grado}}</td>
-            <td>{{$asignacion->categoria}}</td>
-            <td>{{$page_data[$i]['materias']}}</td>
-            <td id="periodoTxt">{{$asignacion->nombre_periodo}}</td>
-            <?php $i++ ?>
+            <td>{{ $asignacion->grado}}</td>
+            <td>{{ $asignacion->materias}}</td>
+            <td>{{ $asignacion->periodos}}</td>
 
 
             <td width="10px">
                 @can('asignaciones.edit')
 
-                <a href="{{ route('asignaciones.edit', $asignacion->id) }}" class="btn btn-default btn-flat" title="Editar">
+                <a href="{{ route('asignaciones.edit', $asignacion->grado) }}" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   @endcan
@@ -97,7 +102,7 @@
                 <td width="10px">
                 @can('asignaciones.show')
 
-                <a href="{{ route('asignaciones.show', $asignacion->id) }}" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="{{ route('asignaciones.show', $asignacion->grado) }}" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
@@ -105,8 +110,8 @@
                 </td>
                 <td width="10px">
                 @can('asignaciones.destroy')
-                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
-  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
+                {!! Form::open(['route' => ['asignaciones.destroy', $asignacion->grado],
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el grado?")']) !!}
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
   </button>
@@ -119,21 +124,9 @@
 
        </tbody>
       </table>
-      <br>
-            <div class="row">
-              <div class="mr-auto">
 
-              </div>
-            </div>
 </div>
 </div>
 </div>
 </div>
 @endsection
-
-@section('scripts')
-
-<script>
-
-</script>
-@stop
