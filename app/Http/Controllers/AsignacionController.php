@@ -187,7 +187,10 @@ class AsignacionController extends Controller
      } */
 
          Session::flash('success_message', 'asignacione guardado con éxito');
+
+
          //return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
+
          return redirect()->route('asignaciones.index');
     }
 

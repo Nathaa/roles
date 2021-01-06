@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
   <script src="{{ asset('js/funciones.js') }}"></script>
   @yield('css_role_page')
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -337,6 +338,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     @endcan
 
+
+          <li class="nav-item">
+            <input type="checkbox" name="list" id="nivel1-3">
+            @can('reportes.index')
+            <label for="nivel1-3"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
+            @endcan
+
+            <ul class="interior">
+                <li><a href="{{ route ('notas.confignotas') }}">Ingreso de Notas</a></li>
+              <li><a href="{{ route ('reportes.index') }}">Reportes</a></li>
+
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
@@ -375,7 +387,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 <ul class="nav nav-treeview">
 
-                    @can('asignaciones.index')
+
+
+            <ul class="interior">
+              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
+              <li><a href="{{ route ('docentegrados.index') }}">Asignacion Docentes</a></li>
+              <li><a href="{{ route ('notas.confignotas') }}">Notas Materias</a></li>
+            </ul>
+          </li>
+
                   <li class="nav-item">
                       <li><a href="{{ route ('asignaciones.index')}}" class="nav-link">
                       <i class="fas fa-edit"></i>

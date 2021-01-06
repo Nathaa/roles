@@ -67,18 +67,21 @@
            <th scope="col">Grado</th>
            <th scope="col">Categoria</th>
            <th scope="col">Materias</th>
+           <th scope="col">Periodos</th>
            <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;Estado</th>
+           <th colspan="3">&nbsp;</th>
          </tr>
        </thead>
        <tbody>
 
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
            <tr>
-            <td><?php echo e($asignacion->grado); ?> <?php echo e($asignacion->seccion); ?></td>
+            <td><?php echo e($asignacion->grado); ?></td>
             <td><?php echo e($asignacion->categoria); ?></td>
             <td><?php echo e($asignacion->nombre); ?></td>
-           
+            <td><?php echo e($asignacion->nombre_periodo); ?></td>
+
+
 
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
@@ -89,13 +92,7 @@
                   <?php endif; ?>
                 </td>
                 <td width="10px">
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.show')): ?>
 
-                <a href="<?php echo e(route('asignaciones.show', $asignacion->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
-                    <i class="fas fa-eye" aria-hidden="true"></i>
-                  </a>
-
-                <?php endif; ?>
                 </td>
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.destroy')): ?>
@@ -118,7 +115,7 @@
       <br>
             <div class="row">
               <div class="mr-auto">
-               
+
               </div>
             </div>
 </div>

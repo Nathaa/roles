@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
+
   <title>Sistema Academico</title>
 
   <!-- Font Awesome Icons -->
@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
   <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -32,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="<?php echo e(route('admin')); ?>" class="nav-link">Pagina Principal</a>
@@ -179,12 +180,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-1">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
-            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expediente Alumna</label>
+            <label for="nivel1-1"><i class="nav-icon fas fa-folder-open"></i>Expedientes</label>
             <?php endif; ?>
 
             <ul class="interior">
-              <li><a href="<?php echo e(route ('estudiantes.index')); ?>">Expediente Alumna</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="<?php echo e(route ('estudiantes.index')); ?>">Alumnas</a></li>
+              <li><a href="<?php echo e(route ('docentes.index')); ?>">Docentes</a></li>
             </ul>
           </li>
 
@@ -197,141 +198,68 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <ul class="interior">
               <li><a href="<?php echo e(route ('usuarios.index')); ?>">Usuarios</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="<?php echo e(route ('roles.index')); ?>">Roles</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-3">
-
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
-            <label for="nivel1-3"><i class="nav-icon fas fa-lock"></i>Roles</label>
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reportes.index')): ?>
+            <label for="nivel1-3"><i class="nav-icon fas fa-folder-open"></i>Notas</label>
             <?php endif; ?>
 
             <ul class="interior">
-              <li><a href="<?php echo e(route ('roles.index')); ?>">Roles</a></li>
-              <li><a href="">Submenu2</a></li>
+                <li><a href="<?php echo e(route ('notas.confignotas')); ?>">Ingreso de Notas</a></li>
+              <li><a href="<?php echo e(route ('reportes.index')); ?>">Reportes</a></li>
+
             </ul>
           </li>
-
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-4">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
-            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Periodos</label>
+            <label for="nivel1-4"><i class="nav-icon fas fa-calendar-alt"></i>Informacion Academica</label>
             <?php endif; ?>
 
             <ul class="interior">
               <li><a href="<?php echo e(route ('periodos.index')); ?>">Periodos</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="<?php echo e(route ('anios.index')); ?>">Años</a></li>
+              <li><a href="<?php echo e(route ('grados.index')); ?>">Grados</a></li>
+              <li><a href="<?php echo e(route ('materias.index')); ?>">Materias</a></li>
+              <li><a href="<?php echo e(route ('turnos.index')); ?>">Turnos</a></li>
+              <li><a href="<?php echo e(route ('planesEstudio.index')); ?>">Planes de Estudio</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-5">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
-            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Matrículas</label>
+            <label for="nivel1-5"><i class="nav-icon fas fa-folder-open"></i>Proceso de Matrícula</label>
             <?php endif; ?>
 
             <ul class="interior">
               <li><a href="<?php echo e(route ('matriculas.index')); ?>">Matrículas</a></li>
-              <li><a href="">Submenu2</a></li>
+
             </ul>
           </li>
 
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-6">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
-            <label for="nivel1-6"><i class="nav-icon fas fa-calendar-alt"></i>Años</label>
-            <?php endif; ?>
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('anios.index')); ?>">Años</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-7">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
-            <label for="nivel1-7"><i class="nav-icon fas fa-store-alt"></i>Grados</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('grados.index')); ?>">Grados</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-8">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
-            <label for="nivel1-8"><i class="nav-icon  fas fa-book-reader"></i>Materias</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('materias.index')); ?>">Materias</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-9">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
-            <label for="nivel1-9"><i class="nav-icon   fas fa-clock"></i>Turnos</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('turnos.index')); ?>">Turnos</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-10">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
-            <label for="nivel1-10"><i class="nav-icon  fas fa-store-alt"></i>Docentes</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('docentes.index')); ?>">Docentes</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-11">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planEstudio.index')): ?>
-            <label for="nivel1-11"><i class="nav-icon fas fa-book"></i>Planes de Estudio</label>
-            <?php endif; ?>
-
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('planesEstudio.index')); ?>">Planes de Estudio</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
           <li class="nav-item">
             <input type="checkbox" name="list" id="nivel1-12">
             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
-            
-            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamiento Académico</label>  
+
+            <label for="nivel1-12"><i class="nav-icon fas fa-book"></i>Planeamientos Académico</label>
             <?php endif; ?>
 
             <ul class="interior">
-              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Planeamiento Academico</a></li>
-              <li><a href="">Submenu2</a></li>
+              <li><a href="<?php echo e(route ('asignaciones.index')); ?>">Asignacion Academica</a></li>
+              <li><a href="<?php echo e(route ('docentegrados.index')); ?>">Asignacion Docentes</a></li>
+              <li><a href="<?php echo e(route ('notas.confignotas')); ?>">Notas Materias</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <input type="checkbox" name="list" id="nivel1-13">
-            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.index')): ?>
-            <label for="nivel1-13"><i class="nav-icon fas fa-book"></i>Asig. Docente-Grado</label>
-            <?php endif; ?>
 
-            <ul class="interior">
-              <li><a href="<?php echo e(route ('docentegrados.index')); ?>">Asig. Docente-Grado</a></li>
-              <li><a href="">Submenu2</a></li>
-            </ul>
-          </li>
+
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -86,7 +86,7 @@
                 <td width="10px">
                   @can('anios.destroy')
                   {!! Form::open(['route' => ['anios.destroy', $anio->id],
-                  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']) !!}
+                  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el Año? ")']) !!}
                   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
                     <i class="fas fa-trash" aria-hidden="true"></i>
                   </button>
