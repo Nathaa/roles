@@ -1,3 +1,5 @@
+
+
 {!! csrf_field() !!}
 
 
@@ -7,7 +9,7 @@ Nueva Planificacion Academica
 
 <form>
 
-
+    <div style="float:left;width:50%;">
 
     <div class="row">
         <div class="col">
@@ -47,6 +49,9 @@ Nueva Planificacion Academica
          </div>
         </div>
     </div>
+
+    </div>
+</form>
 <br>
 
 <hr>

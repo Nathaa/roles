@@ -24,9 +24,9 @@ class GradosUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-        'grado' => 'max:15|required',
+        'grado' => 'max:30|required',
         'seccion' =>'max:3|required',
-        'categoria' =>'max:20|required',
+        'categoria' =>'max:30|required',
 
         ];
     }

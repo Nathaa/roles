@@ -35,39 +35,82 @@ class AsignacionController extends Controller
 
         if ($request)
         {
+            //------------------Esto pinta la primera forma de como se presentan los datos ordenados en la tabla
             $asignaciones=DB::table('asignacions')
-             ->join('grados','grados.id','=','asignacions.grados_id','left')
-             ->join('materias','materias.id','=','asignacions.materias_id','left')
-             ->join('periodos','periodos.id','=','asignacions.periodos_id','left')
-             ->select ('asignacions.id','periodos.nombre_periodo','materias.nombre','grados.grado','grados.seccion','grados.categoria')
-
+             ->join('grados','grados.id','=','asignacions.grados_id')
+             ->join('materias','materias.id','=','asignacions.materias_id')
+             ->join('periodos','periodos.id','=','asignacions.periodos_id')
+             ->select ('asignacions.id','periodos.nombre_periodo','grados.grado','grados.seccion','grados.categoria')
+             ->distinct('grados.grado','periodos.nombre_periodo')
              ->get()->toArray();
+              //dd($asignaciones);
 
-           return view('asignaciones.index', ['asignaciones' => $asignaciones]);
+             $Trimestres=DB::table('asignacions')
+             ->join('grados','grados.id','=','asignacions.grados_id')
+             ->join('materias','materias.id','=','asignacions.materias_id')
+             ->join('periodos','periodos.id','=','asignacions.periodos_id')
+             ->select ('periodos.nombre_periodo','grados.grado')
+             ->distinct('grados.grado','periodos.nombre_periodo')
+             ->get()->toArray();
+            //dd($Trimestres);
 
+            $materias = array();
+            for($i=0;$i<count($Trimestres);$i++){
+                $materias[$i]= $this->buscarMateriasPorGradoPeriodo($Trimestres[$i]->grado,$Trimestres[$i]->nombre_periodo);
+             }
+             //dd($materias);
+             $page_data=array();
+             for($l=0;$l<count($materias);$l++){
+                 $cad='';
+                 $concatenado='';
+                 $nombre_periodo="";
+                 $grado="";
+                for($j=0;$j<count($materias[$l]);$j++){
+                    $cad=$materias[$l][$j]->nombre;
+                    $concatenado.='|'.$cad;
+                    $nombre_periodo=$materias[$l][$j]->nombre_periodo;
+                    $grado=$materias[$l][$j]->grado;
+                }//fin del for interno
+                $page_data[$l]=array(
+                    'nombre_periodo'=>$nombre_periodo,
+                    'grado'=>$grado,
+                    'materias'=>$concatenado,
+                );
+             }//fin del for principal
+             //dd($page_data);
+              //dd($page_data[0]['materias']);
+           return view('asignaciones.index', ['asignaciones' => $asignaciones,'page_data'=>$page_data]);
           }
-          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
-          //declaro un arreglo
-          //$arregloMaterias=array();
-          //for($i=0;$i<count($gradosRegistrados);$i++){
-           //$match=['grados_id' => $gradosRegistrados[$i]];
-           //$materiasPorGrado=Asignacion::where($match)->select('materias_id')->distinct()->get()->toArray();
-           //$values=Arr::flatten($materiasPorGrado);
-           //$arregloMaterias[$i]=implode(",", $values);
-         // }
+    }//fin de index
 
-          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
-          //declaro un arreglo
-          //$arregloPeriodos=array();
-          //for($i=0;$i<count($gradosRegistrados);$i++){
-          // $match=['grados_id' => $gradosRegistrados[$i]];
-           //$periodosPorGrado=Asignacion::where($match)->select('periodos_id')->distinct()->get()->toArray();
-           //$values=Arr::flatten($periodosPorGrado);
-           //$arregloPeriodos[$i]=implode(",", $values);
-          //}
+    public function buscarMateriasPorGradoPeriodo($gradoTxt,$periodoTxt){
+        //capturar el grado y el periodo para hacer la busqueda de los grados y
+        //mandar el array para pintar los select
+        //los datos enviados por post son del tipo string, hay que buscar primero que id tienen
+        $gradoId=Grado::where('grado',$gradoTxt)->select('id')->get()->toArray();
+        $periodoId=Periodo::where('nombre_periodo',$periodoTxt)->select('id')->get()->toArray();
+        $match=['grados.id'=>$gradoId,'periodos.id'=>$periodoId];
+        $mats=DB::table('asignacions')
+        ->join('grados','grados.id','=','asignacions.grados_id')
+        ->join('periodos','periodos.id','=','asignacions.periodos_id')
+        ->join('materias','materias.id','=','asignacions.materias_id')
+        ->where($match)
+        ->select('materias.nombre','periodos.nombre_periodo','grados.grado')
+        //->orderBy('grados.id')
+        ->get()->toArray();
+        //dd($mats);
+        return $mats;
+        //dd($periodoId);
+        //dd($gradoId);
+        //$match=['grados_id'=>$gradoId,'periodos_id'=>$periodoId];
+        //$materias=Asignacion::where($match)->select('materias_id')->get()->toArray();
+        //dd($mats);
+        //buscar las materias y recuperar su nombre
+        //$materiasTxt=array();
+        /* for($i=0;i<count($materias);$i++){
 
-
-    }
+        } */
+    }//fin del servicui de busqueda de materias por periodo
 
 
 
@@ -101,7 +144,32 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        $loop = $request->get('periodo');
+        //dd($request);
+        $idGrado=$request->grados_id;
+        $periodos=$request->periodo;
+        $materias=$request->materia;
+
+
+        for($i=0;$i<count($materias);$i++){
+            for($n=0;$n<count($periodos);$n++){
+                //$nuevaAsignacion=new Asignacion;
+                //$nuevaAsignacion->grados_id=$idGrado;
+                //$nuevaAsignacion->materias_id=(int)$materias[$i];
+                //$nuevaAsignacion->periodos_id=(int)$periodos[$n];
+                $nuevaAsignacion=Asignacion::create(['grados_id'=>$idGrado,
+                                                    'materias_id'=>$materias[$i],
+                                                    'periodos_id'=>$periodos[$n],
+                                                    ]);
+                //dd($nuevaAsignacion->periodos_id);
+                //$nuevaAsignacion->save;
+                $nuevaAsignacion->save();
+            }
+        }
+
+        //dd($nuevaAsignacion);
+        //dd($periodos);
+        //dd($arregloPeriodosconComa);
+        /* $loop = $request->get('periodo');
         $loop2 = $request->get('materia');
      foreach ($loop as $value){
          $resortfacility = new Asignacion;
@@ -116,9 +184,13 @@ class AsignacionController extends Controller
          $resortfacility->grados_id = $request->get('grados_id');
          $resortfacility->materias_id = $value;
          $resortfacility->save();
-     }
+     } */
 
          Session::flash('success_message', 'asignacione guardado con éxito');
+
+
+         //return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
+
          return redirect()->route('asignaciones.index');
     }
 
@@ -130,10 +202,13 @@ class AsignacionController extends Controller
      */
     public function show($id)
     {
-        $asignaciones=Asignacion::findOrFail($id);
-        $grados = Grado::get();
-        $materias = Materia::get();
-        $periodos = Periodo::get();
+        $asignaciones=DB::table('asignacions')
+        ->join('grados','grados.id','=','asignacions.grados_id')
+        ->join('materias','materias.id','=','asignacions.materias_id')
+        ->join('periodos','periodos.id','=','asignacions.periodos_id')
+        ->select ('asignacions.id','periodos.nombre_periodo','grados.grado','grados.seccion','grados.categoria')
+
+        ->get()->toArray();
         return view('asignaciones.show', compact('asignaciones','grados','materias','periodos'));
     }
 
@@ -185,9 +260,17 @@ class AsignacionController extends Controller
         //
 
        // $asignacione=asignacione::findOrFail($id);
-         Asignacion::destroy($id);
+         //Asignacion::destroy($id);
+         //el id q recibe se trata solo de la asignacion de la materia a un grado a un periodo
+         //entonces hay que buscar las materias por grado y periodo para eliminar
+         //$GradoMateria=DB::table('asignacions')
+         $GradoMateria=Asignacion::where('id',$id)->select('grados_id','periodos_id')->get()->toArray();
+         //dd($GradoMateria[0]['grados_id']);
+         //dd($GradoMateria[0]);
+         $match=['grados_id'=>$GradoMateria[0]['grados_id'],'periodos_id'=>$GradoMateria[0]['periodos_id']];
+         Asignacion::where($match)->delete();
 
-        Session::flash('danger_message', 'asignacione eliminado correctamente');
+        Session::flash('danger_message', 'asignaciones eliminadas correctamente');
         return back();
     }
 }

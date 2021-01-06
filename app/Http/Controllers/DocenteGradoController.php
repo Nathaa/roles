@@ -7,6 +7,7 @@ use App\Docente;
 use App\Anio;
 use App\Grado;
 use App\DocenteGrado;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Session;
@@ -29,22 +30,27 @@ class DocenteGradoController extends Controller
 
     public function index(Request $request)
     {
-    
+
 
         $docentegrados=DocenteGrado::paginate();
 
         if ($request)
-       {
-        $query=trim($request->get('search'));
-           $docentegrados= DocenteGrado::where('id', 'LIKE', '%' . $query . '%')
-          ->orderBy('id','asc')
-          ->paginate(5);
-          return view('docentegrados.index', ['docentegrados' => $docentegrados, 'search' => $query]);
+        {
+            $docentegrados=DB::table('docente_grados')
+             ->join('asignacions','asignacions.id','=','docente_grados.asignacions_id','left')
+             ->join('grados','grados.id','=','asignacions.grados_id','left')
+             ->join('docentes','docentes.id','=','docente_grados.docentes_id','left')
+             ->join('anios','anios.id','=','docente_grados.anios_id','left')
+             ->select ('docente_grados.id','docentes.nombre','grados.grado','grados.seccion','anios.año')
+
+             ->get()->toArray();
+
+             return view('docentegrados.index', ['docentegrados' => $docentegrados]);
+
+
         }
 
     }
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -53,12 +59,17 @@ class DocenteGradoController extends Controller
     public function create()
     {
         //
-       
-        $asignaciones = Asignacion::get();
         $docentes = Docente::get();
         $anios = Anio::get();
 
-        return view('docentegrados.create', compact('asignaciones','docentes','anios'));
+        $asignaciones=DB::table('asignacions')
+
+        ->join('grados','grados.id','=','asignacions.grados_id','left')
+        ->select('asignacions.id','grados.grado','grados.seccion')
+        ->distinct('grados.grado')
+        ->get()->toArray();
+
+        return view('docentegrados.create', ['asignaciones' => $asignaciones],compact('docentes','anios'));
     }
 
     /**
@@ -104,12 +115,13 @@ class DocenteGradoController extends Controller
     public function edit($id)
     {
         //
-        
+
         $docentegrado=DocenteGrado::findOrFail($id);
         $anios = Anio::get();
         $docentes = Docente::get();
         $asignaciones = Asignacion::get();
-        return view('docentegrados.edit', compact('docentegrado','anios','docentes','asignaciones'));
+        $grados = Grado::get();
+        return view('docentegrados.edit', compact('docentegrado','anios','docentes','asignaciones','grados'));
     }
 
     /**
@@ -124,7 +136,7 @@ class DocenteGradoController extends Controller
 
         $docentegrado=DocenteGrado::findOrFail($id);
         $docentegrado->fill($request->all())->save();
-        
+
 
         //$docente->update($request->all());
         //$docente->turnos()->sync($request->get('turnos'));

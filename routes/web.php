@@ -129,6 +129,8 @@ Route::get('matricula/tipoMatricula','MatriculasController@tipoMatricula')->name
 Route::get('matricula/anioLectivoSiguiente','MatriculasController@anioLectivoSiguiente')->name('matriculas.anioLectivoSiguiente');
 Route::get('matricula/{grado}/grado/{turno}/turno/{seccion}/seccion/{anio}/anio','MatriculasController@buscarGradoId')->name('matriculas.buscarGradoId');
 Route::get('/grado/{gradoId}','MatriculasController@buscarGradoDatos');
+//para saber cuantas alumnas hay en periodo normal, es usado en el modal que muestra indicadores de cuantos hay inscritos y cuantos faltan
+Route::get('/alumnasCont/{anio_id}','MatriculasController@contAlumNormal');//->middleware('can:matriculas.create');
 
 
 //Anios

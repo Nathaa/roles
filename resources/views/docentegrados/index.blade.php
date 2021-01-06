@@ -36,11 +36,7 @@
 <div class="container">
 
     <h6>
-   @if($search)
-  <div class="alert alert-info" role="alert">
-    Los resultados de tu busqueda {{ $search }} son
-  </div>
-  @endif
+
  </h6>
 
   <div class="container-fluid">
@@ -68,9 +64,10 @@
           <tbody>
             @foreach ($docentegrados as $docentegrado)
              <tr>
-              <td>{{$docentegrado->docentes_id}}</td>
-              <td>{{$docentegrado->asignacions_id}}</td>
-               <td>{{$docentegrado->anios_id}}</td>
+              <td>{{$docentegrado->nombre}}</td>
+              <td>{{$docentegrado->grado}}{{$docentegrado->seccion}}</td>
+              <td>{{$docentegrado->año}}</td>
+
               <td width="10px">
                   @can('docentegrados.edit')
 
@@ -106,7 +103,7 @@
         <br>
             <div class="row">
               <div class="mr-auto">
-                {{$docentegrados->links()}}
+
               </div>
             </div>
       </div>

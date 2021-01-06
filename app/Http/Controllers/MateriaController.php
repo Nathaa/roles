@@ -88,7 +88,12 @@ class MateriaController extends Controller
     {
 
         $materia=materia::findOrFail($id);
-        return view('materias.edit',compact('materia'));
+        //dd($materia);
+        $flag=TRUE;
+        $estadoOriginal=$materia->estado;
+        //dd($estadoOriginal);
+        //return view('materias.edit',compact('materia'));
+        return view('materias.edit',compact('materia','estadoOriginal','flag'));
     }
 
     /**

@@ -15,7 +15,7 @@ class DocenteGrado extends Model
         'docentes_id','asignacions_id', 'anios_id',
 
     ];
-
+    protected  $table = 'docente_grados';
     protected $dates = [
         'created_at',
         'updated_at',
@@ -23,8 +23,9 @@ class DocenteGrado extends Model
 
     public function asignacion()
     {
-        return $this->hasOne(Asignacion::class);
+        return $this->belongsTo('App\Asignacion', 'asignacions_id');
     }
+
     public function docente()
     {
         return $this->hasOne(Docente::class);

@@ -12,7 +12,7 @@
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h5><strong>{{ $grados->grado  }} {{$grados->seccion}} </strong> </h5>
+<h5><strong></strong> </h5>
 
 @endsection
 
@@ -42,11 +42,16 @@
 
                                 <tbody>
 
+
                                     <tr>
-                                        <td><p><strong>Grado: </strong> {{ $grados->grado }}{{ $grados->seccion }}</p></td>
-                                            <td><p><strong>Categoria: </strong> {{ $grados->categoria }}</p></td>
-                                                <td><p><strong>Materia: </strong> {{ $materias->nombre }}</p></td>
-                                                <td><p><strong>Periodo: </strong> {{ $periodos->nombre_periodo }}</p></td>
+                                        @foreach ($grados as $grado)
+                                        <td><p><strong>Grado: </strong> {{ $grado->grado }}{{ $grado->seccion }}</p></td>
+                                            <td><p><strong>Categoria: </strong> {{ $grado->categoria }}</p></td>
+                                            @endforeach
+                                            @foreach ($materias as $materia)
+                                            <td><p><strong>Materia: </strong> {{ $materia->nombre }}</p></td>
+                                            @endforeach
+
                                     </tr>
 
                                 </tbody>

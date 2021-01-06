@@ -37,11 +37,7 @@
 <div class="container">
 
     <h6>
-   <?php if($search): ?>
-  <div class="alert alert-info" role="alert">
-    Los resultados de tu busqueda <?php echo e($search); ?> son
-  </div>
-  <?php endif; ?>
+
  </h6>
 
   <div class="container-fluid">
@@ -69,9 +65,10 @@
           <tbody>
             <?php $__currentLoopData = $docentegrados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $docentegrado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
              <tr>
-              <td><?php echo e($docentegrado->docentes_id); ?></td>
-              <td><?php echo e($docentegrado->asignacions_id); ?></td>
-               <td><?php echo e($docentegrado->anios_id); ?></td>
+              <td><?php echo e($docentegrado->nombre); ?></td>
+              <td><?php echo e($docentegrado->grado); ?><?php echo e($docentegrado->seccion); ?></td>
+              <td><?php echo e($docentegrado->año); ?></td>
+
               <td width="10px">
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.edit')): ?>
 
@@ -109,7 +106,6 @@
         <br>
             <div class="row">
               <div class="mr-auto">
-                <?php echo e($docentegrados->links()); ?>
 
               </div>
             </div>

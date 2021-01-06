@@ -20,6 +20,7 @@ class Estudiante extends Model
         'fecha_nacimiento'=>'date:Y-m-d',
         'created_at',
         'updated_at',
+        
     ];
 
 }

@@ -15,7 +15,7 @@
 <form id="formulario">
 
         <div class="row">
-                
+
                     <div class="col">
                     <div class="form-group">
             {!! Form::label('docentes_id', 'Seleccione el Docente') !!}
@@ -24,6 +24,7 @@
                     <option value="">--Docentes--</option>
                     @foreach ($docentes as $docente)
                     <option value="{{ $docente->id }}"> {{ $docente->nombre}}</option>
+
                     @endforeach
                 </select>
                 <div class="invalid-feedback" style="display:none">
@@ -41,8 +42,14 @@
             <div class="form-group">
                 <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
                     <option value="">--Asignaciones--</option>
+
                     @foreach ($asignaciones as $asignacion)
-                    <option value="{{ $asignacion->id }}"> {{ $asignacion->id }}</option>
+                    <option value="{{ $asignacion->id }}">
+                        {{ $asignacion->grado}}{{ $asignacion->seccion}}
+
+                      </option>
+
+
                     @endforeach
                 </select>
                 <div class="invalid-feedback" style="display:none">
@@ -71,7 +78,7 @@
 
 
         </div>
-        
+
 
 
 <br>
@@ -107,3 +114,6 @@
 </script>
 <script src="{{ asset('js/validar-form-docente.js') }}"></script>
 @stop
+
+
+

@@ -67,7 +67,9 @@
 
            <th scope="col">Grado</th>
            <th scope="col">Seccion</th>
-           <th colspan="3">&nbsp;Opciones</th>
+           <th scope="col">Categoria</th>
+           <th scope="col">Turno</th>
+           <th colspan="4">&nbsp;Opciones</th>
 
          </tr>
        </thead>
@@ -76,6 +78,16 @@
            <tr>
             <td>{{$grado->grado}}</td>
             <td>{{$grado->seccion}}</td>
+            <td>{{$grado->categoria}}</td>
+            @if($grado->turnos_id==1)   
+              <td>Matutino</td>
+            @endif
+            @if($grado->turnos_id==2)   
+              <td>Vespertino</td>
+            @endif      
+            @if($grado->turnos_id==3)   
+              <td>Completo</td>
+            @endif        
             <td width="10px">
                 @can('grados.edit')
 
@@ -121,3 +133,10 @@
 </div>
 </div>
 @endsection
+
+@section('scripts')
+
+<script>
+  
+</script>
+@stop

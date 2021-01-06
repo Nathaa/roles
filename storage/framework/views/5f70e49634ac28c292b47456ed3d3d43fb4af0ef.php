@@ -10,7 +10,7 @@
 </div><!-- /.col -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('title'); ?>
-<h5><strong><?php echo e($grados->grado); ?> <?php echo e($grados->seccion); ?> </strong> </h5>
+<h5><strong></strong> </h5>
 
 <?php $__env->stopSection(); ?>
 
@@ -40,11 +40,16 @@
 
                                 <tbody>
 
+
                                     <tr>
-                                        <td><p><strong>Grado: </strong> <?php echo e($grados->grado); ?><?php echo e($grados->seccion); ?></p></td>
-                                            <td><p><strong>Categoria: </strong> <?php echo e($grados->categoria); ?></p></td>
-                                                <td><p><strong>Materia: </strong> <?php echo e($materias->nombre); ?></p></td>
-                                                <td><p><strong>Periodo: </strong> <?php echo e($periodos->nombre_periodo); ?></p></td>
+                                        <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <td><p><strong>Grado: </strong> <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?></p></td>
+                                            <td><p><strong>Categoria: </strong> <?php echo e($grado->categoria); ?></p></td>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <td><p><strong>Materia: </strong> <?php echo e($materia->nombre); ?></p></td>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                     </tr>
 
                                 </tbody>
