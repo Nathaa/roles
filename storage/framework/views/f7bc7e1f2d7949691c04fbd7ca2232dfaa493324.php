@@ -70,13 +70,13 @@
 </div>
 
         <ol class="float-sm-right">
-            <br><?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled'])); ?>
+            <br><?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit'])); ?>
 
         </ol>
 
 </form>
 <?php $__env->startSection('scripts'); ?>
-<script src="<?php echo e(asset('js/validar-form-usuarios.js')); ?>"></script>
+
 <?php $__env->stopSection(); ?>
 
 
