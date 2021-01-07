@@ -258,6 +258,8 @@ Route::post('notasPeriodo/','NotasController@notasPeriodo')->name('notas.notasPe
 ->middleware('can:notas.notasPeriodo');
 Route::post('guardarNotasIngresadas/','NotasController@guardarNotasIngresadas')->name('notas.guardarNotasIngresadas')
 ->middleware('can:notas.guardarNotasIngresadas');
+Route::get('verPromedios/','NotasController@verPromedios')->name('notas.verPromedios')
+->middleware('can:notas.verPromedios');
 
 
 //reportes

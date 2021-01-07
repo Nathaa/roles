@@ -17,19 +17,21 @@
             </div>
 
     <table class="table table-bordered thead-dark table-hover table-sm">
+    <thead>
         <tr>
           <th scope="col">Materia</th>
           <th scope="col">Grado</th>
           <th scope="col">Digitar Notas de la materia</th>
-          <th colspan="3">&nbsp;Asignar # de notas</th>
+          <th scope="col">Asignar # de notas</th>
+          <th scope="col">Ver Notas y Promedios</th>
         </tr>
         </thead>
         <tbody>
           @foreach ($materias as $materia)
            <tr>
-            <td width="35%">{{$materia->nombre}}</td>
+            <td width="30%">{{$materia->nombre}}</td>
 
-                <td width="35%">
+                <td width="30%">
                     {{$materia->grado}}
                     {{ $materia->seccion}}
                     {{ $materia->categoria}}
@@ -45,6 +47,14 @@
                     @can('notas.editarnotas')
 
                     <a href="{{ route('notas.editarnotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre]) }}" class="btn btn-default btn-flat" title="Editar">
+                        <i class="fa fa-wrench" aria-hidden="true"></i>
+                      </a>
+                      @endcan
+                </td>
+
+                <td>
+                    @can('notas.verPromedios')
+                    <a href="{{ route('notas.verPromedios', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria]) }}" class="btn btn-default btn-flat" title="ver">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                       </a>
                       @endcan
