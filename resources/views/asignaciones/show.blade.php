@@ -29,13 +29,12 @@
                         </div>
                     @endif
 
-                    
 
 
-<div class="alert alert-primary" role="alert">
-        Datos del Año
-</div>
 
+                    <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+                        Asignacion Academica
+                </div>
 
 <form>
 
@@ -46,7 +45,7 @@
                                 @foreach($grados as $grado)
 
 
-                                           <option value="{{ $grado->id }}",null @foreach ($grad as $g) <?php  if($g->grados_id === $grado->id) { ?> selected  <?php } ?> @endforeach>
+                                           <option value="{{ $grado->id }}",null @foreach ($grad as $g) <?php  if($g->grados_id == $grado->id) { ?> selected  <?php } ?> @endforeach>
                                               {{ $grado->grado }}{{ $grado->seccion }}
 
                                             </option>
@@ -57,37 +56,44 @@
 
         </div>
 
-        <div class="col">
-            <div class="form-group">
-                <ul class="list-unstyled">
-                {{  Form::label('periodos_id','Periodos') }}
-                <div>
-                 @foreach($periodos as $periodo)
-                 
-        <label>{{$periodo->nombre}}</label>
-        <input disabled="disabled" type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}" @foreach ($asignaciones as $asignacion) <?php  if($asignacion->periodos_id === $periodo->id) { ?> checked <?php } ?> @endforeach>
-        
-            @endforeach
-          </ul>
-         </div>
-        </div>
+
     </div>
 <br>
-<br>
-    <div class="form-group">
 
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Periodos
+</div>
+    <div class="col">
+        <div class="form-group">
+            <ul class="list-unstyled">
 
-        {{  Form::label('materias_id','Materias') }}
-        <div>
+            <div>
+             @foreach($periodos as $periodo)
+
+    <label>{{$periodo->nombre_periodo}}</label>
+    <input disabled="disabled" type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}" @foreach ($asignaciones as $asignacion) <?php  if($asignacion->periodos_id == $periodo->id) { ?> checked <?php } ?> @endforeach>
+
+        @endforeach
+      </ul>
+     </div>
+    </div>
+
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Materias
+</div>
+
 
          @foreach($materias as $materia)
- <label>{{$materia->nombre}}</label>
- <input disabled="disabled" type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}" @foreach ($asignaciones2 as $asignacion2) <?php  if($asignacion2->materias_id === $materia->id) { ?> checked <?php } ?> @endforeach>
-    @endforeach
-</ul>
- </div>
+         <div class="checkbox col-sm-6">
 
+ <input disabled="disabled" type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}" @foreach ($asignaciones2 as $asignacion2) <?php  if($asignacion2->materias_id == $materia->id) { ?> checked <?php } ?> @endforeach>
+ <label>{{$materia->nombre}}</label>
 </div>
+ @endforeach
+</ul>
+
+
+
 
 
 

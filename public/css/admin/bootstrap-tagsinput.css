@@ -12,6 +12,11 @@
     cursor: text;
 }
 
+.widthLi {
+    display: inline-block;
+    width: 45%
+}
+
 .bootstrap-tagsinput input {
     border: none;
     box-shadow: none;

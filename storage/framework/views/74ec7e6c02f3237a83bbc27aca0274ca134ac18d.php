@@ -8,21 +8,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-<div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-    <div class="input-group">
-        <?php echo e(Form::open(['route'=>'asignaciones.index', 'method'=>'GET','class'=>'navbar-form nabvar-left','role'=>'buscador'])); ?>
 
-      <?php echo e(Form::text('categoria',null, ['class'=>'form-control', 'placeholder'=>'Buscar','style'=>'width:80px'] )); ?>
-
-   <span class="input-group-btn">
-   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-   </span>
-   <?php echo e(Form::close()); ?>
-
-    </div>
-    </div>
-</div>
 <?php $__env->stopSection(); ?>
 
 
@@ -135,5 +121,7 @@
 </div>
 </div>
 </div>
+</div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/index.blade.php ENDPATH**/ ?>
