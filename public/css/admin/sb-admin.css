@@ -264,6 +264,11 @@ textarea {
     line-height: inherit;
 }
 
+.widthLi {
+    display: inline-block;
+    width: 45%
+}
+
 button,
 input {
     overflow: visible;
@@ -3231,6 +3236,11 @@ input[type=button].btn-block {
 
 .dropleft .dropdown-toggle::after {
     display: none;
+}
+
+.widthLi {
+    display: inline-block;
+    width: 45%
 }
 
 .dropleft .dropdown-toggle::before {
