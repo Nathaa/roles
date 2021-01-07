@@ -8,7 +8,21 @@
 
 
 <?php $__env->startSection('title'); ?>
+<div class="title_right">
+    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+    <div class="input-group">
+        <?php echo e(Form::open(['route'=>'asignaciones.index', 'method'=>'GET','class'=>'navbar-form nabvar-left','role'=>'buscador'])); ?>
 
+      <?php echo e(Form::text('categoria',null, ['class'=>'form-control', 'placeholder'=>'Buscar','style'=>'width:80px'] )); ?>
+
+   <span class="input-group-btn">
+   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+   </span>
+   <?php echo e(Form::close()); ?>
+
+    </div>
+    </div>
+</div>
 <?php $__env->stopSection(); ?>
 
 
@@ -60,35 +74,31 @@
                 <div class="col-md-6">
                     <a href="<?php echo e(route('asignaciones.index')); ?>"><i class="fa fa-align-justify"></i> Listado asignaciones</a>
                 </div>
-            </div>
+
+
             <table class="table table-bordered thead-dark table-hover table-sm">
          <tr>
 
-           <th scope="col">Grado</th>
-           <th scope="col">Categoria</th>
+           <th scope="col">Grados</th>
            <th scope="col">Materias</th>
            <th scope="col">Periodos</th>
-           <th scope="col">Opcion</th>
-           <th colspan="3">&nbsp;Estado</th>
+
+           <th colspan="3">&nbsp;Opcion</th>
          </tr>
-       </thead>
+
        <tbody>
 
-        <?php $i=0 ?>
         <?php $__currentLoopData = $asignaciones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $asignacion): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
            <tr>
-            <td id="gradoTxt"><?php echo e($asignacion->grado); ?></td>
-            <td><?php echo e($asignacion->categoria); ?></td>
-            <td><?php echo e($page_data[$i]['materias']); ?></td>
-            <td id="periodoTxt"><?php echo e($asignacion->nombre_periodo); ?></td>
-            <?php $i++ ?>
+            <td><?php echo e($asignacion->grado); ?></td>
+            <td><?php echo e($asignacion->materias); ?></td>
+            <td><?php echo e($asignacion->periodos); ?></td>
 
 
             <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.edit')): ?>
 
-                <a href="<?php echo e(route('asignaciones.edit', $asignacion->id)); ?>" class="btn btn-default btn-flat" title="Editar">
+                <a href="<?php echo e(route('asignaciones.edit', $asignacion->grado)); ?>" class="btn btn-default btn-flat" title="Editar">
                     <i class="fa fa-wrench" aria-hidden="true"></i>
                   </a>
                   <?php endif; ?>
@@ -96,7 +106,7 @@
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.show')): ?>
 
-                <a href="<?php echo e(route('asignaciones.show', $asignacion->id)); ?>" class="btn btn-info btn-flat" title="Visualizar">
+                <a href="<?php echo e(route('asignaciones.show', $asignacion->grado)); ?>" class="btn btn-info btn-flat" title="Visualizar">
                     <i class="fas fa-eye" aria-hidden="true"></i>
                   </a>
 
@@ -104,8 +114,8 @@
                 </td>
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.destroy')): ?>
-                <?php echo Form::open(['route' => ['asignaciones.destroy', $asignacion->id],
-  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
+                <?php echo Form::open(['route' => ['asignaciones.destroy', $asignacion->grado],
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el grado?")']); ?>
 
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>
@@ -120,23 +130,10 @@
 
        </tbody>
       </table>
-      <br>
-            <div class="row">
-              <div class="mr-auto">
 
-              </div>
-            </div>
 </div>
 </div>
 </div>
 </div>
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('scripts'); ?>
-
-<script>
-
-</script>
-<?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/index.blade.php ENDPATH**/ ?>

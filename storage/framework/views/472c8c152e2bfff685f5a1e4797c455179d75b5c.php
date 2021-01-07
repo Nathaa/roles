@@ -6,7 +6,7 @@
         Datos de la Matrícula
 </div>
 
-<form onsubmit="return validacion()">
+<form>
 
     <div class="row">
         <div class="col-sm-3">
@@ -19,7 +19,7 @@
         <div class="col-sm-3">
 
             <?php echo e(Form::label('nombreMat', 'Identificador de matricula')); ?> <!--Este es el campo que estaba como nombre-->
-            <?php echo e(Form::text('nombreMat',null,['readonly'=>'readonly','id' => 'nombreMat','class' => 'form-control'])); ?>
+            <?php echo e(Form::text('nombreMat',null,['id' => 'nombreMat','class' => 'form-control'])); ?>
 
 
         </div>
@@ -46,6 +46,7 @@
         </div>
 
     </div>
+
 
     <div class="row">
         <div class="col-sm-3">
@@ -91,12 +92,14 @@
     </fieldset>
  <br>
  <ol class="float-sm-right">
-    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id'=>'btnEnviar'])); ?>
+    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success'])); ?>
 
 </ol>
-
-
 </form>
+<br>
+<br>
 
 
-<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/matriculas/form.blade.php ENDPATH**/ ?>
+
+
+<?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/matriculas/form2.blade.php ENDPATH**/ ?>

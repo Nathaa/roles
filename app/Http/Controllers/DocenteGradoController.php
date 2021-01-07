@@ -119,9 +119,15 @@ class DocenteGradoController extends Controller
         $docentegrado=DocenteGrado::findOrFail($id);
         $anios = Anio::get();
         $docentes = Docente::get();
-        $asignaciones = Asignacion::get();
+
         $grados = Grado::get();
-        return view('docentegrados.edit', compact('docentegrado','anios','docentes','asignaciones','grados'));
+        $asignaciones=DB::table('asignacions')
+
+        ->join('grados','grados.id','=','asignacions.grados_id','left')
+        ->select('asignacions.id','grados.grado','grados.seccion')
+        ->distinct('grados.grado')
+        ->get()->toArray();
+        return view('docentegrados.create', ['asignaciones' => $asignaciones],compact('docentes','anios'));
     }
 
     /**

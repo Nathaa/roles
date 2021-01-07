@@ -109,7 +109,7 @@
                 <td width="10px">
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.destroy')): ?>
                 <?php echo Form::open(['route' => ['grados.destroy', $grado->id],
-  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el expediente?")']); ?>
+  'method' =>'DELETE','onsubmit' => 'return confirm("¿Desea eliminar el grado?")']); ?>
 
   <button class="btn btn-danger" class="btn btn-info btn-flat" title="Eliminar">
     <i class="fas fa-trash" aria-hidden="true"></i>

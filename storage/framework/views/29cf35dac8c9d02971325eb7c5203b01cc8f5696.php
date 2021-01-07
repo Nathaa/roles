@@ -1,37 +1,31 @@
-
-
 <?php echo csrf_field(); ?>
 
 
 
 <div class="alert alert-primary" role="alert">
-Nueva Planificacion Academica
+        Datos del Año
 </div>
 
 <form>
 
-    <div style="float:left;width:50%;">
+
 
     <div class="row">
         <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" >
+                                <option value="">Seleccione Grado</option>
+                                <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-            <option value="">Seleccione Grado</option>
-            <hr>
-
-                                <select name="grados_id" size=6 id="grados_id" class="form-control" >
-
-                                    <?php $__currentLoopData = $grados; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grado): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                           <option value="<?php echo e($grado->id); ?>",null>
+                                              <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?>
 
 
-                                    <option value="<?php echo e($grado->id); ?>",null>
-                                       <?php echo e($grado->grado); ?><?php echo e($grado->seccion); ?>
+                                            </option>
 
-
-                                     </option>
-
-                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                 </select>
+                                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </td>
+                                </select>
 
         </div>
 
@@ -40,43 +34,32 @@ Nueva Planificacion Academica
                 <ul class="list-unstyled">
                 <?php echo e(Form::label('periodos_id','Periodos')); ?>
 
-                <hr>
                 <div>
-                    <ul class="list-unstyled">
                  <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <?php echo e($periodo->nombre_periodo); ?>
-
+        <label><?php echo e($periodo->nombre); ?></label>
         <input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
-
+       
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           </ul>
          </div>
         </div>
     </div>
-
-    </div>
-</form>
 <br>
-
-<hr>
-
+<br>
     <div class="form-group">
-        <br>
-        <ul class="list-unstyled">
-        <?php echo e(Form::label('materias_id','Materias')); ?>
 
-        <hr>
+
+        <?php echo e(Form::label('materias_id','Materias')); ?>
 
         <div>
 
          <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
- <?php echo e($materia->nombre); ?>
-
+ <label><?php echo e($materia->nombre); ?></label>
  <input type="checkbox" id="materia[]" name="materia[]" value="<?php echo e($materia->id); ?>">
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
- </div>
 </ul>
+ </div>
+
 </div>
 
 
@@ -96,4 +79,5 @@ Nueva Planificacion Academica
 
 
 </form>
+
 <?php /**PATH C:\ProyectosLaravel\clonado\roles\resources\views/asignaciones/form.blade.php ENDPATH**/ ?>

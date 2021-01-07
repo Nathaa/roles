@@ -59,12 +59,12 @@
 </div>
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit', 'disabled']) }}
+            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit']) }}
         </ol>
 
 </form>
 @section('scripts')
-<script src="{{ asset('js/validar-form-usuarios.js') }}"></script>
+
 @endsection
 
 

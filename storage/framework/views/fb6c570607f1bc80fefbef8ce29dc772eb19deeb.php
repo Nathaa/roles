@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
-<h3>Nuevo Docente</h3>
+<h3>Nueva Asig. Docente-Grado</h3>
 <?php $__env->stopSection(); ?>
 
 
