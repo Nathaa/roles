@@ -1,7 +1,7 @@
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentes.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <li class="breadcrumb-item active"><a href="<?php echo e(route('docentegrados.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 <?php $__env->stopSection(); ?>

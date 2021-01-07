@@ -23,11 +23,11 @@ class CreatePromediosTable extends Migration
             $table->foreign('grados_id')->references('id')->on('grados')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('anios_id')->unsigned();
             $table->foreign('anios_id')->references('id')->on('anios')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('prom-per-1')->nullable();
-            $table->string('prom-per-2')->nullable();
-            $table->string('prom-per-3')->nullable();
-            $table->string('prom-per-4')->nullable();
-            $table->string('prom-final')->nullable();
+            $table->string('prom_per_1')->nullable();
+            $table->string('prom_per_2')->nullable();
+            $table->string('prom_per_3')->nullable();
+            $table->string('prom_per_4')->nullable();
+            $table->string('prom_final')->nullable();
             $table->timestamps();
         });
     }
