@@ -16,9 +16,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-
-
-
 Auth::routes();
 
 Route::middleware(['auth','nocache'])->group(function () {
@@ -250,9 +247,22 @@ Route::delete('docentegrados/{docentegrado}', 'DocenteGradoController@destroy')-
 ->middleware('can:docentegrados.destroy');
 
 
+//manejo de las notas
+Route::get('notas','NotasController@buscarMaterias')->name('notas.confignotas');
+Route::get('editarnotas/{grado}/{seccion}/{nombre}','NotasController@editarNotas')->name('notas.editarnotas');
+Route::post('guardarNotas/','NotasController@guardarNotas')->name('notas.guardarNotas')
+->middleware('can:notas.guardarNotas');
+Route::get('ingresoNotas/{grado}/{seccion}/{nombre}','NotasController@ingresoNotas')->name('notas.ingresoNotas')
+->middleware('can:notas.ingresoNotas');
+Route::post('notasPeriodo/','NotasController@notasPeriodo')->name('notas.notasPeriodo')
+->middleware('can:notas.notasPeriodo');
+Route::post('guardarNotasIngresadas/','NotasController@guardarNotasIngresadas')->name('notas.guardarNotasIngresadas')
+->middleware('can:notas.guardarNotasIngresadas');
+
 
 //reportes
 Route::get('reportes', 'ReportesController@index')->name('reportes.index')
 ->middleware('can:reportes.index');
 Route::get('reportes/{reporte}', 'ReportesController@show')->name('reportes.show')
 ->middleware('can:reportes.show');
+

@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 use App\Asignacion;
 use Session;
 use App\Grado;
 use App\Materia;
 use App\Periodo;
-use DB;
-use Illuminate\Support\Arr;
-
+use CreateAsignacionsTable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AsignacionController extends Controller
 {
@@ -29,46 +28,54 @@ class AsignacionController extends Controller
 
     public function index(Request $request)
     {
+      //$asignaciones= asignacione::all();
+        //return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
-    $asignaciones=Asignacion::paginate();
+        /*$asignaciones=Asignacion::paginate();
 
+        $grados=Grado::paginate();
+        $grados = Grado::get();
 
-        if ($request)
+        return view('asignaciones.index', compact('grados','asignaciones'));*/
+
+		if ($request)
         {
-            $asignaciones=DB::table('asignacions')
-             ->join('grados','grados.id','=','asignacions.grados_id','left')
-             ->join('materias','materias.id','=','asignacions.materias_id','left')
-             ->join('periodos','periodos.id','=','asignacions.periodos_id','left')
-             ->select ('asignacions.id','periodos.nombre_periodo','materias.nombre','grados.grado','grados.seccion','grados.categoria')
+            $asignaciones=DB::select ('select distinct
+									   concat(b.grado,b.seccion) grado,
+									   cursor_loop(a.grados_id) as materias,
+									   cursor_loop2(a.grados_id) as periodos
+								from asignacions a
+                                left join grados b on(a.grados_id=b.id)');
 
-             ->get()->toArray();
+
+            /* $asignaciones=DB::select ("select distinct t2.grado as grado,
+             array_to_string(ARRAY_AGG(DISTINCT t2.materia), ',') materias,
+             array_to_string(ARRAY_AGG(nombre_periodo), ',') periodos
+
+       FROM (
+           SELECT DISTINCT public.grados.id as grado_id, grado, public.periodos.id as periodo_id, array_to_string(ARRAY_AGG (nombre), ',') materia
+           FROM public.asignacions
+           INNER JOIN public.grados ON (public.grados.id = public.asignacions.grados_id)
+           INNER JOIN public.materias ON (public.materias.id=public.asignacions.materias_id)
+           INNER JOIN public.periodos ON (public.periodos.id=public.asignacions.periodos_id)
+           GROUP BY
+               grado_id, grado, periodo_id
+           ORDER BY
+               grado
+       ) t2
+
+       INNER JOIN public.periodos ON (public.periodos.id=t2.periodo_id)
+       GROUP BY
+           grado
+       ORDER BY
+           grado");*/
+
 
            return view('asignaciones.index', ['asignaciones' => $asignaciones]);
 
           }
-          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
-          //declaro un arreglo
-          //$arregloMaterias=array();
-          //for($i=0;$i<count($gradosRegistrados);$i++){
-           //$match=['grados_id' => $gradosRegistrados[$i]];
-           //$materiasPorGrado=Asignacion::where($match)->select('materias_id')->distinct()->get()->toArray();
-           //$values=Arr::flatten($materiasPorGrado);
-           //$arregloMaterias[$i]=implode(",", $values);
-         // }
-
-          //$gradosRegistrados=Asignacion::select('grados_id')->distinct()->get()->toArray();
-          //declaro un arreglo
-          //$arregloPeriodos=array();
-          //for($i=0;$i<count($gradosRegistrados);$i++){
-          // $match=['grados_id' => $gradosRegistrados[$i]];
-           //$periodosPorGrado=Asignacion::where($match)->select('periodos_id')->distinct()->get()->toArray();
-           //$values=Arr::flatten($periodosPorGrado);
-           //$arregloPeriodos[$i]=implode(",", $values);
-          //}
-
 
     }
-
 
 
     /**
@@ -76,21 +83,15 @@ class AsignacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(request $request)
+    public function create()
     {
+        //
 
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
-        if ($request)
-        {
-         $query=trim($request->get('buscarpor'));
-            $grados= Grado::where('categoria', 'LIKE', '%' . $query . '%')
-           ->get();
-           return view('asignaciones.create', ['grados' => $grados,'materias' => $materias,'periodos' => $periodos, 'buscarpor' => $query]);
-         }
 
-
+        return view('asignaciones.create', compact('grados','materias','periodos'));
     }
 
     /**
@@ -101,22 +102,56 @@ class AsignacionController extends Controller
      */
     public function store(Request $request)
     {
-        $loop = $request->get('periodo');
-        $loop2 = $request->get('materia');
-     foreach ($loop as $value){
-         $resortfacility = new Asignacion;
-         $resortfacility->grados_id = $request->get('grados_id');
-         $resortfacility->periodos_id = $value;
-         $resortfacility->save();
-     }
+       $loop = $request->get('periodo');
+	   $loop2 = $request->get('materia');
+    foreach ($loop as $value){
+        $resortfacility = new Asignacion;
+        $resortfacility->grados_id = $request->get('grados_id');
+        $resortfacility->periodos_id = $value;
+        $resortfacility->save();
+    }
+
+	foreach ($loop2 as $value){
+        $resortfacility = new Asignacion;
+        $resortfacility->grados_id = $request->get('grados_id');
+        $resortfacility->materias_id = $value;
+        $resortfacility->save();
+    }
+
+        Session::flash('success_message', 'asignacione guardado con éxito');
+        return redirect()->route('asignaciones.index', compact('asignaciones','grados'));
+
+	 //$periodos->save();
+
+//foreach ($periodos as $periodo) {
+   //$p = Asignacion::where('id', '=', $periodo)->firstOrFail(); //Get corresponding form permission in db
+
+               // $periodo= new Asignacion();
+      // $periodo->materias_id=$periodo;
+	  // echo $periodo;
+       //$periodo->save();
+
+          //  }
+
+	 //$asignaciones =  Asignacion::create($request->all());
+     //$asignaciones->grado()->attach($request->get('grados'));
+	 //$grados=$asignaciones->materia()->attach($request->get('materias'));
+	 //$asignaciones->periodo()->attach($request->get('periodos'));
 
 
-     foreach ($loop2 as $value){
-         $resortfacility = new Asignacion;
-         $resortfacility->grados_id = $request->get('grados_id');
-         $resortfacility->materias_id = $value;
-         $resortfacility->save();
+	 /*$grados = $asignaciones->grado()->attach($request->get('grados_id'));
+	 $materias = $asignaciones->materia()->attach($request->get('materias_id'));
+	 $periodos = $asignaciones->periodo()->attach($request->get('periodos_id'));*/
+
+
+     /*foreach($grados as $grado) {
+        Asignacion::create([
+            'grados'=>$grado
+        ]);
      }
+	 */
+
+
 
          Session::flash('success_message', 'asignacione guardado con éxito');
          return redirect()->route('asignaciones.index');
@@ -130,11 +165,35 @@ class AsignacionController extends Controller
      */
     public function show($id)
     {
-        $asignaciones=Asignacion::findOrFail($id);
+        //
+        /*$asignaciones=Asignacion::findOrFail($id);
+        $grados = Grado::get();
+        $materias = Materia::get();
+        $periodos = Periodo::get();*/
+
+        $asignaciones=DB::select("select periodos_id
+        FROM asignacions A
+        LEFT JOIN PERIODOS B ON(B.ID=A.PERIODOS_ID)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.periodos_id is not null");
+
+        $asignaciones2=DB::select("select materias_id
+        FROM asignacions A
+        LEFT JOIN materias B ON(B.ID=A.materias_ID)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.materias_ID is not null");
+
+        $grad=DB::select("select distinct grados_id
+        FROM asignacions A
+        LEFT JOIN grados B ON(B.ID=A.grados_id)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.materias_ID is not null");
+
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
-        return view('asignaciones.show', compact('asignaciones','grados','materias','periodos'));
+
+        return view('asignaciones.show', compact('grados','materias','periodos','asignaciones','asignaciones2','grad'));
     }
 
     /**
@@ -147,11 +206,33 @@ class AsignacionController extends Controller
     {
         //
 
-        $asignaciones=Asignacion::findOrFail($id);
+        $asignaciones=DB::select("select periodos_id
+        FROM asignacions A
+        LEFT JOIN PERIODOS B ON(B.ID=A.PERIODOS_ID)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.periodos_id is not null");
+         //dd($asignaciones);
+        $asignaciones2=DB::select("select materias_id
+        FROM asignacions A
+        LEFT JOIN materias B ON(B.ID=A.materias_ID)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.materias_ID is not null");
+          //dd($asignaciones2);
+        $grad=DB::select("select distinct grados_id
+        FROM asignacions A
+        LEFT JOIN grados B ON(B.ID=A.grados_id)
+        WHERE a.GRADOS_ID in (select id from grados where concat(grado,seccion)='".$id."')
+          and a.materias_ID is not null");
+          //dd($grad);
+        foreach ($grad as $p){
+            $x= $p->grados_id;
+        }
+
+
         $grados = Grado::get();
         $materias = Materia::get();
         $periodos = Periodo::get();
-        return view('asignaciones.edit',compact('asignaciones','grados','materias','periodos'));
+        return view('asignaciones.edit',compact('x','grad','asignaciones','asignaciones2','grados','materias','periodos'));
     }
 
     /**
@@ -164,13 +245,33 @@ class AsignacionController extends Controller
     public function update(Request $request,$id)
     {
 
-        $asignaciones=Asignacion::findOrFail($id);
+        /*$asignaciones=Asignacion::findOrFail($id);
         $asignaciones->fill($request->all())->save();
 
 
-        $asignaciones->update($request->all());
+        $asignaciones->update($request->all());*/
 
-        Session::flash('info_message', 'asignacione actualizado con éxito');
+        DB::delete("delete from asignacions where grados_id =".$id);
+        //DB::delete("delete from asignacions where grados_id in(select id from grados where concat(grado,seccion) ='".$id."' )");
+
+
+        $loop = $request->get('periodo');
+	    $loop2 = $request->get('materia');
+        foreach ($loop as $value){
+            $resortfacility = new Asignacion;
+            $resortfacility->grados_id = $request->get('grados_id');
+            $resortfacility->periodos_id = $value;
+            $resortfacility->save();
+        }
+
+        foreach ($loop2 as $value){
+            $resortfacility = new Asignacion;
+            $resortfacility->grados_id = $request->get('grados_id');
+            $resortfacility->materias_id = $value;
+            $resortfacility->save();
+        }
+
+        Session::flash('info_message', 'asignaciones actualizado con éxito');
         return redirect()->route('asignaciones.index',compact('asignaciones'));
     }
 
@@ -185,7 +286,9 @@ class AsignacionController extends Controller
         //
 
        // $asignacione=asignacione::findOrFail($id);
-         Asignacion::destroy($id);
+         //Asignacion::where('id',$id)->delete();
+
+         DB::delete("delete from asignacions where grados_id in(select id from grados where concat(grado,seccion) ='".$id."' )");
 
         Session::flash('danger_message', 'asignacione eliminado correctamente');
         return back();

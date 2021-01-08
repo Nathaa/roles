@@ -11,7 +11,7 @@
 </div><!-- /.col -->
 @endsection
 @section('title')
-<h5><strong>{{ $anio->nombre  }}</strong> </h5>
+<h5><strong>{{ $anio->nombre  }} {{ $anio->año}}</strong> </h5>
 @endsection
 
 
@@ -45,7 +45,9 @@
 
                                     <tr>
                                         <th scope="row"><strong>Año lectivo:</strong></th>
+                                        <td><p> {{ $anio->año }}</p></td>
                                         <td> <p> {{$anio->nombre}}</p></td>
+                                        
                                         <th scope="row"><strong>Duracion: </strong></th>
                                          <td><p> {{ $anio->duracion }}</p></td>
                                     </tr>

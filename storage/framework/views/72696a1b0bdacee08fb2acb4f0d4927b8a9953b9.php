@@ -45,8 +45,6 @@
                                             <td><p><strong>Seccion: </strong> <?php echo e($grado->seccion); ?></p></td>
                                                 <td><p><strong>Categoria: </strong> <?php echo e($grado->categoria); ?></p></td>
 
-                                                <td><p><strong>Nombre Turno: </strong> <?php echo e($grado->anios_id->'nombre'); ?></p></td>
-
                                     </tr>
 
                                 </tbody>

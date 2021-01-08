@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="<?php echo e(asset('js/jquery-3.3.1.js')); ?>"></script>
   <script src="<?php echo e(asset('js/funciones.js')); ?>"></script>
   <?php echo $__env->yieldContent('css_role_page'); ?>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -176,6 +177,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
@@ -183,188 +185,253 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('estudiantes.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('estudiantes.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-user-astronaut"></i>
                       <p>Alumna</p>
                     </a></li>
                   </li>
+                  <?php endif; ?>
 
-
-
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentes.index')): ?>
                   <li class="nav-item">
                     <li><a href="<?php echo e(route ('docentes.index')); ?>" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-tie"></i>
                       <p>Docentes</p>
                     </a>
                   </li>
                   </li>
-
+                  <?php endif; ?>
 
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-user-friends"></i>
+                  <i class="fas fa-user-friends"></i>
                   <p>
                     Usuarios
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuarios.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('usuarios.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-user-alt"></i>
                       <p>Usuario</p>
                     </a></li>
                   </li>
+                  <?php endif; ?>
 
-
-
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('roles.index')): ?>
                   <li class="nav-item">
                     <li><a href="<?php echo e(route ('roles.index')); ?>" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-lock"></i>
                       <p>Roles</p>
                     </a>
                   </li>
                   </li>
+                  <?php endif; ?>
 
 
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reportes.index')): ?>
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-folder-open"></i>
+                  <i class="fas fa-file-archive"></i>
                   <p>
                     Reportes
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('reportes.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('reportes.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
-                      <p>Usuario</p>
+                        <i class="fas fa-user-astronaut"></i> <i class="far fa-file-alt"></i>
+                      <p>Boleta de Notas</p>
                     </a></li>
                   </li>
-
+                  <?php endif; ?>
                 </ul>
               </li>
 
 
 
             <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <i class="fas fa-calendar-alt"></i>
                   <p>
-                    Informacion Academica
-                    <i class="right fas fa-angle-left"></i>
+                     Informacion Academica
+                    <i class="fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('periodos.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('periodos.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-calendar-alt"></i>
                       <p>Periodos</p>
                     </a></li>
                   </li>
+                  <?php endif; ?>
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('anios.index')): ?>
                   <li class="nav-item">
                     <li><a href="<?php echo e(route ('anios.index')); ?>" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fas fa-clock"></i>
                     <p>Años</p>
                   </a></li>
                 </li>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('grados.index')): ?>
                 <li class="nav-item">
                     <li><a href="<?php echo e(route ('grados.index')); ?>" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="	fa fa-building"></i>
                     <p>Grados</p>
                   </a></li>
                 </li>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('materias.index')): ?>
                 <li class="nav-item">
                     <li><a href="<?php echo e(route ('materias.index')); ?>" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fas fa-journal-whills"></i>
                     <p>Materias</p>
                   </a></li>
                 </li>
+                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('turnos.index')): ?>
                 <li class="nav-item">
                     <li><a href="<?php echo e(route ('turnos.index')); ?>" class="nav-link">
-                    <i class="fas fa-donate"></i>
+                    <i class="fa fa-history"></i>
                     <p>Turnos</p>
                   </a></li>
                 </li>
-                <li class="nav-item">
-                    <li><a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
-                    <i class="fas fa-donate"></i>
-                    <p>Planes de Estudio</p>
-                  </a></li>
-                </li>
+                <?php endif; ?>
                 </ul>
               </li>
+
               <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.index')): ?>
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-folder-open"></i>
+                  <i class="fab fa-elementor"></i>
+                  <p>
+                    Planes de Estudio
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <?php endif; ?>
+                <ul class="nav nav-treeview">
+
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planesEstudio.index')): ?>
+                    <li class="nav-item">
+                        <li><a href="<?php echo e(route ('planesEstudio.index')); ?>" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Planes de Estudio</p>
+                      </a></li>
+                    </li>
+                    <?php endif; ?>
+
+                </ul>
+              </li>
+
+
+
+
+              <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
+                <a href="#" class="nav-link active">
+                  <i class="fas fa-chalkboard-teacher"></i>
                   <p>
                     Proceso de Matricula
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
 
-
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('matriculas.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('matriculas.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-chalkboard"></i>
                       <p>Matricula</p>
                     </a></li>
                   </li>
-
+                  <?php endif; ?>
 
 
                 </ul>
               </li>
               <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notas.confignotas')): ?>
                 <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-book"></i>
+                  <i class="fab fa-elementor"></i>
+                  <p>
+                    Notas
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <?php endif; ?>
+                <ul class="nav nav-treeview">
+
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('notas.confignotas')): ?>
+                    <li class="nav-item">
+                        <li><a href="<?php echo e(route ('notas.confignotas')); ?>" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        <p>Notas</p>
+                      </a></li>
+                    </li>
+                    <?php endif; ?>
+
+                </ul>
+              </li>
+              <li class="nav-item has-treeview menu-open">
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
+                <a href="#" class="nav-link active">
+                  <i class="fas fa-clipboard-list"></i>
                   <p>
                     Planeacion Academica
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
-
+                <?php endif; ?>
                 <ul class="nav nav-treeview">
+
+
+
+
+          </li>
 
 
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('asignaciones.index')); ?>" class="nav-link">
-                      <i class="fas fa-donate"></i>
+                      <i class="fas fa-edit"></i>
                       <p>Asignacion Academica</p>
                     </a></li>
                   </li>
 
 
-
+                  <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.index')): ?>
                   <li class="nav-item">
                     <li><a href="<?php echo e(route ('docentegrados.index')); ?>" class="nav-link">
-                      <i class="fas fa-file-invoice-dollar"></i>
+                      <i class="fas fa-user-tie"></i> <i class="fas fa-tasks"></i>
                       <p>Asignacion de Docentes</p>
                     </a>
                   </li>
                   </li>
-
+                  <?php endif; ?>
 
                 </ul>
               </li>

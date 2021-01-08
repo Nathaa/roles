@@ -2,7 +2,7 @@
 
 
 @section('title')
-<h5><strong>Modificando: {{ $anio->nombre  }}</strong> </h5>
+<h5><strong>Modificando: {{ $anio->nombre  }} {{ $anio->año  }}</strong> </h5>
 @endsection
 
 @section('crear')

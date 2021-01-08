@@ -1,0 +1,34 @@
+Permission::create( [
+            'name' => 'Navegar asignacion de docentes',
+            'slug' => 'docentegrados.index',
+            'description' => 'Lista y navega la asignacion de docentes',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ver la informacion de la asignacion de docentes',
+            'slug' => 'docentegrados.show',
+            'description' => 'Ver cada detalle de la asignacion de docentes del sistema',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Editar cualquier asignacion de docentes',
+            'slug' => 'docentegrados.edit',
+            'description' => 'Edita cualquier asignacion de docentes',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Eliminar una asignacion de docente',
+            'slug' => 'docentegrados.destroy',
+            'description' => 'Eliminar una asignacion de docentes',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Crear una nueva asignacion de docente',
+            'slug' => 'docentegrados.create',
+            'description' => 'Crear una nueva asignacion de docente para el sistema',
+
+        ]);

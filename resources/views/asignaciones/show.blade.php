@@ -1,62 +1,113 @@
 @extends('admin.index2')
 
+
+@section('title')
+<h5><strong></strong> </h5>
+@endsection
+
 @section('crear')
 <div class="col-sm-6">
   <ol class="breadcrumb float-sm-right">
-    @can('asignaciones.edit')
-    <li class="breadcrumb-item active"><a href="{{ route('asignaciones.edit', $asignaciones->id)}}"><button type="button" class="btn btn-secondary  btn-xs"><i class="fas fa-edit"></i>Editar grado</button></a></li>
-    @endcan
-    <li class="breadcrumb active"><a href="{{ route('asignaciones.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
-
+    <li class="breadcrumb-item active"><a href="{{ route('asignaciones.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
-</div><!-- /.col -->
+</div>
 @endsection
-@section('title')
-<h5><strong>{{ $grados->grado  }} {{$grados->seccion}} </strong> </h5>
-
-@endsection
-
-
 @section('content')
+<div class="container">
+    <div class="card">
+
+       <div class="card-body">
+        <table class="table table-bordered table-hover">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    
+
+
+<div class="alert alert-primary" role="alert">
+        Datos del Año
+</div>
+
+
+<form>
+
+    <div class="row">
+        <div class="col">
+                            <select name="grados_id" id="grados_id" class="form-control" disabled="disabled" >
+                                <option value="">Seleccione Grado</option>
+                                @foreach($grados as $grado)
+
+
+                                           <option value="{{ $grado->id }}",null @foreach ($grad as $g) <?php  if($g->grados_id === $grado->id) { ?> selected  <?php } ?> @endforeach>
+                                              {{ $grado->grado }}{{ $grado->seccion }}
+
+                                            </option>
+
+                                          @endforeach
+                                        </td>
+                                </select>
+
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <ul class="list-unstyled">
+                {{  Form::label('periodos_id','Periodos') }}
+                <div>
+                 @foreach($periodos as $periodo)
+                 
+        <label>{{$periodo->nombre}}</label>
+        <input disabled="disabled" type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}" @foreach ($asignaciones as $asignacion) <?php  if($asignacion->periodos_id === $periodo->id) { ?> checked <?php } ?> @endforeach>
+        
+            @endforeach
+          </ul>
+         </div>
+        </div>
+    </div>
+<br>
+<br>
+    <div class="form-group">
+
+
+        {{  Form::label('materias_id','Materias') }}
+        <div>
+
+         @foreach($materias as $materia)
+ <label>{{$materia->nombre}}</label>
+ <input disabled="disabled" type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}" @foreach ($asignaciones2 as $asignacion2) <?php  if($asignacion2->materias_id === $materia->id) { ?> checked <?php } ?> @endforeach>
+    @endforeach
+</ul>
+ </div>
+
+</div>
 
 
 
-                            <div class="container">
-                                <th scope="row"></th>
-
-
-                                <div class="card">
-
-                                   <div class="card-body">
-
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                            <th>Datos de Asignacion</th>
-                                            </tr>
-
-                                           </thead>
-                                    </table>
-                                    <table class="table table-bordered table-hover">
-
-
-                                <tbody>
-
-                                    <tr>
-                                        <td><p><strong>Grado: </strong> {{ $grados->grado }}{{ $grados->seccion }}</p></td>
-                                            <td><p><strong>Categoria: </strong> {{ $grados->categoria }}</p></td>
-                                                <td><p><strong>Materia: </strong> {{ $materias->nombre }}</p></td>
-                                                <td><p><strong>Periodo: </strong> {{ $periodos->nombre_periodo }}</p></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                            </div>
-                </div>
-            </div>
 
 
 
 
+
+
+
+ <br>
+
+
+
+</form>
+                </table>
+
+        </div>
+
+    </div>
+</div>
 
 @endsection

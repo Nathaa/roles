@@ -6,7 +6,7 @@
         Datos de la Matrícula
 </div>
 
-<form>
+<form onsubmit="return validacion()">
 
     <div class="row">
         <div class="col-sm-3">
@@ -91,7 +91,7 @@
     </fieldset>
  <br>
  <ol class="float-sm-right">
-    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success'])); ?>
+    <?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id'=>'btnEnviar'])); ?>
 
 </ol>
 

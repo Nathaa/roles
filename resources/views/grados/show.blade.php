@@ -47,8 +47,6 @@
                                             <td><p><strong>Seccion: </strong> {{ $grado->seccion }}</p></td>
                                                 <td><p><strong>Categoria: </strong> {{ $grado->categoria }}</p></td>
 
-                                                <td><p><strong>Nombre Turno: </strong> {{ $grado->anios_id->'nombre' }}</p></td>
-
                                     </tr>
 
                                 </tbody>

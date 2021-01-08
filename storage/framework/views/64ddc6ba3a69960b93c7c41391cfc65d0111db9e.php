@@ -1,9 +1,15 @@
 <?php $__env->startSection('crear'); ?>
 <div class="col-sm">
+    <ol class="breadcrumb float-sm-right">
+    <a href="#" data-toggle="modal" data-target="#modalConsultarCupos"> <button type="button" id="btnModal" class="btn btn-dark btn-xs"  >
+    <i class="fas fa-eye"></i> Ver grados disponibles </button> </a>
+  </ol>
+</div>
+
   <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item active"><a href="<?php echo e(route('matriculas.index')); ?>" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
-</div>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('title'); ?>
@@ -38,13 +44,14 @@
         </div>
     </div>
  </div>
-
+ <?php echo $__env->make('matriculas.modalConsultarCupos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><!-- aqui meto el modal -->
 <?php $__env->stopSection(); ?>
 
 
 <?php $__env->startSection('scripts'); ?>
 
 <script>
+    
     $(function(){
             $('#grados').on('change',onSelectGradoChange);
             $('#turnos').on('change',onSelectTurnoChange);
@@ -57,6 +64,8 @@
             //de cambio de seccion y dentro consumir el servicio del rervidor para recuperar el id
             //del grado
             $('#grados').on('change',function(algo){
+                secciones.disabled=true;//CAMBIO: cuando se selecciona un nuevo grado, se resetea el combo de las secciones
+                secciones.selectedIndex=0;
                 $('#turnos').on('change',function(algo2){
                     $('#secciones').on('change',function(algo3){
                         var gradoCombo      = document.getElementById('grados');
@@ -77,6 +86,7 @@
                             //document.getElementById('#gradoId').value=idEnTexto;
                             $('#gradoId').val(data[0].id);
                             //console.log(idEnTexto);
+
                         });
                     });
                 });
@@ -137,15 +147,19 @@
             var turnoSelected = turnos.options[turnos.selectedIndex].text;
             secciones.disabled=false;//activa el combo de secciones
             //para el llenado de secciones
+            
             var anioId=<?php echo json_encode($page_data['anio']); ?>;
             //$.get('/secciones/'+gradoSelected+'/'+turnoSelected+'/grados',function (datos){
             $.get('/secciones/'+gradoSelected+'/'+turnoSelected+'/grados/'+anioId+'/anio',function (datos){
               //$.get('/secciones/'+gradoSelected+'/grados',function (datos){
                 var plantilla_seleccion = '<option value="">--Seleccione una seccion--</option>';
                 for(var i=0;i<datos.length;i++)
-                    plantilla_seleccion+='<option value="'+datos[i].id+'">'+datos[i].seccion+'</option>';
-                    //console.log(plantilla_seleccion);
+                    //plantilla_seleccion+='<option value="'+datos[i].id+'">'+datos[i].seccion+'</option>'; antes estaba asi, no devuelve un id la funcion
+                    plantilla_seleccion+='<option value="'+datos[i].seccion+'">'+datos[i].seccion+'</option>';
+                    //console.log(datos[i].id);
                 $('#secciones').html(plantilla_seleccion);
+                //nuevo para desactivar las opciones que se llamen Seccion llena AQUI!!!!!!
+                //$("#secciones option[value=" '+ Seccion llena +' "]").attr('disabled',true);
             });
 
             if($('#turnos')[0].selectedIndex == 0){
@@ -153,9 +167,16 @@
                 //el combo de secciones
 
             }
+            
         }//fin de onSelectTurnoChange
 
+        function validarGradoLleno(){
+
+        }//fin de validadGradoLleno
+
 $(document).ready(function(){
+
+    
     //fragmento para la creacion del codigo de inscripcion , primeras letras de nombre
     //apellido y anio de matriculacion
     $(function CodigoMat(){
@@ -181,11 +202,11 @@ $(document).ready(function(){
         if(tipo=="Normal"){
             start.setFullYear(start.getFullYear()+1);
             startf = start.toISOString().slice(0,4);
-            console.log(startf);
+            //console.log(startf);
             }
         if(tipo=="Extemporanea"){
             startf = start.toISOString().slice(0,4);
-            console.log(startf);
+            //console.log(startf);
         }
         //codigo+=$fecha.slice(0,-6);
         codigo+=startf;
@@ -196,7 +217,62 @@ $(document).ready(function(){
         //console.log(val);
     });
 
-});
+    //var btnModal= document.getElementById("btnModal").addEventListener("click",miFuncion());
+    //funcion encargada de el llenado de las barritas de estado de los gradis disponibles para inscribir 
+    //por el momento no elimina de la lista los grados no disponibles 
+    $(function miFuncion(){
+        
+        var anioId=<?php echo json_encode($page_data['anio']); ?>;
+        var Anio=document.getElementById('nombreMat').value;
+        var anio=Anio.substr(-4);
+        var labelAnio='<label> anio '+anio+'</label>';
+        $('#modalHeader').html(labelAnio);
+        $.get('/alumnasCont/'+anioId,function (datos){          //aqui hago la peticion al modulo de contAlumNormal del controlador de matriculas 
+            //console.log(datos['gradosCompleto'][0]['capacidad']);
+            var grados=datos; //me muestra los grados 
+            //console.log(grados['gradosMatutino'].length);
+            //la funcion disponibles esta declarada mas abajo
+            var p="";
+            for(var i=0;i<grados['gradosMatutino'].length;i++){
+                p+='<label>'+grados['gradosMatutino'][i]['gradoSeccion'] +'</label>';
+                p+= '<meter min="0" max="'+grados['gradosMatutino'][i]['capacidad']+'" low="35" high="10" optimun="20" value="'+grados['gradosMatutino'][i]['cantidad']+'" title="'+disponibles(grados['gradosMatutino'][i]['capacidad'],grados['gradosMatutino'][i]['cantidad'])+' cupos disponibles">El navegador no soporta este elemento</meter>';  
+                p+='<br>';
+            }
+            $('#gradosModal').html(p);
+            
+            var p2="";
+            for(var i=0;i<grados['gradosVespertino'].length;i++){
+                p2+='<label>'+grados['gradosVespertino'][i]['gradoSeccion'] +'</label>';
+                p2+= '<meter min="0" max="'+grados['gradosVespertino'][i]['capacidad']+'" low="35" high="10" optimun="20" value="'+grados['gradosVespertino'][i]['cantidad']+'" title="'+disponibles(grados['gradosVespertino'][i]['capacidad'],grados['gradosVespertino'][i]['cantidad'])+' cupos disponibles">El navegador no soporta este elemento</meter>';  
+                p2+='<br>';
+            }
+            
+            $('#gradosModalVesp').html(p2);
+            
+            var p3="";
+            for(var i=0;i<grados['gradosCompleto'].length;i++){
+                p3+='<label>'+grados['gradosCompleto'][i]['gradoSeccion'] +'</label>';
+                p3+= '<meter min="0" max="'+grados['gradosCompleto'][i]['capacidad']+'" low="35" high="10" optimun="20" value="'+grados['gradosCompleto'][i]['cantidad']+'" title="'+disponibles(grados['gradosCompleto'][i]['capacidad'],grados['gradosCompleto'][i]['cantidad'])+' cupos disponibles">El navegador no soporta este elemento</meter>';
+                p3+='<br>'; 
+            }
+            //console.log(p3);
+            //console.log(p2);
+            $('#gradosModalComp').html(p3);
+            
+
+            function disponibles(total, inscritos){
+                return total-inscritos;
+            }
+        });
+        
+    }); 
+    
+}); 
+
+
+
+
+
 
 
 </script>

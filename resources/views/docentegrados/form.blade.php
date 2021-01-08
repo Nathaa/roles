@@ -43,9 +43,9 @@
                 <select name="asignacions_id" id= "asignacions_id" class="form-control" onblur="validar_select(this)" required autofocus>
                     <option value="">--Asignaciones--</option>
 
-                    @foreach ($grados as $grado)
-                    <option value="{{ $grado->id }}">
-                        {{ $grado->grado}}{{ $grado->seccion}}
+                    @foreach ($asignaciones as $asignacion)
+                    <option value="{{ $asignacion->id }}">
+                        {{ $asignacion->grado}}{{ $asignacion->seccion}}
 
                       </option>
 

@@ -4,13 +4,13 @@
 @section('crear')
 <div class="col-sm">
   <ol class="breadcrumb float-sm-right">
-    <li class="breadcrumb-item active"><a href="{{ route('docentes.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
+    <li class="breadcrumb-item active"><a href="{{ route('docentegrados.index')}}" ><button type="button" class="btn btn-dark  btn-xs"><i class="fas fa-arrow-alt-circle-left"></i>Regresar atras</button></a></li>
   </ol>
 </div>
 @endsection
 
 @section('title')
-<h3>Nuevo Docente</h3>
+<h3>Nueva Asig. Docente-Grado</h3>
 @endsection
 
 
