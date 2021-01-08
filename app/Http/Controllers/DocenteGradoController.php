@@ -127,8 +127,29 @@ class DocenteGradoController extends Controller
         ->select('asignacions.id','grados.grado','grados.seccion')
         ->distinct('grados.grado')
         ->get()->toArray();
-        return view('docentegrados.create', ['asignaciones' => $asignaciones],compact('docentes','anios'));
+
+        //agregado para mostrar los valores ya seleccionados en los select
+        $doc=Docente::where('id',$docentegrado->docentes_id)->select('nombre')->get()->toArray();
+        $docenteActual=$doc[0]['nombre'];
+        //dd($docenteActual);
+        $ani=Anio::where('id',$docentegrado->anios_id)->select('año')->get()->toArray();
+        $anioActual=$ani[0]['año'];
+        $flag=TRUE;
+        $asignacionId=DocenteGrado::where('id',$id)->select('asignacions_id')->get()->toArray();//buscando el id de la asignacion
+        //dd($asignacionId);
+        $gradoId=Asignacion::where('id',$asignacionId)->select('grados_id')->get()->toArray();//se vusca la asignacion con su id
+        //dd($gradoId);
+        $gradoSeccion=Grado::where('id',$gradoId)->select('grado','seccion')->get()->toArray();//se busca el grado con su id
+        //dd($gradoSeccion);
+        $gradoMasSeccion=$gradoSeccion[0]['grado'].$gradoSeccion[0]['seccion'];//concatenando el grado mas la seccion
+        //dd($gradoMasSeccion);
+        //
+
+
+        //return view('docentegrados.create', ['asignaciones' => $asignaciones],compact('docentes','anios'));//lo cambiare por docentegrados.edit
+        return view('docentegrados.edit', compact('docentegrado','anios','docentes','asignaciones','grados','anioActual','flag','docenteActual','gradoMasSeccion'));
     }
+
 
     /**
      * Update the specified resource in storage.

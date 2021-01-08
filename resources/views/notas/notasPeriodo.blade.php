@@ -10,12 +10,12 @@
 <div class="container">
     <div class="container-fluid">
         <h4><strong>Digite las notas de las estudiantes y de click en guardar notas</strong></h4>
-        <form  action="{{ route('notas.guardarNotasIngresadas', ['idgrado'=>$idgrado, 'idmateria'=>$idmateria, 'periodo'=>$periodoSelecc])}}" method="POST"  >
+        <form   action="{{ route('notas.guardarNotasIngresadas', ['idgrado'=>$idgrado, 'idmateria'=>$idmateria, 'periodo'=>$periodoSelecc, 'anioID'=>$anioID])}}" method="POST"  >
             @csrf
         <br>
         <tr>
             <div class="form-group">
-         <table class="table" id="tablaprueba">
+         <table class="table">
             <tr class="thead-dark">
                 <th scope="col">Nombres Estudiante</th>
                 <th scope="col">Apellidos Estudiante</th>
@@ -27,7 +27,7 @@
             <tbody>
                 <?php $i=0;?>
                 @foreach ($estudiantes as $estudiante)
-                <tr id="row" name="row">
+                <tr>
                     <th>
                         <input type="hidden" id="idestu" name="idestu[]" value="{{$estudiante[$i]->id}}">
                         {{$estudiante[$i]->nombre}}
@@ -36,7 +36,12 @@
                         {{$estudiante[$i]->apellido}}
                     </th>
                     @foreach ($notasLlenar as $nota)
-                    <th scope="col">{{ Form::number('tipo_nota',null,['class' => 'form-control', 'id'=> 'tipo_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
+                    <input type="hidden" id="tipo_nota" name="tipo_nota[]" value="{{$nota->tipo_nota}}">
+                    <input type="hidden" id="ponderacion" name="ponderacion[]" value="{{$nota->ponderacion}}">
+                    <th scope="col">{{ Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'validar_numero(this)', 'onblur' => 'validar_numero(this)', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
+                    <div class="invalid-feedback" style="display:none">
+                        El numero debe estar entre 0 y 10
+                      </div>
                     @endforeach
                 </tr>
                 <?php $i++;?>
@@ -46,7 +51,7 @@
           </div>
           </tr>
       <br>
-      <button type="submit" class="btn  btn-success float-sm-left" id="btnContinuar">Guardar Notas</button>
+      <button type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
     </form>
     </div>
 </div>
@@ -54,5 +59,20 @@
     </div>
 </div>
 </div>
+<script type="text/javascript">
+    function validar_numero(input) {
+    let valor = Number(input.value);
+    if (!isNaN(valor)) {
+        if (valor >= 0 && valor <= 10) {
+            valido(input);
+        } else {
+            invalido(input);
+        }
+    } else {
+        invalido(input);
+    }
+    submit_form();
+}
 
+</script>
 @endsection

@@ -179,8 +179,8 @@ return [
         Caffeinated\Shinobi\ShinobiServiceProvider::class,
 
         //Datatables
-        //Yajra\DataTables\DataTablesServiceProvider::class,
-        
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -233,7 +233,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        //'DataTables' => Yajra\DataTables\DataTablesServiceProvider::class,
+        'DataTables' => Yajra\DataTables\DataTablesServiceProvider::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

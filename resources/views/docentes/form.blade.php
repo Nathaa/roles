@@ -138,7 +138,7 @@
              $("#edad").val(edad);
          }
 
-         //agregado para cambiar el valor del select por el recuperado de la base 
+         //agregado para cambiar el valor del select por el recuperado de la base
          $(document).ready(function(){
             $(function printOnSelect(){
               //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
@@ -146,10 +146,10 @@
               if(flag){
                 var turnoOriginal={!! json_encode($turnoOriginal ??'') !!};
                 //console.log(turnoOriginal);
-                var turnos = {!! json_encode($turnos) !!}; 
+                var turnos = {!! json_encode($turnos) !!};
                 var comboSelect = document.getElementById('turnos_id');
                   for(var i=0;i<turnos.length;i++){
-                    if(turnoOriginal===turnos[i]['id']){
+                    if(turnoOriginal==turnos[i]['id']){
                       //console.log(turnos[i]['id']);
                       document.getElementById("turnos_id").value = turnos[i]['id'];
                     }

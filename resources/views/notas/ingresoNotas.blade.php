@@ -18,6 +18,7 @@
              'categoriaGrado'=>$grados[0]->categoria,
              'idGrado'=>$grados[0]->id,
              'seccionGrado'=> $grados[0]->seccion,
+             'numperiodos'=>$numperiodos,
              'anioID'=>$anioId[0]->id])}}" method="POST"  >
             @csrf
         <br>

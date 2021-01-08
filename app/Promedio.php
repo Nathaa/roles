@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Promedio extends Model
 {
     protected $fillable = [
-        'estudiantes_id', 'materias-id','grados_id','prom-per-1',
-        'prom-per-2','prom-per-3','prom-per-4', 'prom-final','anios_id',
+        'estudiantes_id', 'materias_id','grados_id','prom_per_1',
+        'prom_per_2','prom_per_3','prom_per_4', 'prom_final','anios_id',
 
     ];
 

@@ -136,8 +136,10 @@
 
 
 <?php $__env->startSection('scripts'); ?>
+
+
 <script type="">
-    //agregado para cambiar el valor del select por el recuperado de la base 
+    //agregado para cambiar el valor del select por el recuperado de la base
     $(document).ready(function(){
             $(function printOnSelect(){
               //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
@@ -146,19 +148,19 @@
                   //para el combo de anios
                 var anioOriginal=<?php echo json_encode($anioOriginal ??''); ?>;
                 //console.log(anioOriginal);
-                var anios = <?php echo json_encode($anios); ?>; 
+                var anios = <?php echo json_encode($anios); ?>;
                   for(var i=0;i<anios.length;i++){
-                    if(anioOriginal===anios[i]['id']){
+                    if(anioOriginal==anios[i]['id']){
                       //console.log(turnos[i]['id']);
                       document.getElementById("anios_id").value = anios[i]['id'];
                     }
                   }
-                  //para el combo de plan de estudios 
+                  //para el combo de plan de estudios
                   var planOriginal=<?php echo json_encode($planOriginal ??''); ?>;
                     //console.log(anioOriginal);
-                    var planesEstudios = <?php echo json_encode($planesEstudio); ?>; 
+                    var planesEstudios = <?php echo json_encode($planesEstudio); ?>;
                     for(var i=0;i<planesEstudios.length;i++){
-                        if(planOriginal===planesEstudios[i]['id']){
+                        if(planOriginal==planesEstudios[i]['id']){
                         //console.log(turnos[i]['id']);
                         document.getElementById("plan_estudios_id").value = planesEstudios[i]['id'];
                         }
@@ -166,34 +168,35 @@
                     //para el combo de turnos
                     var turnoOriginal=<?php echo json_encode($turnoOriginal ??''); ?>;
                     //console.log(anioOriginal);
-                    var turnos = <?php echo json_encode($turnos); ?>; 
+                    var turnos = <?php echo json_encode($turnos); ?>;
                     for(var i=0;i<turnos.length;i++){
-                        if(turnoOriginal===turnos[i]['id']){
+                        if(turnoOriginal==turnos[i]['id']){
                         //console.log(turnos[i]['id']);
                         document.getElementById("turnos_id").value = turnos[i]['id'];
                         }
                     }
                     //para el checkbox de categoria
-                    var catOriginal = <?php echo json_encode($categoriaOriginal ??''); ?>; 
+                    var catOriginal = <?php echo json_encode($categoriaOriginal ??''); ?>;
                     console.log(catOriginal);
                     //if()
-                    if(catOriginal==='Tercer Ciclo'){
+                    if(catOriginal=='Tercer Ciclo'){
                         $("#categoriaTercerCiclo").prop("checked",true);
                     }else{
-                        if(catOriginal==='Bachillerato General'){
+                        if(catOriginal=='Bachillerato General'){
                             $("#categoriaBGeneral").prop("checked",true);
                         }else{
-                            if(catOriginal==='Bachillerato Vocacional')
+                            if(catOriginal=='Bachillerato Vocacional')
                                 $("#categoriaBVocacional").prop("checked",true);
                         }
                     }
               }
-              
-               
-                
+
+
+
             });
           });
           //hasta aqui lo nuevo
+
 </script>
 <script src="<?php echo e(asset('js/validar-form-grados.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
