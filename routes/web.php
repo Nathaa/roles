@@ -270,3 +270,4 @@ Route::get('reportes', 'ReportesController@index')->name('reportes.index')
 Route::get('reportes/{reporte}', 'ReportesController@show')->name('reportes.show')
 ->middleware('can:reportes.show');
 
+Route::get('/imprimir/{reporte}', 'ReportesController@imprimir')->name('print');

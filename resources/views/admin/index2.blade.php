@@ -409,7 +409,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           </li>
 
-
+          @can('asignaciones.index')
                   <li class="nav-item">
                       <li><a href="{{ route ('asignaciones.index')}}" class="nav-link">
                       <i class="fas fa-edit"></i>
@@ -417,7 +417,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a></li>
                   </li>
 
-
+                  @endcan
                   @can('docentegrados.index')
                   <li class="nav-item">
                     <li><a href="{{ route ('docentegrados.index') }}" class="nav-link">
