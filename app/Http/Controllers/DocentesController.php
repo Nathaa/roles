@@ -75,7 +75,7 @@ class DocentesController extends Controller
             //$file->move(public_path().'/imagenes/', $file->getClientOriginalName());
 
         }
-       
+
 
       //  $docentes->turnos()->sync($request->get('turnos'));
 
@@ -114,8 +114,9 @@ class DocentesController extends Controller
         //editado para recuperar el valor seleccionado y mandarlo
         $flag=TRUE;
         $turnoOriginal=$docente->turnos_id;
+        $sexoOriginal=$docente->sexo;
         //return view('docentes.edit', compact('docente','arraySexo','turnos')); //original
-        return view('docentes.edit', compact('docente','arraySexo','turnos','flag','turnoOriginal'));
+        return view('docentes.edit', compact('docente','arraySexo','turnos','flag','turnoOriginal', 'sexoOriginal'));
     }
 
     /**
