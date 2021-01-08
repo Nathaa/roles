@@ -110,14 +110,14 @@
 
          <div class="col">
                 {{ Form::label('descripcion_padecimiento', 'Descripcion Padecimiento')}}
-                {{ Form::text('descripcion_padecimiento',null,['class' => 'form-control','id'=>'descripcion_padecimiento','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)", 'placeholder' => 'Pequeña descripción del padecimiento', 'required' => 'required','autofocus'=>'autofocus']) }}
+                {{ Form::text('descripcion_padecimiento',null,['class' => 'form-control','id'=>'descripcion_padecimiento', 'placeholder' => 'Pequeña descripción del padecimiento']) }}
                 <div class="invalid-feedback" style="display:none">
                         La descripcion del Padecimiento no debe comenzar con numeros ni caracteres especiales.
                 </div>
         </div>
         <div class="col">
                 {{ Form::label('alergia_medicamento', 'Alergias del algun medicamento')}}
-                {{ Form::text('alergia_medicamento',null,['class' => 'form-control','id'=>'alergia_medicamento','onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)",'placeholder' => 'Si tiene alergia algun medicamento', 'required' => 'required','autofocus'=>'autofocus']) }}
+                {{ Form::text('alergia_medicamento',null,['class' => 'form-control','id'=>'alergia_medicamento','placeholder' => 'Si tiene alergia algun medicamento']) }}
                 <div class="invalid-feedback" style="display:none">
                         El campo alergia medicamento no debe comenzar con numeros ni caracteres especiales.
                 </div>
