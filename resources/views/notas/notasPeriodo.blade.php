@@ -1,9 +1,9 @@
 @extends('admin.index2')
-
 @section('title')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <h4>Asignar las notas para la materia: <strong>{{$nombremateria}}</strong>  <br>Grado: <strong> {{$gradogrado}} {{$secciongrado}} {{$categoriagrado}} </strong></h4>
 @endsection
+
 @section('content')
 <div class="container">
 <div class="container-fluid">
@@ -51,7 +51,7 @@
           </div>
           </tr>
       <br>
-      <button type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
+      <button id="btn_submit" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
     </form>
     </div>
 </div>
@@ -59,20 +59,7 @@
     </div>
 </div>
 </div>
-<script type="text/javascript">
-    function validar_numero(input) {
-    let valor = Number(input.value);
-    if (!isNaN(valor)) {
-        if (valor >= 0 && valor <= 10) {
-            valido(input);
-        } else {
-            invalido(input);
-        }
-    } else {
-        invalido(input);
-    }
-    submit_form();
-}
-
-</script>
+@section('scripts')
+<script src="{{ asset('js/validar-form-notas.js') }}"></script>
+@endsection
 @endsection

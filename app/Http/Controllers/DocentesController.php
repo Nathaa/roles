@@ -115,6 +115,10 @@ class DocentesController extends Controller
         $flag=TRUE;
         $turnoOriginal=$docente->turnos_id;
         $sexoOriginal=$docente->sexo;
+
+        //return view('docentes.edit', compact('docente','arraySexo','turnos')); //original
+        return view('docentes.edit', compact('docente','arraySexo','turnos','flag','turnoOriginal', 'sexoOriginal'));
+
         //dd($sexoOriginal);
         //fin de la edicion
         //return view('docentes.edit', compact('docente','arraySexo','turnos')); //original

@@ -10,7 +10,6 @@
             <h3>Configurar y digitar las notas de las materias que imparte</h3>
             <div class="form-group row">
               <div class="col-md-6">
-                  <a href="<?php echo e(route('notas.confignotas')); ?>"><i class="fa fa-align-justify"></i> Listado Materias en curso</a>
               </div>
             </div>
 

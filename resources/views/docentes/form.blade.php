@@ -154,6 +154,16 @@
                       document.getElementById("turnos_id").value = turnos[i]['id'];
                     }
                   }
+                  //para el sexo
+                  var sexoOriginal={!! json_encode($sexoOriginal ??'') !!};
+
+                  var sexos = {!! json_encode($arraySexo) !!};
+                  for(var i=0;i<sexos.length;i++){
+                    if(sexoOriginal===sexos[i]){
+                      //console.log(turnos[i]['id']);
+                      document.getElementById("sexo").value = sexos[i];
+                    }
+                  }
               }
             });
           });
