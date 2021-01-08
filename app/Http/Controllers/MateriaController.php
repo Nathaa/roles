@@ -53,13 +53,16 @@ class MateriaController extends Controller
      */
     public function store(MateriaFormRequest $request)
     {
+        //dd($request->estado);
         $materia = new Materia();
         $materia->nombre = $request->input('nombre');
         $materia->descripcion = $request->input('descripcion');
-        $materia->estado = '1';
+        //$materia->estado = '1';//Imagino que aqui hay un problema, no ? se esta seteando uno siempre, esto no lo he tocado yo
+        $materia->estado=$request->estado;
         if($materia->save()){
             Session::flash('success_message', 'Materia guardada con éxito');
-            return back();
+            //return back();
+            return redirect('materias');
         }
         return redirect('materias');
 
