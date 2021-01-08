@@ -493,5 +493,60 @@ class PermissionsTableSeeder extends Seeder
 
         ]);
 
+        Permission::create( [
+            'name' => 'Navegar Reporte de Boleta de Notas',
+            'slug' => 'reportes.index',
+            'description' => 'Lista y navega los Reporte de Boleta de Notas',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ver El Reporte de Boleta de Notas',
+            'slug' => 'reportes.show',
+            'description' => 'Ver cada detalle del Reporte de Boleta de Notas',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ingresar notas de la alumna',
+            'slug' => 'notas.ingresoNotas',
+            'description' => 'Ingresar notas ',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ver detalles de las notas de cada periodo',
+            'slug' => 'notas.notasPeriodo',
+            'description' => 'Ver cada detalle de la notab respecto al periodo',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Guardar las notas de la alumna',
+            'slug' => 'notas.guardarNotasIngresadas',
+            'description' => 'guardar notas',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ver promedio general de una materia en un periodo',
+            'slug' => 'notas.verPromedios',
+            'description' => 'Ve los promedios de notas',
+
+        ]);
+
+        Permission::create( [
+            'name' => 'Ver cada nota de la materia',
+            'slug' => 'notas.verNotas',
+            'description' => 'Ver las notas de una materia en un periodo dado',
+
+        ]);
+               Permission::create( [
+            'name' => 'Guardar las notas de una alumna',
+            'slug' => 'notas.guardarNotas',
+            'description' => 'Guardar notas',
+
+        ]);
+
     }
 }

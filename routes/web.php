@@ -73,7 +73,21 @@ Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 
 
 //Materias
-Route::resource('materias', 'MateriaController');
+//Route::resource('materias', 'MateriaController');
+Route::get('materias', 'MateriaController@index')->name('materias.index')
+->middleware('can:materias.index');
+Route::get('materias/materia', 'MateriaController@create')->name('materias.create')
+->middleware('can:materias.create');
+Route::get('materias/{materia}', 'MateriaController@show')->name('materias.show')
+->middleware('can:materias.show');
+Route::post('materias', 'MateriaController@store')->name('materias.store')
+->middleware('can:materias.create');
+Route::get('materias/{materia}/edit', 'MateriaController@edit')->name('materias.edit')
+->middleware('can:materias.edit');
+Route::put('materias/{materia}', 'MateriaController@update')->name('materias.update')
+->middleware('can:materias.update');
+Route::delete('materias/{materia}', 'MateriaController@destroy')->name('materias.destroy')
+->middleware('can:materias.destroy');
 
 });
 
