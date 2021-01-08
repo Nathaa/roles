@@ -14,6 +14,7 @@ use App\Promedio;
 use App\Periodo;
 use Illuminate\Http\Request;
 use DB;
+
 use Carbon\Carbon;
 use App\Http\Requests\NotasStoreRequest;
 
@@ -88,7 +89,22 @@ class NotasController extends Controller
                     'ponderacion' => $ponderacion[$i],
                 ]);
                 $notas->save();
+
             }
+            $match = ['anios_id' => $anioID,
+            'estudiantes_id' => $estudiante->estudiantes_id,
+            'materias_id' => $idmateria,
+            'grados_id' => $idgrado,];
+
+            $promedios = Promedio::where($match)->select('id')->count();
+            if ($promedios==0) {
+                $promedios = Promedio::create(['anios_id' => $anioID,
+                'estudiantes_id' => $estudiante->estudiantes_id,
+                'materias_id' => $idmateria,
+                'grados_id' => $idgrado,]);
+                $promedios->save();
+            }
+
         }
         return view('admin.index2');
     }
@@ -188,45 +204,44 @@ class NotasController extends Controller
             }
             $promedio / floatval(count($notasLlenar));
             if (str_contains($periodoObjeto->nombre_periodo, '1')) {
-                $promedioPeriodo = Promedio::create([
-                    'estudiantes_id' => $id,
-                    'materias_id' => $idmateria,
-                    'grados_id' => $idgrado,
-                    'anios_id' => $anioID,
-                    'prom_per_1' => $promedio,
-                ]);
+                DB::table('promedios')
+                ->where(['estudiantes_id' => $id,
+                'materias_id' => $idmateria,
+                'grados_id' => $idgrado,
+                'anios_id' => $anioID,
+                ])
+                ->update(['prom_per_1' => $promedio,]);
             } else {
                 if (str_contains($periodoObjeto->nombre_periodo, '2')) {
-                    $promedioPeriodo = Promedio::create([
-                        'estudiantes_id' => $id,
-                        'materias_id' => $idmateria,
-                        'grados_id' => $idgrado,
-                        'anios_id' => $anioID,
-                        'prom_per_2' => $promedio,
-                    ]);
+                    DB::table('promedios')
+                ->where(['estudiantes_id' => $id,
+                'materias_id' => $idmateria,
+                'grados_id' => $idgrado,
+                'anios_id' => $anioID,
+                ])
+                ->update(['prom_per_2' => $promedio,]);
                 } else {
                     if (str_contains($periodoObjeto->nombre_periodo, '3')) {
-                        $promedioPeriodo = Promedio::create([
-                            'estudiantes_id' => $id,
-                            'materias_id' => $idmateria,
-                            'grados_id' => $idgrado,
-                            'anios_id' => $anioID,
-                            'prom_per_3' => $promedio,
-                        ]);
+                        DB::table('promedios')
+                ->where(['estudiantes_id' => $id,
+                'materias_id' => $idmateria,
+                'grados_id' => $idgrado,
+                'anios_id' => $anioID,
+                ])
+                ->update(['prom_per_3' => $promedio,]);
                     } else {
                         if (str_contains($periodoObjeto->nombre_periodo, '4')) {
-                            $promedioPeriodo = Promedio::create([
-                                'estudiantes_id' => $id,
-                                'materias_id' => $idmateria,
-                                'grados_id' => $idgrado,
-                                'anios_id' => $anioID,
-                                'prom_per_4' => $promedio,
-                            ]);
+                            DB::table('promedios')
+                ->where(['estudiantes_id' => $id,
+                'materias_id' => $idmateria,
+                'grados_id' => $idgrado,
+                'anios_id' => $anioID,
+                ])
+                ->update(['prom_per_4' => $promedio,]);
                         }
                     }
                 }
             }
-            $promedioPeriodo->save();
             $match = ['grados_id' => (int)$idgrado, 'materias_id' => $idmateria, 'estudiantes_id' => (int)$id, 'anios_id' => $anioID];
             $promediosPeriodos = Promedio::where($match)->select('prom_per_1', 'prom_per_2', 'prom_per_3', 'prom_per_4')->get();
             $promedioFinal = 0;
@@ -257,37 +272,86 @@ class NotasController extends Controller
         $grado = $request->get('grado');
         $seccion = $request->get('seccion');
         $categoria = $request->get('categoria');
-        $match = ['nombre'=>$nomMateria];
+        $match = ['nombre' => $nomMateria];
         $materia = Materia::where($match)->select('id')->get();
         $idmat = 0;
         foreach ($materia as $mat) {
             $idmat = $mat->id;
         }
-        $match = ['grados_id' => $idgrado, 'materias_id'=>$idmat];
+         $match = ['grados_id' => (int)$idgrado];
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+        $numperiodos = 0;
+        foreach ($periodos as $periodo) {
+            if (!($periodo->periodos_id) == null) {
+                $numperiodos++;
+            }
+        }
 
-        $notas = Nota::where($match)->select('id', 'anios_id', 'estudiantes_id', 'materias_id', 'grados_id', 'periodos_id', 'tipo_nota', 'valor_nota', 'ponderacion')->get();
-
-        $promedios = Promedio::where($match)->select('prom_per_1', 'prom_per_2', 'prom_per_3', 'prom_per_4', 'estudiantes_id', 'prom_final')->get();
         $match = ['grados_id' => (int)$idgrado];
-            $periodos = Asignacion::where($match)->select('periodos_id')->get();
-            $numperiodos = 0;
-            foreach ($periodos as $periodo) {
-                if (!($periodo->periodos_id) == null) {
-                    $numperiodos++;
-                }
-            }
+        $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
+        $estudiantes = [];
+        $i = 0;
+        foreach ($estudiantesMatricula as $estudiante) {
+            $match = $estudiante->id;
+            $estudiantes[$i] = Estudiante::where($match)->select('id', 'nombre', 'apellido')->get();
+            $estudianteInd = $estudiantes[$i];
+            print_r($estudiante->estudiante_id);
+            $i++;
 
-            $match = ['grados_id' => (int)$idgrado];
-            $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
-            $estudiantes = [];
-            $i = 0;
-            foreach ($estudiantesMatricula as $estudiante) {
-                $match = $estudiante->id;
-                $estudiantes[$i] = Estudiante::where($match)->select('id', 'nombre', 'apellido')->get();
-                $estudianteInd = $estudiantes[$i];
-                $i++;
-            }
+        }
+
+        $match = ['grados_id' => $idgrado, 'materias_id' => $idmat];
+        $notas = Nota::where($match)->select('id', 'anios_id', 'estudiantes_id', 'materias_id', 'grados_id', 'periodos_id', 'tipo_nota', 'valor_nota', 'ponderacion')->get();
+        $promedios = Promedio::where($match)->select('prom_per_1', 'prom_per_2', 'prom_per_3', 'prom_per_4', 'estudiantes_id', 'prom_final')->get();
 
         return view('notas.verPromedios', compact('idgrado', 'grado', 'seccion', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes', 'notas', 'promedios'));
+    }
+
+    public function verNotas(Request $request)
+    {
+        $periodo = $request->get('periodo');
+        $nomMateria = $request->get('nombre');
+        $idgrado = $request->get('idgrado');
+        $grado = $request->get('grado');
+        $seccion = $request->get('seccion');
+        $categoria = $request->get('categoria');
+        $match = ['nombre' => $nomMateria];
+        $materia = Materia::where($match)->select('id')->get();
+        $idmat = 0;
+        foreach ($materia as $mat) {
+            $idmat = $mat->id;
+        }
+        $periodoSend =0;
+        $nomperiodo = '';
+        $periodoUni = Periodo::all();
+        foreach ($periodoUni as $periodoInd) {
+            if ((str_contains($periodoInd->nombre_periodo, $periodo))) {
+                $periodoSend=$periodoInd->id;
+                $nomperiodo = $periodoInd->nombre_periodo;
+
+            }
+        }
+        $match = ['grados_id' => $idgrado, 'materias_id' => $idmat, 'periodos_id'=>$periodoSend];
+        $notas = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion')->get();
+        $match = ['grados_id' => $idgrado, 'materias_id' => $idmat];
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+        $numperiodos = 0;
+        foreach ($periodos as $periodo) {
+            if (!($periodo->periodos_id) == null) {
+                $numperiodos++;
+            }
+        }
+        $match = ['grados_id' => (int)$idgrado];
+        $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
+        $estudiantes = [];
+        $i = 0;
+        foreach ($estudiantesMatricula as $estudiante) {
+            $match = $estudiante->id;
+            $estudiantes[$i] = Estudiante::where($match)->select('id', 'nombre', 'apellido')->get();
+            $estudianteInd = $estudiantes[$i];
+            $i++;
+        }
+
+        return view('notas.verNotas', compact('idgrado', 'grado', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes','estudianteInd', 'notas', 'periodo', 'nomperiodo'));
     }
 }

@@ -9,7 +9,11 @@
 <div class="container-fluid">
 <div class="container">
     <div class="container-fluid">
-
+        <div class="form-group row">
+            <div class="col-md-6">
+                <a href="{{ route('notas.confignotas') }}"><i class="fa fa-align-justify"></i> Listado Materias en curso</a>
+            </div>
+          </div>
         <form  action="" method="POST"  >
             @csrf
         <br>
@@ -24,7 +28,6 @@
                 <th scope="col">Promedio periodo 2</th>
                 <th scope="col">Promedio periodo 3</th>
                 <th scope="col">Promedio periodo 4</th>
-
                 <th scope="col">Promedio Final</th>
 
             </tr>
