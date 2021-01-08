@@ -180,7 +180,7 @@ return [
 
         //Datatables
         Yajra\DataTables\DataTablesServiceProvider::class,
-        
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -234,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'DataTables' => Yajra\DataTables\DataTablesServiceProvider::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

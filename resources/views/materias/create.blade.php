@@ -13,12 +13,11 @@
 
 @section('content')
 @if(count($errors)>0)
-        <div class="alert alert-danger" role="alert">
-            <ul>
+        <div class="alert alert-info alert-dismissible" id="msj_error" role="alert">
                 @foreach($errors->all() as $error)
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <li>{{ $error }}</li>
                 @endforeach
-            </ul>
         </div>
     @endif
     <div class="container">
@@ -38,3 +37,7 @@
     </div>
  </div>
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/funciones.js') }}"></script>
+@stop

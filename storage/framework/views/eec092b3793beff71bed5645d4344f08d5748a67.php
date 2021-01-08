@@ -116,9 +116,57 @@
                  edad--;
              }
              $("#edad").val(edad);
+
          }
+         $(document).ready(function(){
+            $(function printOnSelect(){
+              //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
+              var flag=<?php echo json_encode($flag ?? ''); ?>;
+              if(flag){
+                var docenteActual=<?php echo json_encode($docenteActual ??''); ?>;
+                //console.log(docenteActual);
+                var docentes = <?php echo json_encode($docentes); ?>;
+                //console.log(docentes[0]['nombre']);
+                var comboSelect = document.getElementById('docentes_id');
+                  for(var i=0;i<docentes.length;i++){
+                    if(docenteActual===docentes[i]['nombre']){
+                      //console.log(docenteActual===docentes[i]['nombre']);
+                      document.getElementById("docentes_id").value = docentes[i]['id'];
+                    }
+                  }
+                  var anioActual=<?php echo json_encode($anioActual ??''); ?>;
+                  //console.log(anioActual);
+                  var anios = <?php echo json_encode($anios); ?>;
+                  //console.log(anios);
+                  for(var i=0;i<anios.length;i++){
+                    if(anioActual===anios[i]['año']){
+                      document.getElementById("anios_id").value = anios[i]['id'];
+                    }
+                  }
+
+                  var asigActual=<?php echo json_encode($gradoMasSeccion ??''); ?>;
+                  //console.log(asigActual);
+                  var asignaciones = <?php echo json_encode($asignaciones); ?>;
+                  console.log(asigActual);
+                  console.log(asignaciones[0]['grado']+asignaciones[0]['seccion']);
+                  //console.log(asignaciones[0]['id']);
+                  //console.log(asignaciones);
+                  //var asigSeccion=asignaciones[0]['grado']+asignaciones[0]['seccion'];
+                  for(var i=0;i<asignaciones.length;i++){
+                    var asigSeccion=asignaciones[i]['grado']+asignaciones[i]['seccion'];
+                    //console.log(asigSeccion);
+                    //if(asigActual===asignaciones[i]['grado']){
+                    console.log(asigActual===asigSeccion);
+                    if(asigActual===asigSeccion){
+                      document.getElementById("asignacions_id").value = asignaciones[i]['id'];
+                    }
+                  }
+              }
+            });
+          });
 </script>
 <script src="<?php echo e(asset('js/validar-form-docente.js')); ?>"></script>
+
 <?php $__env->stopSection(); ?>
 
 

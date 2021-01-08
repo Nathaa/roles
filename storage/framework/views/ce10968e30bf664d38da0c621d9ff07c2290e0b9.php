@@ -407,14 +407,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </p>
                 </a>
                 <?php endif; ?>
-                <ul class="nav nav-treeview">
-
-
-
 
           </li>
 
-
+          <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('asignaciones.index')): ?>
                   <li class="nav-item">
                       <li><a href="<?php echo e(route ('asignaciones.index')); ?>" class="nav-link">
                       <i class="fas fa-edit"></i>
@@ -422,7 +418,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </a></li>
                   </li>
 
-
+                  <?php endif; ?>
                   <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('docentegrados.index')): ?>
                   <li class="nav-item">
                     <li><a href="<?php echo e(route ('docentegrados.index')); ?>" class="nav-link">

@@ -42,6 +42,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
+        
         return view('materias.create');
     }
 
@@ -53,16 +54,19 @@ class MateriaController extends Controller
      */
     public function store(MateriaFormRequest $request)
     {
+        //dd($request->estado);
         $materia = new Materia();
         $materia->nombre = $request->input('nombre');
         $materia->descripcion = $request->input('descripcion');
-        $materia->estado = '1';
+        //$materia->estado = '1';//Imagino que aqui hay un problema, no ? se esta seteando uno siempre, esto no lo he tocado yo
+        $materia->estado=$request->estado;
         if($materia->save()){
             Session::flash('success_message', 'Materia guardada con éxito');
-            return back();
+            //return back();
+            return redirect('materias');
         }
         return redirect('materias');
-
+    
 
     }
 
@@ -86,7 +90,7 @@ class MateriaController extends Controller
      */
     public function edit($id)
     {
-
+        
         $materia=materia::findOrFail($id);
         //dd($materia);
         $flag=TRUE;
@@ -103,13 +107,15 @@ class MateriaController extends Controller
      * @param  \App\Materia  $materia
      * @return \Illuminate\Http\Response
      */
-    public function update(MateriaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $materia=materia::findOrFail($id);
-        $materia->fill($request->all())->save();
-
-
-        $materia->update($request->all());
+        //$materia->fill($request->all())->save();
+        $materia->nombre = $request->input('nombre');
+        $materia->descripcion = $request->input('descripcion');
+        $materia->estado = $request->input('estado');
+        //$request->all()
+        $materia->update();
 
         Session::flash('info_message', 'Materia actualizada con éxito');
         return redirect()->route('materias.index',compact('materia'));
@@ -129,4 +135,16 @@ class MateriaController extends Controller
         return back();
     }
 
+    /*public function cant_materias(MateriaFormRequest $request){
+        
+        if($request->ajax()){
+            $nombre = $request->get('nombre');
+            $nombre_materia = Materia::where('nombre', 'like', '%'.strtoupper($nombre). '%');
+            return response()->json(['nombre_materia' => $nombre_materia]);
+        }
+        
+        //$list_materias = DB::table('materias')->get();
+        //$materias = Materia::all();
+        //return view('materias.modal',compact('list_materias'));
+    }*/
 }

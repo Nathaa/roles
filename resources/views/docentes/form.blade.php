@@ -149,7 +149,7 @@
                 var turnos = {!! json_encode($turnos) !!};
                 var comboSelect = document.getElementById('turnos_id');
                   for(var i=0;i<turnos.length;i++){
-                    if(turnoOriginal===turnos[i]['id']){
+                    if(turnoOriginal==turnos[i]['id']){
                       //console.log(turnos[i]['id']);
                       document.getElementById("turnos_id").value = turnos[i]['id'];
                     }

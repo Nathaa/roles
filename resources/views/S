@@ -32,3 +32,17 @@ Permission::create( [
             'description' => 'Crear una nueva asignacion de docente para el sistema',
 
         ]);
+Route::get('materias', 'materiasController@index')->name('materias.index')
+->middleware('can:materias.index');
+Route::get('materias/materia', 'materiasController@create')->name('materias.create')
+->middleware('can:materias.create');
+Route::get('materias/{materia}', 'materiasController@show')->name('materias.show')
+->middleware('can:materias.show');
+Route::post('materias', 'materiasController@store')->name('materias.store')
+->middleware('can:materias.create');
+Route::get('materias/{materia}/edit', 'materiasController@edit')->name('materias.edit')
+->middleware('can:materias.edit');
+Route::put('materias/{materia}', 'materiasController@update')->name('materias.update')
+->middleware('can:materias.update');
+Route::delete('materias/{materia}', 'materiasController@destroy')->name('materias.destroy')
+->middleware('can:materias.destroy');

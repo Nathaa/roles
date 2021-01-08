@@ -1,4 +1,5 @@
-{!! csrf_field() !!}
+<?php echo csrf_field(); ?>
+
 
 
      <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
@@ -10,15 +11,19 @@
 
        <div class="row">
           <div class="col">
-            {{ Form::label('nombre', 'Nombre')}}
-            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre_materia', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            <?php echo e(Form::label('nombre', 'Nombre')); ?>
+
+            <?php echo e(Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre_materia', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"])); ?>
+
             <div class="invalid-feedback" style="display:none">
                 El nombre de la materia no debe comenzar con números ni caracteres especiales
             </div> 
         </div>
           <div class="col">
-            {{ Form::label('descripcion', 'Descripcion')}}
-            {{ Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_descripcion(this)", 'onblur' => "validar_descripcion(this)"]) }}
+            <?php echo e(Form::label('descripcion', 'Descripcion')); ?>
+
+            <?php echo e(Form::text('descripcion',null,['class' => 'form-control', 'id'=>'descripcion','onkeyup' => "validar_descripcion(this)", 'onblur' => "validar_descripcion(this)"])); ?>
+
             <div class="invalid-feedback" style="display:none">
                 El nombre de la descripcion no debe comenzar con números ni caracteres especiales
               </div> 
@@ -46,20 +51,21 @@
 
 
         <ol class="float-sm-right">
-            <br>{{ Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit']) }}
+            <br><?php echo e(Form::submit('     Guardar     ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit'])); ?>
+
         </ol>
 
 </form>
 
-@section('scripts')
+<?php $__env->startSection('scripts'); ?>
 <script type="">
     //agregado para cambiar el valor del select por el recuperado de la base 
     $(document).ready(function(){
             $(function printOnSelect(){
               //si el formulario va a ser utilizado para editar mandara 1 en una bandera, si el formulario sera utilizado para crear , mandara 0
-              var flag={!! json_encode($flag ?? '') !!};
+              var flag=<?php echo json_encode($flag ?? ''); ?>;
               if(flag){
-                var estadoOriginal={!! json_encode($estadoOriginal ??'') !!};  
+                var estadoOriginal=<?php echo json_encode($estadoOriginal ??''); ?>;  
                 //console.log(estadoOriginal);
                     if(estadoOriginal===true){
                       document.getElementById("estado").value ="1";
@@ -71,7 +77,7 @@
           });
           //hasta aqui lo nuevo
 </script>
-<script src="{{ asset('js/validar-form-materias.js') }}"></script>
+<script src="<?php echo e(asset('js/validar-form-materias.js')); ?>"></script>
 <script type="text/javascript">
     $(function(){
     $("#nombre_materia").on('change', convertirMayus);
@@ -85,8 +91,9 @@
        $("#nombre_materia").val(cadena);
     }
 </script>
-@stop
+<?php $__env->stopSection(); ?>
 
 
 
 
+<?php /**PATH E:\Documentos\GitHub\roles\resources\views/materias/modal.blade.php ENDPATH**/ ?>
