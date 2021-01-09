@@ -17,13 +17,12 @@
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered table-hover">
-         
-                            
+             
+                           
                 <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
                     Datos de la Materia
                 </div>
 
-                <!--<form method="POST"-->
                 {!! Form::model($materia,['method'=>'PATCH','route'=>['materias.update', $materia->id]])!!}
                 {{Form::token()}}
               
@@ -82,7 +81,3 @@
 </div>
 @endsection
 
-
-@section('scripts')
-
-@endsection
