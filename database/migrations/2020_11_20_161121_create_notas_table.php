@@ -26,6 +26,8 @@ class CreateNotasTable extends Migration
             $table->unsignedBigInteger('periodos_id')->unsigned();
             $table->foreign('periodos_id')->references('id')->on('periodos')->onUpdate('cascade')->onDelete('cascade');
             $table->string('tipo_nota');
+            $table->string('conducta')->nullable();
+            $table->string('asistencia')->nullable();
             $table->float('valor_nota')->nullable();
             $table->float('ponderacion');
             $table->timestamps();

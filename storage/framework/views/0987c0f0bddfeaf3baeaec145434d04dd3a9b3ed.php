@@ -1,34 +1,3 @@
-<?php $__env->startSection('crear'); ?>
-<div class="col-sm-6">
-  <ol class="breadcrumb float-sm-right">
-
-  </ol>
-  <?php if(Session::has('success_message')): ?>
-  <?echo "asdasdads"?>
-    <div id="msj_verde" class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <?php echo e(Session::get('success_message')); ?>
-
-    </div>
-  <?php endif; ?>
-
-  <?php if(Session::has('info_message')): ?>
-    <div id="msj_azul" class="alert alert-info alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <?php echo e(Session::get('info_message')); ?>
-
-    </div>
-  <?php endif; ?>
-
-  <?php if(Session::has('danger_message')): ?>
-    <div id="msj_rojo" class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <?php echo e(Session::get('danger_message')); ?>
-
-    </div>
-  <?php endif; ?>
-</div><!-- /.col -->
-<?php $__env->stopSection(); ?>
 <?php $__env->startSection('title'); ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <h4>Asignar las notas para la materia: <strong><?php echo e($nombremateria); ?></strong>  <br>Grado: <strong> <?php echo e($gradogrado); ?> <?php echo e($secciongrado); ?> <?php echo e($categoriagrado); ?> </strong></h4>
@@ -52,6 +21,8 @@
                 <?php $__currentLoopData = $notasLlenar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <th scope="col">Nota: <?php echo e($nota->tipo_nota); ?></th>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <th scope="col">Asistencia:</th>
+                <th scope="col">Conducta:</th>
             </tr>
 
             <tbody>
@@ -71,10 +42,14 @@
                     <input type="hidden" id="tipo_nota" name="tipo_nota[]" value="<?php echo e($nota->tipo_nota); ?>">
                     <input type="hidden" id="ponderacion" name="ponderacion[]" value="<?php echo e($nota->ponderacion); ?>">
                     <th scope="col"><?php echo e(Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'validar_numero(this)', 'onblur' => 'validar_numero(this)', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+
                     <div class="invalid-feedback" style="display:none">
                         El numero debe estar entre 0 y 10
                       </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <th scope="col"><?php echo e(Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+                    <th scope="col"><?php echo e(Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+
                 </tr>
                 <?php $i++;?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -83,8 +58,7 @@
           </div>
           </tr>
       <br>
-      <?php echo e(Form::submit('     Guardar Notas Estudiantes    ', ['class' => 'btn  btn-sm btn-success','id' => 'btn_submit'])); ?>
-
+      <button id="btn_submit" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
     </form>
     </div>
 </div>

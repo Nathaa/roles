@@ -58,12 +58,30 @@ class NotasController extends Controller
         $materiaId = (int)$materias[0]->id;
         $match = ['grados_id' => (int)$grados[0]->id];
         $periodos = Asignacion::where($match)->select('periodos_id')->get();
+        $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
         $numperiodos = 0;
-        foreach ($periodos as $periodo) {
-            if (!($periodo->periodos_id) == null) {
-                $numperiodos++;
+
+
+        if($periodosCount==8){
+            $numperiodos = 4;
+
+            }else{
+                if($periodosCount==6){
+                    $numperiodos = 3;
+
+                    }else{
+                        if($periodosCount==4){
+                            $numperiodos = 2;
+
+                            }else{
+                                if($periodosCount==2){
+                                    $numperiodos = 1;
+
+                                    }
+                            }
+                    }
             }
-        }
+
         return view('notas.editarnotas', compact('materias', 'grados', 'numperiodos', 'anioId', 'periodos'));
     }
 
@@ -88,6 +106,8 @@ class NotasController extends Controller
                     'periodos_id' => $valorPeriodo,
                     'tipo_nota' => $nota[$i],
                     'ponderacion' => $ponderacion[$i],
+                    'asistencia' => null,
+                    'conducta' => null,
                 ]);
                 $notas->save();
 
@@ -133,13 +153,29 @@ class NotasController extends Controller
         $materias = Materia::where($match)->select('id', 'nombre')->get();
         $materiaId = (int)$materias[0]->id;
         $match = ['grados_id' => (int)$grados[0]->id];
-        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+        $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
         $numperiodos = 0;
-        foreach ($periodos as $periodo) {
-            if (!($periodo->periodos_id) == null) {
-                $numperiodos++;
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+
+        if($periodosCount==8){
+            $numperiodos = 4;
+
+            }else{
+                if($periodosCount==6){
+                    $numperiodos = 3;
+
+                    }else{
+                        if($periodosCount==4){
+                            $numperiodos = 2;
+
+                            }else{
+                                if($periodosCount==2){
+                                    $numperiodos = 1;
+
+                                    }
+                            }
+                    }
             }
-        }
         return view('notas.ingresoNotas', compact('materias', 'grados', 'numperiodos', 'anioId', 'periodos'));
     }
     public function notasPeriodo(Request $request)
@@ -186,7 +222,8 @@ class NotasController extends Controller
     {
         $nombreNota = $request['tipo_nota'];
         $numperiodos = $request['numperiodos'];
-        print_r($numperiodos);
+        $conducta = $request['conducta'];
+        $asistencia = $request['asistencia'];
         $ponderacion = $request['ponderacion'];
         $anioID = $request['anioID'];
         $nota = $request['nombreNota'];
@@ -211,6 +248,9 @@ class NotasController extends Controller
                 $promedio = $promedio + ($notaXD * ($ponderacionXD) / 100);
                 $j++;
             }
+            DB::table('notas')
+            ->where([['estudiantes_id', '=', $id], ['materias_id', '=', $idmateria], ['grados_id', '=', $idgrado]])
+            ->update(['asistencia' => $asistencia[$i], 'conducta'=>$conducta[$i]]);
             $promedio / floatval(count($notasLlenar));
             if (str_contains($periodoObjeto->nombre_periodo, '1')) {
                 DB::table('promedios')
@@ -257,12 +297,28 @@ class NotasController extends Controller
             $promedioFinal += (floatval($promediosPeriodos[0]->prom_per_1) + floatval($promediosPeriodos[0]->prom_per_2) + floatval($promediosPeriodos[0]->prom_per_3) + floatval($promediosPeriodos[0]->prom_per_4));
 
             $match = ['grados_id' => (int)$idgrado];
-            $periodos = Asignacion::where($match)->select('periodos_id')->get();
-            $numperiodos = 0;
-            foreach ($periodos as $periodo) {
-                if (!($periodo->periodos_id) == null) {
-                    $numperiodos++;
-                }
+            $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
+        $numperiodos = 0;
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+
+        if($periodosCount==8){
+            $numperiodos = 4;
+
+            }else{
+                if($periodosCount==6){
+                    $numperiodos = 3;
+
+                    }else{
+                        if($periodosCount==4){
+                            $numperiodos = 2;
+
+                            }else{
+                                if($periodosCount==2){
+                                    $numperiodos = 1;
+
+                                    }
+                            }
+                    }
             }
             $promedioFinal = $promedioFinal / floatval($numperiodos);
             //print_r(floatval(count($notasLlenar)));
@@ -350,19 +406,36 @@ class NotasController extends Controller
             }
         }
         $match = ['grados_id' => $idgrado, 'materias_id' => $idmat, 'periodos_id'=>$periodoSend];
-        $notas = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion')->get();
+        $notas = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion', 'conducta', 'asistencia')->get();
         $match = ['grados_id' => $idgrado, 'materias_id' => $idmat];
-        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+        $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
         $numperiodos = 0;
-        foreach ($periodos as $periodo) {
-            if (!($periodo->periodos_id) == null) {
-                $numperiodos++;
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+
+        if($periodosCount==8){
+            $numperiodos = 4;
+
+            }else{
+                if($periodosCount==6){
+                    $numperiodos = 3;
+
+                    }else{
+                        if($periodosCount==4){
+                            $numperiodos = 2;
+
+                            }else{
+                                if($periodosCount==2){
+                                    $numperiodos = 1;
+
+                                    }
+                            }
+                    }
             }
-        }
         $match = ['grados_id' => (int)$idgrado];
         $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
         $estudiantes = [];
         $i = 0;
+        $estudianteInd=0;
         foreach ($estudiantesMatricula as $estudiante) {
             $match = $estudiante->id;
             $estudiantes[$i] = Estudiante::where($match)->select('id', 'nombre', 'apellido')->get();
@@ -370,6 +443,71 @@ class NotasController extends Controller
             $i++;
         }
 
-        return view('notas.verNotas', compact('idgrado', 'grado', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes','estudianteInd', 'notas', 'periodo', 'nomperiodo'));
+        return view('notas.verNotas', compact('idgrado', 'grado', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes', 'notas', 'periodo', 'nomperiodo', 'estudianteInd'));
+    }
+
+    public function verAsistenciaConducta(Request $request)
+    {
+        $periodo = $request->get('periodo');
+        $nomMateria = $request->get('nombre');
+        $idgrado = $request->get('idgrado');
+        $grado = $request->get('grado');
+        $seccion = $request->get('seccion');
+        $categoria = $request->get('categoria');
+        $match = ['nombre' => $nomMateria];
+        $materia = Materia::where($match)->select('id')->get();
+        $idmat = 0;
+        foreach ($materia as $mat) {
+            $idmat = $mat->id;
+        }
+        $periodoSend =0;
+        $nomperiodo = '';
+        $periodoUni = Periodo::all();
+        foreach ($periodoUni as $periodoInd) {
+            if ((str_contains($periodoInd->nombre_periodo, $periodo))) {
+                $periodoSend=$periodoInd->id;
+                $nomperiodo = $periodoInd->nombre_periodo;
+
+            }
+        }
+        $match = ['grados_id' => $idgrado, 'materias_id' => $idmat, 'periodos_id'=>$periodoSend];
+        $notas = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion', 'conducta', 'asistencia')->get();
+        $match = ['grados_id' => $idgrado, 'materias_id' => $idmat];
+        $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
+        $numperiodos = 0;
+        $periodos = Asignacion::where($match)->select('periodos_id')->get();
+
+        if($periodosCount==8){
+            $numperiodos = 4;
+
+            }else{
+                if($periodosCount==6){
+                    $numperiodos = 3;
+
+                    }else{
+                        if($periodosCount==4){
+                            $numperiodos = 2;
+
+                            }else{
+                                if($periodosCount==2){
+                                    $numperiodos = 1;
+
+                                    }
+                            }
+                    }
+            }
+        $match = ['grados_id' => (int)$idgrado];
+        $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
+        $estudiantes = [];
+        $i = 0;
+        $estudianteInd=0;
+        foreach ($estudiantesMatricula as $estudiante) {
+            $match = $estudiante->id;
+            $estudiantes[$i] = Estudiante::where($match)->select('id', 'nombre', 'apellido')->get();
+            $estudianteInd = $estudiantes[$i];
+            $i++;
+        }
+
+        return view('notas.verAsistenciaConducta', compact('idgrado', 'grado', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes', 'notas', 'periodo', 'nomperiodo', 'estudianteInd'));
     }
 }

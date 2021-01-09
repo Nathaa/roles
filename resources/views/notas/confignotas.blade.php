@@ -21,6 +21,7 @@
           <th scope="col">Materia</th>
           <th scope="col">Grado</th>
           <th scope="col">Asignar # de notas</th>
+          <th scope="col">Ver Conducta / Asistencia Por Periodo</th>
           <th scope="col">Digitar Notas Estudiantes</th>
           <th scope="col">Ver Promedios</th>
           <th scope="col">Ver Notas Por Periodos</th>
@@ -31,7 +32,7 @@
            <tr>
             <td width="20%">{{$materia->nombre}}</td>
 
-                <td width="25%">
+                <td width="20%">
                     {{$materia->grado}}
                     {{ $materia->seccion}}
                     {{ $materia->categoria}}
@@ -45,6 +46,28 @@
                       @endcan
                 </td>
                 <td width="15%">
+                    @can('notas.verAsistenciaConducta')
+                    <a class="btn btn-info mt-1" href="{{ route('notas.verAsistenciaConducta', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'1']) }}" class="btn btn-default btn-flat" title="ver">
+                        Per 1
+                      </a>
+                      @endcan
+                      @can('notas.verAsistenciaConducta')
+                    <a class="btn btn-info mt-1" width="10%" href="{{ route('notas.verAsistenciaConducta', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'2']) }}" class="btn btn-default btn-flat" title="ver">
+                        Per 2
+                      </a>
+                      @endcan
+                      @can('notas.verAsistenciaConducta')
+                    <a class="btn btn-info mt-1" href="{{ route('notas.verAsistenciaConducta', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'3']) }}" class="btn btn-default btn-flat" title="ver">
+                        Per 3
+                      </a>
+                      @endcan
+                      @can('notas.verAsistenciaConducta')
+                    <a class="btn btn-info mt-1" href="{{ route('notas.verAsistenciaConducta', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'4']) }}" class="btn btn-default btn-flat" title="ver">
+                        Per 4
+                      </a>
+                      @endcan
+                    </td>
+                <td width="10%">
                     @can('notas.ingresoNotas')
                     <a href="{{ route('notas.ingresoNotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre]) }}" class="btn btn-success btn-flat" title="IngresarNotas">
                         <i class="far fa-address-book" aria-hidden="true"></i>
@@ -63,22 +86,22 @@
                     <td width="20%">
                         @can('notas.verNotas')
                         <a class="btn btn-info mt-1" href="{{ route('notas.verNotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'1']) }}" class="btn btn-default btn-flat" title="ver">
-                            Periodo 1
+                            Per 1
                           </a>
                           @endcan
                           @can('notas.verNotas')
                         <a class="btn btn-info mt-1" width="10%" href="{{ route('notas.verNotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'2']) }}" class="btn btn-default btn-flat" title="ver">
-                            Periodo 2
+                            Per 2
                           </a>
                           @endcan
                           @can('notas.verNotas')
                         <a class="btn btn-info mt-1" href="{{ route('notas.verNotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'3']) }}" class="btn btn-default btn-flat" title="ver">
-                            Periodo 3
+                            Per 3
                           </a>
                           @endcan
                           @can('notas.verNotas')
                         <a class="btn btn-info mt-1" href="{{ route('notas.verNotas', ['grado'=>$materia->grado, 'seccion'=> $materia->seccion, 'nombre'=> $materia->nombre, 'idgrado'=>$materia->id, 'categoria'=>$materia->categoria , 'periodo'=>'4']) }}" class="btn btn-default btn-flat" title="ver">
-                            Periodo 4
+                            Per 4
                           </a>
                           @endcan
                         </td>

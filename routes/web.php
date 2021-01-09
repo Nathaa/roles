@@ -276,6 +276,8 @@ Route::get('verPromedios/','NotasController@verPromedios')->name('notas.verProme
 ->middleware('can:notas.verPromedios');
 Route::get('verNotas/','NotasController@verNotas')->name('notas.verNotas')
 ->middleware('can:notas.verNotas');
+Route::get('notas.verAsistenciaConducta/','NotasController@verAsistenciaConducta')->name('notas.verAsistenciaConducta')
+->middleware('can:notas.verAsistenciaConducta');
 
 
 //reportes
