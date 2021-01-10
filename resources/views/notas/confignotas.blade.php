@@ -9,7 +9,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-body">
-            <h3>Configurar y digitar las notas de las materias que imparte</h3>
+            <h3>Configurar y digitar las notas de las materias</h3>
             <div class="form-group row">
               <div class="col-md-6">
               </div>

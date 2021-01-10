@@ -15,13 +15,12 @@
     <div class="card">
         <div class="card-body">
             <table class="table table-bordered table-hover">
-         
-                            
+             
+                           
                 <div id="msj_azul_fijo" class="alert alert-primary" role="alert">
                     Datos de la Materia
                 </div>
 
-                <!--<form method="POST"-->
                 <?php echo Form::model($materia,['method'=>'PATCH','route'=>['materias.update', $materia->id]]); ?>
 
                 <?php echo e(Form::token()); ?>
@@ -89,7 +88,4 @@
 <?php $__env->stopSection(); ?>
 
 
-<?php $__env->startSection('scripts'); ?>
-
-<?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/materias/edit.blade.php ENDPATH**/ ?>

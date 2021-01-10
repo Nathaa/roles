@@ -77,6 +77,24 @@ class NotasController extends Controller
                                 if($periodosCount==2){
                                     $numperiodos = 1;
 
+                                    }else{
+                                        if($periodosCount==4){
+                                            $numperiodos = 4;
+
+                                            }else{
+                                                if($periodosCount==3){
+                                                    $numperiodos = 3;
+
+                                                    }else{
+                                                        if($periodosCount==2){
+                                                            $numperiodos = 2;
+
+                                                            }else{if($periodosCount==1){
+                                                                $numperiodos = 1;
+
+                                                                }}
+                                                    }
+                                            }
                                     }
                             }
                     }
@@ -172,6 +190,24 @@ class NotasController extends Controller
                                 if($periodosCount==2){
                                     $numperiodos = 1;
 
+                                    }else{
+                                        if($periodosCount==4){
+                                            $numperiodos = 4;
+
+                                            }else{
+                                                if($periodosCount==3){
+                                                    $numperiodos = 3;
+
+                                                    }else{
+                                                        if($periodosCount==2){
+                                                            $numperiodos = 2;
+
+                                                            }else{if($periodosCount==1){
+                                                                $numperiodos = 1;
+
+                                                                }}
+                                                    }
+                                            }
                                     }
                             }
                     }
@@ -316,6 +352,24 @@ class NotasController extends Controller
                                 if($periodosCount==2){
                                     $numperiodos = 1;
 
+                                    }else{
+                                        if($periodosCount==4){
+                                            $numperiodos = 4;
+
+                                            }else{
+                                                if($periodosCount==3){
+                                                    $numperiodos = 3;
+
+                                                    }else{
+                                                        if($periodosCount==2){
+                                                            $numperiodos = 2;
+
+                                                            }else{if($periodosCount==1){
+                                                                $numperiodos = 1;
+
+                                                                }}
+                                                    }
+                                            }
                                     }
                             }
                     }
@@ -427,6 +481,24 @@ class NotasController extends Controller
                                 if($periodosCount==2){
                                     $numperiodos = 1;
 
+                                    }else{
+                                        if($periodosCount==4){
+                                            $numperiodos = 4;
+
+                                            }else{
+                                                if($periodosCount==3){
+                                                    $numperiodos = 3;
+
+                                                    }else{
+                                                        if($periodosCount==2){
+                                                            $numperiodos = 2;
+
+                                                            }else{if($periodosCount==1){
+                                                                $numperiodos = 1;
+
+                                                                }}
+                                                    }
+                                            }
                                     }
                             }
                     }
@@ -472,6 +544,7 @@ class NotasController extends Controller
         }
         $match = ['grados_id' => $idgrado, 'materias_id' => $idmat, 'periodos_id'=>$periodoSend];
         $notas = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion', 'conducta', 'asistencia')->get();
+        $notasCount = Nota::where($match)->select( 'estudiantes_id', 'tipo_nota', 'valor_nota', 'ponderacion', 'conducta', 'asistencia')->get()->count();
         $match = ['grados_id' => $idgrado, 'materias_id' => $idmat];
         $periodosCount = Asignacion::whereNotNull('periodos_id')->where($match)->select('periodos_id')->get()->count();
         $numperiodos = 0;
@@ -492,6 +565,24 @@ class NotasController extends Controller
                                 if($periodosCount==2){
                                     $numperiodos = 1;
 
+                                    }else{
+                                        if($periodosCount==4){
+                                            $numperiodos = 4;
+
+                                            }else{
+                                                if($periodosCount==3){
+                                                    $numperiodos = 3;
+
+                                                    }else{
+                                                        if($periodosCount==2){
+                                                            $numperiodos = 2;
+
+                                                            }else{if($periodosCount==1){
+                                                                $numperiodos = 1;
+
+                                                                }}
+                                                    }
+                                            }
                                     }
                             }
                     }
@@ -508,6 +599,6 @@ class NotasController extends Controller
             $i++;
         }
 
-        return view('notas.verAsistenciaConducta', compact('idgrado', 'grado', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes', 'notas', 'periodo', 'nomperiodo', 'estudianteInd'));
+        return view('notas.verAsistenciaConducta', compact('idgrado', 'grado','notasCount', 'seccion', 'nomMateria', 'categoria', 'numperiodos', 'estudiantes', 'notas', 'periodo', 'nomperiodo', 'estudianteInd'));
     }
 }

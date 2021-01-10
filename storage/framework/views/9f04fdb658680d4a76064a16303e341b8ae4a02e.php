@@ -25,10 +25,14 @@
                 <?php $__currentLoopData = $estudiantes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $estudiante): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                    <?php if (str_contains($notas[$i]->estudiantes_id, $estudiante[$i]->id)) {
+                    <?php
+                    if($notasCount==0){
+
+                    }else{
+                    if (str_contains($notas[$i]->estudiantes_id, $estudiante[$i]->id)) {
                         echo  "<th>Conducta: </th>";
                         echo  "<th>Asistencia:<br> </th>";
-                    }?>
+                    }}?>
 
                 <?php $i++;?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -54,10 +58,13 @@
 
 
 
-                    <?php if (str_contains($notas[$i]->estudiantes_id, $estudiante[$i]->id)) {
+                    <?php
+                    if($notasCount==0){
+
+                        }else{ if (str_contains($notas[$i]->estudiantes_id, $estudiante[$i]->id)) {
                         echo  "<th>";  echo $notas[$i]->conducta;  echo "<br> </th>";
                         echo  "<th>";  echo $notas[$i]->asistencia;  echo "<br> </th>";
-                    }?>
+                    }}?>
 
 
                 </tr>
