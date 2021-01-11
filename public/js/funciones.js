@@ -16,6 +16,13 @@ $(document).ready(function() {
     },2000);
 });
 
+$(document).ready(function() {
+    setTimeout(function() {
+        $("#msj_error").fadeOut(1500);
+    },2000);
+});
+
+
 /*$(document).ready(function() {
   setTimeout(function() {
     // Declaramos la capa  mediante una clase para ocultarlo

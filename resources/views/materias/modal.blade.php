@@ -11,7 +11,7 @@
        <div class="row">
           <div class="col">
             {{ Form::label('nombre', 'Nombre')}}
-            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
+            {{ Form::text('nombre',null,['class' => 'form-control', 'id' => 'nombre_materia', 'onkeyup' => "validar_nombre(this)", 'onblur' => "validar_nombre(this)"]) }}
             <div class="invalid-feedback" style="display:none">
                 El nombre de la materia no debe comenzar con números ni caracteres especiales
               </div> 
@@ -52,7 +52,7 @@
 </form>
 
 @section('scripts')
-<script type="">
+<!--<script type="">
     //agregado para cambiar el valor del select por el recuperado de la base 
     $(document).ready(function(){
             $(function printOnSelect(){
@@ -60,7 +60,7 @@
               var flag={!! json_encode($flag ?? '') !!};
               if(flag){
                 var estadoOriginal={!! json_encode($estadoOriginal ??'') !!};  
-                //console.log(estadoOriginal);
+                console.log(estadoOriginal);
                     if(estadoOriginal===true){
                       document.getElementById("estado").value ="1";
                     }else{
@@ -70,8 +70,21 @@
             });
           });
           //hasta aqui lo nuevo
-</script>
+</script>-->
 <script src="{{ asset('js/validar-form-materias.js') }}"></script>
+<script type="text/javascript">
+  $(function(){
+  $("#nombre_materia").on('change', convertirMayus);
+       });
+   function convertirMayus() {
+      nombre = $(this).val();
+      //cadena = nombre[0].toUpperCase() + nombre.slice(1);
+      //val = val.substr(0, 1).toUpperCase() + val.substr(1).toLowerCase();
+      cadena = nombre.charAt(0).toUpperCase() + nombre.substr(1).toLowerCase();
+     // console.log(cadena);
+     $("#nombre_materia").val(cadena);
+  }
+</script>
 @stop
 
 

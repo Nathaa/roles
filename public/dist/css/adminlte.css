@@ -13,6 +13,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+.widthLi {
+    display: inline-block;
+    width: 45%
+}
+
 :root {
     --blue: #007bff;
     --indigo: #6610f2;

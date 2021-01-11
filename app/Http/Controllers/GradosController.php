@@ -26,7 +26,7 @@ class GradosController extends Controller
     public function index(Request $request)
     {
         $grados=Grado::paginate();
-        
+
         if ($request)
        {
         $query=trim($request->get('search'));
@@ -50,7 +50,7 @@ class GradosController extends Controller
 
         $planesEstudio = PlanEstudio::get();
         $anios = Anio::get();
-        
+
         return view('grados.create', compact('turnos','planesEstudio','anios'));
     }
 

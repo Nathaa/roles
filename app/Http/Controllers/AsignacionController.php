@@ -153,20 +153,8 @@ class AsignacionController extends Controller
 
 
 
-
-       // dd($request);
-      // $materias_id=$request->materias;
-       //foreach($materias_id as $id)
-       //$id= new Asignacion();
-       //$id->materias_id=$id;
-      // $id->save();
-     //$asignaciones->materias()->attach($request->get('materias'));
-        //$asignaciones->periodo()->attach($request->get('periodos_id'));
-
-      //  $asignaciones->save();
-
-        //Session::flash('success_message', 'asignacione guardado con éxito');
-        //eturn redirect()->route('asignaciones.index', compact('asignaciones','grados'));
+         Session::flash('success_message', 'asignacione guardado con éxito');
+         return redirect()->route('asignaciones.index');
     }
 
     /**

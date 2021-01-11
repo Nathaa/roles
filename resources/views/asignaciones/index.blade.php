@@ -10,18 +10,7 @@
 
 
 @section('title')
-<div class="title_right">
-    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-    <div class="input-group">
-        {{Form::open(['route'=>'asignaciones.index', 'method'=>'GET','class'=>'navbar-form nabvar-left','role'=>'buscador']) }}
-      {{ Form::text('categoria',null, ['class'=>'form-control', 'placeholder'=>'Buscar','style'=>'width:80px'] ) }}
-   <span class="input-group-btn">
-   <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-   </span>
-   {{ Form::close() }}
-    </div>
-    </div>
-</div>
+
 @endsection
 
 
@@ -125,6 +114,7 @@
        </tbody>
       </table>
 
+</div>
 </div>
 </div>
 </div>

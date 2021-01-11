@@ -1,8 +1,8 @@
 {!! csrf_field() !!}
 
 
-<div class="alert alert-primary" role="alert">
-        Datos del Año
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Asignacion Academica
 </div>
 
 <form>
@@ -27,36 +27,43 @@
 
         </div>
 
-        <div class="col">
-            <div class="form-group">
-                <ul class="list-unstyled">
-                {{  Form::label('periodos_id','Periodos') }}
-                <div>
-                 @foreach($periodos as $periodo)
-        <label>{{$periodo->nombre}}</label>
-        <input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}">
-       
-            @endforeach
-          </ul>
-         </div>
-        </div>
+
     </div>
 <br>
-<br>
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Periodos
+</div>
+<div class="col">
     <div class="form-group">
+        <ul class="list-unstyled">
+
+         @foreach($periodos as $periodo)
+<label>{{$periodo->nombre_periodo}}</label>
+<input type="checkbox" id="periodo[]" name="periodo[]" value="{{ $periodo->id }}">
+
+    @endforeach
+  </ul>
+ </div>
+</div>
 
 
-        {{  Form::label('materias_id','Materias') }}
-        <div>
+
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Materias
+</div>
 
          @foreach($materias as $materia)
- <label>{{$materia->nombre}}</label>
+         <div class="checkbox col-sm-6">
+
  <input type="checkbox" id="materia[]" name="materia[]" value="{{ $materia->id }}">
-    @endforeach
+ <label>{{$materia->nombre}}</label>
+         </div>
+
+ @endforeach
 </ul>
  </div>
 
-</div>
+
 
 
 

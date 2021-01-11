@@ -73,7 +73,21 @@ Route::delete('roles/{role}', 'RolesController@destroy')->name('roles.destroy')
 
 
 //Materias
-Route::resource('materias', 'MateriaController');
+//Route::resource('materias', 'MateriaController');
+Route::get('materias', 'MateriaController@index')->name('materias.index')
+->middleware('can:materias.index');
+Route::get('materias/materia', 'MateriaController@create')->name('materias.create')
+->middleware('can:materias.create');
+Route::get('materias/{materia}', 'MateriaController@show')->name('materias.show')
+->middleware('can:materias.show');
+Route::post('materias', 'MateriaController@store')->name('materias.store')
+->middleware('can:materias.create');
+Route::get('materias/{materia}/edit', 'MateriaController@edit')->name('materias.edit')
+->middleware('can:materias.edit');
+Route::patch('materias/{materia}', 'MateriaController@update')->name('materias.update')
+->middleware('can:materias.update');
+Route::delete('materias/{materia}', 'MateriaController@destroy')->name('materias.destroy')
+->middleware('can:materias.destroy');
 
 });
 
@@ -258,6 +272,12 @@ Route::post('notasPeriodo/','NotasController@notasPeriodo')->name('notas.notasPe
 ->middleware('can:notas.notasPeriodo');
 Route::post('guardarNotasIngresadas/','NotasController@guardarNotasIngresadas')->name('notas.guardarNotasIngresadas')
 ->middleware('can:notas.guardarNotasIngresadas');
+Route::get('verPromedios/','NotasController@verPromedios')->name('notas.verPromedios')
+->middleware('can:notas.verPromedios');
+Route::get('verNotas/','NotasController@verNotas')->name('notas.verNotas')
+->middleware('can:notas.verNotas');
+Route::get('notas.verAsistenciaConducta/','NotasController@verAsistenciaConducta')->name('notas.verAsistenciaConducta')
+->middleware('can:notas.verAsistenciaConducta');
 
 
 //reportes
@@ -266,3 +286,4 @@ Route::get('reportes', 'ReportesController@index')->name('reportes.index')
 Route::get('reportes/{reporte}', 'ReportesController@show')->name('reportes.show')
 ->middleware('can:reportes.show');
 
+Route::get('/imprimir/{reporte}', 'ReportesController@imprimir')->name('print');

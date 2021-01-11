@@ -2,8 +2,8 @@
 
 
 
-<div class="alert alert-primary" role="alert">
-        Datos del Año
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Asignacion Academica
 </div>
 
 <form>
@@ -29,38 +29,43 @@
 
         </div>
 
-        <div class="col">
-            <div class="form-group">
-                <ul class="list-unstyled">
-                <?php echo e(Form::label('periodos_id','Periodos')); ?>
 
-                <div>
-                 <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <label><?php echo e($periodo->nombre); ?></label>
-        <input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
-       
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-          </ul>
-         </div>
-        </div>
     </div>
 <br>
-<br>
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Periodos
+</div>
+<div class="col">
     <div class="form-group">
+        <ul class="list-unstyled">
+
+         <?php $__currentLoopData = $periodos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $periodo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<label><?php echo e($periodo->nombre_periodo); ?></label>
+<input type="checkbox" id="periodo[]" name="periodo[]" value="<?php echo e($periodo->id); ?>">
+
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  </ul>
+ </div>
+</div>
 
 
-        <?php echo e(Form::label('materias_id','Materias')); ?>
 
-        <div>
+<div id="msj_azul_fijo" class="alert alert-primary" role="alert">
+    Materias
+</div>
 
          <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
- <label><?php echo e($materia->nombre); ?></label>
+         <div class="checkbox col-sm-6">
+
  <input type="checkbox" id="materia[]" name="materia[]" value="<?php echo e($materia->id); ?>">
-    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+ <label><?php echo e($materia->nombre); ?></label>
+         </div>
+
+ <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul>
  </div>
 
-</div>
+
 
 
 
