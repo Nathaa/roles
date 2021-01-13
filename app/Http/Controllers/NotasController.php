@@ -190,6 +190,7 @@ class NotasController extends Controller
         $match = ['grados_id' => (int)$idgrado];
         $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
         $estudiantes = [];
+        $estudianteInd = 0;
         $i = 0;
         foreach ($estudiantesMatricula as $estudiante) {
             $match = $estudiante->id;
