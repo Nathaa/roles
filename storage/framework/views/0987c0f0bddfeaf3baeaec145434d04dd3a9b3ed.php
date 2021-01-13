@@ -20,10 +20,10 @@
                 <th scope="col">Apellidos Estudiante</th>
                 <?php $__currentLoopData = $notasLlenar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <th scope="col">Nota: <?php echo e($nota->tipo_nota); ?></th>
-                <th scope="col">Asistencia:</th>
-                <th scope="col">Conducta:</th>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+<th scope="col">Asistencia:</th>
+                <th scope="col">Conducta:</th>
             </tr>
 
             <tbody>
@@ -43,13 +43,13 @@
                     <input type="hidden"  id="tipo_nota" name="tipo_nota[]" value="<?php echo e($nota->tipo_nota); ?>">
                     <input type="hidden" id="ponderacion" name="ponderacion[]" value="<?php echo e($nota->ponderacion); ?>">
                     <th scope="col"><?php echo e(Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'enabledButton();','onkeypress' => 'enabledButton();', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
-                    <th scope="col"><?php echo e(Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
-                    <th scope="col"><?php echo e(Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+
                     <div class="invalid-feedback" style="display:none">
                         El numero debe estar entre 0 y 10
                       </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+                    <th scope="col"><?php echo e(Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+                    <th scope="col"><?php echo e(Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
 
                 </tr>
                 <?php $i++;?>

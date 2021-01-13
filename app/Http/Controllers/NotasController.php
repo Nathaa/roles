@@ -189,6 +189,18 @@ class NotasController extends Controller
         $anioID = $request["anioID"];
         $match = ['grados_id' => (int)$idgrado];
         $estudiantesMatricula = Matricula::where($match)->select('estudiantes_id')->get();
+        if (!(count($estudiantesMatricula)>0)) {
+            $materiasS = DB::table('materias')
+            ->join('asignacions', 'asignacions.materias_id', '=', 'materias.id')
+            ->join('grados', 'grados.id', '=', 'asignacions.grados_id')
+            ->join('anios', 'anios.id', '=', 'grados.anios_id')
+            ->where('materias.estado', 'true')
+            //->where('anios.año', $fechaActualMismoAnioLectivo)
+            ->select('materias.nombre', 'grados.grado', 'grados.seccion', 'grados.categoria', 'grados.id')
+            ->get()->toArray();
+        Session::flash('success_message', 'Notas de Estudiantes guardadas con éxito');
+        return view('notas.confignotas', ['materias' => $materiasS]);
+        } else{
         $estudiantes = [];
         $estudianteInd = 0;
         $i = 0;
@@ -213,6 +225,7 @@ class NotasController extends Controller
             'anioID',
             'numperiodos'
         ));
+    }
     }
 
 
