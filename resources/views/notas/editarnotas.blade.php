@@ -30,7 +30,7 @@
          )}}" method="POST"  >
             @csrf
         @for($i=0; $i<$numperiodos;$i++)
-        <input type="radio" name="periodo" id="periodo" value="{{$periodos[$i]->periodos_id}}"> Notas para el periodo {{$i+1}}<br>
+        <input type="radio" required ="required" name="periodo" id="periodo" value="{{$periodos[$i]->periodos_id}}"> Notas para el periodo {{$i+1}}<br>
 
         @endfor
         <br>
@@ -55,7 +55,7 @@
 
       </tr>
       <br>
-      <button type="submit" class="btn  btn-success float-sm-left" id="btnContinuar">Guardar Notas del periodo</button>
+      <button type="submit"  disabled="true" class="btn  btn-success float-sm-left" id="btnContinuar">Guardar Notas del periodo</button>
     </form>
     </div>
 </div>
@@ -70,19 +70,24 @@
 <script type="">
 
 function agregarFila(){
+
   document.getElementById("tablaprueba").insertRow(-1).innerHTML
    = '<td> {{ Form::text('tipo_nota',null,['class' => 'form-control', 'id'=> 'tipo_nota','name' => 'nombreNota[]' , 'placeholder' => 'tipo de nota', 'required' => 'required','autofocus'=>'autofocus']) }}</td> <td> {{ Form::number('ponderacion',null,['class' => 'form-control', 'id'=>'ponderacion', 'name' => 'ponderacion[]' ,'placeholder' => 'ponderacion de la nota (ejemplo: 35 para 35%)', 'required' => 'required','autofocus'=>'autofocus' ]) }}</td>';
+   document.getElementById("btnContinuar").disabled = false;
 }
 
 function eliminarFila(){
   var table = document.getElementById("tablaprueba");
   var rowCount = table.rows.length;
-  //console.log(rowCount);
+  console.log(rowCount);
+
 
   if(rowCount <= 1)
     alert('No se puede eliminar el encabezado');
   else
     table.deleteRow(rowCount -1);
+    if(table.rows.length == 1 )
+        document.getElementById("btnContinuar").disabled = true;
 }
 
 

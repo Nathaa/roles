@@ -119,6 +119,7 @@ class AsignacionController extends Controller
     }
 
         Session::flash('success_message', 'asignacione guardado con éxito');
+        return redirect()->route('asignaciones.index');
 
 	 //$periodos->save();
 

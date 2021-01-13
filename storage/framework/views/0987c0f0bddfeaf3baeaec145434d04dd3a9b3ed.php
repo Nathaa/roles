@@ -20,9 +20,10 @@
                 <th scope="col">Apellidos Estudiante</th>
                 <?php $__currentLoopData = $notasLlenar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <th scope="col">Nota: <?php echo e($nota->tipo_nota); ?></th>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <th scope="col">Asistencia:</th>
                 <th scope="col">Conducta:</th>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
             </tr>
 
             <tbody>
@@ -39,16 +40,16 @@
 
                     </th>
                     <?php $__currentLoopData = $notasLlenar; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $nota): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <input type="hidden" id="tipo_nota" name="tipo_nota[]" value="<?php echo e($nota->tipo_nota); ?>">
+                    <input type="hidden"  id="tipo_nota" name="tipo_nota[]" value="<?php echo e($nota->tipo_nota); ?>">
                     <input type="hidden" id="ponderacion" name="ponderacion[]" value="<?php echo e($nota->ponderacion); ?>">
-                    <th scope="col"><?php echo e(Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'validar_numero(this)', 'onblur' => 'validar_numero(this)', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
-
+                    <th scope="col"><?php echo e(Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'enabledButton();','onkeypress' => 'enabledButton();', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+                    <th scope="col"><?php echo e(Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+                    <th scope="col"><?php echo e(Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
                     <div class="invalid-feedback" style="display:none">
                         El numero debe estar entre 0 y 10
                       </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <th scope="col"><?php echo e(Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
-                    <th scope="col"><?php echo e(Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus'])); ?></th>
+
 
                 </tr>
                 <?php $i++;?>
@@ -58,7 +59,7 @@
           </div>
           </tr>
       <br>
-      <button id="btn_submit" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
+      <button id="btn_submit" disabled="true" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
     </form>
     </div>
 </div>
@@ -68,7 +69,17 @@
 </div>
 <?php $__env->startSection('scripts'); ?>
 <script src="<?php echo e(asset('js/validar-form-notas.js')); ?>"></script>
+<script type="">
+
+
+    function enabledButton(){
+        document.getElementById("btn_submit").disabled = false;
+    }
+
+
+    </script>
 <?php $__env->stopSection(); ?>
 <?php $__env->stopSection(); ?>
+
 
 <?php echo $__env->make('admin.index2', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Documentos\GitHub\roles\resources\views/notas/notasPeriodo.blade.php ENDPATH**/ ?>
