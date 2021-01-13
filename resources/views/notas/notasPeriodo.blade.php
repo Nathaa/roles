@@ -21,9 +21,10 @@
                 <th scope="col">Apellidos Estudiante</th>
                 @foreach ($notasLlenar as $nota)
                 <th scope="col">Nota: {{$nota->tipo_nota}}</th>
-                @endforeach
                 <th scope="col">Asistencia:</th>
                 <th scope="col">Conducta:</th>
+                @endforeach
+
             </tr>
 
             <tbody>
@@ -38,16 +39,16 @@
                         {{$estudiante[$i]->apellido}}
                     </th>
                     @foreach ($notasLlenar as $nota)
-                    <input type="hidden" id="tipo_nota" name="tipo_nota[]" value="{{$nota->tipo_nota}}">
+                    <input type="hidden"  id="tipo_nota" name="tipo_nota[]" value="{{$nota->tipo_nota}}">
                     <input type="hidden" id="ponderacion" name="ponderacion[]" value="{{$nota->ponderacion}}">
-                    <th scope="col">{{ Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'validar_numero(this)', 'onblur' => 'validar_numero(this)', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
-
+                    <th scope="col">{{ Form::number('valor_nota',null,['class' => 'form-control' , 'step'=>'0.01', 'id'=> 'valor_nota','name' => 'nombreNota[]' , 'placeholder' => 'digite la nota','onkeyup' => 'enabledButton();','onkeypress' => 'enabledButton();', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
+                    <th scope="col">{{ Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
+                    <th scope="col">{{ Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
                     <div class="invalid-feedback" style="display:none">
                         El numero debe estar entre 0 y 10
                       </div>
                     @endforeach
-                    <th scope="col">{{ Form::text('asistencia',null,['class' => 'form-control' , 'id'=> 'asistencia','name' => 'asistencia' , 'placeholder' => 'digite la Asistencia', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
-                    <th scope="col">{{ Form::text('conducta',null,['class' => 'form-control' , 'id'=> 'conducta','name' => 'conducta' , 'placeholder' => 'digite la conducta', 'required' => 'required','autofocus'=>'autofocus']) }}</th>
+
 
                 </tr>
                 <?php $i++;?>
@@ -57,7 +58,7 @@
           </div>
           </tr>
       <br>
-      <button id="btn_submit" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
+      <button id="btn_submit" disabled="true" type="submit" class="btn  btn-success float-sm-left">Guardar Notas</button>
     </form>
     </div>
 </div>
@@ -67,5 +68,15 @@
 </div>
 @section('scripts')
 <script src="{{ asset('js/validar-form-notas.js') }}"></script>
+<script type="">
+
+
+    function enabledButton(){
+        document.getElementById("btn_submit").disabled = false;
+    }
+
+
+    </script>
 @endsection
 @endsection
+

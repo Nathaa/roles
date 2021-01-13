@@ -21,7 +21,7 @@
             <?php echo csrf_field(); ?>
         <br>
         <?php for($i=0; $i<$numperiodos;$i++): ?>
-        <input type="radio" name="periodo" id="periodo" value="<?php echo e($periodos[$i]->periodos_id); ?>"> Notas para el periodo <?php echo e($i+1); ?><br>
+        <input type="radio" required ="required" name="periodo" id="periodo" value="<?php echo e($periodos[$i]->periodos_id); ?>"> Notas para el periodo <?php echo e($i+1); ?><br>
 
         <?php endfor; ?>
       <br>

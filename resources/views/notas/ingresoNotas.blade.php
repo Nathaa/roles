@@ -23,7 +23,7 @@
             @csrf
         <br>
         @for($i=0; $i<$numperiodos;$i++)
-        <input type="radio" name="periodo" id="periodo" value="{{$periodos[$i]->periodos_id}}"> Notas para el periodo {{$i+1}}<br>
+        <input type="radio" required ="required" name="periodo" id="periodo" value="{{$periodos[$i]->periodos_id}}"> Notas para el periodo {{$i+1}}<br>
 
         @endfor
       <br>
